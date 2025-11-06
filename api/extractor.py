@@ -1,330 +1,435 @@
 import os
 import json
 import time
+import re
+from typing import List, Dict, Any, Tuple, Optional, TYPE_CHECKING
+from dotenv import load_dotenv
 from hume import HumeClient
 from hume.expression_measurement.batch.types import InferenceBaseRequest, Models
 
+if TYPE_CHECKING:
+    from openai import OpenAI
+else:
+    try:
+        from openai import OpenAI
+    except ImportError:
+        OpenAI = None  # type: ignore
 
-HUME_API_KEY = "ZMVscLyAPVfZrOYuMvrD5YSyC6XtfNcBiAUuBi1MjjcOpIdG"
+load_dotenv()
 
-def test_hume_expression_measurement():
-    # Initialize the Hume client
-    client = HumeClient(api_key=HUME_API_KEY)
+HUME_API_KEY = os.getenv("HUME_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+
+def get_hume_client() -> HumeClient:
+    """Initialize and return Hume client"""
+    if not HUME_API_KEY:
+        raise ValueError("HUME_API_KEY environment variable is not set")
+    return HumeClient(api_key=HUME_API_KEY)
+
+
+def get_openai_client() -> Optional[OpenAI]:
+    """Initialize and return OpenAI client if API key is available"""
+    if OpenAI is None:
+        return None
     
-    # Get audio files in the current directory
-    audio_files = [f for f in os.listdir(".") if f.lower().endswith((".wav", ".mp3", ".m4a", ".flac"))]
+    if not OPENAI_API_KEY:
+        return None
+    return OpenAI(api_key=OPENAI_API_KEY)
+
+
+def prepare_audio_files(file_contents: List[Tuple[str, bytes]]) -> List[Tuple[str, bytes, str]]:
+    """
+    Prepare audio files for submission to Hume API.
     
-    if not audio_files:
-        print("No audio files found in current directory.")
-        return
+    Args:
+        file_contents: List of tuples (filename, file_bytes)
     
-    print(f"Processing {len(audio_files)} files: {audio_files}")
+    Returns:
+        List of tuples (filename, file_bytes, content_type)
+    """
+    file_objects = []
+    for filename, file_content in file_contents:
+        # Determine content type from extension
+        ext = os.path.splitext(filename)[1].lower()
+        content_type_map = {
+            '.wav': 'audio/wav',
+            '.mp3': 'audio/mpeg',
+            '.m4a': 'audio/mp4',
+            '.flac': 'audio/flac'
+        }
+        content_type = content_type_map.get(ext, 'audio/wav')
+        file_objects.append((filename, file_content, content_type))
     
-    # Configure models for speech prosody and vocal bursts
+    return file_objects
+
+
+def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional[HumeClient] = None) -> str:
+    """
+    Submit audio files to Hume API for emotion analysis.
+    
+    Args:
+        file_objects: List of tuples (filename, file_bytes, content_type)
+        client: Optional HumeClient instance (creates new one if not provided)
+    
+    Returns:
+        Job ID string
+    """
+    if client is None:
+        client = get_hume_client()
+    
     models_config = Models(prosody={}, burst={})
     inference_request = InferenceBaseRequest(models=models_config)
     
-    print("\nSubmitting batch job...")
     try:
-        # Open files as file objects (some APIs prefer this over filenames)
-        file_objects = []
-        for filename in audio_files:
-            try:
-                with open(filename, 'rb') as f:
-                    # Read the file content and pass as bytes
-                    file_content = f.read()
-                    # Pass as tuple (filename, content, content_type) for better recognition
-                    file_objects.append((filename, file_content, 'audio/wav'))
-            except Exception as e:
-                print(f"Warning: Could not read {filename}: {e}")
-                # Fallback to just filename
-                file_objects.append(filename)
-        
-        # Submit job with local files
+        # Submit job - pass file_objects directly as in the working code
         job_id = client.expression_measurement.batch.start_inference_job_from_local_file(
-            file=file_objects if file_objects else audio_files,
+            file=file_objects if file_objects else [],
             json=inference_request
         )
-        
-        print(f"Job ID: {job_id}")
-        print("Waiting for completion...")
-        
-        # Poll for job status
-        job_details = None
-        while True:
-            job_details = client.expression_measurement.batch.get_job_details(job_id)
-            status = job_details.state.value if hasattr(job_details.state, 'value') else str(job_details.state)
-            
-            if "COMPLETED" in status.upper() or "completed" in status.lower():
-                print(f"Job completed!")
-                break
-            elif "FAILED" in status.upper() or "failed" in status.lower():
-                print(f"Job failed with status: {status}")
-                if hasattr(job_details, 'error'):
-                    print(f"Error: {job_details.error}")
-                # Print full job details for debugging
-                if hasattr(job_details, 'model_dump'):
-                    print(f"Job details: {job_details.model_dump()}")
-                return
-            print(f"  Status: {status}... waiting...")
-            time.sleep(5)  # Wait 5 seconds before checking again
-        
-        # Debug: Print job details to see what was processed
-        if job_details:
-            print(f"\nJob details retrieved.")
-            if hasattr(job_details, 'model_dump'):
-                job_dict = job_details.model_dump()
-                print(f"Job state: {job_dict.get('state', 'unknown')}")
-                if 'files_processed' in job_dict:
-                    print(f"Files processed: {job_dict['files_processed']}")
-                if 'files_total' in job_dict:
-                    print(f"Files total: {job_dict['files_total']}")
-        
-        # Get predictions
-        print("\nRetrieving predictions...")
-        try:
-            predictions_response = client.expression_measurement.batch.get_job_predictions(job_id)
-        except Exception as e:
-            print(f"Error retrieving predictions: {e}")
-            print("Trying to get job details for more information...")
-            if job_details and hasattr(job_details, 'model_dump'):
-                print(f"Full job details: {json.dumps(job_details.model_dump(), indent=2, default=str)}")
-            raise
-        
-        # Convert predictions response to dictionary format
-        if hasattr(predictions_response, 'model_dump'):
-            predictions_data = predictions_response.model_dump()
-        elif hasattr(predictions_response, 'dict'):
-            predictions_data = predictions_response.dict()
-        elif isinstance(predictions_response, list):
-            # If it's a list, try to convert each item
-            predictions_data = []
-            for item in predictions_response:
-                if hasattr(item, 'model_dump'):
-                    predictions_data.append(item.model_dump())
-                elif hasattr(item, 'dict'):
-                    predictions_data.append(item.dict())
-                else:
-                    predictions_data.append(item)
-        else:
-            predictions_data = predictions_response
-        
-        # Save predictions to file
-        with open("predictions.json", "w") as f:
-            json.dump(predictions_data, f, indent=2, default=str)
-        
-        print("Predictions saved to predictions.json")
-        
-        print("\n" + "="*70)
-        print("HUME EMOTION RESULTS")
-        print("="*70)
-        
-        # Parse predictions response structure
-        # Format: [{source: {...}, results: {predictions: [...]}}]
-        results_list = []
-        if isinstance(predictions_data, list):
-            # Process each file result
-            for item in predictions_data:
-                if isinstance(item, dict) and "results" in item:
-                    result_obj = item["results"]
-                    if isinstance(result_obj, dict) and "predictions" in result_obj:
-                        predictions_array = result_obj["predictions"]
-                        if predictions_array:
-                            results_list.append(predictions_array)
-                        else:
-                            results_list.append({})
-                    else:
-                        results_list.append(result_obj if isinstance(result_obj, dict) else {})
-                else:
-                    results_list.append(item if isinstance(item, dict) else {})
-        elif isinstance(predictions_data, dict):
-            if "results" in predictions_data and "predictions" in predictions_data["results"]:
-                preds = predictions_data["results"]["predictions"]
-                results_list = preds if isinstance(preds, list) else [preds]
-            else:
-                results_list = [predictions_data]
-        
-        # Flatten results if needed
-        flattened_results = []
-        for result in results_list:
-            if isinstance(result, list):
-                for pred in result:
-                    if isinstance(pred, dict):
-                        flattened_results.append(pred)
-            else:
-                flattened_results.append(result)
-        results_list = flattened_results
-        
-        # Check for errors first
-        if isinstance(predictions_data, list):
-            for item in predictions_data:
-                if isinstance(item, dict):
-                    errors = item.get("results", {}).get("errors", [])
-                    if errors:
-                        print(f"\nWARNING: Errors found in processing:")
-                        for error in errors:
-                            print(f"  - {error}")
-                    # Check if there's an error at the top level
-                    if item.get("error"):
-                        print(f"\nWARNING: Error in job: {item.get('error')}")
-        
-        # Check if we actually have any non-empty predictions
-        has_predictions = False
-        if isinstance(predictions_data, list):
-            for item_idx, item in enumerate(predictions_data):
-                if isinstance(item, dict) and "results" in item:
-                    preds = item.get("results", {}).get("predictions", [])
-                    if preds:
-                        # Check if any prediction has models with data
-                        for pred_idx, pred in enumerate(preds):
-                            if isinstance(pred, dict) and "models" in pred:
-                                models = pred["models"]
-                                prosody = models.get("prosody")
-                                burst = models.get("burst")
-                                # Check if prosody or burst exist and are not None/empty
-                                if (prosody is not None and prosody != {}) or (burst is not None and burst != {}):
-                                    has_predictions = True
-                                    break
-                        if has_predictions:
-                            break
-        
-        if not has_predictions:
-            print("\nWARNING: No predictions found in response.")
-            print("This could mean:")
-            print("  1. The audio files contain no detectable speech")
-            print("  2. The files are too short or corrupted")
-            print("  3. The audio format is not supported")
-            print("  4. The models need different configuration")
-            
-            # Show file info
-            if isinstance(predictions_data, list):
-                for i, item in enumerate(predictions_data):
-                    filename = audio_files[i] if i < len(audio_files) else f"File {i+1}"
-                    source = item.get("source", {})
-                    print(f"\n  {filename}:")
-                    print(f"    - Content type: {source.get('content_type', 'unknown')}")
-                    print(f"    - MD5: {source.get('md_5_sum', 'unknown')}")
-                    if "results" in item:
-                        results_obj = item["results"]
-                        pred_count = len(results_obj.get("predictions", []))
-                        print(f"    - Predictions returned: {pred_count}")
-                        if results_obj.get("errors"):
-                            print(f"    - Errors: {results_obj['errors']}")
-            return
+    except Exception as e:
+        error_msg = str(e)
+        # Try to extract more details from the error
+        if hasattr(e, 'response'):
+            error_msg += f" | Response: {e.response}"
+        raise RuntimeError(f"Failed to submit job to Hume API: {error_msg}")
     
-        # Process predictions and match them to files
-        # Structure: [{source: {...}, results: {predictions: [{models: {prosody: {...}, burst: {...}}}]}}]
-        file_results = []
-        if isinstance(predictions_data, list):
-            for item in predictions_data:
-                if isinstance(item, dict) and "results" in item:
-                    preds = item.get("results", {}).get("predictions", [])
-                    # Combine all predictions for this file
-                    combined = {}
-                    for pred in preds:
-                        if isinstance(pred, dict) and "models" in pred:
-                            models = pred["models"]
-                            # Extract prosody and burst from models
-                            for key in ["prosody", "burst"]:
-                                if key in models and models[key] is not None:
-                                    if key not in combined:
-                                        combined[key] = models[key]
-                                    else:
-                                        # Merge predictions from grouped_predictions
-                                        if isinstance(combined[key], dict) and "grouped_predictions" in combined[key]:
-                                            existing_groups = combined[key]["grouped_predictions"]
-                                            new_groups = models[key].get("grouped_predictions", [])
-                                            combined[key]["grouped_predictions"] = existing_groups + new_groups
-                    file_results.append(combined if combined else {})
-                else:
-                    file_results.append({})
+    # In the working code, job_id is returned directly as a string
+    # But let's handle both cases just in case
+    if isinstance(job_id, str):
+        return job_id.strip()
+    elif hasattr(job_id, 'id'):
+        return str(job_id.id).strip()
+    elif hasattr(job_id, 'job_id'):
+        return str(job_id.job_id).strip()
+    elif isinstance(job_id, dict):
+        result = job_id.get('id') or job_id.get('job_id')
+        if result:
+            return str(result).strip()
+    
+    # Last resort: try to extract UUID from string representation
+    job_str = str(job_id)
+    uuid_pattern = r'[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+    uuid_match = re.search(uuid_pattern, job_str)
+    if uuid_match:
+        return uuid_match.group(0)
+    
+    raise ValueError(f"Could not extract valid job_id from response: {type(job_id)} - {job_id}")
+
+
+def wait_for_job_completion(job_id: str, client: Optional[HumeClient] = None, max_wait_time: int = 300, poll_interval: int = 2) -> Dict[str, Any]:
+    """
+    Wait for Hume job to complete.
+    
+    Args:
+        job_id: Job ID from submit_hume_job
+        client: Optional HumeClient instance
+        max_wait_time: Maximum time to wait in seconds
+        poll_interval: Seconds between status checks
+    
+    Returns:
+        Job details dictionary
+    
+    Raises:
+        TimeoutError: If job doesn't complete within max_wait_time
+        RuntimeError: If job fails
+    """
+    if client is None:
+        client = get_hume_client()
+    
+    start_time = time.time()
+    
+    while time.time() - start_time < max_wait_time:
+        job_details = client.expression_measurement.batch.get_job_details(job_id)
+        status = job_details.state.value if hasattr(job_details.state, 'value') else str(job_details.state)
         
-        # Process each file result
-        # Use file_results if available, otherwise use results_list
-        processed_results = file_results if file_results else results_list
+        if "COMPLETED" in status.upper():
+            if hasattr(job_details, 'model_dump'):
+                return job_details.model_dump()
+            return {"status": status}
+        elif "FAILED" in status.upper():
+            error = getattr(job_details, 'error', 'Unknown error')
+            raise RuntimeError(f"Job failed: {error}")
         
-        for i, result in enumerate(processed_results):
-            filename = audio_files[i] if i < len(audio_files) else f"File {i+1}"
-            print(f"\n{filename}")
-            print("─" * 50)
-            
-            # Check if result is a string (from string conversion) and try to parse
-            if isinstance(result, str):
-                print(f"  WARNING: Result is a string: {result[:100]}...")
+        time.sleep(poll_interval)
+    
+    raise TimeoutError(f"Job did not complete within {max_wait_time} seconds")
+
+
+def get_predictions(job_id: str, client: Optional[HumeClient] = None) -> List[Dict[str, Any]]:
+    """
+    Retrieve predictions from completed Hume job.
+    
+    Args:
+        job_id: Job ID from submit_hume_job
+        client: Optional HumeClient instance
+    
+    Returns:
+        List of prediction dictionaries
+    """
+    if client is None:
+        client = get_hume_client()
+    
+    predictions_response = client.expression_measurement.batch.get_job_predictions(job_id)
+    
+    # Convert to dictionary format
+    if hasattr(predictions_response, 'model_dump'):
+        predictions_data = predictions_response.model_dump()
+    elif hasattr(predictions_response, 'dict'):
+        predictions_data = predictions_response.dict()
+    elif isinstance(predictions_response, list):
+        predictions_data = []
+        for item in predictions_response:
+            if hasattr(item, 'model_dump'):
+                predictions_data.append(item.model_dump())
+            elif hasattr(item, 'dict'):
+                predictions_data.append(item.dict())
+            else:
+                predictions_data.append(item)
+    else:
+        predictions_data = predictions_response
+    
+    return predictions_data if isinstance(predictions_data, list) else [predictions_data]
+
+
+def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 3) -> List[Dict[str, Any]]:
+    """
+    Extract top N emotions from predictions data.
+    
+    Args:
+        predictions_data: List of prediction dictionaries from get_predictions
+        top_n: Number of top emotions to return per segment (default: 3)
+    
+    Returns:
+        List of file results with top emotions
+    """
+    results = []
+    
+    for item in predictions_data:
+        if not isinstance(item, dict) or "results" not in item:
+            continue
+        
+        preds = item.get("results", {}).get("predictions", [])
+        if not preds:
+            continue
+        
+        file_result = {
+            "filename": item.get("source", {}).get("filename", "unknown"),
+            "prosody": [],
+            "burst": []
+        }
+        
+        # Process each prediction
+        for pred in preds:
+            if not isinstance(pred, dict) or "models" not in pred:
                 continue
             
-            # Process prosody and burst results
-            # Structure: {prosody: {grouped_predictions: [{predictions: [{time: {...}, emotions: [...]}]}]}}
-            has_data = False
-            if isinstance(result, dict):
-                # Process prosody results (speech emotions)
-                if "prosody" in result:
-                    prosody_data = result["prosody"]
-                    has_data = True
-                    if isinstance(prosody_data, dict):
-                        grouped_preds = prosody_data.get("grouped_predictions", [])
-                        if grouped_preds:
-                            print("\nSpeech Prosody Emotions:")
-                            for group in grouped_preds:
-                                preds = group.get("predictions", [])
-                                for pred in preds:
-                                    time_info = pred.get("time", {})
-                                    time_start = time_info.get("begin", 0) if isinstance(time_info, dict) else 0
-                                    time_end = time_info.get("end", 0) if isinstance(time_info, dict) else 0
-                                    text = pred.get("text", "")
-                                    emotions = pred.get("emotions", [])
-                                    if emotions:
-                                        # Get top 3 emotions
-                                        emotions_sorted = sorted(emotions, key=lambda x: x.get("score", 0), reverse=True)[:3]
-                                        if text:
-                                            print(f"\n[{time_start:.1f}s - {time_end:.1f}s] \"{text}\"")
-                                        else:
-                                            print(f"\n[{time_start:.1f}s - {time_end:.1f}s]")
-                                        for idx, emo in enumerate(emotions_sorted, 1):
-                                            score = emo.get("score", 0)
-                                            # Score is a probability (0.0 to 1.0) - higher means more prominent
-                                            bar = "█" * int(score * 30)
-                                            print(f"   {idx}. {emo.get('name', 'Unknown'):<20}: {score:.3f} ({score*100:.1f}%) {bar}")
-                
-                # Process burst results (vocal bursts)
-                if "burst" in result:
-                    burst_data = result["burst"]
-                    has_data = True
-                    if isinstance(burst_data, dict):
-                        grouped_preds = burst_data.get("grouped_predictions", [])
-                        if grouped_preds:
-                            print("\nVocal Bursts:")
-                            for group in grouped_preds:
-                                preds = group.get("predictions", [])
-                                for pred in preds:
-                                    time_info = pred.get("time", {})
-                                    time_start = time_info.get("begin", 0) if isinstance(time_info, dict) else 0
-                                    time_end = time_info.get("end", 0) if isinstance(time_info, dict) else 0
-                                    emotions = pred.get("emotions", [])
-                                    if emotions:
-                                        # Get top 3 emotions
-                                        emotions_sorted = sorted(emotions, key=lambda x: x.get("score", 0), reverse=True)[:3]
-                                        print(f"\n[{time_start:.1f}s - {time_end:.1f}s]")
-                                        for idx, emo in enumerate(emotions_sorted, 1):
-                                            score = emo.get("score", 0)
-                                            # Score is a probability (0.0 to 1.0) - higher means more prominent
-                                            bar = "█" * int(score * 30)
-                                            print(f"   {idx}. {emo.get('name', 'Unknown'):<20}: {score:.3f} ({score*100:.1f}%) {bar}")
-                
-                # If no data found at all
-                if not has_data:
-                    print(f"  (No emotion data detected)")
-                    print(f"  This may indicate:")
-                    print(f"    - Audio file contains no speech")
-                    print(f"    - File is too short or corrupted")
-                    print(f"    - Audio format issue")
+            models = pred["models"]
+            
+            # Extract prosody emotions
+            if "prosody" in models and models["prosody"] is not None:
+                prosody_data = models["prosody"]
+                grouped_preds = prosody_data.get("grouped_predictions", [])
+                for group in grouped_preds:
+                    for pred_item in group.get("predictions", []):
+                        time_info = pred_item.get("time", {})
+                        time_start = time_info.get("begin", 0) if isinstance(time_info, dict) else 0
+                        time_end = time_info.get("end", 0) if isinstance(time_info, dict) else 0
+                        text = pred_item.get("text", "")
+                        emotions = pred_item.get("emotions", [])
+                        
+                        if emotions:
+                            top_emotions = sorted(
+                                emotions,
+                                key=lambda x: x.get("score", 0),
+                                reverse=True
+                            )[:top_n]
+                            
+                            file_result["prosody"].append({
+                                "time_start": round(time_start, 2),
+                                "time_end": round(time_end, 2),
+                                "text": text,
+                                "top_emotions": [
+                                    {
+                                        "name": emo.get("name", "Unknown"),
+                                        "score": round(emo.get("score", 0), 4),
+                                        "percentage": round(emo.get("score", 0) * 100, 1)
+                                    }
+                                    for emo in top_emotions
+                                ]
+                            })
+            
+            # Extract burst emotions
+            if "burst" in models and models["burst"] is not None:
+                burst_data = models["burst"]
+                grouped_preds = burst_data.get("grouped_predictions", [])
+                for group in grouped_preds:
+                    for pred_item in group.get("predictions", []):
+                        time_info = pred_item.get("time", {})
+                        time_start = time_info.get("begin", 0) if isinstance(time_info, dict) else 0
+                        time_end = time_info.get("end", 0) if isinstance(time_info, dict) else 0
+                        emotions = pred_item.get("emotions", [])
+                        
+                        if emotions:
+                            top_emotions = sorted(
+                                emotions,
+                                key=lambda x: x.get("score", 0),
+                                reverse=True
+                            )[:top_n]
+                            
+                            file_result["burst"].append({
+                                "time_start": round(time_start, 2),
+                                "time_end": round(time_end, 2),
+                                "top_emotions": [
+                                    {
+                                        "name": emo.get("name", "Unknown"),
+                                        "score": round(emo.get("score", 0), 4),
+                                        "percentage": round(emo.get("score", 0) * 100, 1)
+                                    }
+                                    for emo in top_emotions
+                                ]
+                            })
         
-        print("\nProcessing complete!")
-        
-    except Exception as e:
-        print(f"Error processing job: {e}")
-        import traceback
-        traceback.print_exc()
+        results.append(file_result)
+    
+    return results
 
-if __name__ == "__main__":
-    test_hume_expression_measurement()
+
+def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional[OpenAI] = None) -> Optional[str]:
+    """
+    Summarize emotion predictions using OpenAI LLM.
+    
+    Args:
+        results: List of file results with top emotions
+        openai_client: Optional OpenAI client instance
+    
+    Returns:
+        Summary string or None if OpenAI is not available
+    """
+    if openai_client is None:
+        openai_client = get_openai_client()
+    
+    if openai_client is None:
+        return None
+    
+    try:
+        # Format the predictions data for the prompt with time-based information
+        summary_data = []
+        for result in results:
+            filename = result.get("filename", "unknown")
+            prosody_segments = result.get("prosody", [])
+            burst_segments = result.get("burst", [])
+            
+            # Create time-ordered list of emotional segments
+            all_segments = []
+            
+            for segment in prosody_segments:
+                time_start = segment.get("time_start", 0)
+                time_end = segment.get("time_end", 0)
+                text = segment.get("text", "")
+                top_emotions = segment.get("top_emotions", [])
+                if top_emotions:
+                    all_segments.append({
+                        "time_start": time_start,
+                        "time_end": time_end,
+                        "time_range": f"{time_start:.1f}s-{time_end:.1f}s",
+                        "text": text,
+                        "top_emotions": [{"name": e.get("name"), "score": e.get("score"), "percentage": e.get("percentage")} for e in top_emotions]
+                    })
+            
+            for segment in burst_segments:
+                time_start = segment.get("time_start", 0)
+                time_end = segment.get("time_end", 0)
+                top_emotions = segment.get("top_emotions", [])
+                if top_emotions:
+                    all_segments.append({
+                        "time_start": time_start,
+                        "time_end": time_end,
+                        "time_range": f"{time_start:.1f}s-{time_end:.1f}s",
+                        "type": "vocal_burst",
+                        "top_emotions": [{"name": e.get("name"), "score": e.get("score"), "percentage": e.get("percentage")} for e in top_emotions]
+                    })
+            
+            # Sort by time
+            all_segments.sort(key=lambda x: x["time_start"])
+            
+            file_summary = {
+                "filename": filename,
+                "segments": all_segments
+            }
+            summary_data.append(file_summary)
+        
+        # Create prompt for OpenAI
+        prompt = f"""Analyze the following time-stamped emotion detection results from an audio file and provide a BRIEF, CONCISE summary.
+
+Emotion Data (time-ordered segments):
+{json.dumps(summary_data, indent=2)}
+
+Provide a SHORT summary (1-2 sentences maximum) that:
+1. States the overall emotional outcome/result of the recording
+2. Highlights key emotion changes WITH TIMESTAMPS when emotions shift significantly
+3. Be direct and avoid redundancy
+
+Example format: "The recording shows [overall emotion]. At [time], emotion shifts to [new emotion] when [context]. Overall [outcome]."
+
+Keep it under 100 words and focus only on significant emotional changes with timestamps."""
+
+        response = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are an expert at providing concise, time-aware summaries of emotional data. Be brief and direct."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.5,
+            max_tokens=150
+        )
+        
+        summary = response.choices[0].message.content.strip()
+        return summary
+    
+    except Exception as e:
+        # If OpenAI fails, return None (non-blocking)
+        print(f"Warning: Could not generate summary: {e}")
+        return None
+
+
+def analyze_audio_files(file_contents: List[Tuple[str, bytes]], client: Optional[HumeClient] = None, include_summary: bool = True) -> List[Dict[str, Any]]:
+    """
+    Complete workflow: submit job, wait for completion, and extract top emotions.
+    
+    Args:
+        file_contents: List of tuples (filename, file_bytes)
+        client: Optional HumeClient instance
+    
+    Returns:
+        List of file results with top emotions
+    """
+    if client is None:
+        client = get_hume_client()
+    
+    # Prepare files
+    file_objects = prepare_audio_files(file_contents)
+    
+    # Submit job
+    job_id = submit_hume_job(file_objects, client)
+    
+    # Wait for completion
+    wait_for_job_completion(job_id, client)
+    
+    # Get predictions
+    predictions_data = get_predictions(job_id, client)
+    
+    # Extract top emotions
+    results = extract_top_emotions(predictions_data)
+    
+    # Generate summary using OpenAI if available
+    if include_summary:
+        summary = summarize_predictions(results)
+        if summary:
+            # Add summary to each result
+            for result in results:
+                result["summary"] = summary
+    
+    return results
+
+

@@ -1,3 +1,8 @@
-hume==0.8.6
-
+hume
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+requests
+openai
 
