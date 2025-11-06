@@ -5,7 +5,7 @@ from hume import HumeClient
 from hume.expression_measurement.batch.types import InferenceBaseRequest, Models
 
 
-HUME_API_KEY = "Isaq8XuI02sABht8LC0J8DVkRieiA7Gc8J1JFbObpO1zid6m"
+HUME_API_KEY = "ZMVscLyAPVfZrOYuMvrD5YSyC6XtfNcBiAUuBi1MjjcOpIdG"
 
 def test_hume_expression_measurement():
     # Initialize the Hume client
