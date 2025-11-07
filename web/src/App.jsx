@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
 import './App.css'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine, Cell } from 'recharts'
 import { analyzeAudioFile } from './services/api'
 import { transformApiDataToChart } from './utils/dataTransform'
 
@@ -51,6 +51,42 @@ function generateUniqueColors(count) {
   return colors;
 }
 
+const CustomTooltip = ({ active, payload, emotionColorMap }) => {
+  if (!active || !payload || payload.length === 0) {
+    return null;
+  }
+
+  const tooltipData = payload[0]?.payload;
+
+  if (!tooltipData) {
+    return null;
+  }
+
+  const { intervalStart, intervalEnd, topEmotion, score } = tooltipData;
+  const hasTopEmotion = topEmotion && typeof score === 'number';
+  const color = hasTopEmotion ? (emotionColorMap?.[topEmotion] || '#ffffff') : '#ffffff';
+
+  return (
+    <div>
+      <p style={{ margin: 0, color: '#ffffff', fontWeight: 600 }}>{`${intervalStart}s - ${intervalEnd}s`}</p>
+      {hasTopEmotion ? (
+        <p
+          style={{
+            margin: 0,
+            marginTop: 4,
+            color,
+            fontWeight: 500
+          }}
+        >
+          {`${topEmotion} : ${score.toFixed(4)}`}
+        </p>
+      ) : (
+        <p style={{ margin: 0, marginTop: 4, color: '#ffffff' }}>No detected emotion</p>
+      )}
+    </div>
+  );
+};
+
 function App() {
   const [audioFile, setAudioFile] = useState(null)
   const [audioUrl, setAudioUrl] = useState(null)
@@ -79,6 +115,29 @@ function App() {
     });
     return colorMap;
   }, [emotions]);
+
+  const intervalDuration = useMemo(() => {
+    if (chartData.length > 0) {
+      return chartData[0].intervalEnd - chartData[0].intervalStart;
+    }
+    return 10;
+  }, [chartData]);
+
+  const legendPayload = useMemo(() => (
+    emotions.map((emotion) => ({
+      value: emotion,
+      type: 'square',
+      color: emotionColorMap[emotion] || '#888888'
+    }))
+  ), [emotions, emotionColorMap]);
+
+  const intervalLookup = useMemo(() => {
+    const map = new Map();
+    chartData.forEach((entry) => {
+      map.set(entry.time, entry);
+    });
+    return map;
+  }, [chartData]);
 
   // Update current time during playback
   useEffect(() => {
@@ -203,18 +262,6 @@ function App() {
       alert('Please upload a valid audio file')
     }
   }
-
-
-
-  // Get the time range from chart data for ReferenceLine bounds
-  const chartTimeRange = useMemo(() => {
-    if (chartData.length === 0) return { min: 0, max: 0 }
-    const times = chartData.map(d => d.time)
-    return {
-      min: Math.min(...times),
-      max: Math.max(...times)
-    }
-  }, [chartData])
 
   const handleAnalyze = async () => {
     if (!audioFile) {
@@ -366,8 +413,6 @@ function App() {
               height={600}
               data={chartData} 
               margin={{ top: 100, right: 120, left: 120, bottom: 60 }}
-              barCategoryGap="15%"
-              barGap={10}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis 
@@ -375,12 +420,27 @@ function App() {
                 dataKey="time" 
                 domain={[
                   (dataMin) => {
-                    // Ensure 0 is included, but add padding for bar width
-                    const min = Math.max(0, dataMin);
-                    return min === 0 ? 0 : min - 8;
+                    if (typeof intervalDuration === 'number' && intervalDuration > 0) {
+                      const minWithPadding = dataMin - intervalDuration / 2;
+                      return minWithPadding < 0 ? 0 : minWithPadding;
+                    }
+                    return Math.max(0, dataMin - 5);
                   }, 
-                  (dataMax) => dataMax + 8
+                  (dataMax) => {
+                    if (typeof intervalDuration === 'number' && intervalDuration > 0) {
+                      return dataMax + intervalDuration / 2;
+                    }
+                    return dataMax + 5;
+                  }
                 ]}
+                ticks={chartData.map((entry) => entry.time)}
+                tickFormatter={(value) => {
+                  const interval = intervalLookup.get(value);
+                  if (!interval) {
+                    return `${Math.round(value)}s`;
+                  }
+                  return `${interval.intervalStart}s-${interval.intervalEnd}s`;
+                }}
                 label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -10, style: { fontSize: '14px' } }}
                 tick={{ fontSize: 12 }}
                 scale="linear"
@@ -409,8 +469,11 @@ function App() {
                 }}
                 position={{ y: -20 }}
                 allowEscapeViewBox={{ x: false, y: true }}
+                content={(props) => (
+                  <CustomTooltip {...props} emotionColorMap={emotionColorMap} />
+                )}
               />
-              <Legend wrapperStyle={{ paddingTop: '20px' }} />
+              <Legend wrapperStyle={{ paddingTop: '20px' }} payload={legendPayload} />
               {currentTime >= 0 && chartData.length > 0 && duration > 0 && (
                 <ReferenceLine 
                   key={`timeline-${Math.floor(currentTime)}`}
@@ -430,15 +493,33 @@ function App() {
                   }}
                 />
               )}
-              {emotions.map((emotion, index) => (
-                <Bar 
-                  key={emotion} 
-                  dataKey={emotion} 
-                  fill={emotionColorMap[emotion]} 
-                />
-              ))}
+              <Bar dataKey="score" barSize={Math.max(20, intervalDuration * 3)} maxBarSize={60}>
+                {chartData.map((entry, index) => (
+                  <Cell 
+                    key={`${entry.intervalStart}-${index}`}
+                    fill={entry.topEmotion ? (emotionColorMap[entry.topEmotion] || '#999999') : '#555555'}
+                  />
+                ))}
+              </Bar>
             </BarChart>
           </div>
+
+          {legendPayload.length > 0 && (
+            <div className="emotion-legend-container">
+              <h3 className="emotion-legend-title">Emotion Color Reference</h3>
+              <div className="emotion-legend-grid">
+                {legendPayload.map(({ value, color }) => (
+                  <div key={value} className="emotion-legend-entry">
+                    <span
+                      className="emotion-color-box"
+                      style={{ backgroundColor: color }}
+                    />
+                    <span className="emotion-name">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           
          
       

@@ -7,92 +7,103 @@
  */
 export function transformApiDataToChart(apiResponse) {
   const { results } = apiResponse;
-  
+
   if (!results || !results.prosody || results.prosody.length === 0) {
     return { chartData: [], emotions: [] };
   }
 
-  // First, collect all unique emotions across all segments
+  // Collect all unique emotions across segments
   const allEmotions = new Set();
-  results.prosody.forEach(segment => {
-    if (segment.top_emotions && Array.isArray(segment.top_emotions)) {
-      segment.top_emotions.forEach(emotion => {
-        if (emotion.name) {
-          allEmotions.add(emotion.name);
-        }
-      });
-    }
+  results.prosody.forEach((segment) => {
+    segment.top_emotions?.forEach((emotion) => {
+      if (emotion?.name) {
+        allEmotions.add(emotion.name);
+      }
+    });
   });
 
-  // Convert to sorted array for consistent ordering
   const emotionsList = Array.from(allEmotions).sort();
 
-  // Group segments into 10-second intervals
-  const INTERVAL_SIZE = 10; // 10 seconds
-  const intervalMap = new Map(); // Map of interval_start -> aggregated emotions
+  const INTERVAL_SIZE = 10;
+  const intervalMap = new Map();
 
-  // Find the time range of the data
-  const timeStarts = results.prosody.map(s => s.time_start).filter(t => t !== undefined);
-  const minTime = timeStarts.length > 0 ? Math.min(...timeStarts) : 0;
-  const maxTime = timeStarts.length > 0 ? Math.max(...timeStarts) : 0;
-  
-  // Ensure we always have an interval starting at 0 if data exists
-  const firstInterval = Math.floor(minTime / INTERVAL_SIZE) * INTERVAL_SIZE;
-  const lastInterval = Math.floor(maxTime / INTERVAL_SIZE) * INTERVAL_SIZE;
-
-  results.prosody.forEach(segment => {
-    const { time_start, top_emotions } = segment;
-    
-    // Calculate which 10-second interval this segment belongs to
-    const intervalStart = Math.floor(time_start / INTERVAL_SIZE) * INTERVAL_SIZE;
-    
-    // Initialize interval if it doesn't exist
-    if (!intervalMap.has(intervalStart)) {
-      const intervalData = {
-        time: intervalStart,
-        emotions: {}
+  const timeBounds = results.prosody.reduce(
+    (acc, segment) => {
+      const start = typeof segment.time_start === 'number' ? segment.time_start : acc.min;
+      const end = typeof segment.time_end === 'number' ? segment.time_end : start;
+      return {
+        min: Math.min(acc.min, start),
+        max: Math.max(acc.max, end)
       };
-      // Initialize all emotions to 0 for this interval
-      emotionsList.forEach(emotion => {
-        intervalData.emotions[emotion] = 0;
-      });
-      intervalMap.set(intervalStart, intervalData);
-    }
+    },
+    { min: Infinity, max: 0 }
+  );
 
-    // Aggregate emotions for this interval
-    // Use maximum score for each emotion within the interval
-    if (top_emotions && Array.isArray(top_emotions)) {
-      top_emotions.forEach(emotion => {
-        if (emotion.name && emotion.score !== undefined) {
-          const currentMax = intervalMap.get(intervalStart).emotions[emotion.name] || 0;
-          // Take the maximum score for each emotion in the interval
-          intervalMap.get(intervalStart).emotions[emotion.name] = Math.max(currentMax, emotion.score);
-        }
-      });
-    }
-  });
+  const minInterval = Math.max(0, Math.floor(timeBounds.min / INTERVAL_SIZE) * INTERVAL_SIZE);
+  const maxInterval = Math.floor(timeBounds.max / INTERVAL_SIZE) * INTERVAL_SIZE;
 
-  // Always include interval 0 if we have any data, even if empty
-  if (intervalMap.size > 0 && !intervalMap.has(0) && firstInterval >= 0) {
-    const intervalData = {
-      time: 0,
+  // Pre-create intervals to ensure contiguous coverage
+  for (let intervalStart = minInterval; intervalStart <= maxInterval; intervalStart += INTERVAL_SIZE) {
+    intervalMap.set(intervalStart, {
+      intervalStart,
+      intervalEnd: intervalStart + INTERVAL_SIZE,
       emotions: {}
-    };
-    emotionsList.forEach(emotion => {
-      intervalData.emotions[emotion] = 0;
     });
-    intervalMap.set(0, intervalData);
   }
 
-  // Convert interval map to chart data array
-  const chartData = Array.from(intervalMap.values())
-    .map(interval => ({
-      time: interval.time,
-      ...interval.emotions
-    }))
-    .sort((a, b) => a.time - b.time);
+  results.prosody.forEach((segment) => {
+    const timeStart = typeof segment.time_start === 'number' ? segment.time_start : 0;
+    const intervalStart = Math.floor(timeStart / INTERVAL_SIZE) * INTERVAL_SIZE;
 
-  return { chartData, emotions: emotionsList };
+    if (!intervalMap.has(intervalStart)) {
+      intervalMap.set(intervalStart, {
+        intervalStart,
+        intervalEnd: intervalStart + INTERVAL_SIZE,
+        emotions: {}
+      });
+    }
+
+    const intervalData = intervalMap.get(intervalStart);
+
+    segment.top_emotions?.forEach((emotion) => {
+      if (!emotion?.name || typeof emotion.score !== 'number') {
+        return;
+      }
+
+      const currentScore = intervalData.emotions[emotion.name] ?? 0;
+      intervalData.emotions[emotion.name] = Math.max(currentScore, emotion.score);
+    });
+  });
+
+  const chartData = Array.from(intervalMap.values())
+    .sort((a, b) => a.intervalStart - b.intervalStart)
+    .map((interval) => {
+      const emotionEntries = Object.entries(interval.emotions);
+
+      const topEmotionEntry = emotionEntries.reduce(
+        (best, [emotionName, value]) => {
+          if (!best || value > best.value) {
+            return { name: emotionName, value };
+          }
+          return best;
+        },
+        null
+      );
+
+      return {
+        time: interval.intervalStart + INTERVAL_SIZE / 2,
+        intervalStart: interval.intervalStart,
+        intervalEnd: interval.intervalEnd,
+        topEmotion: topEmotionEntry?.name || null,
+        score: topEmotionEntry?.value ?? 0,
+        emotions: interval.emotions
+      };
+    });
+
+  return {
+    chartData,
+    emotions: emotionsList
+  };
 }
 
 /**
