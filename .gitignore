@@ -17,4 +17,5 @@ env/
 *.mp3
 *.m4a
 *.flac
-predictions.json
+web/package-lock.json
+web/node_modules/

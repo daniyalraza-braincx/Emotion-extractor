@@ -192,13 +192,13 @@ def get_predictions(job_id: str, client: Optional[HumeClient] = None) -> List[Di
     return predictions_data if isinstance(predictions_data, list) else [predictions_data]
 
 
-def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 3) -> List[Dict[str, Any]]:
+def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 1) -> List[Dict[str, Any]]:
     """
     Extract top N emotions from predictions data.
     
     Args:
         predictions_data: List of prediction dictionaries from get_predictions
-        top_n: Number of top emotions to return per segment (default: 3)
+        top_n: Number of top emotions to return per segment (default: 1)
     
     Returns:
         List of file results with top emotions
