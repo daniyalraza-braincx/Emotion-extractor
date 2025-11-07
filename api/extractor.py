@@ -2,28 +2,37 @@ import os
 import json
 import time
 import re
-from typing import List, Dict, Any, Tuple, Optional
+from typing import List, Dict, Any, Tuple, Optional, TYPE_CHECKING
 from dotenv import load_dotenv
 from hume import HumeClient
 from hume.expression_measurement.batch.types import InferenceBaseRequest, Models
-from openai import OpenAI
 
-# Load environment variables
+if TYPE_CHECKING:
+    from openai import OpenAI
+else:
+    try:
+        from openai import OpenAI
+    except ImportError:
+        OpenAI = None  # type: ignore
+
 load_dotenv()
-HUME_API_KEY = os.getenv("HUME_API_KEY", "")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
-if not HUME_API_KEY:
-    raise ValueError("HUME_API_KEY not found in environment variables. Please set it in .env file")
+HUME_API_KEY = os.getenv("HUME_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 def get_hume_client() -> HumeClient:
     """Initialize and return Hume client"""
+    if not HUME_API_KEY:
+        raise ValueError("HUME_API_KEY environment variable is not set")
     return HumeClient(api_key=HUME_API_KEY)
 
 
 def get_openai_client() -> Optional[OpenAI]:
     """Initialize and return OpenAI client if API key is available"""
+    if OpenAI is None:
+        return None
+    
     if not OPENAI_API_KEY:
         return None
     return OpenAI(api_key=OPENAI_API_KEY)
