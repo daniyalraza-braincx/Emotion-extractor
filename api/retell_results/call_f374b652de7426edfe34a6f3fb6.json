@@ -1,0 +1,190 @@
+{
+  "call_id": "call_f374b652de7426edfe34a6f3fb6",
+  "retell_metadata": {
+    "agent_id": "agent_efd77b346717ad7983449e92c0",
+    "start_timestamp": 1762537577256,
+    "end_timestamp": 1762537605389,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5860d0cdf1c1571f0456f0f1f3552608b396eae0aba52894f76d4558dfff51df/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_f374b652de7426edfe34a6f3fb6.wav",
+      "prosody": [
+        {
+          "time_start": 7.4,
+          "time_end": 7.8,
+          "text": "Hello?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1946,
+              "percentage": 19.5
+            }
+          ]
+        },
+        {
+          "time_start": 9.8,
+          "time_end": 13.56,
+          "text": "Hi. This is Courtney calling on behalf of Bethel College. May I speak with Danielle?",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.0828,
+              "percentage": 8.3
+            }
+          ]
+        },
+        {
+          "time_start": 15.01,
+          "time_end": 15.41,
+          "text": "Yes.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2281,
+              "percentage": 22.8
+            }
+          ]
+        },
+        {
+          "time_start": 17.01,
+          "time_end": 19.8,
+          "text": "Hi, Daniel. Before we get started, all calls are",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.0778,
+              "percentage": 7.8
+            }
+          ]
+        },
+        {
+          "time_start": 19.8,
+          "time_end": 23.62,
+          "text": "recorded for quality assurance and training purposes. I'm following up on your",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.154,
+              "percentage": 15.4
+            }
+          ]
+        },
+        {
+          "time_start": 23.62,
+          "time_end": 26.35,
+          "text": "missed admission interview. No worries. We.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4132,
+              "percentage": 41.3
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1755,
+              "percentage": 17.5
+            }
+          ]
+        },
+        {
+          "time_start": 4.0,
+          "time_end": 5.0,
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.2398,
+              "percentage": 24.0
+            }
+          ]
+        },
+        {
+          "time_start": 11.0,
+          "time_end": 12.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1872,
+              "percentage": 18.7
+            }
+          ]
+        },
+        {
+          "time_start": 14.0,
+          "time_end": 15.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1702,
+              "percentage": 17.0
+            }
+          ]
+        },
+        {
+          "time_start": 18.0,
+          "time_end": 19.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1772,
+              "percentage": 17.7
+            }
+          ]
+        },
+        {
+          "time_start": 21.0,
+          "time_end": 22.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1911,
+              "percentage": 19.1
+            }
+          ]
+        },
+        {
+          "time_start": 22.0,
+          "time_end": 23.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2118,
+              "percentage": 21.2
+            }
+          ]
+        },
+        {
+          "time_start": 24.0,
+          "time_end": 25.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.237,
+              "percentage": 23.7
+            }
+          ]
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1986,
+              "percentage": 19.9
+            }
+          ]
+        }
+      ],
+      "summary": "The recording shows fluctuating emotions, primarily calmness and distress. At 2.0s, there is distress, shifting to amusement at 4.0s, and then calmness at 7.4s. A notable shift occurs at 21.0s when distress returns, followed by calmness at 23.6s. Overall, the speaker exhibits a mix of distress and calmness throughout the call."
+    }
+  ]
+}
