@@ -13,9 +13,5 @@ build/
 venv/
 ENV/
 env/
-*.wav
-*.mp3
-*.m4a
-*.flac
 web/package-lock.json
 web/node_modules/

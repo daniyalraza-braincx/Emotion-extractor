@@ -1,0 +1,287 @@
+{
+  "call_id": "call_c5735ac37e53e534c8fbae511cf",
+  "retell_metadata": {
+    "agent_id": "agent_efd77b346717ad7983449e92c0",
+    "start_timestamp": 1762547482882,
+    "end_timestamp": 1762547544420,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/054b469c3716a0928c755340867ea0e1b70e8966bbd4ac9eae64828946a20339/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_c5735ac37e53e534c8fbae511cf.wav",
+      "prosody": [
+        {
+          "time_start": 2.44,
+          "time_end": 3.56,
+          "text": "Who is this?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2,
+              "percentage": 20.0
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Who is this?"
+        },
+        {
+          "time_start": 4.76,
+          "time_end": 8.19,
+          "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1139,
+              "percentage": 11.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+        },
+        {
+          "time_start": 8.19,
+          "time_end": 14.35,
+          "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program.",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.1101,
+              "percentage": 11.0
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+        },
+        {
+          "time_start": 14.59,
+          "time_end": 18.52,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1965,
+              "percentage": 19.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 18.52,
+          "time_end": 22.51,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1087,
+              "percentage": 10.9
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 22.51,
+          "time_end": 26.42,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1074,
+              "percentage": 10.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 26.42,
+          "time_end": 30.57,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1163,
+              "percentage": 11.6
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 30.73,
+          "time_end": 35.45,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2081,
+              "percentage": 20.8
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 37.29,
+          "time_end": 41.7,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1272,
+              "percentage": 12.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 41.92,
+          "time_end": 46.17,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1216,
+              "percentage": 12.2
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 46.17,
+          "time_end": 51.53,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1437,
+              "percentage": 14.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 52.17,
+          "time_end": 52.89,
+          "text": "Oh, no. Thank you.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3194,
+              "percentage": 31.9
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Oh, no. Thank you."
+        },
+        {
+          "time_start": 55.44,
+          "time_end": 58.62,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1025,
+              "percentage": 10.2
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 58.62,
+          "time_end": 61.33,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0944,
+              "percentage": 9.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 51.0,
+          "time_end": 52.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.3174,
+              "percentage": 31.7
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Oh, no. Thank you."
+        }
+      ],
+      "metadata": {
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.281,
+            "end": 2.6009999,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Customer",
+            "start": 2.941,
+            "end": 3.501,
+            "text": "Who is this?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.824,
+            "end": 11.767041748046875,
+            "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 14.030999999999999,
+            "end": 15.151,
+            "text": "Oh, yeah. Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 16.93,
+            "end": 32.66170825195312,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.711,
+            "end": 35.191,
+            "text": "Nevada."
+          },
+          {
+            "speaker": "Agent",
+            "start": 37.262,
+            "end": 49.48729174804687,
+            "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 51.151,
+            "end": 52.831002,
+            "text": "Oh, no. Thank you."
+          },
+          {
+            "speaker": "Agent",
+            "start": 55.429,
+            "end": 61.52475,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ]
+      },
+      "summary": "Customer expresses interest at 2.9s while asking, \"Who is this?\" Agent shows sadness at 4.8s when explaining the course details, then confusion at 30.7s after repeating the program requirements. The customer feels satisfaction at 51.0s after declining further options, followed by calmness at 52.2s with, \"Oh, no. Thank you.\" The conversation concludes with the Agent remaining calm at 58.6s, wishing the customer well and offering future assistance."
+    }
+  ]
+}

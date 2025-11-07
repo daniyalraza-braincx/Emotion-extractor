@@ -12,6 +12,7 @@ from extractor import (
     download_retell_recording,
     extract_retell_transcript_segments,
     get_retell_call_details,
+    split_stereo_wav_channels,
 )
 
 
@@ -19,9 +20,13 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 RETELL_RESULTS_DIR = os.getenv("RETELL_RESULTS_DIR", "retell_results")
+RETELL_AUDIO_DIR = os.path.join(RETELL_RESULTS_DIR, "audio")
 
 if not os.path.exists(RETELL_RESULTS_DIR):
     os.makedirs(RETELL_RESULTS_DIR, exist_ok=True)
+
+if not os.path.exists(RETELL_AUDIO_DIR):
+    os.makedirs(RETELL_AUDIO_DIR, exist_ok=True)
 
 app = FastAPI(title="Hume Emotion Analysis API")
 
@@ -111,6 +116,18 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> None:
         filename_hint = f"{call_id}.wav"
         audio_filename, audio_bytes = download_retell_recording(recording_url, filename_hint)
         file_contents = [(audio_filename, audio_bytes)]
+
+        try:
+            user_audio, agent_audio = split_stereo_wav_channels(audio_bytes)
+            agent_path = os.path.join(RETELL_AUDIO_DIR, f"{call_id}_agent.wav")
+            user_path = os.path.join(RETELL_AUDIO_DIR, f"{call_id}_user.wav")
+            with open(agent_path, "wb") as agent_f:
+                agent_f.write(agent_audio)
+            with open(user_path, "wb") as user_f:
+                user_f.write(user_audio)
+            logger.info("Saved channel audio for call %s to %s and %s", call_id, agent_path, user_path)
+        except Exception as channel_err:  # pylint: disable=broad-except
+            logger.warning("Could not split channels for call %s: %s", call_id, channel_err)
 
         transcript_segments = extract_retell_transcript_segments(call_data)
 
