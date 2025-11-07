@@ -62,3 +62,71 @@ export async function checkApiHealth() {
   }
 }
 
+/**
+ * Fetches the list of Retell calls that are available for analysis
+ * @returns {Promise<Array>} Array of calls
+ */
+export async function fetchRetellCalls() {
+  const response = await fetch(API_ENDPOINTS.RETELL_CALLS);
+  if (!response.ok) {
+    throw new Error('Failed to fetch Retell calls');
+  }
+
+  const data = await response.json();
+  return Array.isArray(data.calls) ? data.calls : [];
+}
+
+/**
+ * Triggers a Hume analysis for a specific Retell call
+ * @param {string} callId - The Retell call identifier
+ * @returns {Promise<Object>} The analysis results
+ */
+export async function analyzeRetellCall(callId) {
+  if (!callId) {
+    throw new Error('callId is required');
+  }
+
+  const endpoint = API_ENDPOINTS.RETELL_ANALYZE(callId);
+  const response = await fetch(endpoint, { method: 'POST' });
+
+  if (!response.ok) {
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
+/**
+ * Retrieves stored analysis results for a Retell call if available
+ * @param {string} callId - The Retell call identifier
+ * @returns {Promise<Object>} The analysis payload
+ */
+export async function getRetellCallAnalysis(callId) {
+  if (!callId) {
+    throw new Error('callId is required');
+  }
+
+  const endpoint = API_ENDPOINTS.RETELL_ANALYSIS(callId);
+  const response = await fetch(endpoint);
+
+  if (!response.ok) {
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
