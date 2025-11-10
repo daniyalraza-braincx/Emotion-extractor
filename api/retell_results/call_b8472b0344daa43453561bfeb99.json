@@ -1,376 +1,1537 @@
 {
   "call_id": "call_b8472b0344daa43453561bfeb99",
   "retell_metadata": {
-    "agent_id": null,
-    "start_timestamp": null,
-    "end_timestamp": null,
-    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav"
+    "retell_call_id": "call_b8472b0344daa43453561bfeb99",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav",
+    "start_timestamp": 1762547015546,
+    "end_timestamp": 1762547120620,
+    "duration_ms": 105074,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Hiba",
+      "program": "CISSP Certification Exam Preparation Course",
+      "lead_status": "converted",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 105074
+    }
   },
   "analysis": [
     {
-      "filename": "call_b8472b0344daa43453561bfeb99.wav",
+      "filename": "call_b8472b0344daa43453561bfeb99_combined",
       "prosody": [
         {
           "time_start": 2.67,
           "time_end": 3.31,
           "text": "Who's this?",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Confusion",
-              "score": 0.5549,
-              "percentage": 55.5
+              "score": 0.5686,
+              "percentage": 56.9,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Who's this?"
         },
         {
-          "time_start": 4.91,
-          "time_end": 9.08,
-          "text": "Hi Hi. This is Courtney. I'm calling regarding your interest in the Cis",
+          "time_start": 4.9,
+          "time_end": 9.06,
+          "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program.",
+          "primary_category": "positive",
           "top_emotions": [
             {
-              "name": "Calmness",
-              "score": 0.0885,
-              "percentage": 8.8
+              "name": "Interest",
+              "score": 0.3015,
+              "percentage": 30.1,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
         },
         {
-          "time_start": 9.94,
-          "time_end": 11.85,
-          "text": "certification exam preparation course program.",
+          "time_start": 9.91,
+          "time_end": 11.82,
+          "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program.",
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1159,
-              "percentage": 11.6
+              "name": "Concentration",
+              "score": 0.347,
+              "percentage": 34.7,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
         },
         {
           "time_start": 15.52,
           "time_end": 15.68,
           "text": "Okay.",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Confusion",
-              "score": 0.2492,
-              "percentage": 24.9
+              "score": 0.2324,
+              "percentage": 23.2,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
         },
         {
-          "time_start": 17.53,
-          "time_end": 22.49,
-          "text": "Hi, Hi. Before we get started, all calls are recorded for quality assurance and training purposes.",
+          "time_start": 17.49,
+          "time_end": 22.43,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Distress",
-              "score": 0.1189,
-              "percentage": 11.9
+              "name": "Concentration",
+              "score": 0.4426,
+              "percentage": 44.3,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
         },
         {
-          "time_start": 22.97,
-          "time_end": 24.24,
-          "text": "I received your interest in the",
-          "top_emotions": [
-            {
-              "name": "Sadness",
-              "score": 0.1042,
-              "percentage": 10.4
-            }
-          ]
-        },
-        {
-          "time_start": 25.44,
-          "time_end": 27.2,
-          "text": "Certification exam preparation course program.",
-          "top_emotions": [
-            {
-              "name": "Sadness",
-              "score": 0.1151,
-              "percentage": 11.5
-            }
-          ]
-        },
-        {
-          "time_start": 27.76,
-          "time_end": 30.72,
-          "text": "Before we move forward, let me pull up the requirements for your program.",
-          "top_emotions": [
-            {
-              "name": "Sadness",
-              "score": 0.1102,
-              "percentage": 11.0
-            }
-          ]
-        },
-        {
-          "time_start": 31.05,
-          "time_end": 34.71,
-          "text": "May I know what state you currently reside in? I'm",
-          "top_emotions": [
-            {
-              "name": "Sadness",
-              "score": 0.1828,
-              "percentage": 18.3
-            }
-          ]
-        },
-        {
-          "time_start": 34.71,
-          "time_end": 38.05,
-          "text": "living in Texas. Great.",
+          "time_start": 22.99,
+          "time_end": 24.18,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1675,
-              "percentage": 16.8
+              "score": 0.2319,
+              "percentage": 23.2,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
         },
         {
-          "time_start": 38.37,
-          "time_end": 42.35,
-          "text": "Do you have a high school diploma or equivalent? Yeah.",
+          "time_start": 25.37,
+          "time_end": 27.21,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4051,
+              "percentage": 40.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 27.78,
+          "time_end": 30.34,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5123,
+              "percentage": 51.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 30.34,
+          "time_end": 38.08,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Anger",
+              "score": 0.2628,
+              "percentage": 26.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 34.47,
+          "time_end": 35.68,
+          "text": "I'm living in Texas.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1261,
+              "percentage": 12.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I'm living in Texas."
+        },
+        {
+          "time_start": 38.4,
+          "time_end": 44.81,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3253,
+              "percentage": 32.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 42.05,
+          "time_end": 42.37,
+          "text": "Yeah.",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1606,
-              "percentage": 16.1
+              "score": 0.186,
+              "percentage": 18.6,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yeah."
         },
         {
-          "time_start": 44.67,
-          "time_end": 46.05,
-          "text": "For the Cis ss",
+          "time_start": 44.81,
+          "time_end": 48.01,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1019,
-              "percentage": 10.2
+              "name": "Concentration",
+              "score": 0.4394,
+              "percentage": 43.9,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
         },
         {
-          "time_start": 46.59,
-          "time_end": 49.64,
-          "text": "certification exam preparation course program at our Arcadia University,",
+          "time_start": 48.01,
+          "time_end": 50.81,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Calmness",
-              "score": 0.0958,
-              "percentage": 9.6
+              "name": "Concentration",
+              "score": 0.4077,
+              "percentage": 40.8,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
         },
         {
-          "time_start": 50.17,
-          "time_end": 53.6,
-          "text": "a technical background is recommended, along with strong problem",
+          "time_start": 50.81,
+          "time_end": 53.61,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1154,
-              "percentage": 11.5
+              "name": "Concentration",
+              "score": 0.4355,
+              "percentage": 43.6,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
         },
         {
-          "time_start": 53.6,
-          "time_end": 57.02,
-          "text": "solving and analytical abilities. It also helps to be comfortable",
-          "top_emotions": [
-            {
-              "name": "Sadness",
-              "score": 0.1115,
-              "percentage": 11.1
-            }
-          ]
-        },
-        {
-          "time_start": 57.02,
-          "time_end": 61.11,
-          "text": "with complex It systems and quick to learn new technologies. Does",
-          "top_emotions": [
-            {
-              "name": "Distress",
-              "score": 0.1321,
-              "percentage": 13.2
-            }
-          ]
-        },
-        {
-          "time_start": 61.11,
-          "time_end": 64.7,
-          "text": "this sound like something you meet? Sure.",
+          "time_start": 53.61,
+          "time_end": 58.66,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1141,
-              "percentage": 11.4
+              "score": 0.4816,
+              "percentage": 48.2,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
         },
         {
-          "time_start": 66.29,
-          "time_end": 66.69,
+          "time_start": 58.66,
+          "time_end": 61.06,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3943,
+              "percentage": 39.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 61.06,
+          "time_end": 69.71,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.238,
+              "percentage": 23.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 64.39,
+          "time_end": 64.71,
           "text": "Sure.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1163,
+              "percentage": 11.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 66.3,
+          "time_end": 66.62,
+          "text": "Sure.",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.18,
-              "percentage": 18.0
+              "score": 0.1439,
+              "percentage": 14.4,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Sure."
         },
         {
-          "time_start": 69.33,
-          "time_end": 73.08,
-          "text": "Perfect. I love to help get you connected with an admissions representative?",
+          "time_start": 70.11,
+          "time_end": 73.54,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1282,
-              "percentage": 12.8
+              "name": "Determination",
+              "score": 0.2838,
+              "percentage": 28.4,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
         },
         {
-          "time_start": 73.33,
-          "time_end": 77.01,
-          "text": "Who can answer your questions and guide you through the next steps. How",
+          "time_start": 73.54,
+          "time_end": 76.96,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1209,
-              "percentage": 12.1
+              "name": "Determination",
+              "score": 0.3901,
+              "percentage": 39.0,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
         },
         {
-          "time_start": 77.01,
-          "time_end": 81.24,
-          "text": "about I text you a link to choose a thirty minute spot. Okay.",
+          "time_start": 76.96,
+          "time_end": 84.41,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1533,
-              "percentage": 15.3
+              "name": "Interest",
+              "score": 0.4445,
+              "percentage": 44.4,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
         },
         {
-          "time_start": 81.48,
-          "time_end": 85.24,
-          "text": "Sounds good. Great. A text",
+          "time_start": 81.09,
+          "time_end": 82.06,
+          "text": "Okay. Sounds good.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.1726,
+              "percentage": 17.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Okay. Sounds good."
+        },
+        {
+          "time_start": 84.73,
+          "time_end": 90.08,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2192,
+              "percentage": 21.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+        },
+        {
+          "time_start": 90.08,
+          "time_end": 95.45,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5867,
+              "percentage": 58.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+        },
+        {
+          "time_start": 95.45,
+          "time_end": 103.11,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2391,
-              "percentage": 23.9
+              "score": 0.3954,
+              "percentage": 39.5,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
         },
         {
-          "time_start": 85.24,
-          "time_end": 89.09,
-          "text": "message will be sent your way, Simply click the link and choose a time that works best",
+          "time_start": 99.83,
+          "time_end": 100.31,
+          "text": "No. Thanks.",
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1145,
-              "percentage": 11.5
+              "name": "Boredom",
+              "score": 0.2447,
+              "percentage": 24.5,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
         },
         {
-          "time_start": 89.09,
-          "time_end": 92.68,
-          "text": "for you. Before we wrap up, do you have any questions that I can help",
+          "time_start": 103.11,
+          "time_end": 105.08,
+          "text": "Thank you for your time, Hiba. Have a wonderful day!",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.0999,
-              "percentage": 10.0
+              "score": 0.3923,
+              "percentage": 39.2,
+              "category": "neutral"
             }
-          ]
-        },
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Hiba. Have a wonderful day!"
+        }
+      ],
+      "burst": [
         {
-          "time_start": 92.68,
-          "time_end": 95.97,
-          "text": "answer for you about the Cis ss certification exam",
+          "time_start": 4.0,
+          "time_end": 5.0,
+          "primary_category": "negative",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1077,
-              "percentage": 10.8
+              "name": "Distress",
+              "score": 0.1666,
+              "percentage": 16.7,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
         },
         {
-          "time_start": 96.03,
-          "time_end": 100.25,
-          "text": "preparation course program at our Arcadia University? Nothing.",
+          "time_start": 7.0,
+          "time_end": 8.0,
+          "primary_category": "neutral",
           "top_emotions": [
             {
-              "name": "Disappointment",
-              "score": 0.2355,
-              "percentage": 23.5
+              "name": "Contempt",
+              "score": 0.2262,
+              "percentage": 22.6,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
         },
         {
-          "time_start": 102.97,
-          "time_end": 104.79,
-          "text": "Thank you for your time, He. Have a wonderful day.",
+          "time_start": 48.0,
+          "time_end": 49.0,
+          "primary_category": "negative",
           "top_emotions": [
             {
-              "name": "Sadness",
-              "score": 0.1036,
-              "percentage": 10.4
+              "name": "Distress",
+              "score": 0.2099,
+              "percentage": 21.0,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 99.0,
+          "time_end": 100.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1949,
+              "percentage": 19.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 10,
+          "neutral": 10,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.6899999,
+            "end": 3.25,
+            "text": "Who's this?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.952,
+            "end": 12.220375,
+            "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 15.200001,
+            "end": 15.52,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 17.565,
+            "end": 33.19191674804687,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.29,
+            "end": 35.57,
+            "text": "I'm living in Texas."
+          },
+          {
+            "speaker": "Agent",
+            "start": 37.777,
+            "end": 40.725625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 41.96,
+            "end": 42.2,
+            "text": "Yeah."
+          },
+          {
+            "speaker": "Agent",
+            "start": 44.682,
+            "end": 62.37554174804688,
+            "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 66.16,
+            "end": 66.4,
+            "text": "Sure."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.287,
+            "end": 79.68925,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 80.89,
+            "end": 82.009995,
+            "text": "Okay. Sounds good."
+          },
+          {
+            "speaker": "Agent",
+            "start": 84.177,
+            "end": 98.58425,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 99.8,
+            "end": 100.28,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 102.966,
+            "end": 105.068,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_b8472b0344daa43453561bfeb99",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav",
+        "start_timestamp": 1762547015546,
+        "end_timestamp": 1762547120620,
+        "duration_ms": 105074,
+        "customer": {
+          "first_name": "Hiba",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "converted",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 105074
+        }
+      },
+      "summary": "Agent Courtney contacts Hiba regarding her interest in the CISSP Certification Exam Preparation Course. Hiba initially feels confusion at 2.7s but shifts to calmness at 42.0s after confirming her high school diploma. The Agent maintains determination throughout, leading to Hiba expressing amusement at 81.1s when she agrees to receive a text link for scheduling. The call concludes with Hiba confirming her willingness to proceed and thanking the Agent at 99.0s."
+    },
+    {
+      "filename": "call_b8472b0344daa43453561bfeb99_agent.wav",
+      "prosody": [
+        {
+          "time_start": 4.9,
+          "time_end": 9.06,
+          "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3015,
+              "percentage": 30.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+        },
+        {
+          "time_start": 9.91,
+          "time_end": 11.82,
+          "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.347,
+              "percentage": 34.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+        },
+        {
+          "time_start": 17.49,
+          "time_end": 22.43,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4426,
+              "percentage": 44.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 22.99,
+          "time_end": 24.18,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2319,
+              "percentage": 23.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 25.37,
+          "time_end": 27.21,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4051,
+              "percentage": 40.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 27.78,
+          "time_end": 30.34,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5123,
+              "percentage": 51.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 30.34,
+          "time_end": 38.08,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Anger",
+              "score": 0.2628,
+              "percentage": 26.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 38.4,
+          "time_end": 44.81,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3253,
+              "percentage": 32.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 44.81,
+          "time_end": 48.01,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4394,
+              "percentage": 43.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 48.01,
+          "time_end": 50.81,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4077,
+              "percentage": 40.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 50.81,
+          "time_end": 53.61,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4355,
+              "percentage": 43.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 53.61,
+          "time_end": 58.66,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4816,
+              "percentage": 48.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 58.66,
+          "time_end": 61.06,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3943,
+              "percentage": 39.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 61.06,
+          "time_end": 69.71,
+          "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.238,
+              "percentage": 23.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+        },
+        {
+          "time_start": 70.11,
+          "time_end": 73.54,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2838,
+              "percentage": 28.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 73.54,
+          "time_end": 76.96,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3901,
+              "percentage": 39.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 76.96,
+          "time_end": 84.41,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4445,
+              "percentage": 44.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 84.73,
+          "time_end": 90.08,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2192,
+              "percentage": 21.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+        },
+        {
+          "time_start": 90.08,
+          "time_end": 95.45,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5867,
+              "percentage": 58.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+        },
+        {
+          "time_start": 95.45,
+          "time_end": 103.11,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3954,
+              "percentage": 39.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+        },
+        {
+          "time_start": 103.11,
+          "time_end": 105.08,
+          "text": "Thank you for your time, Hiba. Have a wonderful day!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3923,
+              "percentage": 39.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Hiba. Have a wonderful day!"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 4.0,
+          "time_end": 5.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1666,
+              "percentage": 16.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 10,
+          "neutral": 10,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.6899999,
+            "end": 3.25,
+            "text": "Who's this?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.952,
+            "end": 12.220375,
+            "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 15.200001,
+            "end": 15.52,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 17.565,
+            "end": 33.19191674804687,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.29,
+            "end": 35.57,
+            "text": "I'm living in Texas."
+          },
+          {
+            "speaker": "Agent",
+            "start": 37.777,
+            "end": 40.725625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 41.96,
+            "end": 42.2,
+            "text": "Yeah."
+          },
+          {
+            "speaker": "Agent",
+            "start": 44.682,
+            "end": 62.37554174804688,
+            "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 66.16,
+            "end": 66.4,
+            "text": "Sure."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.287,
+            "end": 79.68925,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 80.89,
+            "end": 82.009995,
+            "text": "Okay. Sounds good."
+          },
+          {
+            "speaker": "Agent",
+            "start": 84.177,
+            "end": 98.58425,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 99.8,
+            "end": 100.28,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 102.966,
+            "end": 105.068,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_b8472b0344daa43453561bfeb99",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav",
+        "start_timestamp": 1762547015546,
+        "end_timestamp": 1762547120620,
+        "duration_ms": 105074,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "converted",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 105074
+        }
+      },
+      "summary": "Agent Courtney contacts Hiba regarding her interest in the CISSP Certification Exam Preparation Course. Hiba initially feels confusion at 2.7s but shifts to calmness at 42.0s after confirming her high school diploma. The Agent maintains determination throughout, leading to Hiba expressing amusement at 81.1s when she agrees to receive a text link for scheduling. The call concludes with Hiba confirming her willingness to proceed and thanking the Agent at 99.0s."
+    },
+    {
+      "filename": "call_b8472b0344daa43453561bfeb99_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.67,
+          "time_end": 3.31,
+          "text": "Who's this?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.5686,
+              "percentage": 56.9,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Who's this?"
+        },
+        {
+          "time_start": 15.52,
+          "time_end": 15.68,
+          "text": "Okay.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2324,
+              "percentage": 23.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 34.47,
+          "time_end": 35.68,
+          "text": "I'm living in Texas.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1261,
+              "percentage": 12.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I'm living in Texas."
+        },
+        {
+          "time_start": 42.05,
+          "time_end": 42.37,
+          "text": "Yeah.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.186,
+              "percentage": 18.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yeah."
+        },
+        {
+          "time_start": 64.39,
+          "time_end": 64.71,
+          "text": "Sure.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1163,
+              "percentage": 11.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 66.3,
+          "time_end": 66.62,
+          "text": "Sure.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1439,
+              "percentage": 14.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Sure."
+        },
+        {
+          "time_start": 81.09,
+          "time_end": 82.06,
+          "text": "Okay. Sounds good.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.1726,
+              "percentage": 17.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Okay. Sounds good."
+        },
+        {
+          "time_start": 99.83,
+          "time_end": 100.31,
+          "text": "No. Thanks.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2447,
+              "percentage": 24.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
         }
       ],
       "burst": [
         {
           "time_start": 7.0,
           "time_end": 8.0,
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Contempt",
               "score": 0.2262,
-              "percentage": 22.6
+              "percentage": 22.6,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
         },
         {
           "time_start": 48.0,
           "time_end": 49.0,
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Distress",
               "score": 0.2099,
-              "percentage": 21.0
+              "percentage": 21.0,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
         },
         {
           "time_start": 99.0,
           "time_end": 100.0,
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Satisfaction",
               "score": 0.1949,
-              "percentage": 19.5
+              "percentage": 19.5,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
         }
       ],
-      "summary": "The agent contacts a customer regarding the certification exam preparation course, eliciting confusion at 2.7s when the customer asks, \"Who's this?\" and later sadness at 9.9s as the agent discusses the program. The customer's emotions fluctuate between calmness and sadness throughout, ultimately leading to disappointment at 96.0s when they express having no questions. The call concludes with the agent maintaining a calm demeanor, thanking the customer and confirming a follow-up text to schedule a meeting."
+      "metadata": {
+        "category_counts": {
+          "positive": 3,
+          "neutral": 5,
+          "negative": 3
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.6899999,
+            "end": 3.25,
+            "text": "Who's this?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.952,
+            "end": 12.220375,
+            "text": "Hi Hiba! This is Courtney. I\u2019m calling regarding your interest in the CISSP Certification Exam Preparation Course program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 15.200001,
+            "end": 15.52,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 17.565,
+            "end": 33.19191674804687,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.29,
+            "end": 35.57,
+            "text": "I'm living in Texas."
+          },
+          {
+            "speaker": "Agent",
+            "start": 37.777,
+            "end": 40.725625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 41.96,
+            "end": 42.2,
+            "text": "Yeah."
+          },
+          {
+            "speaker": "Agent",
+            "start": 44.682,
+            "end": 62.37554174804688,
+            "text": "For the CISSP Certification Exam Preparation Course program at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It also helps to be comfortable with complex IT systems and quick to learn new technologies. Does this sound like something you meet?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 66.16,
+            "end": 66.4,
+            "text": "Sure."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.287,
+            "end": 79.68925,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 80.89,
+            "end": 82.009995,
+            "text": "Okay. Sounds good."
+          },
+          {
+            "speaker": "Agent",
+            "start": 84.177,
+            "end": 98.58425,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you about the CISSP Certification Exam Preparation Course program at Arcadia University?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 99.8,
+            "end": 100.28,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 102.966,
+            "end": 105.068,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_b8472b0344daa43453561bfeb99",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav",
+        "start_timestamp": 1762547015546,
+        "end_timestamp": 1762547120620,
+        "duration_ms": 105074,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "converted",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 105074
+        }
+      },
+      "summary": "Agent Courtney contacts Hiba regarding her interest in the CISSP Certification Exam Preparation Course. Hiba initially feels confusion at 2.7s but shifts to calmness at 42.0s after confirming her high school diploma. The Agent maintains determination throughout, leading to Hiba expressing amusement at 81.1s when she agrees to receive a text link for scheduling. The call concludes with Hiba confirming her willingness to proceed and thanking the Agent at 99.0s."
     }
   ]
 }

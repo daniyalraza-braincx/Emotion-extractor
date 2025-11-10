@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchRetellCalls } from '../services/api';
 import { useAnalysis } from '../context/AnalysisContext';
@@ -13,6 +13,7 @@ function Dashboard() {
   const [retellCalls, setRetellCalls] = useState([]);
   const [isFetchingCalls, setIsFetchingCalls] = useState(false);
   const [callsError, setCallsError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const loadRetellCalls = useCallback(async () => {
     setIsFetchingCalls(true);
@@ -58,112 +59,88 @@ function Dashboard() {
     navigate('/analysis');
   };
 
+  const triggerUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const filteredCalls = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return retellCalls;
+    }
+
+    const query = searchQuery.trim().toLowerCase();
+    return retellCalls.filter((call) => {
+      const idMatch = call.call_id?.toLowerCase().includes(query);
+      const agentMatch = call.agent_id?.toLowerCase().includes(query) || call.agent_name?.toLowerCase().includes(query);
+      const statusMatch = call.analysis_status?.toLowerCase().includes(query);
+      return idMatch || agentMatch || statusMatch;
+    });
+  }, [retellCalls, searchQuery]);
+
+  const renderSummary = (call) => {
+    const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
+    const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
+    const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
+    const blockReason = (call.analysis_block_reason || '').trim();
+
+    if (isBlocked) {
+      return blockReason || 'Analysis unavailable for this call.';
+    }
+
+    if (call.error_message) {
+      return `Last error: ${call.error_message}`;
+    }
+
+    const agentName = call.agent_name || call.agent_id || 'Unknown agent';
+    const statusLabel = formatStatusLabel(call.analysis_status);
+    const transcriptUpdate = call.last_updated ? `Updated ${formatTimestamp(call.last_updated)}` : null;
+
+    const parts = [
+      `${agentName} engaged the customer.`,
+      `Analysis ${statusLabel.toLowerCase()}.`,
+    ];
+
+    return parts.join(' ');
+  };
+
+  const totalCallCount = retellCalls.length;
+  const resultCount = filteredCalls.length;
+
   return (
-    <main className="page-container">
-      <header className="page-header">
-        <div>
-          <h1>Emotion Insights Dashboard</h1>
-          <p className="page-subtitle">
-            Review recent Retell calls or analyze a custom audio file using the Hume Emotion API.
-          </p>
+    <main className="calls-page">
+      <header className="calls-header">
+        <div className="calls-header__title">
+          <h1>Calls</h1>
+          <p>{totalCallCount} total calls</p>
         </div>
-        <div className="page-actions">
-          <button
-            type="button"
-            className="refresh-button"
-            onClick={loadRetellCalls}
-            disabled={isFetchingCalls}
-          >
-            {isFetchingCalls ? 'Refreshing…' : 'Refresh Calls'}
-          </button>
-        </div>
-      </header>
 
-      <div className="dashboard-grid">
-        <section className="card call-list-card">
-          <div className="card-header">
-            <div>
-              <h2>Retell Calls</h2>
-              <p className="card-subtitle">Newest webhooks appear at the top.</p>
-            </div>
+        <div className="calls-header__tools">
+          <div className="calls-search">
+            <span aria-hidden className="calls-search__icon">🔍</span>
+            <input
+              type="search"
+              placeholder="Search by transcript, agent, or call ID..."
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+            />
           </div>
 
-          {callsError && (
-            <div className="alert alert-error">
-              {callsError}
-            </div>
-          )}
-
-          <div className="call-list">
-            {isFetchingCalls ? (
-              <div className="call-empty">Loading calls…</div>
-            ) : retellCalls.length === 0 ? (
-              <div className="call-empty">
-                Waiting for Retell to send <code>call_analyzed</code> webhooks.
-              </div>
-            ) : (
-              retellCalls.map((call) => {
-                const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
-                const statusLabel = formatStatusLabel(call.analysis_status);
-
-                return (
-                  <article key={call.call_id} className="call-card">
-                    <div className="call-card__body">
-                      <div className="call-card__row">
-                        <span className="call-card__id" title={call.call_id}>
-                          {call.call_id}
-                        </span>
-                        <span className={`status-pill status-${call.analysis_status || 'pending'}`}>
-                          {statusLabel}
-                        </span>
-                      </div>
-
-                      <div className="call-card__meta">
-                        <span>{formatTimestamp(call.start_timestamp)}</span>
-                        {durationLabel && <span>Duration: {durationLabel}</span>}
-                        {call.agent_id && <span>Agent: {call.agent_id}</span>}
-                      </div>
-
-                      {call.error_message && (
-                        <div className="call-card__error">
-                          Last error: {call.error_message}
-                        </div>
-                      )}
-
-                      {call.last_updated && (
-                        <div className="call-card__note">
-                          Updated {formatTimestamp(call.last_updated)}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="call-card__actions">
-                      <button
-                        type="button"
-                        className="primary-button"
-                        onClick={() => handleAnalyzeCall(call)}
-                      >
-                        Analyze
-                      </button>
-                    </div>
-                  </article>
-                );
-              })
-            )}
-          </div>
-        </section>
-
-        <section className="card upload-card">
-          <div className="card-header">
-            <div>
-              <h2>Upload Custom Audio</h2>
-              <p className="card-subtitle">
-                Send any WAV, MP3, M4A, or FLAC file through the same Hume workflow.
-              </p>
-            </div>
-          </div>
-
-          <div className="upload-card__body">
+          <div className="calls-toolbar">
+           
+            <button
+              type="button"
+              className="toolbar-chip"
+              onClick={loadRetellCalls}
+              disabled={isFetchingCalls}
+            >
+              {isFetchingCalls ? 'Refreshing…' : 'Refresh'}
+            </button>
+            <button type="button" className="upload-button" onClick={triggerUpload}>
+              <span aria-hidden className="upload-button__icon">＋</span>
+              Upload
+            </button>
             <input
               ref={fileInputRef}
               id="custom-audio-upload"
@@ -172,14 +149,106 @@ function Dashboard() {
               onChange={handleFileChange}
               style={{ display: 'none' }}
             />
-            <label className="upload-dropzone" htmlFor="custom-audio-upload">
-              <span className="upload-icon" role="img" aria-hidden>📁</span>
-              <span className="upload-title">Drag &amp; drop or browse</span>
-              <span className="upload-hint">Supports single audio file up to 25MB.</span>
-            </label>
           </div>
-        </section>
-      </div>
+        </div>
+      </header>
+
+      {callsError && (
+        <div className="alert alert-error calls-alert">
+          {callsError}
+        </div>
+      )}
+
+      <section className="calls-table-card">
+        <div className="calls-table-header">
+          <div className="calls-table-meta">
+            <span className="calls-table-meta__label">Call Logs</span>
+            <span className="calls-table-meta__label">Title</span>
+            <span className="calls-table-meta__label calls-table-meta__label--wide">Summary</span>
+            <span className="calls-table-meta__label">Labels</span>
+            <span className="calls-table-meta__label">Duration</span>
+            <span className="calls-table-meta__label">Entry</span>
+            <span className="calls-table-meta__label" aria-hidden />
+          </div>
+        </div>
+
+        <div className="calls-table-body">
+          {isFetchingCalls ? (
+            <div className="call-empty">Loading calls…</div>
+          ) : totalCallCount === 0 ? (
+            <div className="call-empty">
+              Waiting for Retell to send <code>call_analyzed</code> webhooks.
+            </div>
+          ) : resultCount === 0 ? (
+            <div className="call-empty">
+              No calls match “{searchQuery}”. Try adjusting your filters.
+            </div>
+          ) : (
+            filteredCalls.map((call) => {
+              const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
+              const statusLabel = formatStatusLabel(call.analysis_status);
+              const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
+              const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
+              const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
+              const blockReason = (call.analysis_block_reason || call.error_message || '').trim();
+
+              return (
+                <article key={call.call_id} className="calls-table-row" data-status={statusKey}>
+                  <div className="calls-table-cell calls-table-cell--start">
+                    <span className="cell-primary">{formatTimestamp(call.start_timestamp)}</span>
+                    {call.last_updated && (
+                      <span className="cell-secondary">
+                        Updated {formatTimestamp(call.last_updated)}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--title">
+                    <span className="cell-primary">Callback Request</span>
+                    <span className="cell-secondary">{call.agent_name || call.agent_id || 'Unknown agent'}</span>
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--summary">
+                    <p>{renderSummary(call)}</p>
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--labels">
+                    <button type="button" className="label-button">Add label ＋</button>
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--duration">
+                    {durationLabel ? (
+                      <span className="cell-primary">{durationLabel}</span>
+                    ) : (
+                      <span className="cell-secondary">Pending</span>
+                    )}
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--entry">
+                    <span className={`status-pill status-${statusKey}`}>
+                      {statusLabel}
+                    </span>
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--actions">
+                    {isBlocked ? (
+                      <span className="row-action row-action--disabled">Analysis unavailable</span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="row-action"
+                        onClick={() => handleAnalyzeCall(call)}
+                      >
+                        View analysis
+                      </button>
+                    )}
+                  </div>
+                </article>
+              );
+            })
+          )}
+        </div>
+      </section>
     </main>
   );
 }

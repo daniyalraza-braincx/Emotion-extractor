@@ -15,6 +15,8 @@ from dotenv import load_dotenv
 from hume import HumeClient
 from hume.expression_measurement.batch.types import InferenceBaseRequest, Models
 
+from emotion_categories import EMOTION_CATEGORIES, DEFAULT_EMOTION_CATEGORY
+
 if TYPE_CHECKING:
     from openai import OpenAI
 else:
@@ -76,6 +78,12 @@ def prepare_audio_files(file_contents: List[Tuple[str, bytes]]) -> List[Tuple[st
         file_objects.append((filename, file_content, content_type))
     
     return file_objects
+
+
+def categorize_emotion(emotion_name: Optional[str]) -> str:
+    if not emotion_name:
+        return DEFAULT_EMOTION_CATEGORY
+    return EMOTION_CATEGORIES.get(emotion_name.lower(), DEFAULT_EMOTION_CATEGORY)
 
 
 def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional[HumeClient] = None) -> str:
@@ -237,8 +245,10 @@ def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 1)
         file_result = {
             "filename": item.get("source", {}).get("filename", "unknown"),
             "prosody": [],
-            "burst": []
+            "burst": [],
+            "metadata": {},
         }
+        category_counts = {"positive": 0, "neutral": 0, "negative": 0}
         
         # Process each prediction
         for pred in preds:
@@ -265,19 +275,28 @@ def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 1)
                                 key=lambda x: x.get("score", 0),
                                 reverse=True
                             )[:top_n]
+
+                            enriched_top_emotions = []
+                            for emo in top_emotions:
+                                name = emo.get("name", "Unknown")
+                                category = categorize_emotion(name)
+                                enriched_top_emotions.append({
+                                    "name": name,
+                                    "score": round(emo.get("score", 0), 4),
+                                    "percentage": round(emo.get("score", 0) * 100, 1),
+                                    "category": category,
+                                })
+
+                            primary_category = enriched_top_emotions[0]["category"] if enriched_top_emotions else DEFAULT_EMOTION_CATEGORY
+                            category_counts[primary_category] += 1
                             
                             file_result["prosody"].append({
                                 "time_start": round(time_start, 2),
                                 "time_end": round(time_end, 2),
                                 "text": text,
-                                "top_emotions": [
-                                    {
-                                        "name": emo.get("name", "Unknown"),
-                                        "score": round(emo.get("score", 0), 4),
-                                        "percentage": round(emo.get("score", 0) * 100, 1)
-                                    }
-                                    for emo in top_emotions
-                                ]
+                                "primary_category": primary_category,
+                                "top_emotions": enriched_top_emotions,
+                                "source": "prosody",
                             })
             
             # Extract burst emotions
@@ -297,19 +316,30 @@ def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 1)
                                 key=lambda x: x.get("score", 0),
                                 reverse=True
                             )[:top_n]
+
+                            enriched_top_emotions = []
+                            for emo in top_emotions:
+                                name = emo.get("name", "Unknown")
+                                category = categorize_emotion(name)
+                                enriched_top_emotions.append({
+                                    "name": name,
+                                    "score": round(emo.get("score", 0), 4),
+                                    "percentage": round(emo.get("score", 0) * 100, 1),
+                                    "category": category,
+                                })
+
+                            primary_category = enriched_top_emotions[0]["category"] if enriched_top_emotions else DEFAULT_EMOTION_CATEGORY
+                            category_counts[primary_category] += 1
                             
                             file_result["burst"].append({
                                 "time_start": round(time_start, 2),
                                 "time_end": round(time_end, 2),
-                                "top_emotions": [
-                                    {
-                                        "name": emo.get("name", "Unknown"),
-                                        "score": round(emo.get("score", 0), 4),
-                                        "percentage": round(emo.get("score", 0) * 100, 1)
-                                    }
-                                    for emo in top_emotions
-                                ]
+                                "primary_category": primary_category,
+                                "top_emotions": enriched_top_emotions,
+                                "source": "burst",
                             })
+
+        file_result["metadata"]["category_counts"] = category_counts
         
         results.append(file_result)
     
@@ -537,7 +567,18 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
             filename = result.get("filename", "unknown")
             prosody_segments = result.get("prosody", [])
             burst_segments = result.get("burst", [])
-            transcript_segments = result.get("metadata", {}).get("retell_transcript_segments", [])
+            metadata = result.get("metadata", {}) or {}
+            transcript_segments = metadata.get("retell_transcript_segments", [])
+            customer_profile = metadata.get("customer") or {}
+            agent_profile = metadata.get("agent") or {}
+            call_context = {
+                "call_id": metadata.get("retell_call_id"),
+                "start_timestamp": metadata.get("start_timestamp"),
+                "end_timestamp": metadata.get("end_timestamp"),
+                "duration_ms": metadata.get("duration_ms"),
+                "lead_status": customer_profile.get("lead_status"),
+                "program": customer_profile.get("program") or metadata.get("program"),
+            }
             
             # Create time-ordered list of emotional segments
             all_segments = []
@@ -548,12 +589,13 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
             for segment in prosody_segments:
                 time_start = segment.get("time_start", 0)
                 time_end = segment.get("time_end", 0)
-                text = segment.get("text", "")
+                text = (segment.get("text") or segment.get("transcript_text") or "").strip()
                 top_emotions = segment.get("top_emotions", [])
                 speaker = segment.get("speaker") or "Unknown"
                 if top_emotions:
                     primary_emotion = top_emotions[0].get("name")
-                    if primary_emotion:
+                    primary_category = top_emotions[0].get("category", DEFAULT_EMOTION_CATEGORY)
+                    if primary_emotion and text:
                         last_emotion = speaker_last_emotion.get(speaker)
                         if primary_emotion != last_emotion:
                             emotion_highlights.append({
@@ -563,6 +605,7 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                                 "text": text,
                                 "primary_emotion": primary_emotion,
                                 "score": top_emotions[0].get("score"),
+                                "category": primary_category,
                             })
                             speaker_last_emotion[speaker] = primary_emotion
                         speaker_emotion_counts.setdefault(speaker, {})
@@ -575,7 +618,15 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                         "time_range": f"{time_start:.1f}s-{time_end:.1f}s",
                         "text": text,
                         "speaker": speaker,
-                        "top_emotions": [{"name": e.get("name"), "score": e.get("score"), "percentage": e.get("percentage")} for e in top_emotions]
+                        "top_emotions": [
+                            {
+                                "name": e.get("name"),
+                                "score": e.get("score"),
+                                "percentage": e.get("percentage"),
+                                "category": e.get("category", DEFAULT_EMOTION_CATEGORY),
+                            }
+                            for e in top_emotions
+                        ]
                     })
             
             for segment in burst_segments:
@@ -585,17 +636,20 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                 speaker = segment.get("speaker") or "Unknown"
                 if top_emotions:
                     primary_emotion = top_emotions[0].get("name")
-                    if primary_emotion:
+                    primary_category = top_emotions[0].get("category", DEFAULT_EMOTION_CATEGORY)
+                    text = (segment.get("transcript_text") or "").strip()
+                    if primary_emotion and text:
                         last_emotion = speaker_last_emotion.get(speaker)
                         if primary_emotion != last_emotion:
                             emotion_highlights.append({
                                 "speaker": speaker,
                                 "time_start": time_start,
                                 "time_end": time_end,
-                                "text": segment.get("transcript_text", ""),
+                                "text": text,
                                 "primary_emotion": primary_emotion,
                                 "score": top_emotions[0].get("score"),
                                 "type": "vocal_burst",
+                                "category": primary_category,
                             })
                             speaker_last_emotion[speaker] = primary_emotion
                         speaker_emotion_counts.setdefault(speaker, {})
@@ -608,7 +662,15 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                         "time_range": f"{time_start:.1f}s-{time_end:.1f}s",
                         "type": "vocal_burst",
                         "speaker": speaker,
-                        "top_emotions": [{"name": e.get("name"), "score": e.get("score"), "percentage": e.get("percentage")} for e in top_emotions]
+                        "top_emotions": [
+                            {
+                                "name": e.get("name"),
+                                "score": e.get("score"),
+                                "percentage": e.get("percentage"),
+                                "category": e.get("category", DEFAULT_EMOTION_CATEGORY),
+                            }
+                            for e in top_emotions
+                        ]
                     })
             
             # Sort by time
@@ -630,7 +692,13 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                 "speaker_primary_emotions": {
                     speaker: sorted(counts.items(), key=lambda kv: kv[1], reverse=True)
                     for speaker, counts in speaker_emotion_counts.items()
-                }
+                },
+                "context": {
+                    "customer": customer_profile,
+                    "agent": agent_profile,
+                    "call": call_context,
+                },
+                "category_counts": metadata.get("category_counts"),
             }
             summary_data.append(file_summary)
         
@@ -641,13 +709,16 @@ Emotion Data (time-ordered segments with speakers):
 {json.dumps(summary_data, indent=2)}
 
 Use these data sections: "segments" (all emotional segments), "transcript" (complete diarized transcript), "emotion_highlights" (meaningful emotion shifts), and "speaker_primary_emotions" (dominant emotions for each speaker). Emotion highlights are ordered by time, but prioritize the customer's experience when summarizing.
+You also have a "context" block with customer and agent profile details (names, programs, lead status). Prefer these names over any misheard words in transcripts.
+Category counts show how many segments fell into positive, neutral, and negative groupings.
 
 Provide a SHORT summary (1-2 sentences maximum) that:
 1. States the practical outcome/result of the recording.
 2. Describes the key narrative (why the call happened, major decisions or next steps).
 3. Emphasizes the CUSTOMER’S emotional journey first: mention their dominant emotion or any shift (with timestamps) and tie it to the exact quote or action that triggered it.
 4. Then mention the Agent’s emotion only if it clearly influences the outcome or marks a shift; avoid repeating the same emotion multiple times.
-5. Keep the tone analytical and concise—no filler phrases.
+5. Always acknowledge when the customer commits to a next step (even reluctantly) if the dialogue supports it; never assume refusal without an explicit statement.
+6. Keep the tone analytical and concise—no filler phrases.
 
 Example formats:
 • "Agent contacts Alexita about the Sterile Processing program and stays calm at 1.2s while explaining the requirements; Alexita shifts from neutrality to disinterest at 18.6s when she asks for a callback. Conversation ends with the Agent agreeing to reconnect later."
@@ -658,7 +729,7 @@ Keep it under 100 words."""
         response = openai_client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are an expert contact-center analyst. Produce concise (under 100 words) summaries that report the call outcome, describe the narrative context, and highlight key emotion shifts—always emphasize the customer's emotional journey first, then the agent's only when it impacts the result. Avoid repeating the same emotion unless it changes."},
+                {"role": "system", "content": "You are an expert contact-center analyst. Produce concise (under 100 words) summaries that report the call outcome, describe the narrative context, and highlight key emotion shifts—always emphasize the customer's emotional journey first, then the agent's only when it impacts the result. Note any customer commitments even when their emotion is muted or negative, and avoid repeating the same emotion unless it changes."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.5,
@@ -679,7 +750,8 @@ def analyze_audio_files(
     client: Optional[HumeClient] = None,
     include_summary: bool = True,
     retell_call_id: Optional[str] = None,
-    retell_transcript: Optional[List[Dict[str, Any]]] = None
+    retell_transcript: Optional[List[Dict[str, Any]]] = None,
+    retell_metadata: Optional[Dict[str, Any]] = None
 ) -> List[Dict[str, Any]]:
     """
     Complete workflow: submit job, wait for completion, and extract top emotions.
@@ -695,17 +767,28 @@ def analyze_audio_files(
         client = get_hume_client()
 
     transcript_segments: Optional[List[Dict[str, Any]]] = retell_transcript
-    retell_metadata: Dict[str, Any] = {}
+    combined_retell_metadata: Dict[str, Any] = dict(retell_metadata or {})
 
     if transcript_segments is None and retell_call_id:
         try:
             call_data = get_retell_call_details(retell_call_id)
             transcript_segments = extract_retell_transcript_segments(call_data)
             recording_url = call_data.get("recording_multi_channel_url")
-            retell_metadata = {
-                "retell_call_id": retell_call_id,
-                "retell_recording_multi_channel_url": recording_url
-            }
+            combined_retell_metadata.setdefault("retell_call_id", retell_call_id)
+            if recording_url:
+                combined_retell_metadata.setdefault("recording_multi_channel_url", recording_url)
+            dynamic_variables = call_data.get("retell_llm_dynamic_variables") or {}
+            combined_retell_metadata.setdefault("agent", {})
+            combined_retell_metadata["agent"].setdefault("id", call_data.get("agent_id"))
+            combined_retell_metadata["agent"].setdefault("name", call_data.get("agent_name"))
+            combined_retell_metadata["agent"].setdefault("version", call_data.get("agent_version"))
+            combined_retell_metadata.setdefault("customer", {})
+            if dynamic_variables:
+                combined_retell_metadata["customer"].setdefault("first_name", dynamic_variables.get("first_name"))
+                combined_retell_metadata["customer"].setdefault("program", dynamic_variables.get("program"))
+                combined_retell_metadata["customer"].setdefault("lead_status", dynamic_variables.get("lead_status"))
+                combined_retell_metadata["customer"].setdefault("university", dynamic_variables.get("university"))
+            combined_retell_metadata.setdefault("retell_llm_dynamic_variables", dynamic_variables)
         except Exception as exc:
             print(f"Warning: Could not fetch Retell call data for {retell_call_id}: {exc}")
     
@@ -728,9 +811,9 @@ def analyze_audio_files(
     if transcript_segments:
         results = enrich_results_with_transcript(results, transcript_segments)
 
-    if retell_metadata:
+    if combined_retell_metadata:
         for result in results:
-            result.setdefault("metadata", {}).update(retell_metadata)
+            result.setdefault("metadata", {}).update(combined_retell_metadata)
     
     # Generate summary using OpenAI if available
     if include_summary:
