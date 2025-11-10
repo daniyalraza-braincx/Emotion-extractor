@@ -108,7 +108,18 @@ export function transformApiDataToChart(apiResponse) {
         duration: 0,
         speakers: [],
         segments: {}
-      }
+      },
+      categorizedEmotions: {
+        positive: [],
+        neutral: [],
+        negative: [],
+      },
+      categoryCounts: {
+        positive: 0,
+        neutral: 0,
+        negative: 0,
+      },
+      transcriptSegments: [],
     };
   }
 
@@ -120,6 +131,29 @@ export function transformApiDataToChart(apiResponse) {
   baseSpeakers.forEach((speaker) => speakerSegmentsMap.set(speaker, []));
 
   let latestTime = 0;
+
+  const categoryEmotionMap = {
+    positive: new Map(),
+    neutral: new Map(),
+    negative: new Map(),
+  };
+  const categoryCounts = {
+    positive: 0,
+    neutral: 0,
+    negative: 0,
+  };
+
+  const recordEmotion = (categoryKey, emotionName, score) => {
+    const normalizedCategory = categoryEmotionMap[categoryKey] ? categoryKey : 'neutral';
+    const bucket = categoryEmotionMap[normalizedCategory];
+    const existing = bucket.get(emotionName) || { count: 0, maxScore: 0, maxPercentage: 0, source: 'prosody' };
+    existing.count += 1;
+    if (typeof score === 'number') {
+      existing.maxScore = Math.max(existing.maxScore, score);
+      existing.maxPercentage = Math.max(existing.maxPercentage ?? 0, score * 100);
+    }
+    bucket.set(emotionName, existing);
+  };
 
   const prosodySegments = [];
   let lastKnownSpeaker = null;
@@ -144,6 +178,10 @@ export function transformApiDataToChart(apiResponse) {
       .slice()
       .sort((a, b) => (typeof b.score === 'number' ? b.score : 0) - (typeof a.score === 'number' ? a.score : 0));
     const dominantEmotion = sortedEmotions[0] || null;
+    const primaryCategory = segment.primary_category
+      || dominantEmotion?.category
+      || emotionList[0]?.category
+      || 'neutral';
 
     let speaker = normalizeSpeakerName(segment.speaker);
     if (!speaker) {
@@ -166,8 +204,20 @@ export function transformApiDataToChart(apiResponse) {
       end: timeEnd,
       emotions: emotionList,
       dominantEmotion,
+      category: primaryCategory,
       speaker,
       text: segment.transcript_text || segment.text || ''
+    });
+
+    if (categoryCounts[primaryCategory] !== undefined) {
+      categoryCounts[primaryCategory] += 1;
+    } else {
+      categoryCounts.neutral += 1;
+    }
+
+    emotionList.forEach((emotion) => {
+      const categoryKey = emotion.category || primaryCategory || 'neutral';
+      recordEmotion(categoryKey, emotion.name, emotion.score);
     });
 
     if (!speakerSegmentsMap.has(speaker)) {
@@ -179,81 +229,64 @@ export function transformApiDataToChart(apiResponse) {
       end: timeEnd,
       topEmotion: dominantEmotion?.name || null,
       score: typeof dominantEmotion?.score === 'number' ? dominantEmotion.score : null,
+      category: primaryCategory,
       text: segment.transcript_text || segment.text || ''
     });
   });
 
-  const emotionsList = Array.from(allEmotions).sort();
+  if (Array.isArray(results.burst)) {
+    results.burst.forEach((segment) => {
+      const timeStart = typeof segment.time_start === 'number' ? segment.time_start : null;
+      const timeEnd = typeof segment.time_end === 'number' ? segment.time_end : timeStart;
+      if (timeStart === null || timeEnd === null || Number.isNaN(timeStart) || Number.isNaN(timeEnd)) {
+        return;
+      }
 
-  const INTERVAL_SIZE = 10;
-  const intervalMap = new Map();
+      const emotionList = Array.isArray(segment.top_emotions)
+        ? segment.top_emotions.filter((emotion) => emotion?.name && typeof emotion.score === 'number')
+        : [];
 
-  const timeBounds = prosodySegments.reduce(
-    (acc, segment) => ({
-      min: Math.min(acc.min, segment.start),
-      max: Math.max(acc.max, segment.end)
-    }),
-    { min: Infinity, max: 0 }
-  );
-
-  const hasValidBounds = Number.isFinite(timeBounds.min) && Number.isFinite(timeBounds.max) && timeBounds.min !== Infinity;
-  const minInterval = hasValidBounds ? Math.max(0, Math.floor(timeBounds.min / INTERVAL_SIZE) * INTERVAL_SIZE) : 0;
-  const maxInterval = hasValidBounds ? Math.floor(timeBounds.max / INTERVAL_SIZE) * INTERVAL_SIZE : 0;
-
-  // Pre-create intervals to ensure contiguous coverage
-  if (hasValidBounds) {
-    for (let intervalStart = minInterval; intervalStart <= maxInterval; intervalStart += INTERVAL_SIZE) {
-      intervalMap.set(intervalStart, {
-        intervalStart,
-        intervalEnd: intervalStart + INTERVAL_SIZE,
-        emotions: {}
+      emotionList.forEach((emotion) => {
+        const categoryKey = emotion.category || segment.primary_category || 'neutral';
+        const bucket = categoryEmotionMap[categoryKey] || categoryEmotionMap.neutral;
+        const existing = bucket.get(emotion.name) || { count: 0, maxScore: 0, maxPercentage: 0, source: 'prosody' };
+        existing.count += 0; // don't increment count for bursts
+        if (typeof emotion.score === 'number') {
+          existing.maxScore = Math.max(existing.maxScore, emotion.score);
+          existing.maxPercentage = Math.max(existing.maxPercentage ?? 0, emotion.score * 100);
+        }
+        existing.source = 'burst';
+        bucket.set(emotion.name, existing);
       });
-    }
+    });
   }
 
-  prosodySegments.forEach((segment) => {
-    const intervalStart = Math.floor(segment.start / INTERVAL_SIZE) * INTERVAL_SIZE;
+  const emotionsList = Array.from(allEmotions).sort();
 
-    if (!intervalMap.has(intervalStart)) {
-      intervalMap.set(intervalStart, {
-        intervalStart,
-        intervalEnd: intervalStart + INTERVAL_SIZE,
-        emotions: {}
+  const chartData = prosodySegments
+    .map((segment) => {
+      const duration = Math.max(0, (segment.end ?? segment.start) - segment.start);
+      const midpoint = segment.start + (duration / 2);
+
+      const emotionScores = {};
+      segment.emotions.forEach((emotion) => {
+        if (emotion?.name && typeof emotion.score === 'number') {
+          emotionScores[emotion.name] = emotion.score;
+        }
       });
-    }
-
-    const intervalData = intervalMap.get(intervalStart);
-
-    segment.emotions.forEach((emotion) => {
-      const currentScore = intervalData.emotions[emotion.name] ?? 0;
-      intervalData.emotions[emotion.name] = Math.max(currentScore, emotion.score);
-    });
-  });
-
-  const chartData = Array.from(intervalMap.values())
-    .sort((a, b) => a.intervalStart - b.intervalStart)
-    .map((interval) => {
-      const emotionEntries = Object.entries(interval.emotions);
-
-      const topEmotionEntry = emotionEntries.reduce(
-        (best, [emotionName, value]) => {
-          if (!best || value > best.value) {
-            return { name: emotionName, value };
-          }
-          return best;
-        },
-        null
-      );
 
       return {
-        time: interval.intervalStart + INTERVAL_SIZE / 2,
-        intervalStart: interval.intervalStart,
-        intervalEnd: interval.intervalEnd,
-        topEmotion: topEmotionEntry?.name || null,
-        score: topEmotionEntry?.value ?? 0,
-        emotions: interval.emotions
+        time: midpoint,
+        intervalStart: segment.start,
+        intervalEnd: segment.end,
+        duration,
+        topEmotion: segment.dominantEmotion?.name || null,
+        score: typeof segment.dominantEmotion?.score === 'number' ? segment.dominantEmotion.score : 0,
+        emotions: emotionScores,
+        speaker: segment.speaker || null,
       };
-    });
+    })
+    .sort((a, b) => a.intervalStart - b.intervalStart);
 
   const speakerTimelineSegmentsMap = new Map();
   baseSpeakers.forEach((speaker) => {
@@ -285,6 +318,7 @@ export function transformApiDataToChart(apiResponse) {
           end: segment.end,
           topEmotion: dominantEmotion?.name || null,
           score: typeof dominantEmotion?.score === 'number' ? dominantEmotion.score : null,
+          category: dominantEmotion?.category || 'neutral',
           text: segment.text || ''
         };
 
@@ -316,6 +350,33 @@ export function transformApiDataToChart(apiResponse) {
     speakerTimelineSegments[speaker] = speakerTimelineSegmentsMap.get(speaker) || [];
   });
 
+  if (results?.metadata?.category_counts) {
+    Object.entries(results.metadata.category_counts).forEach(([key, value]) => {
+      if (categoryCounts[key] !== undefined && typeof value === 'number') {
+        // Retain existing counts from prosody; metadata counts include burst segments.
+      }
+    });
+  }
+
+  const categorizedEmotions = Object.fromEntries(
+    Object.entries(categoryEmotionMap).map(([category, map]) => {
+      const items = Array.from(map.entries()).map(([name, info]) => ({
+        name,
+        count: info.count,
+        maxScore: info.maxScore ?? 0,
+        percentage: info.maxPercentage ?? (info.maxScore ?? 0) * 100,
+        source: info.source || 'prosody',
+      })).filter((emotion) => emotion.count > 0);
+      items.sort((a, b) => {
+        if (b.count !== a.count) {
+          return b.count - a.count;
+        }
+        return b.maxScore - a.maxScore;
+      });
+      return [category, items];
+    })
+  );
+
   return {
     chartData,
     emotions: emotionsList,
@@ -323,7 +384,10 @@ export function transformApiDataToChart(apiResponse) {
       duration: latestTime,
       speakers: speakerTimelineSpeakers,
       segments: speakerTimelineSegments
-    }
+    },
+    categorizedEmotions,
+    categoryCounts,
+    transcriptSegments,
   };
 }
 

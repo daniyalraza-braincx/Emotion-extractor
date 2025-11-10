@@ -1,10 +1,35 @@
 {
   "call_id": "call_d1405336c1367d099f70ef05c75",
   "retell_metadata": {
-    "agent_id": null,
-    "start_timestamp": null,
-    "end_timestamp": null,
-    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5fdc638ad39a792c5108b6f8689d77ebf09928e426aa427ee0ef83c56cb8cb94/recording_multichannel.wav"
+    "retell_call_id": "call_d1405336c1367d099f70ef05c75",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5fdc638ad39a792c5108b6f8689d77ebf09928e426aa427ee0ef83c56cb8cb94/recording_multichannel.wav",
+    "start_timestamp": 1762806767935,
+    "end_timestamp": 1762806786876,
+    "duration_ms": 18941,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Hiba",
+      "program": "Machine Learning with Python",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 18941
+    }
   },
   "analysis": [
     {
@@ -14,102 +39,185 @@
           "time_start": 2.58,
           "time_end": 2.98,
           "text": "Hello?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
               "score": 0.3207,
-              "percentage": 32.1
+              "percentage": 32.1,
+              "category": "neutral"
             }
           ],
-          "speaker": "Customer"
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
         },
         {
           "time_start": 5.55,
           "time_end": 8.2,
-          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Interest",
               "score": 0.8254,
-              "percentage": 82.5
+              "percentage": 82.5,
+              "category": "positive"
             }
           ],
-          "speaker": "Agent"
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
         },
         {
           "time_start": 8.66,
           "time_end": 9.78,
-          "text": "May I speak with Hub?",
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Doubt",
               "score": 0.1901,
-              "percentage": 19.0
+              "percentage": 19.0,
+              "category": "negative"
             }
           ],
-          "speaker": "Agent"
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
         },
         {
           "time_start": 11.09,
           "time_end": 12.53,
-          "text": "Sorry I'm gonna busy.",
+          "text": "Sorry. I'm a little busy.",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Awkwardness",
               "score": 0.2309,
-              "percentage": 23.1
+              "percentage": 23.1,
+              "category": "negative"
             }
           ],
-          "speaker": "Customer"
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Sorry. I'm a little busy."
         },
         {
           "time_start": 13.79,
           "time_end": 18.66,
-          "text": "Of course, Hub, thank you for your time and we'll reach out again at a better time. Have a great day.",
+          "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!",
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Satisfaction",
               "score": 0.5574,
-              "percentage": 55.7
+              "percentage": 55.7,
+              "category": "positive"
             }
           ],
-          "speaker": "Agent"
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
         }
       ],
       "burst": [
         {
           "time_start": 1.0,
           "time_end": 2.0,
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Disappointment",
               "score": 0.1856,
-              "percentage": 18.6
+              "percentage": 18.6,
+              "category": "negative"
             }
           ],
+          "source": "burst",
           "speaker": "Customer"
         },
         {
           "time_start": 13.0,
           "time_end": 14.0,
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Satisfaction",
               "score": 0.1927,
-              "percentage": 19.3
+              "percentage": 19.3,
+              "category": "positive"
             }
           ],
-          "speaker": "Agent"
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
         }
       ],
       "metadata": {
-        "agent": {},
-        "customer": {},
-        "retell_transcript_segments": [],
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 3,
+          "neutral": 0,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.555,
+            "end": 2.7949999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.665,
+            "end": 10.018916748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.125,
+            "end": 12.244999,
+            "text": "Sorry. I'm a little busy."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.82,
+            "end": 18.9055,
+            "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+          }
+        ],
         "retell_call_id": "call_d1405336c1367d099f70ef05c75",
-        "retell_transcript_available": false
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5fdc638ad39a792c5108b6f8689d77ebf09928e426aa427ee0ef83c56cb8cb94/recording_multichannel.wav",
+        "start_timestamp": 1762806767935,
+        "end_timestamp": 1762806786876,
+        "duration_ms": 18941,
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 18941
+        }
       },
-      "summary": "Agent Courtney contacts Hub on behalf of Arcadia University, expressing interest at 5.5s. Hub initially feels disappointment (1.0s) but remains calm (2.6s) before expressing awkwardness (11.1s) about being busy. The conversation concludes positively with Courtney's satisfaction (13.8s) as she thanks Hub and offers to reconnect later, leaving both parties agreeable to follow up."
+      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program. Hiba starts calmly at 2.6s but expresses awkwardness at 11.1s, stating, \"Sorry. I'm a little busy.\" Despite this, she commits to a follow-up by thanking the Agent and agreeing to reconnect later. Courtney demonstrates interest initially at 5.5s, then satisfaction at 13.8s when confirming the next steps, ensuring a positive closure."
     },
     {
       "filename": "call_d1405336c1367d099f70ef05c75_agent.wav",
@@ -117,54 +225,137 @@
         {
           "time_start": 5.55,
           "time_end": 8.2,
-          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Interest",
               "score": 0.8254,
-              "percentage": 82.5
+              "percentage": 82.5,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
         },
         {
           "time_start": 8.66,
           "time_end": 9.78,
-          "text": "May I speak with Hub?",
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Doubt",
               "score": 0.1901,
-              "percentage": 19.0
+              "percentage": 19.0,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
         },
         {
           "time_start": 13.79,
           "time_end": 18.66,
-          "text": "Of course, Hub, thank you for your time and we'll reach out again at a better time. Have a great day.",
+          "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!",
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Satisfaction",
               "score": 0.5574,
-              "percentage": 55.7
+              "percentage": 55.7,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
         }
       ],
       "burst": [
         {
           "time_start": 13.0,
           "time_end": 14.0,
+          "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Satisfaction",
               "score": 0.1927,
-              "percentage": 19.3
+              "percentage": 19.3,
+              "category": "positive"
             }
-          ]
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
         }
       ],
-      "summary": "Agent Courtney contacts Hub on behalf of Arcadia University, expressing interest at 5.5s. Hub initially feels disappointment (1.0s) but remains calm (2.6s) before expressing awkwardness (11.1s) about being busy. The conversation concludes positively with Courtney's satisfaction (13.8s) as she thanks Hub and offers to reconnect later, leaving both parties agreeable to follow up."
+      "metadata": {
+        "category_counts": {
+          "positive": 3,
+          "neutral": 0,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.555,
+            "end": 2.7949999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.665,
+            "end": 10.018916748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.125,
+            "end": 12.244999,
+            "text": "Sorry. I'm a little busy."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.82,
+            "end": 18.9055,
+            "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+          }
+        ],
+        "retell_call_id": "call_d1405336c1367d099f70ef05c75",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5fdc638ad39a792c5108b6f8689d77ebf09928e426aa427ee0ef83c56cb8cb94/recording_multichannel.wav",
+        "start_timestamp": 1762806767935,
+        "end_timestamp": 1762806786876,
+        "duration_ms": 18941,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 18941
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program. Hiba starts calmly at 2.6s but expresses awkwardness at 11.1s, stating, \"Sorry. I'm a little busy.\" Despite this, she commits to a follow-up by thanking the Agent and agreeing to reconnect later. Courtney demonstrates interest initially at 5.5s, then satisfaction at 13.8s when confirming the next steps, ensuring a positive closure."
     },
     {
       "filename": "call_d1405336c1367d099f70ef05c75_user.wav",
@@ -173,41 +364,117 @@
           "time_start": 2.58,
           "time_end": 2.98,
           "text": "Hello?",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
               "score": 0.3207,
-              "percentage": 32.1
+              "percentage": 32.1,
+              "category": "neutral"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
         },
         {
           "time_start": 11.09,
           "time_end": 12.53,
-          "text": "Sorry I'm gonna busy.",
+          "text": "Sorry. I'm a little busy.",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Awkwardness",
               "score": 0.2309,
-              "percentage": 23.1
+              "percentage": 23.1,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Sorry. I'm a little busy."
         }
       ],
       "burst": [
         {
           "time_start": 1.0,
           "time_end": 2.0,
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Disappointment",
               "score": 0.1856,
-              "percentage": 18.6
+              "percentage": 18.6,
+              "category": "negative"
             }
-          ]
+          ],
+          "source": "burst"
         }
       ],
-      "summary": "Agent Courtney contacts Hub on behalf of Arcadia University, expressing interest at 5.5s. Hub initially feels disappointment (1.0s) but remains calm (2.6s) before expressing awkwardness (11.1s) about being busy. The conversation concludes positively with Courtney's satisfaction (13.8s) as she thanks Hub and offers to reconnect later, leaving both parties agreeable to follow up."
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 1,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.555,
+            "end": 2.7949999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.665,
+            "end": 10.018916748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.125,
+            "end": 12.244999,
+            "text": "Sorry. I'm a little busy."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.82,
+            "end": 18.9055,
+            "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+          }
+        ],
+        "retell_call_id": "call_d1405336c1367d099f70ef05c75",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5fdc638ad39a792c5108b6f8689d77ebf09928e426aa427ee0ef83c56cb8cb94/recording_multichannel.wav",
+        "start_timestamp": 1762806767935,
+        "end_timestamp": 1762806786876,
+        "duration_ms": 18941,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 18941
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program. Hiba starts calmly at 2.6s but expresses awkwardness at 11.1s, stating, \"Sorry. I'm a little busy.\" Despite this, she commits to a follow-up by thanking the Agent and agreeing to reconnect later. Courtney demonstrates interest initially at 5.5s, then satisfaction at 13.8s when confirming the next steps, ensuring a positive closure."
     }
   ]
 }

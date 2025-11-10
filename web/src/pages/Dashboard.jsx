@@ -80,6 +80,15 @@ function Dashboard() {
   }, [retellCalls, searchQuery]);
 
   const renderSummary = (call) => {
+    const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
+    const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
+    const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
+    const blockReason = (call.analysis_block_reason || '').trim();
+
+    if (isBlocked) {
+      return blockReason || 'Analysis unavailable for this call.';
+    }
+
     if (call.error_message) {
       return `Last error: ${call.error_message}`;
     }
@@ -89,13 +98,9 @@ function Dashboard() {
     const transcriptUpdate = call.last_updated ? `Updated ${formatTimestamp(call.last_updated)}` : null;
 
     const parts = [
-      `Agent ${agentName} engaged the customer.`,
+      `${agentName} engaged the customer.`,
       `Analysis ${statusLabel.toLowerCase()}.`,
     ];
-
-    if (transcriptUpdate) {
-      parts.push(transcriptUpdate);
-    }
 
     return parts.join(' ');
   };
@@ -157,7 +162,7 @@ function Dashboard() {
       <section className="calls-table-card">
         <div className="calls-table-header">
           <div className="calls-table-meta">
-            <span className="calls-table-meta__label">Call Started</span>
+            <span className="calls-table-meta__label">Call Logs</span>
             <span className="calls-table-meta__label">Title</span>
             <span className="calls-table-meta__label calls-table-meta__label--wide">Summary</span>
             <span className="calls-table-meta__label">Labels</span>
@@ -185,6 +190,7 @@ function Dashboard() {
               const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
               const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
               const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
+              const blockReason = (call.analysis_block_reason || call.error_message || '').trim();
 
               return (
                 <article key={call.call_id} className="calls-table-row" data-status={statusKey}>
@@ -225,14 +231,17 @@ function Dashboard() {
                   </div>
 
                   <div className="calls-table-cell calls-table-cell--actions">
-                    <button
-                      type="button"
-                      className="row-action"
-                      onClick={() => handleAnalyzeCall(call)}
-                      disabled={isBlocked}
-                    >
-                      View analysis
-                    </button>
+                    {isBlocked ? (
+                      <span className="row-action row-action--disabled">Analysis unavailable</span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="row-action"
+                        onClick={() => handleAnalyzeCall(call)}
+                      >
+                        View analysis
+                      </button>
+                    )}
                   </div>
                 </article>
               );

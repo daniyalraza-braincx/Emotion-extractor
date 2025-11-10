@@ -1,0 +1,674 @@
+{
+  "call_id": "call_fdf256834e64ef0c83fc6e7009b",
+  "retell_metadata": {
+    "retell_call_id": "call_fdf256834e64ef0c83fc6e7009b",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/4e35cb508ebea44d8fdb36cae33a40b7c683d4ebcd5484db1ab65e021cee98d9/recording_multichannel.wav",
+    "start_timestamp": 1762806489521,
+    "end_timestamp": 1762806531074,
+    "duration_ms": 41553,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Hiba",
+      "program": "Machine Learning with Python",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 41553
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_fdf256834e64ef0c83fc6e7009b_combined",
+      "prosody": [
+        {
+          "time_start": 2.43,
+          "time_end": 2.91,
+          "text": "Hello?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2799,
+              "percentage": 28.0,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 5.08,
+          "time_end": 7.9,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4673,
+              "percentage": 46.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 8.36,
+          "time_end": 9.24,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.316,
+              "percentage": 31.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 10.72,
+          "time_end": 11.04,
+          "text": "Yes.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1979,
+              "percentage": 19.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 13.17,
+          "time_end": 17.16,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3363,
+              "percentage": 33.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 17.16,
+          "time_end": 21.87,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4317,
+              "percentage": 43.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 21.87,
+          "time_end": 31.45,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5015,
+              "percentage": 50.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 27.04,
+          "time_end": 29.64,
+          "text": "Wait. Sorry. I just got a little busy.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.5764,
+              "percentage": 57.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Wait. Sorry. I just got a little busy."
+        },
+        {
+          "time_start": 31.45,
+          "time_end": 36.0,
+          "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3689,
+              "percentage": 36.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+        },
+        {
+          "time_start": 39.27,
+          "time_end": 39.43,
+          "text": "Thanks. Bye.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3557,
+              "percentage": 35.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Thanks. Bye."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 9.0,
+          "time_end": 10.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1674,
+              "percentage": 16.7,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 4,
+          "neutral": 3,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.4779999999999998,
+            "end": 2.7979998999999998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.133,
+            "end": 9.347666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.708,
+            "end": 12.148,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.178,
+            "end": 24.997208251953126,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 27.118000000000002,
+            "end": 29.428,
+            "text": "Wait. Sorry. I just got a little busy."
+          },
+          {
+            "speaker": "Agent",
+            "start": 31.304,
+            "end": 36.330875,
+            "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+          },
+          {
+            "speaker": "Customer",
+            "start": 39.228003,
+            "end": 39.948,
+            "text": "Thanks. Bye."
+          }
+        ],
+        "retell_call_id": "call_fdf256834e64ef0c83fc6e7009b",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/4e35cb508ebea44d8fdb36cae33a40b7c683d4ebcd5484db1ab65e021cee98d9/recording_multichannel.wav",
+        "start_timestamp": 1762806489521,
+        "end_timestamp": 1762806531074,
+        "duration_ms": 41553,
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 41553
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba initially feels awkward at 2.4s but shifts to satisfaction at 10.7s when she acknowledges the Agent. However, she becomes awkward again at 27.0s after stating she got busy. The call concludes at 31.3s with the Agent calmly suggesting to reconnect later, which Hiba accepts."
+    },
+    {
+      "filename": "call_fdf256834e64ef0c83fc6e7009b_agent.wav",
+      "prosody": [
+        {
+          "time_start": 5.08,
+          "time_end": 7.9,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4673,
+              "percentage": 46.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 8.36,
+          "time_end": 9.24,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.316,
+              "percentage": 31.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 13.17,
+          "time_end": 17.16,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3363,
+              "percentage": 33.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 17.16,
+          "time_end": 21.87,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4317,
+              "percentage": 43.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 21.87,
+          "time_end": 31.45,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5015,
+              "percentage": 50.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 31.45,
+          "time_end": 36.0,
+          "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3689,
+              "percentage": 36.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 9.0,
+          "time_end": 10.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1674,
+              "percentage": 16.7,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 3,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.4779999999999998,
+            "end": 2.7979998999999998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.133,
+            "end": 9.347666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.708,
+            "end": 12.148,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.178,
+            "end": 24.997208251953126,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 27.118000000000002,
+            "end": 29.428,
+            "text": "Wait. Sorry. I just got a little busy."
+          },
+          {
+            "speaker": "Agent",
+            "start": 31.304,
+            "end": 36.330875,
+            "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+          },
+          {
+            "speaker": "Customer",
+            "start": 39.228003,
+            "end": 39.948,
+            "text": "Thanks. Bye."
+          }
+        ],
+        "retell_call_id": "call_fdf256834e64ef0c83fc6e7009b",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/4e35cb508ebea44d8fdb36cae33a40b7c683d4ebcd5484db1ab65e021cee98d9/recording_multichannel.wav",
+        "start_timestamp": 1762806489521,
+        "end_timestamp": 1762806531074,
+        "duration_ms": 41553,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 41553
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba initially feels awkward at 2.4s but shifts to satisfaction at 10.7s when she acknowledges the Agent. However, she becomes awkward again at 27.0s after stating she got busy. The call concludes at 31.3s with the Agent calmly suggesting to reconnect later, which Hiba accepts."
+    },
+    {
+      "filename": "call_fdf256834e64ef0c83fc6e7009b_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.43,
+          "time_end": 2.91,
+          "text": "Hello?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2799,
+              "percentage": 28.0,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 10.72,
+          "time_end": 11.04,
+          "text": "Yes.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1979,
+              "percentage": 19.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 27.04,
+          "time_end": 29.64,
+          "text": "Wait. Sorry. I just got a little busy.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.5764,
+              "percentage": 57.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Wait. Sorry. I just got a little busy."
+        },
+        {
+          "time_start": 39.27,
+          "time_end": 39.43,
+          "text": "Thanks. Bye.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3557,
+              "percentage": 35.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Thanks. Bye."
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 1,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.4779999999999998,
+            "end": 2.7979998999999998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.133,
+            "end": 9.347666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.708,
+            "end": 12.148,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.178,
+            "end": 24.997208251953126,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 27.118000000000002,
+            "end": 29.428,
+            "text": "Wait. Sorry. I just got a little busy."
+          },
+          {
+            "speaker": "Agent",
+            "start": 31.304,
+            "end": 36.330875,
+            "text": "Of course, Hiba! Thank you for your time, and we\u2019ll reach out again at a better time. Have a great day!"
+          },
+          {
+            "speaker": "Customer",
+            "start": 39.228003,
+            "end": 39.948,
+            "text": "Thanks. Bye."
+          }
+        ],
+        "retell_call_id": "call_fdf256834e64ef0c83fc6e7009b",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/4e35cb508ebea44d8fdb36cae33a40b7c683d4ebcd5484db1ab65e021cee98d9/recording_multichannel.wav",
+        "start_timestamp": 1762806489521,
+        "end_timestamp": 1762806531074,
+        "duration_ms": 41553,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 41553
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba initially feels awkward at 2.4s but shifts to satisfaction at 10.7s when she acknowledges the Agent. However, she becomes awkward again at 27.0s after stating she got busy. The call concludes at 31.3s with the Agent calmly suggesting to reconnect later, which Hiba accepts."
+    }
+  ]
+}

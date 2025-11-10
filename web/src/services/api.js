@@ -81,12 +81,15 @@ export async function fetchRetellCalls() {
  * @param {string} callId - The Retell call identifier
  * @returns {Promise<Object>} The analysis results
  */
-export async function analyzeRetellCall(callId) {
+export async function analyzeRetellCall(callId, options = {}) {
   if (!callId) {
     throw new Error('callId is required');
   }
 
-  const endpoint = API_ENDPOINTS.RETELL_ANALYZE(callId);
+  const { force = false } = options;
+  const endpoint = force
+    ? `${API_ENDPOINTS.RETELL_ANALYZE(callId)}?force=true`
+    : API_ENDPOINTS.RETELL_ANALYZE(callId);
   const response = await fetch(endpoint, { method: 'POST' });
 
   if (!response.ok) {

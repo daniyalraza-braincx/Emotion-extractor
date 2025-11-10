@@ -12,8 +12,24 @@
       "analysis_available": true,
       "analysis_filename": "call_1e9eadc3b1bcabf40ad454ff31c.json",
       "transcript_available": true,
-      "last_updated": "2025-11-07T20:05:32Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:28:08Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 16640
+      },
+      "duration_ms": 16640
     },
     "call_0af44db68a4417eed813bca083c": {
       "call_id": "call_0af44db68a4417eed813bca083c",
@@ -23,11 +39,28 @@
       "start_timestamp": 1762546603889,
       "end_timestamp": 1762546605615,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5ccbb3011e4be4c0fc3dfb4e0ad95277d54cc755a25bc65dc20c75bf0dda689d/recording_multichannel.wav",
-      "analysis_status": "pending",
+      "analysis_status": "blocked",
       "analysis_available": false,
       "analysis_filename": null,
       "transcript_available": true,
-      "last_updated": "2025-11-07T20:16:47Z"
+      "last_updated": "2025-11-10T23:24:03Z",
+      "error_message": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 1726
+      },
+      "duration_ms": 1726
     },
     "call_b8472b0344daa43453561bfeb99": {
       "call_id": "call_b8472b0344daa43453561bfeb99",
@@ -41,8 +74,24 @@
       "analysis_available": true,
       "analysis_filename": "call_b8472b0344daa43453561bfeb99.json",
       "transcript_available": true,
-      "last_updated": "2025-11-07T21:56:27Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:27:25Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 105074
+      },
+      "duration_ms": 105074
     },
     "call_275ff93c7040ffb9fc250b9368a": {
       "call_id": "call_275ff93c7040ffb9fc250b9368a",
@@ -56,8 +105,24 @@
       "analysis_available": true,
       "analysis_filename": "call_275ff93c7040ffb9fc250b9368a.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T14:53:36Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:30:02Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 129558
+      },
+      "duration_ms": 129558
     },
     "call_48d196f60ef0b137c3b264bb1f2": {
       "call_id": "call_48d196f60ef0b137c3b264bb1f2",
@@ -67,11 +132,28 @@
       "start_timestamp": 1762787492134,
       "end_timestamp": 1762787494402,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1b1aa638a7f6cc33dc30647a8a1a772bd2563a8050a9d7d32138d6842bff648b/recording_multichannel.wav",
-      "analysis_status": "pending",
+      "analysis_status": "blocked",
       "analysis_available": false,
       "analysis_filename": null,
       "transcript_available": true,
-      "last_updated": "2025-11-10T15:11:37Z"
+      "last_updated": "2025-11-10T23:24:21Z",
+      "error_message": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 2268
+      },
+      "duration_ms": 2268
     },
     "call_e7858b80632cca5ef34192305be": {
       "call_id": "call_e7858b80632cca5ef34192305be",
@@ -85,8 +167,24 @@
       "analysis_available": true,
       "analysis_filename": "call_e7858b80632cca5ef34192305be.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T18:42:39Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:32:11Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 53200
+      },
+      "duration_ms": 53200
     },
     "call_5c04d49e00a2410984f5a53357a": {
       "call_id": "call_5c04d49e00a2410984f5a53357a",
@@ -96,12 +194,28 @@
       "start_timestamp": 1762788857874,
       "end_timestamp": 1762788871935,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/ffd72bc05b98689769543eb6d03324be1e3462c1f6b2b082caba79f04e20cdc9/recording_multichannel.wav",
-      "analysis_status": "completed",
+      "analysis_status": "blocked",
       "analysis_available": true,
       "analysis_filename": "call_5c04d49e00a2410984f5a53357a.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T18:42:14Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:24:52Z",
+      "error_message": null,
+      "duration_ms": 14061,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 14061
+      }
     },
     "call_25945667adfeef05b6a00f52512": {
       "call_id": "call_25945667adfeef05b6a00f52512",
@@ -111,12 +225,28 @@
       "start_timestamp": 1762790051168,
       "end_timestamp": 1762790076935,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0a4265527c90de233589af9b41d21c3ecc45dfc437c1d9ee19301b4aafdf42bc/recording_multichannel.wav",
-      "analysis_status": "completed",
+      "analysis_status": "blocked",
       "analysis_available": true,
       "analysis_filename": "call_25945667adfeef05b6a00f52512.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T18:43:02Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:39:52Z",
+      "error_message": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call reached voicemail; cannot analyze emotions.",
+      "analysis_constraints": {
+        "voicemail_detected": true,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": true,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": true
+        },
+        "too_short": false,
+        "duration_ms": 25767
+      },
+      "duration_ms": 25767
     },
     "call_0674b8b7a1b30ab1000964b4751": {
       "call_id": "call_0674b8b7a1b30ab1000964b4751",
@@ -126,11 +256,28 @@
       "start_timestamp": 1762795632673,
       "end_timestamp": 1762795637125,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/42685601a6ffa37f4e9944f7c25095a1944201bed18f65f3d31f198cdcacc0e2/recording_multichannel.wav",
-      "analysis_status": "pending",
+      "analysis_status": "blocked",
       "analysis_available": false,
       "analysis_filename": null,
       "transcript_available": true,
-      "last_updated": "2025-11-10T17:27:21Z"
+      "last_updated": "2025-11-10T23:25:19Z",
+      "error_message": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 4452
+      },
+      "duration_ms": 4452
     },
     "call_524890af4d4b3e0b78835b4da40": {
       "call_id": "call_524890af4d4b3e0b78835b4da40",
@@ -140,12 +287,28 @@
       "start_timestamp": 1762796005001,
       "end_timestamp": 1762796017031,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5de091fe0c665e974e28a5a2f9b93b5954ec06b181c0849adeb255b415a82e64/recording_multichannel.wav",
-      "analysis_status": "completed",
+      "analysis_status": "blocked",
       "analysis_available": true,
       "analysis_filename": "call_524890af4d4b3e0b78835b4da40.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T18:20:50Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:26:06Z",
+      "error_message": null,
+      "duration_ms": 12030,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call reached voicemail; cannot analyze emotions.",
+      "analysis_constraints": {
+        "voicemail_detected": true,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": true,
+          "transcript_mentions_leave_message": true
+        },
+        "too_short": true,
+        "duration_ms": 12030
+      }
     },
     "call_ff5a41cb0a528621b96aa427fdc": {
       "call_id": "call_ff5a41cb0a528621b96aa427fdc",
@@ -155,12 +318,28 @@
       "start_timestamp": 1762796480093,
       "end_timestamp": 1762796485625,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/ffa32cb52debf76df565dbdd3f8670dd913efffdd9ee8c1c6b360ec25d3d7155/recording_multichannel.wav",
-      "analysis_status": "completed",
+      "analysis_status": "blocked",
       "analysis_available": true,
       "analysis_filename": "call_ff5a41cb0a528621b96aa427fdc.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T20:50:22Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:40:35Z",
+      "error_message": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 5532
+      },
+      "duration_ms": 5532
     },
     "call_8689771f4158667f546f14726aa": {
       "call_id": "call_8689771f4158667f546f14726aa",
@@ -174,8 +353,24 @@
       "analysis_available": true,
       "analysis_filename": "call_8689771f4158667f546f14726aa.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T16:25:30Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:38:06Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 89300
+      },
+      "duration_ms": 89300
     },
     "call_2b1d2fa73e723fcfbe6ab73742c": {
       "call_id": "call_2b1d2fa73e723fcfbe6ab73742c",
@@ -371,11 +566,28 @@
       "start_timestamp": 1762806351007,
       "end_timestamp": 1762806445736,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0edaf62ab2a682fccffba591cf7f19d48e5ae9ab6cd5370a7ddf8f8c9e6983e0/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_c6f999ae3c5c4c19364a250d676.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T20:27:29Z"
+      "last_updated": "2025-11-10T23:41:42Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 94729
+      },
+      "duration_ms": 94729
     },
     "call_fdf256834e64ef0c83fc6e7009b": {
       "call_id": "call_fdf256834e64ef0c83fc6e7009b",
@@ -385,11 +597,28 @@
       "start_timestamp": 1762806489521,
       "end_timestamp": 1762806531074,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/4e35cb508ebea44d8fdb36cae33a40b7c683d4ebcd5484db1ab65e021cee98d9/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_fdf256834e64ef0c83fc6e7009b.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T20:28:54Z"
+      "last_updated": "2025-11-10T23:43:26Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 41553
+      },
+      "duration_ms": 41553
     },
     "call_d1405336c1367d099f70ef05c75": {
       "call_id": "call_d1405336c1367d099f70ef05c75",
@@ -403,8 +632,24 @@
       "analysis_available": true,
       "analysis_filename": "call_d1405336c1367d099f70ef05c75.json",
       "transcript_available": true,
-      "last_updated": "2025-11-10T20:45:56Z",
-      "error_message": null
+      "last_updated": "2025-11-10T23:04:28Z",
+      "error_message": null,
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 18941
+      },
+      "duration_ms": 18941
     }
   }
 }

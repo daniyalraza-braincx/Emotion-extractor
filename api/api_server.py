@@ -5,7 +5,7 @@ import threading
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -47,51 +47,50 @@ app.add_middleware(
 )
 
 
-# @app.post("/analyze")
-# async def analyze_audio(file: UploadFile = File(...)):
-#     """
-#     Analyze audio file for emotion detection using Hume API.
+@app.post("/analyze")
+async def analyze_audio(file: UploadFile = File(...)):
+    """
+    Analyze audio file for emotion detection using Hume API.
     
-#     Returns:
-#         JSON with a top emotion per time segment for prosody and burst models.
-#     """
-#     try:
-#         # Read uploaded file
-#         file_content = await file.read()
-#         filename = file.filename or "uploaded_audio"
+    Returns:
+        JSON with a top emotion per time segment for prosody and burst models.
+    """
+    try:
+        # Read uploaded file
+        file_content = await file.read()
+        filename = file.filename or "uploaded_audio"
         
-#         # Prepare file contents (list of tuples: (filename, bytes))
-#         file_contents = [(filename, file_content)]
-        
-#         # Analyze using the reusable function from extractor.py
-#         results = analyze_audio_files(file_contents, include_summary=True)
-        
-#         if not results:
-#             raise HTTPException(
-#                 status_code=404, 
-#                 detail="No emotion predictions found. The audio may not contain detectable speech."
-#             )
-        
-#         # Return first result (since we only process one file)
-#         result = results[0]
-        
-#         return JSONResponse(content={
-#             "success": True,
-#             "filename": filename,
-#             "results": result
-#         })
-        
-#     except HTTPException:
-#         raise
-#     except Exception as e:
-#         import traceback
-#         error_detail = str(e)
-#         # Include more detailed error info in development
-#         if hasattr(e, '__traceback__'):
-#             tb_str = traceback.format_exception(type(e), e, e.__traceback__)
-#             error_detail += f"\n\nTraceback:\n{''.join(tb_str)}"
-#         raise HTTPException(status_code=500, detail=f"Error processing audio: {error_detail}")
+        file_contents = [(filename, file_content)]
 
+        results = analyze_audio_files(file_contents, include_summary=True)
+
+        if not results:
+            raise HTTPException(
+                status_code=404,
+                detail="No emotion predictions found. The audio may not contain detectable speech.",
+            )
+
+        analysis_payload = results[0]
+        analysis_payload.setdefault("metadata", {})["analysis_type"] = "custom_upload"
+
+        return JSONResponse(
+            content={
+                "success": True,
+                "filename": filename,
+                "results": analysis_payload,
+            }
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        import traceback
+        error_detail = str(e)
+        # Include more detailed error info in development
+        if hasattr(e, '__traceback__'):
+            tb_str = traceback.format_exception(type(e), e, e.__traceback__)
+            error_detail += f"\n\nTraceback:\n{''.join(tb_str)}"
+        raise HTTPException(status_code=500, detail=f"Error processing audio: {error_detail}")
 
 def _current_timestamp_iso() -> str:
     return datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
@@ -623,7 +622,7 @@ def _prepare_retell_call_payload(call_entry: Dict[str, Any]) -> Dict[str, Any]:
 
 
 @app.post("/retell/calls/{call_id}/analyze")
-async def analyze_retell_call(call_id: str):
+async def analyze_retell_call(call_id: str, force: bool = Query(False)):
     """Trigger Hume analysis for a previously-registered Retell call."""
     call_entry = _ensure_call_registered(call_id)
     if call_entry.get("analysis_allowed") is False:
@@ -632,6 +631,16 @@ async def analyze_retell_call(call_id: str):
             status_code=400,
             detail=reason,
         )
+
+    if not force:
+        try:
+            return await get_retell_call_analysis(call_id)
+        except HTTPException as exc:
+            if exc.status_code != 404:
+                raise
+
+    if force:
+        logger.info("Force re-running analysis for Retell call %s", call_id)
 
     _update_retell_call_entry(call_id, {"analysis_status": "processing", "error_message": None})
 
