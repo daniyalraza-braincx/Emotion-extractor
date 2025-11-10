@@ -262,7 +262,7 @@ function AnalysisPage() {
   const [emotions, setEmotions] = useState([]);
   const [summary, setSummary] = useState(null);
   const [timeline, setTimeline] = useState(() => createEmptyTimeline());
-  const [error, setError] = useState(null);
+  const [errorInfo, setErrorInfo] = useState({ message: null, retryAllowed: true });
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -314,7 +314,7 @@ function AnalysisPage() {
     setEmotions([]);
     setSummary(null);
     setTimeline(createEmptyTimeline());
-    setError(null);
+    setErrorInfo({ message: null, retryAllowed: true });
     setIsPlaying(false);
     setCurrentTime(0);
     setDuration(0);
@@ -363,6 +363,12 @@ function AnalysisPage() {
           throw new Error('Retell call_id is missing from the request.');
         }
 
+        if (request.call?.analysis_allowed === false) {
+          const reason = request.call?.analysis_block_reason || 'Call cannot be analyzed.';
+          setErrorInfo({ message: reason, retryAllowed: false });
+          return;
+        }
+
         const response = await analyzeRetellCall(callId);
 
         if (!response.success || !response.results) {
@@ -398,7 +404,9 @@ function AnalysisPage() {
         throw new Error('Unsupported analysis request type.');
       }
     } catch (err) {
-      setError(err.message || 'Failed to analyze audio. Please try again.');
+      const message = err?.message || 'Failed to analyze audio. Please try again.';
+      const retryAllowed = !/cannot be analyzed|cannot analyze emotions/i.test(message);
+      setErrorInfo({ message, retryAllowed });
     } finally {
       setIsLoading(false);
     }
@@ -411,6 +419,10 @@ function AnalysisPage() {
     }
 
     setActiveRequest(analysisRequest);
+    if (analysisRequest?.type === 'retell' && analysisRequest.call?.analysis_allowed === false) {
+      const reason = analysisRequest.call.analysis_block_reason || 'Call cannot be analyzed.';
+      setErrorInfo({ message: reason, retryAllowed: false });
+    }
   }, [analysisRequest, navigate]);
 
   useEffect(() => {
@@ -494,7 +506,7 @@ function AnalysisPage() {
     : 'Analyzing audio file… This may take a moment.';
 
   const handleRetry = () => {
-    if (activeRequest) {
+    if (activeRequest && errorInfo.retryAllowed) {
       runAnalysis(activeRequest);
     }
   };
@@ -548,7 +560,7 @@ function AnalysisPage() {
             type="button"
             className="primary-button"
             onClick={handleRetry}
-            disabled={isLoading}
+            disabled={isLoading || !errorInfo.retryAllowed}
           >
             Re-run Analysis
           </button>
@@ -575,23 +587,25 @@ function AnalysisPage() {
         </div>
       )}
 
-      {error && (
+      {errorInfo.message && (
         <div className="error-container">
-          <p className="error-message">{error}</p>
-          <button className="retry-button" onClick={handleRetry} type="button" disabled={isLoading}>
-            Try Again
-          </button>
+          <p className="error-message">{errorInfo.message}</p>
+          {errorInfo.retryAllowed && (
+            <button className="retry-button" onClick={handleRetry} type="button" disabled={isLoading}>
+              Try Again
+            </button>
+          )}
         </div>
       )}
 
-      {!error && !isLoading && summary && (
+      {!errorInfo.message && !isLoading && summary && (
         <section className="summary-container">
           <h2>Summary</h2>
           <p>{summary}</p>
         </section>
       )}
 
-      {!error && !isLoading && chartData.length > 0 && (
+      {!errorInfo.message && !isLoading && chartData.length > 0 && (
         <section className="chart-section">
           {audioSource.url && (
             <div className="audio-player-container">

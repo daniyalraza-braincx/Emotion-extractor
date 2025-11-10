@@ -105,6 +105,9 @@ function Dashboard() {
               retellCalls.map((call) => {
                 const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
                 const statusLabel = formatStatusLabel(call.analysis_status);
+                const canAnalyze = call.analysis_allowed !== false;
+                const blockMessage = call.analysis_block_reason;
+                const isBlockedStatus = (call.analysis_status || '').toLowerCase() === 'blocked' || !canAnalyze;
 
                 return (
                   <article key={call.call_id} className="call-card">
@@ -124,9 +127,15 @@ function Dashboard() {
                         {call.agent_id && <span>Agent: {call.agent_id}</span>}
                       </div>
 
-                      {call.error_message && (
+                      {call.error_message && !isBlockedStatus && (
                         <div className="call-card__error">
                           Last error: {call.error_message}
+                        </div>
+                      )}
+
+                      {(!canAnalyze || isBlockedStatus) && blockMessage && (
+                        <div className="call-card__note call-card__note--warning">
+                          {blockMessage}
                         </div>
                       )}
 
@@ -138,13 +147,17 @@ function Dashboard() {
                     </div>
 
                     <div className="call-card__actions">
-                      <button
-                        type="button"
-                        className="primary-button"
-                        onClick={() => handleAnalyzeCall(call)}
-                      >
-                        Analyze
-                      </button>
+                      {canAnalyze ? (
+                        <button
+                          type="button"
+                          className="primary-button"
+                          onClick={() => handleAnalyzeCall(call)}
+                        >
+                          Analyze
+                        </button>
+                      ) : (
+                        <span className="call-card__action-note">Analysis unavailable</span>
+                      )}
                     </div>
                   </article>
                 );

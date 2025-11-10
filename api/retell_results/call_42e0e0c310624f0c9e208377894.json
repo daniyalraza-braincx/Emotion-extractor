@@ -1,0 +1,304 @@
+{
+  "call_id": "call_42e0e0c310624f0c9e208377894",
+  "retell_metadata": {
+    "retell_call_id": "call_42e0e0c310624f0c9e208377894",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1b4c161709d11601bb000879a978f6f7f6cb0160ce096146056a5462a6283be5/recording_multichannel.wav",
+    "start_timestamp": 1762792782067,
+    "end_timestamp": 1762792796951,
+    "duration_ms": 14884,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Hiba",
+      "program": "Machine Learning with Python",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup"
+      },
+      "too_short": false,
+      "duration_ms": 14884
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_42e0e0c310624f0c9e208377894_combined",
+      "prosody": [
+        {
+          "time_start": 4.44,
+          "time_end": 8.91,
+          "text": "You have reached Hiba.",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.3529,
+              "percentage": 35.3
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "You have reached Hiba."
+        },
+        {
+          "time_start": 11.79,
+          "time_end": 14.59,
+          "text": "No worries. I\u2019ll call back another time. Have a great day.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.8325,
+              "percentage": 83.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "No worries. I\u2019ll call back another time. Have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.176,
+              "percentage": 17.6
+            }
+          ],
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 4.383,
+            "end": 6.133,
+            "text": "You have reached Hiba."
+          },
+          {
+            "speaker": "Customer",
+            "start": 6.7930004,
+            "end": 7.513,
+            "text": "not available."
+          },
+          {
+            "speaker": "Customer",
+            "start": 8.153,
+            "end": 8.793,
+            "text": "leave a message."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.816,
+            "end": 14.846125,
+            "text": "No worries. I\u2019ll call back another time. Have a great day."
+          }
+        ],
+        "retell_call_id": "call_42e0e0c310624f0c9e208377894",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1b4c161709d11601bb000879a978f6f7f6cb0160ce096146056a5462a6283be5/recording_multichannel.wav",
+        "start_timestamp": 1762792782067,
+        "end_timestamp": 1762792796951,
+        "duration_ms": 14884,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup"
+          },
+          "too_short": false,
+          "duration_ms": 14884
+        }
+      },
+      "summary": "Customer Hiba expresses disappointment at 4.4s when she realizes the agent is unavailable, stating, \"You have reached Hiba, not available,\" and suggests leaving a message. The agent remains calm at 11.8s, assuring her, \"No worries. I\u2019ll call back another time.\" Hiba commits to this next step, agreeing to await a callback. The call concludes with the agent's calm demeanor helping to ease the customer's disappointment."
+    },
+    {
+      "filename": "call_42e0e0c310624f0c9e208377894_user.wav",
+      "prosody": [
+        {
+          "time_start": 4.44,
+          "time_end": 8.91,
+          "text": "You have reached Hiba.",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.3529,
+              "percentage": 35.3
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "You have reached Hiba."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.176,
+              "percentage": 17.6
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 4.383,
+            "end": 6.133,
+            "text": "You have reached Hiba."
+          },
+          {
+            "speaker": "Customer",
+            "start": 6.7930004,
+            "end": 7.513,
+            "text": "not available."
+          },
+          {
+            "speaker": "Customer",
+            "start": 8.153,
+            "end": 8.793,
+            "text": "leave a message."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.816,
+            "end": 14.846125,
+            "text": "No worries. I\u2019ll call back another time. Have a great day."
+          }
+        ],
+        "retell_call_id": "call_42e0e0c310624f0c9e208377894",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1b4c161709d11601bb000879a978f6f7f6cb0160ce096146056a5462a6283be5/recording_multichannel.wav",
+        "start_timestamp": 1762792782067,
+        "end_timestamp": 1762792796951,
+        "duration_ms": 14884,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup"
+          },
+          "too_short": false,
+          "duration_ms": 14884
+        }
+      },
+      "summary": "Customer Hiba expresses disappointment at 4.4s when she realizes the agent is unavailable, stating, \"You have reached Hiba, not available,\" and suggests leaving a message. The agent remains calm at 11.8s, assuring her, \"No worries. I\u2019ll call back another time.\" Hiba commits to this next step, agreeing to await a callback. The call concludes with the agent's calm demeanor helping to ease the customer's disappointment."
+    },
+    {
+      "filename": "call_42e0e0c310624f0c9e208377894_agent.wav",
+      "prosody": [
+        {
+          "time_start": 11.79,
+          "time_end": 14.59,
+          "text": "No worries. I\u2019ll call back another time. Have a great day.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.8325,
+              "percentage": 83.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "No worries. I\u2019ll call back another time. Have a great day."
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 4.383,
+            "end": 6.133,
+            "text": "You have reached Hiba."
+          },
+          {
+            "speaker": "Customer",
+            "start": 6.7930004,
+            "end": 7.513,
+            "text": "not available."
+          },
+          {
+            "speaker": "Customer",
+            "start": 8.153,
+            "end": 8.793,
+            "text": "leave a message."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.816,
+            "end": 14.846125,
+            "text": "No worries. I\u2019ll call back another time. Have a great day."
+          }
+        ],
+        "retell_call_id": "call_42e0e0c310624f0c9e208377894",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1b4c161709d11601bb000879a978f6f7f6cb0160ce096146056a5462a6283be5/recording_multichannel.wav",
+        "start_timestamp": 1762792782067,
+        "end_timestamp": 1762792796951,
+        "duration_ms": 14884,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup"
+          },
+          "too_short": false,
+          "duration_ms": 14884
+        }
+      },
+      "summary": "Customer Hiba expresses disappointment at 4.4s when she realizes the agent is unavailable, stating, \"You have reached Hiba, not available,\" and suggests leaving a message. The agent remains calm at 11.8s, assuring her, \"No worries. I\u2019ll call back another time.\" Hiba commits to this next step, agreeing to await a callback. The call concludes with the agent's calm demeanor helping to ease the customer's disappointment."
+    }
+  ]
+}
