@@ -228,20 +228,20 @@
         },
         {
           "time_start": 69.33,
-          "time_end": 73.18,
-          "text": "Perfect. I love to help get you connected with an admissions representative",
+          "time_end": 73.08,
+          "text": "Perfect. I love to help get you connected with an admissions representative?",
           "top_emotions": [
             {
               "name": "Sadness",
-              "score": 0.1264,
-              "percentage": 12.6
+              "score": 0.1282,
+              "percentage": 12.8
             }
           ]
         },
         {
           "time_start": 73.33,
           "time_end": 77.01,
-          "text": "who can answer your questions and guide you through the next steps. How",
+          "text": "Who can answer your questions and guide you through the next steps. How",
           "top_emotions": [
             {
               "name": "Sadness",
@@ -277,7 +277,7 @@
         {
           "time_start": 85.24,
           "time_end": 89.09,
-          "text": "message will be sent your way. Simply click the link and choose a time that work best",
+          "text": "message will be sent your way, Simply click the link and choose a time that works best",
           "top_emotions": [
             {
               "name": "Sadness",
@@ -370,7 +370,7 @@
           ]
         }
       ],
-      "summary": "The recording shows a predominantly sad and confused tone. At 2.7s, confusion is expressed by the user, shifting to calmness at 34.7s when discussing residency. A notable shift to disappointment occurs at 96.0s when the user indicates no further questions. Overall, the conversation reflects a struggle with engagement and clarity, culminating in a sense of dissatisfaction."
+      "summary": "The agent contacts a customer regarding the certification exam preparation course, eliciting confusion at 2.7s when the customer asks, \"Who's this?\" and later sadness at 9.9s as the agent discusses the program. The customer's emotions fluctuate between calmness and sadness throughout, ultimately leading to disappointment at 96.0s when they express having no questions. The call concludes with the agent maintaining a calm demeanor, thanking the customer and confirming a follow-up text to schedule a meeting."
     }
   ]
 }

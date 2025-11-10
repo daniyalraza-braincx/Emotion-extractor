@@ -14,6 +14,7 @@ from extractor import (
     download_retell_recording,
     extract_retell_transcript_segments,
     get_retell_call_details,
+    split_stereo_wav_channels,
 )
 
 
@@ -25,11 +26,14 @@ RETELL_CALLS_FILENAME = os.getenv(
     "RETELL_CALLS_FILENAME",
     os.path.join(RETELL_RESULTS_DIR, "retell_calls.json"),
 )
+RETELL_AUDIO_DIR = os.path.join(RETELL_RESULTS_DIR, "audio")
 
 if not os.path.exists(RETELL_RESULTS_DIR):
     os.makedirs(RETELL_RESULTS_DIR, exist_ok=True)
 
 _RETELL_CALLS_LOCK = threading.Lock()
+if not os.path.exists(RETELL_AUDIO_DIR):
+    os.makedirs(RETELL_AUDIO_DIR, exist_ok=True)
 
 app = FastAPI(title="Hume Emotion Analysis API")
 
@@ -187,6 +191,78 @@ def _persist_retell_results(call_id: str, payload: Dict[str, Any]) -> str:
         raise
 
 
+def _merge_channel_results(
+    call_identifier: str,
+    channel_results: list,
+    transcript_data: Optional[list],
+) -> Dict[str, Any]:
+    """Combine per-channel analysis outputs into a single multi-speaker result."""
+    combined_prosody = []
+    combined_burst = []
+    combined_metadata: Dict[str, Any] = {}
+    summary_value = None
+    base_metadata_copied = False
+
+    for result in channel_results:
+        filename = (result.get("filename") or "").lower()
+        speaker = "Agent"
+        if "_user" in filename or "customer" in filename:
+            speaker = "Customer"
+        elif "_agent" in filename:
+            speaker = "Agent"
+        else:
+            speaker = result.get("prosody", [{}])[0].get("speaker") or speaker
+
+        if summary_value is None and result.get("summary"):
+            summary_value = result.get("summary")
+
+        metadata = result.get("metadata") or {}
+        combined_metadata.setdefault(speaker.lower(), metadata)
+
+        for segment in result.get("prosody", []):
+            segment_copy = {
+                **segment,
+                "speaker": speaker,
+                "top_emotions": [
+                    dict(emotion) for emotion in segment.get("top_emotions", [])
+                ],
+            }
+            combined_prosody.append(segment_copy)
+
+        for segment in result.get("burst", []):
+            segment_copy = {
+                **segment,
+                "speaker": speaker,
+                "top_emotions": [
+                    dict(emotion) for emotion in segment.get("top_emotions", [])
+                ],
+            }
+            combined_burst.append(segment_copy)
+
+        if not base_metadata_copied and metadata:
+            combined_metadata.update(metadata)
+            base_metadata_copied = True
+
+    combined_prosody.sort(key=lambda seg: seg.get("time_start") or 0)
+    combined_burst.sort(key=lambda seg: seg.get("time_start") or 0)
+
+    combined_metadata["retell_transcript_segments"] = transcript_data or []
+    combined_metadata["retell_call_id"] = call_identifier
+    combined_metadata["retell_transcript_available"] = bool(transcript_data)
+
+    combined_result = {
+        "filename": f"{call_identifier}_combined",
+        "prosody": combined_prosody,
+        "burst": combined_burst,
+        "metadata": combined_metadata,
+    }
+
+    if summary_value:
+        combined_result["summary"] = summary_value
+
+    return combined_result
+
+
 def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
     call_id = call_payload.get("call_id")
     if not call_id:
@@ -205,7 +281,23 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
 
         filename_hint = f"{call_id}.wav"
         audio_filename, audio_bytes = download_retell_recording(recording_url, filename_hint)
-        file_contents = [(audio_filename, audio_bytes)]
+
+        try:
+            user_audio, agent_audio = split_stereo_wav_channels(audio_bytes)
+            agent_path = os.path.join(RETELL_AUDIO_DIR, f"{call_id}_agent.wav")
+            user_path = os.path.join(RETELL_AUDIO_DIR, f"{call_id}_user.wav")
+            with open(agent_path, "wb") as agent_f:
+                agent_f.write(agent_audio)
+            with open(user_path, "wb") as user_f:
+                user_f.write(user_audio)
+            logger.info("Saved channel audio for call %s to %s and %s", call_id, agent_path, user_path)
+            file_contents = [
+                (f"{call_id}_user.wav", user_audio),
+                (f"{call_id}_agent.wav", agent_audio),
+            ]
+        except Exception as channel_err:  # pylint: disable=broad-except
+            logger.warning("Could not split channels for call %s: %s", call_id, channel_err)
+            file_contents = [(audio_filename, audio_bytes)]
 
         transcript_segments = extract_retell_transcript_segments(call_data)
 
@@ -215,6 +307,10 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             retell_call_id=call_id,
             retell_transcript=transcript_segments
         )
+
+        if len(analysis_results) >= 2:
+            combined_result = _merge_channel_results(call_id, analysis_results, transcript_segments)
+            analysis_results.insert(0, combined_result)
 
         payload_to_store = {
             "call_id": call_id,
@@ -363,6 +459,21 @@ async def get_retell_call_analysis(call_id: str):
         payload = json.load(file)
 
     analysis_results = payload.get("analysis") or []
+    if analysis_results and len(analysis_results) >= 2:
+        first_filename = (analysis_results[0].get("filename") or "").lower()
+        if "_combined" not in first_filename:
+            transcript_segments = None
+            for result in analysis_results:
+                metadata = result.get("metadata") or {}
+                segments = metadata.get("retell_transcript_segments")
+                if segments:
+                    transcript_segments = segments
+                    break
+            combined_result = _merge_channel_results(call_id, analysis_results, transcript_segments)
+            analysis_results.insert(0, combined_result)
+            payload["analysis"] = analysis_results
+            _persist_retell_results(call_id, payload)
+
     first_result: Optional[Dict[str, Any]] = analysis_results[0] if analysis_results else None
 
     return JSONResponse(

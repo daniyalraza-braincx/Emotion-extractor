@@ -98,6 +98,146 @@ function CustomTooltip({ active, payload, emotionColorMap }) {
   );
 }
 
+function createEmptyTimeline() {
+  return {
+    duration: 0,
+    speakers: [],
+    segments: {}
+  };
+}
+
+function normalizeTimeline(timeline) {
+  if (!timeline || typeof timeline !== 'object') {
+    return createEmptyTimeline();
+  }
+
+  const duration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
+    ? timeline.duration
+    : 0;
+
+  const segmentEntries = (timeline.segments && typeof timeline.segments === 'object')
+    ? Object.entries(timeline.segments)
+    : [];
+
+  const baseSpeakers = ['Customer', 'Agent'];
+  const speakerOrder = [];
+  const seenSpeakers = new Set();
+
+  const candidateSpeakers = [
+    ...baseSpeakers,
+    ...(Array.isArray(timeline.speakers) ? timeline.speakers : []),
+    ...segmentEntries.map(([speaker]) => speaker)
+  ];
+
+  candidateSpeakers.forEach((speaker) => {
+    if (!speaker || seenSpeakers.has(speaker)) {
+      return;
+    }
+    seenSpeakers.add(speaker);
+    speakerOrder.push(speaker);
+  });
+
+  const segments = {};
+  speakerOrder.forEach((speaker) => {
+    const segmentList = Array.isArray(timeline.segments?.[speaker]) ? timeline.segments[speaker] : [];
+    segments[speaker] = segmentList.map((segment) => {
+      const start = (typeof segment.start === 'number' && Number.isFinite(segment.start)) ? segment.start : 0;
+      const end = (typeof segment.end === 'number' && Number.isFinite(segment.end)) ? segment.end : start;
+      return {
+        start,
+        end,
+        topEmotion: segment.topEmotion || null,
+        score: (typeof segment.score === 'number' && Number.isFinite(segment.score)) ? segment.score : null,
+        text: segment.text || ''
+      };
+    });
+  });
+
+  return {
+    duration,
+    speakers: speakerOrder,
+    segments
+  };
+}
+
+function SpeakerTimeline({ timeline, currentTime, audioDuration, emotionColorMap }) {
+  if (!timeline || !Array.isArray(timeline.speakers) || timeline.speakers.length === 0) {
+    return null;
+  }
+
+  const rawDuration = typeof timeline.duration === 'number' && Number.isFinite(timeline.duration)
+    ? timeline.duration
+    : 0;
+  const effectiveDuration = [rawDuration, audioDuration]
+    .filter((value) => typeof value === 'number' && Number.isFinite(value) && value > 0)
+    .reduce((max, value) => Math.max(max, value), 0);
+
+  if (!(effectiveDuration > 0)) {
+    return null;
+  }
+
+  const clampedProgress = Math.min(Math.max((currentTime / effectiveDuration) * 100, 0), 100);
+
+  return (
+    <div className="speaker-timeline">
+      {timeline.speakers.map((speaker) => {
+        const segments = timeline.segments?.[speaker] || [];
+        return (
+          <div className="speaker-timeline-row" key={speaker}>
+            <div className="speaker-timeline-label">{speaker}</div>
+            <div className="speaker-timeline-track">
+              {segments.map((segment, index) => {
+                const segmentStart = typeof segment.start === 'number' ? segment.start : 0;
+                const segmentEnd = typeof segment.end === 'number' ? segment.end : segmentStart;
+                const widthPercent = Math.max(
+                  ((segmentEnd - segmentStart) / effectiveDuration) * 100,
+                  0.8
+                );
+                const leftPercent = Math.min(
+                  Math.max((segmentStart / effectiveDuration) * 100, 0),
+                  100
+                );
+                const color = segment.topEmotion
+                  ? (emotionColorMap?.[segment.topEmotion] || '#6b7280')
+                  : '#4b5563';
+                const titleParts = [
+                  `${segmentStart.toFixed(2)}s - ${segmentEnd.toFixed(2)}s`,
+                  segment.topEmotion ? `Emotion: ${segment.topEmotion}` : 'No detected emotion'
+                ];
+                if (segment.score) {
+                  titleParts.push(`Score: ${segment.score.toFixed(4)}`);
+                }
+                if (segment.text) {
+                  titleParts.push(`Transcript: ${segment.text}`);
+                }
+
+                return (
+                  <div
+                    key={`${speaker}-${index}-${segmentStart}`}
+                    className="speaker-timeline-segment"
+                    style={{
+                      left: `${leftPercent}%`,
+                      width: `${Math.min(widthPercent, 100 - leftPercent)}%`,
+                      backgroundColor: color
+                    }}
+                    title={titleParts.join(' | ')}
+                    aria-label={`${speaker} segment from ${segmentStart.toFixed(2)} seconds to ${segmentEnd.toFixed(2)} seconds`}
+                  />
+                );
+              })}
+              <div
+                className="speaker-timeline-progress"
+                style={{ left: `${clampedProgress}%` }}
+                aria-hidden="true"
+              />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function formatFileSize(bytes) {
   if (!Number.isFinite(bytes)) {
     return 'Unknown size';
@@ -121,6 +261,7 @@ function AnalysisPage() {
   const [chartData, setChartData] = useState([]);
   const [emotions, setEmotions] = useState([]);
   const [summary, setSummary] = useState(null);
+  const [timeline, setTimeline] = useState(() => createEmptyTimeline());
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -172,6 +313,7 @@ function AnalysisPage() {
     setChartData([]);
     setEmotions([]);
     setSummary(null);
+    setTimeline(createEmptyTimeline());
     setError(null);
     setIsPlaying(false);
     setCurrentTime(0);
@@ -198,7 +340,11 @@ function AnalysisPage() {
           throw new Error('Invalid response from server');
         }
 
-        const { chartData: transformed, emotions: detected } = transformApiDataToChart(response);
+        const {
+          chartData: transformed,
+          emotions: detected,
+          speakerTimeline
+        } = transformApiDataToChart(response);
         if (transformed.length === 0) {
           throw new Error('No emotion data found in the analysis results');
         }
@@ -210,6 +356,7 @@ function AnalysisPage() {
         setChartData(transformed);
         setEmotions(detected);
         setSummary(response.results.summary || null);
+        setTimeline(normalizeTimeline(speakerTimeline));
       } else if (request.type === 'retell') {
         const callId = request.call?.call_id;
         if (!callId) {
@@ -230,7 +377,11 @@ function AnalysisPage() {
           updateAudioSource(null, false);
         }
 
-        const { chartData: transformed, emotions: detected } = transformApiDataToChart(response);
+        const {
+          chartData: transformed,
+          emotions: detected,
+          speakerTimeline
+        } = transformApiDataToChart(response);
         if (transformed.length === 0) {
           throw new Error('No emotion data found in the analysis results');
         }
@@ -242,6 +393,7 @@ function AnalysisPage() {
         setChartData(transformed);
         setEmotions(detected);
         setSummary(response.results.summary || null);
+        setTimeline(normalizeTimeline(speakerTimeline));
       } else {
         throw new Error('Unsupported analysis request type.');
       }
@@ -451,6 +603,15 @@ function AnalysisPage() {
                 style={{ width: '100%' }}
               />
             </div>
+          )}
+
+          {timeline.speakers.length > 0 && (
+            <SpeakerTimeline
+              timeline={timeline}
+              currentTime={currentTime}
+              audioDuration={duration}
+              emotionColorMap={emotionColorMap}
+            />
           )}
 
           <div className="chart-wrapper">

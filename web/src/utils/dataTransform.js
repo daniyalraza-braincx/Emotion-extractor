@@ -5,20 +5,181 @@
  * @param {Object} apiResponse - The API response containing prosody data
  * @returns {Object} Object with chartData array and emotions array
  */
+function normalizeSpeakerName(rawSpeaker) {
+  if (!rawSpeaker) {
+    return null;
+  }
+
+  const value = String(rawSpeaker).trim();
+  if (!value) {
+    return null;
+  }
+
+  const normalized = value.toLowerCase();
+  if (['customer', 'user', 'caller'].includes(normalized)) {
+    return 'Customer';
+  }
+  if (['agent', 'assistant', 'rep', 'representative'].includes(normalized)) {
+    return 'Agent';
+  }
+
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function buildTranscriptSegments(metadata) {
+  const segments = Array.isArray(metadata?.retell_transcript_segments)
+    ? metadata.retell_transcript_segments
+    : [];
+
+  return segments
+    .map((segment) => {
+      const speaker = normalizeSpeakerName(segment?.speaker);
+      const start = Number(segment?.start);
+      const end = Number(segment?.end);
+
+      if (!speaker || Number.isNaN(start) || Number.isNaN(end)) {
+        return null;
+      }
+
+      return {
+        speaker,
+        start,
+        end,
+        text: segment?.text || segment?.content || ''
+      };
+    })
+    .filter(Boolean);
+}
+
+function findTranscriptSpeaker(timeStart, timeEnd, transcriptSegments) {
+  if (!Array.isArray(transcriptSegments) || transcriptSegments.length === 0) {
+    return null;
+  }
+
+  let bestMatch = null;
+  let bestOverlap = 0;
+
+  transcriptSegments.forEach((segment) => {
+    const overlap = Math.max(0, Math.min(timeEnd, segment.end) - Math.max(timeStart, segment.start));
+    if (overlap > bestOverlap) {
+      bestOverlap = overlap;
+      bestMatch = segment;
+    }
+  });
+
+  return bestMatch ? bestMatch.speaker : null;
+}
+
+function getDominantEmotionForRange(rangeStart, rangeEnd, prosodySegments) {
+  if (!Array.isArray(prosodySegments) || prosodySegments.length === 0) {
+    return null;
+  }
+
+  let bestEmotion = null;
+  let bestWeightedScore = 0;
+
+  prosodySegments.forEach((segment) => {
+    const overlap = Math.max(0, Math.min(rangeEnd, segment.end) - Math.max(rangeStart, segment.start));
+    if (overlap <= 0) {
+      return;
+    }
+
+    const emotion = segment.dominantEmotion;
+    if (emotion && typeof emotion.score === 'number') {
+      const weightedScore = overlap * emotion.score;
+      if (weightedScore > bestWeightedScore) {
+        bestWeightedScore = weightedScore;
+        bestEmotion = emotion;
+      }
+    }
+  });
+
+  return bestEmotion;
+}
+
 export function transformApiDataToChart(apiResponse) {
   const { results } = apiResponse;
 
   if (!results || !results.prosody || results.prosody.length === 0) {
-    return { chartData: [], emotions: [] };
+    return {
+      chartData: [],
+      emotions: [],
+      speakerTimeline: {
+        duration: 0,
+        speakers: [],
+        segments: {}
+      }
+    };
   }
 
   // Collect all unique emotions across segments
   const allEmotions = new Set();
+  const transcriptSegments = buildTranscriptSegments(results?.metadata);
+  const baseSpeakers = ['Customer', 'Agent'];
+  const speakerSegmentsMap = new Map();
+  baseSpeakers.forEach((speaker) => speakerSegmentsMap.set(speaker, []));
+
+  let latestTime = 0;
+
+  const prosodySegments = [];
+  let lastKnownSpeaker = null;
+
   results.prosody.forEach((segment) => {
-    segment.top_emotions?.forEach((emotion) => {
-      if (emotion?.name) {
-        allEmotions.add(emotion.name);
-      }
+    const timeStart = typeof segment.time_start === 'number' ? segment.time_start : null;
+    const timeEnd = typeof segment.time_end === 'number' ? segment.time_end : timeStart;
+
+    if (timeStart === null || timeEnd === null || Number.isNaN(timeStart) || Number.isNaN(timeEnd)) {
+      return;
+    }
+
+    const emotionList = Array.isArray(segment.top_emotions)
+      ? segment.top_emotions.filter((emotion) => emotion?.name && typeof emotion.score === 'number')
+      : [];
+
+    emotionList.forEach((emotion) => {
+      allEmotions.add(emotion.name);
+    });
+
+    const sortedEmotions = emotionList
+      .slice()
+      .sort((a, b) => (typeof b.score === 'number' ? b.score : 0) - (typeof a.score === 'number' ? a.score : 0));
+    const dominantEmotion = sortedEmotions[0] || null;
+
+    let speaker = normalizeSpeakerName(segment.speaker);
+    if (!speaker) {
+      speaker = findTranscriptSpeaker(timeStart, timeEnd, transcriptSegments) || null;
+    }
+    if (!speaker) {
+      speaker = 'Unknown';
+    } else if (speaker !== 'Unknown') {
+      lastKnownSpeaker = speaker;
+    }
+
+    if (speaker === 'Unknown' && lastKnownSpeaker) {
+      speaker = lastKnownSpeaker;
+    }
+
+    latestTime = Math.max(latestTime, timeEnd);
+
+    prosodySegments.push({
+      start: timeStart,
+      end: timeEnd,
+      emotions: emotionList,
+      dominantEmotion,
+      speaker,
+      text: segment.transcript_text || segment.text || ''
+    });
+
+    if (!speakerSegmentsMap.has(speaker)) {
+      speakerSegmentsMap.set(speaker, []);
+    }
+
+    speakerSegmentsMap.get(speaker).push({
+      start: timeStart,
+      end: timeEnd,
+      topEmotion: dominantEmotion?.name || null,
+      score: typeof dominantEmotion?.score === 'number' ? dominantEmotion.score : null,
+      text: segment.transcript_text || segment.text || ''
     });
   });
 
@@ -27,33 +188,31 @@ export function transformApiDataToChart(apiResponse) {
   const INTERVAL_SIZE = 10;
   const intervalMap = new Map();
 
-  const timeBounds = results.prosody.reduce(
-    (acc, segment) => {
-      const start = typeof segment.time_start === 'number' ? segment.time_start : acc.min;
-      const end = typeof segment.time_end === 'number' ? segment.time_end : start;
-      return {
-        min: Math.min(acc.min, start),
-        max: Math.max(acc.max, end)
-      };
-    },
+  const timeBounds = prosodySegments.reduce(
+    (acc, segment) => ({
+      min: Math.min(acc.min, segment.start),
+      max: Math.max(acc.max, segment.end)
+    }),
     { min: Infinity, max: 0 }
   );
 
-  const minInterval = Math.max(0, Math.floor(timeBounds.min / INTERVAL_SIZE) * INTERVAL_SIZE);
-  const maxInterval = Math.floor(timeBounds.max / INTERVAL_SIZE) * INTERVAL_SIZE;
+  const hasValidBounds = Number.isFinite(timeBounds.min) && Number.isFinite(timeBounds.max) && timeBounds.min !== Infinity;
+  const minInterval = hasValidBounds ? Math.max(0, Math.floor(timeBounds.min / INTERVAL_SIZE) * INTERVAL_SIZE) : 0;
+  const maxInterval = hasValidBounds ? Math.floor(timeBounds.max / INTERVAL_SIZE) * INTERVAL_SIZE : 0;
 
   // Pre-create intervals to ensure contiguous coverage
-  for (let intervalStart = minInterval; intervalStart <= maxInterval; intervalStart += INTERVAL_SIZE) {
-    intervalMap.set(intervalStart, {
-      intervalStart,
-      intervalEnd: intervalStart + INTERVAL_SIZE,
-      emotions: {}
-    });
+  if (hasValidBounds) {
+    for (let intervalStart = minInterval; intervalStart <= maxInterval; intervalStart += INTERVAL_SIZE) {
+      intervalMap.set(intervalStart, {
+        intervalStart,
+        intervalEnd: intervalStart + INTERVAL_SIZE,
+        emotions: {}
+      });
+    }
   }
 
-  results.prosody.forEach((segment) => {
-    const timeStart = typeof segment.time_start === 'number' ? segment.time_start : 0;
-    const intervalStart = Math.floor(timeStart / INTERVAL_SIZE) * INTERVAL_SIZE;
+  prosodySegments.forEach((segment) => {
+    const intervalStart = Math.floor(segment.start / INTERVAL_SIZE) * INTERVAL_SIZE;
 
     if (!intervalMap.has(intervalStart)) {
       intervalMap.set(intervalStart, {
@@ -65,11 +224,7 @@ export function transformApiDataToChart(apiResponse) {
 
     const intervalData = intervalMap.get(intervalStart);
 
-    segment.top_emotions?.forEach((emotion) => {
-      if (!emotion?.name || typeof emotion.score !== 'number') {
-        return;
-      }
-
+    segment.emotions.forEach((emotion) => {
       const currentScore = intervalData.emotions[emotion.name] ?? 0;
       intervalData.emotions[emotion.name] = Math.max(currentScore, emotion.score);
     });
@@ -100,9 +255,75 @@ export function transformApiDataToChart(apiResponse) {
       };
     });
 
+  const speakerTimelineSegmentsMap = new Map();
+  baseSpeakers.forEach((speaker) => {
+    speakerTimelineSegmentsMap.set(speaker, []);
+  });
+
+  // Start with prosody-derived segments (most reliable for speech spans)
+  speakerSegmentsMap.forEach((segments, speaker) => {
+    if (!speakerTimelineSegmentsMap.has(speaker)) {
+      speakerTimelineSegmentsMap.set(speaker, []);
+    }
+    speakerTimelineSegmentsMap.get(speaker).push(...segments);
+  });
+
+  // If transcript segments exist, use them to fill gaps where we have no prosody data
+  if (transcriptSegments.length > 0) {
+    transcriptSegments.forEach((segment) => {
+      const speaker = segment.speaker;
+      const existing = speakerTimelineSegmentsMap.get(speaker) || [];
+      const overlaps = existing.some((entry) => {
+        const overlap = Math.max(0, Math.min(entry.end, segment.end) - Math.max(entry.start, segment.start));
+        return overlap > 0;
+      });
+
+      if (!overlaps) {
+        const dominantEmotion = getDominantEmotionForRange(segment.start, segment.end, prosodySegments);
+        const entry = {
+          start: segment.start,
+          end: segment.end,
+          topEmotion: dominantEmotion?.name || null,
+          score: typeof dominantEmotion?.score === 'number' ? dominantEmotion.score : null,
+          text: segment.text || ''
+        };
+
+        speakerTimelineSegmentsMap.get(speaker).push(entry);
+        latestTime = Math.max(latestTime, segment.end);
+      }
+    });
+  }
+
+  const speakerTimelineSpeakers = [];
+  baseSpeakers.forEach((speaker) => {
+    speakerTimelineSpeakers.push(speaker);
+    if (!speakerTimelineSegmentsMap.has(speaker)) {
+      speakerTimelineSegmentsMap.set(speaker, []);
+    }
+  });
+
+  speakerTimelineSegmentsMap.forEach((segments, speaker) => {
+    segments.sort((a, b) => a.start - b.start);
+    if (!baseSpeakers.includes(speaker)) {
+      if (speaker !== 'Unknown' && segments.length > 0) {
+        speakerTimelineSpeakers.push(speaker);
+      }
+    }
+  });
+
+  const speakerTimelineSegments = {};
+  speakerTimelineSpeakers.forEach((speaker) => {
+    speakerTimelineSegments[speaker] = speakerTimelineSegmentsMap.get(speaker) || [];
+  });
+
   return {
     chartData,
-    emotions: emotionsList
+    emotions: emotionsList,
+    speakerTimeline: {
+      duration: latestTime,
+      speakers: speakerTimelineSpeakers,
+      segments: speakerTimelineSegments
+    }
   };
 }
 
