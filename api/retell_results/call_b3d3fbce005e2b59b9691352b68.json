@@ -1,0 +1,340 @@
+{
+  "call_id": "call_b3d3fbce005e2b59b9691352b68",
+  "retell_metadata": {
+    "agent_id": "agent_c101a9f4d479ac7332c11db255",
+    "start_timestamp": 1762543300693,
+    "end_timestamp": 1762543364308,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/2505d6eea7b93824e18bc879afc177c0aa61e69ea41b59fe471ce0a2e5c5bf41/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_b3d3fbce005e2b59b9691352b68.wav",
+      "prosody": [
+        {
+          "time_start": 7.32,
+          "time_end": 7.8,
+          "text": "Hello?",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1848,
+              "percentage": 18.5
+            }
+          ]
+        },
+        {
+          "time_start": 8.6,
+          "time_end": 12.93,
+          "text": "Hello? This is Angela from Abc Insurance. How are you today? Wanted",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.077,
+              "percentage": 7.7
+            }
+          ]
+        },
+        {
+          "time_start": 12.93,
+          "time_end": 17.24,
+          "text": "to talk to you about some important insurance options that can help protect you and your",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1035,
+              "percentage": 10.4
+            }
+          ]
+        },
+        {
+          "time_start": 17.24,
+          "time_end": 26.25,
+          "text": "loved ones. Have you considered getting life insurance to secure your family's future? Yes.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1285,
+              "percentage": 12.9
+            }
+          ]
+        },
+        {
+          "time_start": 27.46,
+          "time_end": 31.69,
+          "text": "That's great to hear. Life insurance is a wonderful way to make sure your loved ones are financially",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0865,
+              "percentage": 8.6
+            }
+          ]
+        },
+        {
+          "time_start": 31.69,
+          "time_end": 35.85,
+          "text": "protected no matter what happens. Do you already have a policy or are you interested",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1078,
+              "percentage": 10.8
+            }
+          ]
+        },
+        {
+          "time_start": 35.85,
+          "time_end": 40.25,
+          "text": "in learning about the different options and benefits we offer at Abc insurance. I",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0879,
+              "percentage": 8.8
+            }
+          ]
+        },
+        {
+          "time_start": 40.25,
+          "time_end": 46.49,
+          "text": "can help you find a plan that fits your needs and budget. I. That's",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1004,
+              "percentage": 10.0
+            }
+          ]
+        },
+        {
+          "time_start": 46.49,
+          "time_end": 51.04,
+          "text": "excellent. It's always smart to have life insurance in place. Even if you already have a policy,",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.0881,
+              "percentage": 8.8
+            }
+          ]
+        },
+        {
+          "time_start": 51.44,
+          "time_end": 56.09,
+          "text": "it might be worth reviewing your coverage to make sure it still fits your current needs, life",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.0953,
+              "percentage": 9.5
+            }
+          ]
+        },
+        {
+          "time_start": 56.09,
+          "time_end": 58.78,
+          "text": "changes like a new job, marriage or",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0893,
+              "percentage": 8.9
+            }
+          ]
+        },
+        {
+          "time_start": 58.78,
+          "time_end": 61.32,
+          "text": "kids can mean you need more protection. Would you",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0959,
+              "percentage": 9.6
+            }
+          ]
+        },
+        {
+          "time_start": 61.32,
+          "time_end": 63.59,
+          "text": "like a quick no obligation review, a",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0972,
+              "percentage": 9.7
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 14.0,
+          "time_end": 15.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2,
+              "percentage": 20.0
+            }
+          ]
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1677,
+              "percentage": 16.8
+            }
+          ]
+        },
+        {
+          "time_start": 25.0,
+          "time_end": 26.0,
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.187,
+              "percentage": 18.7
+            }
+          ]
+        },
+        {
+          "time_start": 33.0,
+          "time_end": 34.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1975,
+              "percentage": 19.8
+            }
+          ]
+        },
+        {
+          "time_start": 38.0,
+          "time_end": 39.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1783,
+              "percentage": 17.8
+            }
+          ]
+        },
+        {
+          "time_start": 40.0,
+          "time_end": 41.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1692,
+              "percentage": 16.9
+            }
+          ]
+        },
+        {
+          "time_start": 47.0,
+          "time_end": 48.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1887,
+              "percentage": 18.9
+            }
+          ]
+        },
+        {
+          "time_start": 50.0,
+          "time_end": 51.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.1787,
+              "percentage": 17.9
+            }
+          ]
+        },
+        {
+          "time_start": 51.0,
+          "time_end": 52.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1877,
+              "percentage": 18.8
+            }
+          ]
+        },
+        {
+          "time_start": 52.0,
+          "time_end": 53.0,
+          "top_emotions": [
+            {
+              "name": "Fear",
+              "score": 0.207,
+              "percentage": 20.7
+            }
+          ]
+        },
+        {
+          "time_start": 53.0,
+          "time_end": 54.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1854,
+              "percentage": 18.5
+            }
+          ]
+        },
+        {
+          "time_start": 54.0,
+          "time_end": 55.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2214,
+              "percentage": 22.1
+            }
+          ]
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1829,
+              "percentage": 18.3
+            }
+          ]
+        },
+        {
+          "time_start": 60.0,
+          "time_end": 61.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1854,
+              "percentage": 18.5
+            }
+          ]
+        },
+        {
+          "time_start": 61.0,
+          "time_end": 62.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1856,
+              "percentage": 18.6
+            }
+          ]
+        }
+      ],
+      "summary": "The recording shows a mix of calmness, distress, and satisfaction. At 14.0s, emotion shifts to distress during a vocal burst, reflecting urgency. By 33.0s, satisfaction peaks in a vocal burst, indicating positive engagement. However, distress resurfaces at 51.0s, suggesting concern, followed by fear at 52.0s. Overall, the conversation fluctuates between calmness and distress, reflecting the tension of discussing sensitive topics like life insurance."
+    }
+  ]
+}

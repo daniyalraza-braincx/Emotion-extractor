@@ -1,0 +1,376 @@
+{
+  "call_id": "call_b8472b0344daa43453561bfeb99",
+  "retell_metadata": {
+    "agent_id": null,
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_b8472b0344daa43453561bfeb99.wav",
+      "prosody": [
+        {
+          "time_start": 2.67,
+          "time_end": 3.31,
+          "text": "Who's this?",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.5549,
+              "percentage": 55.5
+            }
+          ]
+        },
+        {
+          "time_start": 4.91,
+          "time_end": 9.08,
+          "text": "Hi Hi. This is Courtney. I'm calling regarding your interest in the Cis",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0885,
+              "percentage": 8.8
+            }
+          ]
+        },
+        {
+          "time_start": 9.94,
+          "time_end": 11.85,
+          "text": "certification exam preparation course program.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1159,
+              "percentage": 11.6
+            }
+          ]
+        },
+        {
+          "time_start": 15.52,
+          "time_end": 15.68,
+          "text": "Okay.",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2492,
+              "percentage": 24.9
+            }
+          ]
+        },
+        {
+          "time_start": 17.53,
+          "time_end": 22.49,
+          "text": "Hi, Hi. Before we get started, all calls are recorded for quality assurance and training purposes.",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1189,
+              "percentage": 11.9
+            }
+          ]
+        },
+        {
+          "time_start": 22.97,
+          "time_end": 24.24,
+          "text": "I received your interest in the",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1042,
+              "percentage": 10.4
+            }
+          ]
+        },
+        {
+          "time_start": 25.44,
+          "time_end": 27.2,
+          "text": "Certification exam preparation course program.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1151,
+              "percentage": 11.5
+            }
+          ]
+        },
+        {
+          "time_start": 27.76,
+          "time_end": 30.72,
+          "text": "Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1102,
+              "percentage": 11.0
+            }
+          ]
+        },
+        {
+          "time_start": 31.05,
+          "time_end": 34.71,
+          "text": "May I know what state you currently reside in? I'm",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1828,
+              "percentage": 18.3
+            }
+          ]
+        },
+        {
+          "time_start": 34.71,
+          "time_end": 38.05,
+          "text": "living in Texas. Great.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1675,
+              "percentage": 16.8
+            }
+          ]
+        },
+        {
+          "time_start": 38.37,
+          "time_end": 42.35,
+          "text": "Do you have a high school diploma or equivalent? Yeah.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1606,
+              "percentage": 16.1
+            }
+          ]
+        },
+        {
+          "time_start": 44.67,
+          "time_end": 46.05,
+          "text": "For the Cis ss",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1019,
+              "percentage": 10.2
+            }
+          ]
+        },
+        {
+          "time_start": 46.59,
+          "time_end": 49.64,
+          "text": "certification exam preparation course program at our Arcadia University,",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0958,
+              "percentage": 9.6
+            }
+          ]
+        },
+        {
+          "time_start": 50.17,
+          "time_end": 53.6,
+          "text": "a technical background is recommended, along with strong problem",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1154,
+              "percentage": 11.5
+            }
+          ]
+        },
+        {
+          "time_start": 53.6,
+          "time_end": 57.02,
+          "text": "solving and analytical abilities. It also helps to be comfortable",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1115,
+              "percentage": 11.1
+            }
+          ]
+        },
+        {
+          "time_start": 57.02,
+          "time_end": 61.11,
+          "text": "with complex It systems and quick to learn new technologies. Does",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1321,
+              "percentage": 13.2
+            }
+          ]
+        },
+        {
+          "time_start": 61.11,
+          "time_end": 64.7,
+          "text": "this sound like something you meet? Sure.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1141,
+              "percentage": 11.4
+            }
+          ]
+        },
+        {
+          "time_start": 66.29,
+          "time_end": 66.69,
+          "text": "Sure.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.18,
+              "percentage": 18.0
+            }
+          ]
+        },
+        {
+          "time_start": 69.33,
+          "time_end": 73.08,
+          "text": "Perfect. I love to help get you connected with an admissions representative?",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1282,
+              "percentage": 12.8
+            }
+          ]
+        },
+        {
+          "time_start": 73.33,
+          "time_end": 77.01,
+          "text": "Who can answer your questions and guide you through the next steps. How",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1209,
+              "percentage": 12.1
+            }
+          ]
+        },
+        {
+          "time_start": 77.01,
+          "time_end": 81.24,
+          "text": "about I text you a link to choose a thirty minute spot. Okay.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1533,
+              "percentage": 15.3
+            }
+          ]
+        },
+        {
+          "time_start": 81.48,
+          "time_end": 85.24,
+          "text": "Sounds good. Great. A text",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2391,
+              "percentage": 23.9
+            }
+          ]
+        },
+        {
+          "time_start": 85.24,
+          "time_end": 89.09,
+          "text": "message will be sent your way, Simply click the link and choose a time that works best",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1145,
+              "percentage": 11.5
+            }
+          ]
+        },
+        {
+          "time_start": 89.09,
+          "time_end": 92.68,
+          "text": "for you. Before we wrap up, do you have any questions that I can help",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.0999,
+              "percentage": 10.0
+            }
+          ]
+        },
+        {
+          "time_start": 92.68,
+          "time_end": 95.97,
+          "text": "answer for you about the Cis ss certification exam",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1077,
+              "percentage": 10.8
+            }
+          ]
+        },
+        {
+          "time_start": 96.03,
+          "time_end": 100.25,
+          "text": "preparation course program at our Arcadia University? Nothing.",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2355,
+              "percentage": 23.5
+            }
+          ]
+        },
+        {
+          "time_start": 102.97,
+          "time_end": 104.79,
+          "text": "Thank you for your time, He. Have a wonderful day.",
+          "top_emotions": [
+            {
+              "name": "Sadness",
+              "score": 0.1036,
+              "percentage": 10.4
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 7.0,
+          "time_end": 8.0,
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.2262,
+              "percentage": 22.6
+            }
+          ]
+        },
+        {
+          "time_start": 48.0,
+          "time_end": 49.0,
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2099,
+              "percentage": 21.0
+            }
+          ]
+        },
+        {
+          "time_start": 99.0,
+          "time_end": 100.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1949,
+              "percentage": 19.5
+            }
+          ]
+        }
+      ],
+      "summary": "The agent contacts a customer regarding the certification exam preparation course, eliciting confusion at 2.7s when the customer asks, \"Who's this?\" and later sadness at 9.9s as the agent discusses the program. The customer's emotions fluctuate between calmness and sadness throughout, ultimately leading to disappointment at 96.0s when they express having no questions. The call concludes with the agent maintaining a calm demeanor, thanking the customer and confirming a follow-up text to schedule a meeting."
+    }
+  ]
+}

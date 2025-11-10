@@ -1,0 +1,839 @@
+{
+  "call_id": "call_275ff93c7040ffb9fc250b9368a",
+  "retell_metadata": {
+    "agent_id": null,
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/29a72f783e131e0140eecc61c0235ad9abcaf1ee584aa778ca898224012c125e/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_275ff93c7040ffb9fc250b9368a_combined",
+      "prosody": [
+        {
+          "time_start": 7.12,
+          "time_end": 7.52,
+          "text": "Hello?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2955,
+              "percentage": 29.5
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 9.46,
+          "time_end": 12.28,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4992,
+              "percentage": 49.9
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 12.65,
+          "time_end": 13.69,
+          "text": "May I speak with Hi?",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.212,
+              "percentage": 21.2
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 15.34,
+          "time_end": 15.84,
+          "text": "Speaking.",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2756,
+              "percentage": 27.6
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 17.69,
+          "time_end": 22.4,
+          "text": "Hi, Hi. Before we get started, all calls are recorded for quality assurance and training purposes.",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2666,
+              "percentage": 26.7
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 22.88,
+          "time_end": 26.55,
+          "text": "I'm following up on your missed admission interview, and no worries. We",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1696,
+              "percentage": 17.0
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 26.55,
+          "time_end": 30.24,
+          "text": "understand that things come up. Before we get you reschedule, let me pull up the",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3635,
+              "percentage": 36.3
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 30.24,
+          "time_end": 38.48,
+          "text": "requirements for your program. May I know what state you currently reside in? Great.",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3871,
+              "percentage": 38.7
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 35.2,
+          "time_end": 36.08,
+          "text": "I live in Texas.",
+          "top_emotions": [
+            {
+              "name": "Pride",
+              "score": 0.4939,
+              "percentage": 49.4
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 38.72,
+          "time_end": 46.08,
+          "text": "Thank you for letting me know. Do you have a high school diploma or equivalent? For",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2932,
+              "percentage": 29.3
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 43.74,
+          "time_end": 43.98,
+          "text": "Yes.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1918,
+              "percentage": 19.2
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 46.08,
+          "time_end": 49.9,
+          "text": "the Cis certification exam, preparation course program",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4219,
+              "percentage": 42.2
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 49.9,
+          "time_end": 54.92,
+          "text": "at our Arcadia University, a technical background is recommended along with strong problem",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4763,
+              "percentage": 47.6
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 54.92,
+          "time_end": 59.97,
+          "text": "solving and analytical abilities. It also helps to be comfortable with complex It systems",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4355,
+              "percentage": 43.5
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 59.97,
+          "time_end": 62.29,
+          "text": "and quick to learn new technologies. Does",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2712,
+              "percentage": 27.1
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 62.29,
+          "time_end": 69.91,
+          "text": "this sound like something you meet? Perfect.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1453,
+              "percentage": 14.5
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 66.21,
+          "time_end": 66.92,
+          "text": "Yes. Of course.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3153,
+              "percentage": 31.5
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 70.31,
+          "time_end": 74.01,
+          "text": "I'd love to help get you connected with an admissions representative",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2553,
+              "percentage": 25.5
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 74.31,
+          "time_end": 77.98,
+          "text": "who can answer your questions and guide you through the next steps. How about",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4224,
+              "percentage": 42.2
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 78.06,
+          "time_end": 85.67,
+          "text": "I text you a link to choose a thirty minute spot. Great.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2658,
+              "percentage": 26.6
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 83.01,
+          "time_end": 83.49,
+          "text": "Sounds good.",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.5842,
+              "percentage": 58.4
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 86.07,
+          "time_end": 91.09,
+          "text": "A text message will be sent your way. Simply click the link and choose a time that works best for you.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2877,
+              "percentage": 28.8
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 91.57,
+          "time_end": 96.5,
+          "text": "Before we wrap up, do you have any questions that I can help answer for you about the Css certification",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4297,
+              "percentage": 43.0
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 96.61,
+          "time_end": 107.23,
+          "text": "and preparation course program at Arcadia University. There",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2515,
+              "percentage": 25.1
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 101.19,
+          "time_end": 104.63,
+          "text": "Yeah. Could you tell me about the payment plans?",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.234,
+              "percentage": 23.4
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 107.23,
+          "time_end": 110.18,
+          "text": "are financing options. Let's schedule you with an admissions",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3583,
+              "percentage": 35.8
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 110.18,
+          "time_end": 114.66,
+          "text": "representative to find out your specific options. They'll be able to walk you through the details",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4706,
+              "percentage": 47.1
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 114.66,
+          "time_end": 122.72,
+          "text": "and help you choose what works best for you. Thank",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2195,
+              "percentage": 21.9
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 119.67,
+          "time_end": 120.31,
+          "text": "Okay. Yeah.",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.1913,
+              "percentage": 19.1
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 122.72,
+          "time_end": 126.15,
+          "text": "you, Hub. Keep an eye out for the text with the scheduling link. We",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3391,
+              "percentage": 33.9
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 126.15,
+          "time_end": 129.26,
+          "text": "look forward to helping you take the next step. Have a wonderful day.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3729,
+              "percentage": 37.3
+            }
+          ],
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1781,
+              "percentage": 17.8
+            }
+          ],
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {},
+        "agent": {},
+        "retell_transcript_segments": [],
+        "retell_call_id": "call_275ff93c7040ffb9fc250b9368a",
+        "retell_transcript_available": false
+      },
+      "summary": "The Agent contacts the customer regarding a missed admission interview, maintaining a calm demeanor throughout. The customer initially expresses disappointment at 5.0s but shifts to interest at 7.1s when engaging with the Agent. As the conversation progresses, the customer feels contentment at 83.0s after discussing payment plans, while the Agent remains determined, facilitating the next steps. The call concludes with the Agent confirming a follow-up text to schedule a meeting, effectively addressing the customer's needs."
+    },
+    {
+      "filename": "call_275ff93c7040ffb9fc250b9368a_user.wav",
+      "prosody": [
+        {
+          "time_start": 7.12,
+          "time_end": 7.52,
+          "text": "Hello?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2955,
+              "percentage": 29.5
+            }
+          ]
+        },
+        {
+          "time_start": 15.34,
+          "time_end": 15.84,
+          "text": "Speaking.",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2756,
+              "percentage": 27.6
+            }
+          ]
+        },
+        {
+          "time_start": 35.2,
+          "time_end": 36.08,
+          "text": "I live in Texas.",
+          "top_emotions": [
+            {
+              "name": "Pride",
+              "score": 0.4939,
+              "percentage": 49.4
+            }
+          ]
+        },
+        {
+          "time_start": 43.74,
+          "time_end": 43.98,
+          "text": "Yes.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1918,
+              "percentage": 19.2
+            }
+          ]
+        },
+        {
+          "time_start": 66.21,
+          "time_end": 66.92,
+          "text": "Yes. Of course.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3153,
+              "percentage": 31.5
+            }
+          ]
+        },
+        {
+          "time_start": 83.01,
+          "time_end": 83.49,
+          "text": "Sounds good.",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.5842,
+              "percentage": 58.4
+            }
+          ]
+        },
+        {
+          "time_start": 101.19,
+          "time_end": 104.63,
+          "text": "Yeah. Could you tell me about the payment plans?",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.234,
+              "percentage": 23.4
+            }
+          ]
+        },
+        {
+          "time_start": 119.67,
+          "time_end": 120.31,
+          "text": "Okay. Yeah.",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.1913,
+              "percentage": 19.1
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1781,
+              "percentage": 17.8
+            }
+          ]
+        }
+      ],
+      "summary": "The Agent contacts the customer regarding a missed admission interview, maintaining a calm demeanor throughout. The customer initially expresses disappointment at 5.0s but shifts to interest at 7.1s when engaging with the Agent. As the conversation progresses, the customer feels contentment at 83.0s after discussing payment plans, while the Agent remains determined, facilitating the next steps. The call concludes with the Agent confirming a follow-up text to schedule a meeting, effectively addressing the customer's needs."
+    },
+    {
+      "filename": "call_275ff93c7040ffb9fc250b9368a_agent.wav",
+      "prosody": [
+        {
+          "time_start": 9.46,
+          "time_end": 12.28,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4992,
+              "percentage": 49.9
+            }
+          ]
+        },
+        {
+          "time_start": 12.65,
+          "time_end": 13.69,
+          "text": "May I speak with Hi?",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.212,
+              "percentage": 21.2
+            }
+          ]
+        },
+        {
+          "time_start": 17.69,
+          "time_end": 22.4,
+          "text": "Hi, Hi. Before we get started, all calls are recorded for quality assurance and training purposes.",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2666,
+              "percentage": 26.7
+            }
+          ]
+        },
+        {
+          "time_start": 22.88,
+          "time_end": 26.55,
+          "text": "I'm following up on your missed admission interview, and no worries. We",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1696,
+              "percentage": 17.0
+            }
+          ]
+        },
+        {
+          "time_start": 26.55,
+          "time_end": 30.24,
+          "text": "understand that things come up. Before we get you reschedule, let me pull up the",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3635,
+              "percentage": 36.3
+            }
+          ]
+        },
+        {
+          "time_start": 30.24,
+          "time_end": 38.48,
+          "text": "requirements for your program. May I know what state you currently reside in? Great.",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3871,
+              "percentage": 38.7
+            }
+          ]
+        },
+        {
+          "time_start": 38.72,
+          "time_end": 46.08,
+          "text": "Thank you for letting me know. Do you have a high school diploma or equivalent? For",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2932,
+              "percentage": 29.3
+            }
+          ]
+        },
+        {
+          "time_start": 46.08,
+          "time_end": 49.9,
+          "text": "the Cis certification exam, preparation course program",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4219,
+              "percentage": 42.2
+            }
+          ]
+        },
+        {
+          "time_start": 49.9,
+          "time_end": 54.92,
+          "text": "at our Arcadia University, a technical background is recommended along with strong problem",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4763,
+              "percentage": 47.6
+            }
+          ]
+        },
+        {
+          "time_start": 54.92,
+          "time_end": 59.97,
+          "text": "solving and analytical abilities. It also helps to be comfortable with complex It systems",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4355,
+              "percentage": 43.5
+            }
+          ]
+        },
+        {
+          "time_start": 59.97,
+          "time_end": 62.29,
+          "text": "and quick to learn new technologies. Does",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2712,
+              "percentage": 27.1
+            }
+          ]
+        },
+        {
+          "time_start": 62.29,
+          "time_end": 69.91,
+          "text": "this sound like something you meet? Perfect.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1453,
+              "percentage": 14.5
+            }
+          ]
+        },
+        {
+          "time_start": 70.31,
+          "time_end": 74.01,
+          "text": "I'd love to help get you connected with an admissions representative",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2553,
+              "percentage": 25.5
+            }
+          ]
+        },
+        {
+          "time_start": 74.31,
+          "time_end": 77.98,
+          "text": "who can answer your questions and guide you through the next steps. How about",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4224,
+              "percentage": 42.2
+            }
+          ]
+        },
+        {
+          "time_start": 78.06,
+          "time_end": 85.67,
+          "text": "I text you a link to choose a thirty minute spot. Great.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2658,
+              "percentage": 26.6
+            }
+          ]
+        },
+        {
+          "time_start": 86.07,
+          "time_end": 91.09,
+          "text": "A text message will be sent your way. Simply click the link and choose a time that works best for you.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2877,
+              "percentage": 28.8
+            }
+          ]
+        },
+        {
+          "time_start": 91.57,
+          "time_end": 96.5,
+          "text": "Before we wrap up, do you have any questions that I can help answer for you about the Css certification",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4297,
+              "percentage": 43.0
+            }
+          ]
+        },
+        {
+          "time_start": 96.61,
+          "time_end": 107.23,
+          "text": "and preparation course program at Arcadia University. There",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2515,
+              "percentage": 25.1
+            }
+          ]
+        },
+        {
+          "time_start": 107.23,
+          "time_end": 110.18,
+          "text": "are financing options. Let's schedule you with an admissions",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3583,
+              "percentage": 35.8
+            }
+          ]
+        },
+        {
+          "time_start": 110.18,
+          "time_end": 114.66,
+          "text": "representative to find out your specific options. They'll be able to walk you through the details",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4706,
+              "percentage": 47.1
+            }
+          ]
+        },
+        {
+          "time_start": 114.66,
+          "time_end": 122.72,
+          "text": "and help you choose what works best for you. Thank",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2195,
+              "percentage": 21.9
+            }
+          ]
+        },
+        {
+          "time_start": 122.72,
+          "time_end": 126.15,
+          "text": "you, Hub. Keep an eye out for the text with the scheduling link. We",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3391,
+              "percentage": 33.9
+            }
+          ]
+        },
+        {
+          "time_start": 126.15,
+          "time_end": 129.26,
+          "text": "look forward to helping you take the next step. Have a wonderful day.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3729,
+              "percentage": 37.3
+            }
+          ]
+        }
+      ],
+      "burst": [],
+      "summary": "The Agent contacts the customer regarding a missed admission interview, maintaining a calm demeanor throughout. The customer initially expresses disappointment at 5.0s but shifts to interest at 7.1s when engaging with the Agent. As the conversation progresses, the customer feels contentment at 83.0s after discussing payment plans, while the Agent remains determined, facilitating the next steps. The call concludes with the Agent confirming a follow-up text to schedule a meeting, effectively addressing the customer's needs."
+    }
+  ]
+}

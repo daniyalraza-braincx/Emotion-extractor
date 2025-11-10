@@ -1,0 +1,92 @@
+{
+  "calls": {
+    "call_1e9eadc3b1bcabf40ad454ff31c": {
+      "call_id": "call_1e9eadc3b1bcabf40ad454ff31c",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762545880888,
+      "end_timestamp": 1762545897528,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/fd693ac9370503c8187ffdac625137c07d62c8d232d4aeecd0a70c5bf6715db4/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_1e9eadc3b1bcabf40ad454ff31c.json",
+      "transcript_available": true,
+      "last_updated": "2025-11-07T20:05:32Z",
+      "error_message": null
+    },
+    "call_0af44db68a4417eed813bca083c": {
+      "call_id": "call_0af44db68a4417eed813bca083c",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1762546603889,
+      "end_timestamp": 1762546605615,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5ccbb3011e4be4c0fc3dfb4e0ad95277d54cc755a25bc65dc20c75bf0dda689d/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-07T20:16:47Z"
+    },
+    "call_b8472b0344daa43453561bfeb99": {
+      "call_id": "call_b8472b0344daa43453561bfeb99",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1762547015546,
+      "end_timestamp": 1762547120620,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/120b2561a83aa40b92c07da8fea43a29a2451a4c0494307996dd26bd2fac39b6/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_b8472b0344daa43453561bfeb99.json",
+      "transcript_available": true,
+      "last_updated": "2025-11-07T21:56:27Z",
+      "error_message": null
+    },
+    "call_275ff93c7040ffb9fc250b9368a": {
+      "call_id": "call_275ff93c7040ffb9fc250b9368a",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1762786207882,
+      "end_timestamp": 1762786337440,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/29a72f783e131e0140eecc61c0235ad9abcaf1ee584aa778ca898224012c125e/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_275ff93c7040ffb9fc250b9368a.json",
+      "transcript_available": true,
+      "last_updated": "2025-11-10T14:53:36Z",
+      "error_message": null
+    },
+    "call_48d196f60ef0b137c3b264bb1f2": {
+      "call_id": "call_48d196f60ef0b137c3b264bb1f2",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1762787492134,
+      "end_timestamp": 1762787494402,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1b1aa638a7f6cc33dc30647a8a1a772bd2563a8050a9d7d32138d6842bff648b/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-10T15:11:37Z"
+    },
+    "call_e7858b80632cca5ef34192305be": {
+      "call_id": "call_e7858b80632cca5ef34192305be",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762787537896,
+      "end_timestamp": 1762787591096,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/817e894c2514782f09a8f5aa366d86a510dd6ba77a74fad7ebc442fade3b7e4f/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_e7858b80632cca5ef34192305be.json",
+      "transcript_available": true,
+      "last_updated": "2025-11-10T15:18:03Z",
+      "error_message": null
+    }
+  }
+}

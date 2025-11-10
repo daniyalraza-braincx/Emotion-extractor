@@ -1,0 +1,512 @@
+{
+  "call_id": "call_e7858b80632cca5ef34192305be",
+  "retell_metadata": {
+    "agent_id": null,
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/817e894c2514782f09a8f5aa366d86a510dd6ba77a74fad7ebc442fade3b7e4f/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_e7858b80632cca5ef34192305be_combined",
+      "prosody": [
+        {
+          "time_start": 1.0,
+          "time_end": 5.95,
+          "text": "Hello? This is Angela from Abc insurance. I hope you're having a great day. I'm",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3608,
+              "percentage": 36.1
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 5.95,
+          "time_end": 10.43,
+          "text": "reaching out to let you know about our excellent life and car insurance plans that can help protect you",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4153,
+              "percentage": 41.5
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 10.43,
+          "time_end": 19.95,
+          "text": "and your loved ones. May I ask if you currently have life insurance coverage. I",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3178,
+              "percentage": 31.8
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 11.29,
+          "time_end": 12.59,
+          "text": "No I don't need.",
+          "top_emotions": [
+            {
+              "name": "Anger",
+              "score": 0.1672,
+              "percentage": 16.7
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 14.48,
+          "time_end": 15.7,
+          "text": "No. I don't need",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.3373,
+              "percentage": 33.7
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 16.09,
+          "time_end": 17.29,
+          "text": "things. I don't need it.",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.165,
+              "percentage": 16.5
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 19.95,
+          "time_end": 29.96,
+          "text": "understand, but life insurance is truly important. It provides financial security for your loved. I",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4937,
+              "percentage": 49.4
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 23.36,
+          "time_end": 28.0,
+          "text": "Yeah. But I said no no means no. I don't need it. Get the hell out of here.",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.3211,
+              "percentage": 32.1
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 29.96,
+          "time_end": 34.43,
+          "text": "hear you, but just before I go, let me quickly mention our car insurance options. Car insurance",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5057,
+              "percentage": 50.6
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 34.43,
+          "time_end": 38.73,
+          "text": "is essential for protecting your vehicle and your finances in case of accidents or",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.408,
+              "percentage": 40.8
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 38.73,
+          "time_end": 42.65,
+          "text": "unexpected events. We offer competitive rates and comprehensive coverage. Would",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4048,
+              "percentage": 40.5
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 42.65,
+          "time_end": 49.73,
+          "text": "you like to hear more about our... That's",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3612,
+              "percentage": 36.1
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 43.12,
+          "time_end": 44.74,
+          "text": "Yes. Car insurance is",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1399,
+              "percentage": 14.0
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 45.36,
+          "time_end": 46.4,
+          "text": "Yeah. It's",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2698,
+              "percentage": 27.0
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 47.11,
+          "time_end": 50.61,
+          "text": "it's useful for me. Thank you. Car insurance is over.",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.4263,
+              "percentage": 42.6
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 49.73,
+          "time_end": 52.36,
+          "text": "great. I'm",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2198,
+              "percentage": 22.0
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 52.36,
+          "time_end": 53.2,
+          "text": "glad to hear you think",
+          "top_emotions": [
+            {
+              "name": "Relief",
+              "score": 0.237,
+              "percentage": 23.7
+            }
+          ],
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 3.0,
+          "time_end": 4.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1569,
+              "percentage": 15.7
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "top_emotions": [
+            {
+              "name": "Desire",
+              "score": 0.3185,
+              "percentage": 31.9
+            }
+          ],
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {},
+        "agent": {},
+        "retell_transcript_segments": [],
+        "retell_call_id": "call_e7858b80632cca5ef34192305be",
+        "retell_transcript_available": false
+      },
+      "summary": "The Agent attempts to sell car insurance to the customer, who initially expresses anger and distress at 11.3s, stating, \"No I don't need,\" and escalates to disappointment and distress at 23.4s with, \"Get the hell out of here.\" However, the customer later shifts to satisfaction at 47.1s, acknowledging the usefulness of the car insurance. The Agent remains determined throughout, aiming to convey the importance of coverage, which ultimately influences the customer's final acceptance of the information."
+    },
+    {
+      "filename": "call_e7858b80632cca5ef34192305be_user.wav",
+      "prosody": [
+        {
+          "time_start": 11.29,
+          "time_end": 12.59,
+          "text": "No I don't need.",
+          "top_emotions": [
+            {
+              "name": "Anger",
+              "score": 0.1672,
+              "percentage": 16.7
+            }
+          ]
+        },
+        {
+          "time_start": 14.48,
+          "time_end": 15.7,
+          "text": "No. I don't need",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.3373,
+              "percentage": 33.7
+            }
+          ]
+        },
+        {
+          "time_start": 16.09,
+          "time_end": 17.29,
+          "text": "things. I don't need it.",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.165,
+              "percentage": 16.5
+            }
+          ]
+        },
+        {
+          "time_start": 23.36,
+          "time_end": 28.0,
+          "text": "Yeah. But I said no no means no. I don't need it. Get the hell out of here.",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.3211,
+              "percentage": 32.1
+            }
+          ]
+        },
+        {
+          "time_start": 43.12,
+          "time_end": 44.74,
+          "text": "Yes. Car insurance is",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1399,
+              "percentage": 14.0
+            }
+          ]
+        },
+        {
+          "time_start": 45.36,
+          "time_end": 46.4,
+          "text": "Yeah. It's",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2698,
+              "percentage": 27.0
+            }
+          ]
+        },
+        {
+          "time_start": 47.11,
+          "time_end": 50.61,
+          "text": "it's useful for me. Thank you. Car insurance is over.",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.4263,
+              "percentage": 42.6
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 3.0,
+          "time_end": 4.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1569,
+              "percentage": 15.7
+            }
+          ]
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "top_emotions": [
+            {
+              "name": "Desire",
+              "score": 0.3185,
+              "percentage": 31.9
+            }
+          ]
+        }
+      ],
+      "summary": "The Agent attempts to sell car insurance to the customer, who initially expresses anger and distress at 11.3s, stating, \"No I don't need,\" and escalates to disappointment and distress at 23.4s with, \"Get the hell out of here.\" However, the customer later shifts to satisfaction at 47.1s, acknowledging the usefulness of the car insurance. The Agent remains determined throughout, aiming to convey the importance of coverage, which ultimately influences the customer's final acceptance of the information."
+    },
+    {
+      "filename": "call_e7858b80632cca5ef34192305be_agent.wav",
+      "prosody": [
+        {
+          "time_start": 1.0,
+          "time_end": 5.95,
+          "text": "Hello? This is Angela from Abc insurance. I hope you're having a great day. I'm",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3608,
+              "percentage": 36.1
+            }
+          ]
+        },
+        {
+          "time_start": 5.95,
+          "time_end": 10.43,
+          "text": "reaching out to let you know about our excellent life and car insurance plans that can help protect you",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4153,
+              "percentage": 41.5
+            }
+          ]
+        },
+        {
+          "time_start": 10.43,
+          "time_end": 19.95,
+          "text": "and your loved ones. May I ask if you currently have life insurance coverage. I",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3178,
+              "percentage": 31.8
+            }
+          ]
+        },
+        {
+          "time_start": 19.95,
+          "time_end": 29.96,
+          "text": "understand, but life insurance is truly important. It provides financial security for your loved. I",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4937,
+              "percentage": 49.4
+            }
+          ]
+        },
+        {
+          "time_start": 29.96,
+          "time_end": 34.43,
+          "text": "hear you, but just before I go, let me quickly mention our car insurance options. Car insurance",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5057,
+              "percentage": 50.6
+            }
+          ]
+        },
+        {
+          "time_start": 34.43,
+          "time_end": 38.73,
+          "text": "is essential for protecting your vehicle and your finances in case of accidents or",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.408,
+              "percentage": 40.8
+            }
+          ]
+        },
+        {
+          "time_start": 38.73,
+          "time_end": 42.65,
+          "text": "unexpected events. We offer competitive rates and comprehensive coverage. Would",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4048,
+              "percentage": 40.5
+            }
+          ]
+        },
+        {
+          "time_start": 42.65,
+          "time_end": 49.73,
+          "text": "you like to hear more about our... That's",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3612,
+              "percentage": 36.1
+            }
+          ]
+        },
+        {
+          "time_start": 49.73,
+          "time_end": 52.36,
+          "text": "great. I'm",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2198,
+              "percentage": 22.0
+            }
+          ]
+        },
+        {
+          "time_start": 52.36,
+          "time_end": 53.2,
+          "text": "glad to hear you think",
+          "top_emotions": [
+            {
+              "name": "Relief",
+              "score": 0.237,
+              "percentage": 23.7
+            }
+          ]
+        }
+      ],
+      "burst": [],
+      "summary": "The Agent attempts to sell car insurance to the customer, who initially expresses anger and distress at 11.3s, stating, \"No I don't need,\" and escalates to disappointment and distress at 23.4s with, \"Get the hell out of here.\" However, the customer later shifts to satisfaction at 47.1s, acknowledging the usefulness of the car insurance. The Agent remains determined throughout, aiming to convey the importance of coverage, which ultimately influences the customer's final acceptance of the information."
+    }
+  ]
+}
