@@ -1,0 +1,113 @@
+{
+  "call_id": "call_5c04d49e00a2410984f5a53357a",
+  "retell_metadata": {
+    "agent_id": null,
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/ffd72bc05b98689769543eb6d03324be1e3462c1f6b2b082caba79f04e20cdc9/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_5c04d49e00a2410984f5a53357a_combined",
+      "prosody": [
+        {
+          "time_start": 1.88,
+          "time_end": 5.95,
+          "text": "Hello? Well, this is Angela from Abc insurance? I hope you're having a great",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5499,
+              "percentage": 55.0
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 5.95,
+          "time_end": 10.26,
+          "text": "day. I'm reaching out to share some important information about our life insurance plans",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.9365,
+              "percentage": 93.6
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 10.26,
+          "time_end": 14.06,
+          "text": "that can help protect you and your loved ones. Would you be interested in",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4631,
+              "percentage": 46.3
+            }
+          ],
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "customer": {},
+        "agent": {},
+        "retell_transcript_segments": [],
+        "retell_call_id": "call_5c04d49e00a2410984f5a53357a",
+        "retell_transcript_available": false
+      },
+      "summary": "Agent Angela reaches out to share life insurance information, expressing interest at 1.9s and determination at 6.0s. The customer\u2019s emotional journey is unclear due to the absence of their audio; however, the agent's determination likely aims to engage them effectively. The call concludes without a clear outcome, as the customer's response is not captured in the provided data."
+    },
+    {
+      "filename": "call_5c04d49e00a2410984f5a53357a_user.wav",
+      "prosody": [],
+      "burst": [],
+      "summary": "Agent Angela reaches out to share life insurance information, expressing interest at 1.9s and determination at 6.0s. The customer\u2019s emotional journey is unclear due to the absence of their audio; however, the agent's determination likely aims to engage them effectively. The call concludes without a clear outcome, as the customer's response is not captured in the provided data."
+    },
+    {
+      "filename": "call_5c04d49e00a2410984f5a53357a_agent.wav",
+      "prosody": [
+        {
+          "time_start": 1.88,
+          "time_end": 5.95,
+          "text": "Hello? Well, this is Angela from Abc insurance? I hope you're having a great",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5499,
+              "percentage": 55.0
+            }
+          ]
+        },
+        {
+          "time_start": 5.95,
+          "time_end": 10.26,
+          "text": "day. I'm reaching out to share some important information about our life insurance plans",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.9365,
+              "percentage": 93.6
+            }
+          ]
+        },
+        {
+          "time_start": 10.26,
+          "time_end": 14.06,
+          "text": "that can help protect you and your loved ones. Would you be interested in",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4631,
+              "percentage": 46.3
+            }
+          ]
+        }
+      ],
+      "burst": [],
+      "summary": "Agent Angela reaches out to share life insurance information, expressing interest at 1.9s and determination at 6.0s. The customer\u2019s emotional journey is unclear due to the absence of their audio; however, the agent's determination likely aims to engage them effectively. The call concludes without a clear outcome, as the customer's response is not captured in the provided data."
+    }
+  ]
+}

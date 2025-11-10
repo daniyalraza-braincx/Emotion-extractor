@@ -10,11 +10,14 @@ import {
   Legend,
   ReferenceLine,
   Cell,
+  ResponsiveContainer,
 } from 'recharts';
 import { analyzeAudioFile, analyzeRetellCall } from '../services/api';
 import { transformApiDataToChart } from '../utils/dataTransform';
 import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/formatters';
 import { useAnalysis } from '../context/AnalysisContext';
+import humanAvatar from '../assets/human.png';
+import agentAvatar from '../assets/agent.png';
 
 function generateUniqueColors(count) {
   const colors = [];
@@ -160,10 +163,23 @@ function normalizeTimeline(timeline) {
   };
 }
 
-function SpeakerTimeline({ timeline, currentTime, audioDuration, emotionColorMap }) {
-  if (!timeline || !Array.isArray(timeline.speakers) || timeline.speakers.length === 0) {
+function SpeakerTimeline({
+  timeline,
+  currentTime,
+  audioDuration,
+  emotionColorMap,
+  avatarMap = {},
+  speakerColors = {},
+}) {
+  if (!timeline) {
     return null;
   }
+
+  const baseSpeakers = ['Customer', 'Agent'];
+  const speakersToRender = baseSpeakers.map((speaker) => ({
+    name: speaker,
+    segments: Array.isArray(timeline.segments?.[speaker]) ? timeline.segments[speaker] : [],
+  }));
 
   const rawDuration = typeof timeline.duration === 'number' && Number.isFinite(timeline.duration)
     ? timeline.duration
@@ -180,11 +196,17 @@ function SpeakerTimeline({ timeline, currentTime, audioDuration, emotionColorMap
 
   return (
     <div className="speaker-timeline">
-      {timeline.speakers.map((speaker) => {
-        const segments = timeline.segments?.[speaker] || [];
+      {speakersToRender.map(({ name, segments }) => {
         return (
-          <div className="speaker-timeline-row" key={speaker}>
-            <div className="speaker-timeline-label">{speaker}</div>
+          <div className="speaker-timeline-row" key={name}>
+            <div className="speaker-timeline-label">
+              {avatarMap[name] && (
+                <span className="speaker-timeline-avatar">
+                  <img src={avatarMap[name]} alt={`${name} avatar`} />
+                </span>
+              )}
+              <span>{name}</span>
+            </div>
             <div className="speaker-timeline-track">
               {segments.map((segment, index) => {
                 const segmentStart = typeof segment.start === 'number' ? segment.start : 0;
@@ -197,9 +219,10 @@ function SpeakerTimeline({ timeline, currentTime, audioDuration, emotionColorMap
                   Math.max((segmentStart / effectiveDuration) * 100, 0),
                   100
                 );
-                const color = segment.topEmotion
-                  ? (emotionColorMap?.[segment.topEmotion] || '#6b7280')
-                  : '#4b5563';
+                const color = speakerColors?.[name]
+                  || (segment.topEmotion
+                    ? (emotionColorMap?.[segment.topEmotion] || '#6b7280')
+                    : '#4b5563');
                 const titleParts = [
                   `${segmentStart.toFixed(2)}s - ${segmentEnd.toFixed(2)}s`,
                   segment.topEmotion ? `Emotion: ${segment.topEmotion}` : 'No detected emotion'
@@ -213,7 +236,7 @@ function SpeakerTimeline({ timeline, currentTime, audioDuration, emotionColorMap
 
                 return (
                   <div
-                    key={`${speaker}-${index}-${segmentStart}`}
+                    key={`${name}-${index}-${segmentStart}`}
                     className="speaker-timeline-segment"
                     style={{
                       left: `${leftPercent}%`,
@@ -221,7 +244,7 @@ function SpeakerTimeline({ timeline, currentTime, audioDuration, emotionColorMap
                       backgroundColor: color
                     }}
                     title={titleParts.join(' | ')}
-                    aria-label={`${speaker} segment from ${segmentStart.toFixed(2)} seconds to ${segmentEnd.toFixed(2)} seconds`}
+                    aria-label={`${name} segment from ${segmentStart.toFixed(2)} seconds to ${segmentEnd.toFixed(2)} seconds`}
                   />
                 );
               })}
@@ -251,6 +274,17 @@ function formatFileSize(bytes) {
   return `${bytes} bytes`;
 }
 
+function formatClockTime(timeInSeconds) {
+  if (!Number.isFinite(timeInSeconds) || timeInSeconds < 0) {
+    return '0:00';
+  }
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = Math.floor(timeInSeconds % 60)
+    .toString()
+    .padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
 function AnalysisPage() {
   const navigate = useNavigate();
   const { analysisRequest } = useAnalysis();
@@ -267,6 +301,8 @@ function AnalysisPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [playbackRate, setPlaybackRate] = useState(1);
 
   const [audioSource, setAudioSource] = useState({ url: null, isObjectUrl: false });
 
@@ -481,6 +517,13 @@ function AnalysisPage() {
     };
   }, [audioSource]);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.playbackRate = playbackRate;
+    }
+  }, [playbackRate]);
+
   const legendPayload = useMemo(() => (
     emotions.map((emotion) => ({
       value: emotion,
@@ -513,222 +556,446 @@ function AnalysisPage() {
 
   const recordingUrl = audioSource.url && !audioSource.isObjectUrl ? audioSource.url : null;
 
+  const analysisBadge = activeRequest?.type === 'retell' ? 'Retell Call' : 'Custom Upload';
+  const isRetell = activeRequest?.type === 'retell';
+
+  const avatarMap = useMemo(() => ({
+    Customer: humanAvatar,
+    Agent: agentAvatar,
+  }), []);
+
+  const speakerColors = useMemo(() => ({
+    Customer: '#8b6bff',
+    Agent: '#f6a45d',
+  }), []);
+
+  const metadataPills = useMemo(() => {
+    const items = [];
+
+    if (isRetell) {
+      if (callDuration) {
+        items.push({ id: 'duration', label: `Duration: ${callDuration}` });
+      }
+      if (activeRequest?.call?.start_timestamp) {
+        items.push({ id: 'started', label: `Started: ${formatTimestamp(activeRequest.call.start_timestamp)}` });
+      }
+      if (activeRequest?.call?.end_timestamp) {
+        items.push({ id: 'ended', label: `Ended: ${formatTimestamp(activeRequest.call.end_timestamp)}` });
+      }
+      if (activeRequest?.call?.last_updated) {
+        items.push({ id: 'updated', label: `Updated: ${formatTimestamp(activeRequest.call.last_updated)}` });
+      }
+      if (activeRequest?.call?.agent_id) {
+        items.push({ id: 'agent', label: `Agent: ${activeRequest.call.agent_id}` });
+      }
+      items.push({
+        id: 'status',
+        label: `Status: ${formatStatusLabel(activeRequest?.call?.analysis_status)}`,
+      });
+      items.push({
+        id: 'analysis',
+        label: activeRequest?.call?.analysis_available ? 'Analysis Ready' : 'Analysis Pending',
+      });
+      items.push({
+        id: 'transcript',
+        label: activeRequest?.call?.transcript_available ? 'Transcript Ready' : 'Transcript Pending',
+      });
+    } else if (activeRequest?.type === 'upload') {
+      if (activeRequest.file?.size) {
+        items.push({ id: 'size', label: `Size: ${formatFileSize(activeRequest.file.size)}` });
+      }
+      if (activeRequest.file?.type) {
+        items.push({ id: 'type', label: `Type: ${activeRequest.file.type}` });
+      }
+      if (activeRequest.file?.lastModified) {
+        items.push({
+          id: 'modified',
+          label: `Modified: ${new Date(activeRequest.file.lastModified).toLocaleString()}`,
+        });
+      }
+    }
+
+    return items;
+  }, [isRetell, callDuration, activeRequest]);
+
+  const summaryHeading = useMemo(() => {
+    if (isRetell) {
+      return activeRequest?.call?.call_title
+        || activeRequest?.call?.title
+        || activeRequest?.call?.metadata?.title
+        || analysisTitle
+        || 'Call Summary';
+    }
+    if (activeRequest?.type === 'upload') {
+      return activeRequest?.file?.name || 'Custom Upload';
+    }
+    return analysisTitle || 'Analysis Summary';
+  }, [isRetell, activeRequest, analysisTitle]);
+
+  const summaryBody = useMemo(() => {
+    if (summary && typeof summary === 'string') {
+      return summary.trim();
+    }
+    return isRetell
+      ? 'Emotion insights for the selected Retell call.'
+      : 'Emotion insights for your uploaded audio file.';
+  }, [summary, isRetell]);
+
+  const tabs = useMemo(() => ([
+    { id: 'overview', label: 'Overview' },
+    { id: 'transcript', label: 'Transcript' },
+    { id: 'metrics', label: 'Metrics' },
+    { id: 'evaluations', label: 'Evaluations' },
+    { id: 'tools', label: 'Tools' },
+  ]), []);
+
+  const playDisabled = !audioSource.url;
+  const formattedCurrentTime = formatClockTime(currentTime);
+  const formattedDuration = formatClockTime(duration);
+  const playbackOptions = [1, 1.25, 1.5, 2];
+
+  const togglePlay = () => {
+    if (playDisabled) {
+      return;
+    }
+    const audio = audioRef.current;
+    if (!audio) {
+      return;
+    }
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
+  };
+
+  const handlePlaybackRateChange = (event) => {
+    const nextRate = Number(event.target.value);
+    if (Number.isFinite(nextRate) && nextRate > 0) {
+      setPlaybackRate(nextRate);
+    }
+  };
+
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId);
+  };
+
   return (
-    <main className="page-container analysis-page">
-      <header className="analysis-header">
-        <div className="analysis-header__left">
-          <button type="button" className="secondary-button" onClick={handleBack}>
-            ← Back to Dashboard
-          </button>
-          {/* <span className="analysis-badge">
-            {activeRequest?.type === 'retell' ? 'Retell Call' : 'Custom Upload'}
-          </span> */}
+    <main className="analysis-page">
+      <header className="analysis-hero">
+        <div className="analysis-hero__heading">
+          <div className="analysis-hero__title-group">
+            <button type="button" className="analysis-back-button" onClick={handleBack}>
+              ← Back
+            </button>
+            <span className="analysis-badge">{analysisBadge}</span>
+            <h1>{analysisTitle}</h1>
+          </div>
+          <div className="analysis-hero__actions">
+            {recordingUrl && (
+              <a
+                className="analysis-action"
+                href={recordingUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Download Audio
+              </a>
+            )}
+            <button
+              type="button"
+              className="analysis-action analysis-action--primary"
+              onClick={handleRetry}
+              disabled={isLoading}
+            >
+              Re-run Analysis
+            </button>
+            <button
+              type="button"
+              className="analysis-action"
+              onClick={handleBack}
+            >
+              Close
+            </button>
+          </div>
         </div>
 
-        <div className="analysis-header__center">
-          <h1>{analysisTitle}</h1>
-          {activeRequest?.type === 'retell' && (
-            <div className="analysis-meta">
-              <span>{formatTimestamp(activeRequest.call?.start_timestamp)}</span>
-              {callDuration && <span>Duration: {callDuration}</span>}
-              {activeRequest.call?.agent_id && <span>Agent: {activeRequest.call.agent_id}</span>}
-              <span>Status: {formatStatusLabel(activeRequest.call?.analysis_status)}</span>
+        <div className="analysis-hero__media">
+          <div className="analysis-playback">
+            <div className="analysis-playback__header">
+              <div className="analysis-playback__left">
+                <button
+                  type="button"
+                  className={`play-toggle ${isPlaying ? 'is-playing' : ''}`}
+                  onClick={togglePlay}
+                  disabled={playDisabled}
+                  aria-pressed={isPlaying}
+                >
+                  {isPlaying ? 'Pause' : 'Play'}
+                </button>
+                <span className="analysis-playback__timer">
+                  {formattedCurrentTime} / {formattedDuration}
+                </span>
+              </div>
+              <label className="analysis-playback__speed">
+                Speed:
+                <select
+                  value={playbackRate}
+                  onChange={handlePlaybackRateChange}
+                  disabled={playDisabled}
+                  aria-label="Playback speed"
+                >
+                  {playbackOptions.map((rate) => (
+                    <option key={rate} value={rate}>
+                      {`${rate}x`}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </div>
-          )}
-          {activeRequest?.type === 'upload' && (
-            <div className="analysis-meta">
-              <span>{formatFileSize(activeRequest.file?.size || 0)}</span>
-              {activeRequest.file?.type && <span>Type: {activeRequest.file.type}</span>}
-            </div>
-          )}
-        </div>
+            <audio
+              ref={audioRef}
+              src={audioSource.url || undefined}
+              preload="metadata"
+              className="analysis-audio-element"
+              aria-hidden="true"
+            />
+          </div>
 
-        <div className="analysis-header__right">
-          <button
-            type="button"
-            className="primary-button"
-            onClick={handleRetry}
-            disabled={isLoading}
-          >
-            Re-run Analysis
-          </button>
-        </div>
-      </header>
-{/* 
-      {recordingUrl && (
-        <div className="analysis-toolbar">
-          <a
-            className="link-button"
-            href={recordingUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            View Raw Recording
-          </a>
-        </div>
-      )} */}
-
-      {isLoading && (
-        <div className="loading-container">
-          <div className="spinner" />
-          <p>{loadingMessage}</p>
-        </div>
-      )}
-
-      {error && (
-        <div className="error-container">
-          <p className="error-message">{error}</p>
-          <button className="retry-button" onClick={handleRetry} type="button" disabled={isLoading}>
-            Try Again
-          </button>
-        </div>
-      )}
-
-      {!error && !isLoading && summary && (
-        <section className="summary-container">
-          <h2>Summary</h2>
-          <p>{summary}</p>
-        </section>
-      )}
-
-      {!error && !isLoading && chartData.length > 0 && (
-        <section className="chart-section">
-          {audioSource.url && (
-            <div className="audio-player-container">
-              <audio
-                ref={audioRef}
-                src={audioSource.url}
-                controls
-                preload="metadata"
-                style={{ width: '100%' }}
-              />
-            </div>
-          )}
-
-          {timeline.speakers.length > 0 && (
+          <div className="analysis-hero__timeline">
             <SpeakerTimeline
               timeline={timeline}
               currentTime={currentTime}
               audioDuration={duration}
               emotionColorMap={emotionColorMap}
+              avatarMap={avatarMap}
+              speakerColors={speakerColors}
             />
-          )}
-
-          <div className="chart-wrapper">
-            <BarChart
-              width={1200}
-              height={560}
-              data={chartData}
-              margin={{ top: 80, right: 80, left: 80, bottom: 60 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                type="number"
-                dataKey="time"
-                domain={[
-                  (dataMin) => {
-                    if (typeof intervalDuration === 'number' && intervalDuration > 0) {
-                      const minWithPadding = dataMin - intervalDuration / 2;
-                      return minWithPadding < 0 ? 0 : minWithPadding;
-                    }
-                    return Math.max(0, dataMin - 5);
-                  },
-                  (dataMax) => {
-                    if (typeof intervalDuration === 'number' && intervalDuration > 0) {
-                      return dataMax + intervalDuration / 2;
-                    }
-                    return dataMax + 5;
-                  },
-                ]}
-                ticks={chartData.map((entry) => entry.time)}
-                tickFormatter={(value) => {
-                  const interval = intervalLookup.get(value);
-                  if (!interval) {
-                    return `${Math.round(value)}s`;
-                  }
-                  return `${interval.intervalStart}s-${interval.intervalEnd}s`;
-                }}
-                label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -10, style: { fontSize: '14px' } }}
-                tick={{ fontSize: 12 }}
-                scale="linear"
-                allowDataOverflow
-              />
-              <YAxis
-                label={{ value: 'Intensity', angle: -90, position: 'insideLeft', style: { fontSize: '14px' } }}
-                tick={{ fontSize: 12 }}
-                domain={[0, 1]}
-              />
-              <Tooltip
-                cursor={{ fill: 'transparent' }}
-                animationDuration={0}
-                wrapperStyle={{
-                  outline: 'none',
-                  zIndex: 1000,
-                  pointerEvents: 'none',
-                }}
-                contentStyle={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  padding: '10px',
-                  pointerEvents: 'none',
-                  margin: 0,
-                }}
-                position={{ y: -20 }}
-                allowEscapeViewBox={{ x: false, y: true }}
-                content={(props) => (
-                  <CustomTooltip {...props} emotionColorMap={emotionColorMap} />
-                )}
-              />
-              <Legend wrapperStyle={{ paddingTop: '20px' }} payload={legendPayload} />
-              {currentTime >= 0 && chartData.length > 0 && duration > 0 && (
-                <ReferenceLine
-                  key={`timeline-${Math.floor(currentTime)}`}
-                  x={currentTime}
-                  stroke="#ff0000"
-                  strokeWidth={4}
-                  strokeDasharray="10 5"
-                  isFront
-                  alwaysShow
-                  label={{
-                    value: `▶ ${Math.round(currentTime)}s`,
-                    position: 'top',
-                    fill: '#ff0000',
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                    offset: 10,
-                  }}
-                />
-              )}
-              <Bar dataKey="score" barSize={Math.max(20, intervalDuration * 3)} maxBarSize={60}>
-                {chartData.map((entry, index) => (
-                  <Cell
-                    key={`${entry.intervalStart}-${index}`}
-                    fill={entry.topEmotion ? (emotionColorMap[entry.topEmotion] || '#999999') : '#555555'}
-                  />
-                ))}
-              </Bar>
-            </BarChart>
           </div>
+        </div>
+      </header>
 
-          {legendPayload.length > 0 && (
-            <div className="emotion-legend-container">
-              <h3 className="emotion-legend-title">Emotion Color Reference</h3>
-              <div className="emotion-legend-grid">
-                {legendPayload.map(({ value, color }) => (
-                  <div key={value} className="emotion-legend-entry">
-                    <span
-                      className="emotion-color-box"
-                      style={{ backgroundColor: color }}
-                    />
-                    <span className="emotion-name">{value}</span>
-                  </div>
-                ))}
-              </div>
+      <nav className="analysis-tabs" role="tablist" aria-label="Analysis sections">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            className={`analysis-tab ${activeTab === tab.id ? 'is-active' : ''}`}
+            onClick={() => handleTabClick(tab.id)}
+            role="tab"
+            aria-selected={activeTab === tab.id}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </nav>
+
+      {!isLoading && !error && (
+        <section className="analysis-summary-panel">
+          <div className="analysis-summary-panel__body">
+            <h2>{summaryHeading}</h2>
+            {summaryBody && <p>{summaryBody}</p>}
+          </div>
+          {metadataPills.length > 0 && (
+            <div className="analysis-summary-meta">
+              {metadataPills.map((pill) => (
+                <span key={pill.id} className="analysis-chip">
+                  {pill.label}
+                </span>
+              ))}
             </div>
           )}
         </section>
       )}
+
+      <div className="analysis-content">
+        {isLoading && (
+          <div className="analysis-state-card">
+            <div className="spinner" />
+            <p>{loadingMessage}</p>
+          </div>
+        )}
+
+        {!isLoading && error && (
+          <div className="analysis-state-card analysis-state-card--error">
+            <p className="error-message">{error}</p>
+            <button className="retry-button" onClick={handleRetry} type="button">
+              Try Again
+            </button>
+          </div>
+        )}
+
+        {!isLoading && !error && activeTab === 'overview' && (
+          <>
+            <section className="analysis-overview-grid">
+              <div className="analysis-overview-main">
+                {chartData.length > 0 && (
+                  <div className="analysis-chart-card">
+                    <div className="analysis-chart-card__header">
+                      <h3>Emotion Intensity Over Time</h3>
+                      <p>Track the dominant emotions throughout the call.</p>
+                    </div>
+                    <div className="chart-wrapper">
+                      <ResponsiveContainer width="100%" height={560}>
+                        <BarChart
+                          data={chartData}
+                          margin={{ top: 80, right: 80, left: 80, bottom: 60 }}
+                        >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis
+                          type="number"
+                          dataKey="time"
+                          domain={[
+                            (dataMin) => {
+                              if (typeof intervalDuration === 'number' && intervalDuration > 0) {
+                                const minWithPadding = dataMin - intervalDuration / 2;
+                                return minWithPadding < 0 ? 0 : minWithPadding;
+                              }
+                              return Math.max(0, dataMin - 5);
+                            },
+                            (dataMax) => {
+                              if (typeof intervalDuration === 'number' && intervalDuration > 0) {
+                                return dataMax + intervalDuration / 2;
+                              }
+                              return dataMax + 5;
+                            },
+                          ]}
+                          ticks={chartData.map((entry) => entry.time)}
+                          tickFormatter={(value) => {
+                            const interval = intervalLookup.get(value);
+                            if (!interval) {
+                              return `${Math.round(value)}s`;
+                            }
+                            return `${interval.intervalStart}s-${interval.intervalEnd}s`;
+                          }}
+                          label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -10, style: { fontSize: '14px' } }}
+                          tick={{ fontSize: 12 }}
+                          scale="linear"
+                          allowDataOverflow
+                        />
+                        <YAxis
+                          label={{ value: 'Intensity', angle: -90, position: 'insideLeft', style: { fontSize: '14px' } }}
+                          tick={{ fontSize: 12 }}
+                          domain={[0, 1]}
+                        />
+                        <Tooltip
+                          cursor={{ fill: 'transparent' }}
+                          animationDuration={0}
+                          wrapperStyle={{
+                            outline: 'none',
+                            zIndex: 1000,
+                            pointerEvents: 'none',
+                          }}
+                          contentStyle={{
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                            border: '1px solid #ccc',
+                            borderRadius: '4px',
+                            padding: '10px',
+                            pointerEvents: 'none',
+                            margin: 0,
+                          }}
+                          position={{ y: -20 }}
+                          allowEscapeViewBox={{ x: false, y: true }}
+                          content={(props) => (
+                            <CustomTooltip {...props} emotionColorMap={emotionColorMap} />
+                          )}
+                        />
+                        <Legend wrapperStyle={{ paddingTop: '20px' }} payload={legendPayload} />
+                        {currentTime >= 0 && chartData.length > 0 && duration > 0 && (
+                          <ReferenceLine
+                            key={`timeline-${Math.floor(currentTime)}`}
+                            x={currentTime}
+                            stroke="#ff5a5a"
+                            strokeWidth={4}
+                            strokeDasharray="10 5"
+                            isFront
+                            alwaysShow
+                            label={{
+                              value: `▶ ${Math.round(currentTime)}s`,
+                              position: 'top',
+                              fill: '#ff5a5a',
+                              fontSize: 14,
+                              fontWeight: 'bold',
+                              offset: 10,
+                            }}
+                          />
+                        )}
+                        <Bar dataKey="score" barSize={Math.max(20, intervalDuration * 3)} maxBarSize={60}>
+                          {chartData.map((entry, index) => (
+                            <Cell
+                              key={`${entry.intervalStart}-${index}`}
+                              fill={entry.topEmotion ? (emotionColorMap[entry.topEmotion] || '#999999') : '#555555'}
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* <aside className="analysis-overview-aside">
+                {legendPayload.length > 0 && (
+                  <div className="emotion-legend-container">
+                    <h3 className="emotion-legend-title">Emotion Legend</h3>
+                    <div className="emotion-legend-grid">
+                      {legendPayload.map(({ value, color }) => (
+                        <div key={value} className="emotion-legend-entry">
+                          <span
+                            className="emotion-color-box"
+                            style={{ backgroundColor: color }}
+                          />
+                          <span className="emotion-name">{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {recordingUrl && (
+                  <a
+                    className="analysis-overview-link"
+                    href={recordingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View raw recording
+                  </a>
+                )}
+              </aside> */}
+            </section>
+          </>
+        )}
+
+        {!isLoading && !error && activeTab === 'transcript' && (
+          <section className="analysis-placeholder">
+            <h2>Transcript</h2>
+            <p>Transcript data will appear here once it is available from the analysis backend.</p>
+          </section>
+        )}
+
+        {!isLoading && !error && activeTab === 'metrics' && (
+          <section className="analysis-placeholder">
+            <h2>Metrics</h2>
+            <p>Additional metrics will be surfaced here in a future release.</p>
+          </section>
+        )}
+
+        {!isLoading && !error && activeTab === 'evaluations' && (
+          <section className="analysis-placeholder">
+            <h2>Evaluations</h2>
+            <p>Evaluation results will be displayed here when available.</p>
+          </section>
+        )}
+
+        {!isLoading && !error && activeTab === 'tools' && (
+          <section className="analysis-placeholder">
+            <h2>Tools</h2>
+            <p>Connect workflow tools and playbooks from this panel in the future.</p>
+          </section>
+        )}
+      </div>
     </main>
   );
 }
