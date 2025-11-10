@@ -182,9 +182,12 @@ function Dashboard() {
             filteredCalls.map((call) => {
               const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
               const statusLabel = formatStatusLabel(call.analysis_status);
+              const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
+              const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
+              const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
 
               return (
-                <article key={call.call_id} className="calls-table-row">
+                <article key={call.call_id} className="calls-table-row" data-status={statusKey}>
                   <div className="calls-table-cell calls-table-cell--start">
                     <span className="cell-primary">{formatTimestamp(call.start_timestamp)}</span>
                     {call.last_updated && (
@@ -216,7 +219,7 @@ function Dashboard() {
                   </div>
 
                   <div className="calls-table-cell calls-table-cell--entry">
-                    <span className={`status-pill status-${call.analysis_status || 'pending'}`}>
+                    <span className={`status-pill status-${statusKey}`}>
                       {statusLabel}
                     </span>
                   </div>
@@ -226,6 +229,7 @@ function Dashboard() {
                       type="button"
                       className="row-action"
                       onClick={() => handleAnalyzeCall(call)}
+                      disabled={isBlocked}
                     >
                       View analysis
                     </button>

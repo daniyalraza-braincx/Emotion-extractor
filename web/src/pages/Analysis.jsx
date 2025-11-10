@@ -296,7 +296,7 @@ function AnalysisPage() {
   const [emotions, setEmotions] = useState([]);
   const [summary, setSummary] = useState(null);
   const [timeline, setTimeline] = useState(() => createEmptyTimeline());
-  const [error, setError] = useState(null);
+  const [errorInfo, setErrorInfo] = useState({ message: null, retryAllowed: true });
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -350,7 +350,7 @@ function AnalysisPage() {
     setEmotions([]);
     setSummary(null);
     setTimeline(createEmptyTimeline());
-    setError(null);
+    setErrorInfo({ message: null, retryAllowed: true });
     setIsPlaying(false);
     setCurrentTime(0);
     setDuration(0);
@@ -399,6 +399,12 @@ function AnalysisPage() {
           throw new Error('Retell call_id is missing from the request.');
         }
 
+        if (request.call?.analysis_allowed === false) {
+          const reason = request.call?.analysis_block_reason || 'Call cannot be analyzed.';
+          setErrorInfo({ message: reason, retryAllowed: false });
+          return;
+        }
+
         const response = await analyzeRetellCall(callId);
 
         if (!response.success || !response.results) {
@@ -434,7 +440,9 @@ function AnalysisPage() {
         throw new Error('Unsupported analysis request type.');
       }
     } catch (err) {
-      setError(err.message || 'Failed to analyze audio. Please try again.');
+      const message = err?.message || 'Failed to analyze audio. Please try again.';
+      const retryAllowed = !/cannot be analyzed|cannot analyze emotions/i.test(message);
+      setErrorInfo({ message, retryAllowed });
     } finally {
       setIsLoading(false);
     }
@@ -447,6 +455,10 @@ function AnalysisPage() {
     }
 
     setActiveRequest(analysisRequest);
+    if (analysisRequest?.type === 'retell' && analysisRequest.call?.analysis_allowed === false) {
+      const reason = analysisRequest.call.analysis_block_reason || 'Call cannot be analyzed.';
+      setErrorInfo({ message: reason, retryAllowed: false });
+    }
   }, [analysisRequest, navigate]);
 
   useEffect(() => {
@@ -537,7 +549,7 @@ function AnalysisPage() {
     : 'Analyzing audio file… This may take a moment.';
 
   const handleRetry = () => {
-    if (activeRequest) {
+    if (activeRequest && canRetry) {
       runAnalysis(activeRequest);
     }
   };
@@ -648,6 +660,10 @@ function AnalysisPage() {
     { id: 'evaluations', label: 'Evaluations' },
     { id: 'tools', label: 'Tools' },
   ]), []);
+
+  const hasError = Boolean(errorInfo.message);
+  const errorMessage = errorInfo.message;
+  const canRetry = errorInfo.retryAllowed;
 
   const playDisabled = !audioSource.url;
   const formattedCurrentTime = formatClockTime(currentTime);
@@ -790,7 +806,7 @@ function AnalysisPage() {
         ))}
       </nav>
 
-      {!isLoading && !error && (
+      {!isLoading && !hasError && (
         <section className="analysis-summary-panel">
           <div className="analysis-summary-panel__body">
             <h2>{summaryHeading}</h2>
@@ -816,16 +832,21 @@ function AnalysisPage() {
           </div>
         )}
 
-        {!isLoading && error && (
+        {!isLoading && hasError && (
           <div className="analysis-state-card analysis-state-card--error">
-            <p className="error-message">{error}</p>
-            <button className="retry-button" onClick={handleRetry} type="button">
+            <p className="error-message">{errorMessage}</p>
+            <button
+              className="retry-button"
+              onClick={handleRetry}
+              type="button"
+              disabled={!canRetry || isLoading}
+            >
               Try Again
             </button>
           </div>
         )}
 
-        {!isLoading && !error && activeTab === 'overview' && (
+        {!isLoading && !hasError && activeTab === 'overview' && (
           <>
             <section className="analysis-overview-grid">
               <div className="analysis-overview-main">
@@ -836,7 +857,7 @@ function AnalysisPage() {
                       <p>Track the dominant emotions throughout the call.</p>
                     </div>
                     <div className="chart-wrapper">
-                      <ResponsiveContainer width="100%" height={560}>
+                      <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                           data={chartData}
                           margin={{ top: 80, right: 80, left: 80, bottom: 60 }}
@@ -968,28 +989,28 @@ function AnalysisPage() {
           </>
         )}
 
-        {!isLoading && !error && activeTab === 'transcript' && (
+        {!isLoading && !hasError && activeTab === 'transcript' && (
           <section className="analysis-placeholder">
             <h2>Transcript</h2>
             <p>Transcript data will appear here once it is available from the analysis backend.</p>
           </section>
         )}
 
-        {!isLoading && !error && activeTab === 'metrics' && (
+        {!isLoading && !hasError && activeTab === 'metrics' && (
           <section className="analysis-placeholder">
             <h2>Metrics</h2>
             <p>Additional metrics will be surfaced here in a future release.</p>
           </section>
         )}
 
-        {!isLoading && !error && activeTab === 'evaluations' && (
+        {!isLoading && !hasError && activeTab === 'evaluations' && (
           <section className="analysis-placeholder">
             <h2>Evaluations</h2>
             <p>Evaluation results will be displayed here when available.</p>
           </section>
         )}
 
-        {!isLoading && !error && activeTab === 'tools' && (
+        {!isLoading && !hasError && activeTab === 'tools' && (
           <section className="analysis-placeholder">
             <h2>Tools</h2>
             <p>Connect workflow tools and playbooks from this panel in the future.</p>

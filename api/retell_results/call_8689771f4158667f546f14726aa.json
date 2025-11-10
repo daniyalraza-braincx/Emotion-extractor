@@ -1,0 +1,1135 @@
+{
+  "call_id": "call_8689771f4158667f546f14726aa",
+  "retell_metadata": {
+    "retell_call_id": "call_8689771f4158667f546f14726aa",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bbdc1cb9876a63d4b74629440c12074fb4e6a5aac94c0ea87d5d049396eb396e/recording_multichannel.wav",
+    "start_timestamp": 1762789260119,
+    "end_timestamp": 1762789349419,
+    "duration_ms": 89300,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Hiba",
+      "program": "Machine Learning with Python",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "retell_llm_dynamic_variables": {
+      "lead_status": "new",
+      "program": "Machine Learning with Python",
+      "first_name": "Hiba",
+      "university": "Arcadia University",
+      "timezone": "pacific time"
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_8689771f4158667f546f14726aa_combined",
+      "prosody": [
+        {
+          "time_start": 2.83,
+          "time_end": 3.31,
+          "text": "Hello.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2932,
+              "percentage": 29.3
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 6.12,
+          "time_end": 9.02,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4898,
+              "percentage": 49.0
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 9.32,
+          "time_end": 10.36,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1934,
+              "percentage": 19.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 12.32,
+          "time_end": 12.64,
+          "text": "Yes.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2639,
+              "percentage": 26.4
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 14.29,
+          "time_end": 16.94,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2043,
+              "percentage": 20.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 16.94,
+          "time_end": 20.38,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3071,
+              "percentage": 30.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 20.38,
+          "time_end": 23.82,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3227,
+              "percentage": 32.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 23.82,
+          "time_end": 31.19,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4463,
+              "percentage": 44.6
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 29.23,
+          "text": "Okay.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2303,
+              "percentage": 23.0
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 31.51,
+          "time_end": 39.37,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2509,
+              "percentage": 25.1
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 36.16,
+          "time_end": 37.2,
+          "text": "Yes. I guess.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.227,
+              "percentage": 22.7
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Yes. I guess."
+        },
+        {
+          "time_start": 39.69,
+          "time_end": 43.47,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3297,
+              "percentage": 33.0
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 43.77,
+          "time_end": 47.12,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3838,
+              "percentage": 38.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 47.12,
+          "time_end": 56.72,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2022,
+              "percentage": 20.2
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 52.5,
+          "time_end": 54.04,
+          "text": "Is there any alternative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.3307,
+              "percentage": 33.1
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Is there any alternative"
+        },
+        {
+          "time_start": 56.72,
+          "time_end": 60.78,
+          "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5071,
+              "percentage": 50.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 60.78,
+          "time_end": 64.76,
+          "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4888,
+              "percentage": 48.9
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 64.76,
+          "time_end": 73.06,
+          "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2535,
+              "percentage": 25.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 70.52,
+          "time_end": 71.15,
+          "text": "Okay. Fine.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.3667,
+              "percentage": 36.7
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Okay. Fine."
+        },
+        {
+          "time_start": 73.3,
+          "time_end": 78.0,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.338,
+              "percentage": 33.8
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 78.4,
+          "time_end": 86.94,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4122,
+              "percentage": 41.2
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 83.75,
+          "time_end": 84.39,
+          "text": "No. Thanks.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.371,
+              "percentage": 37.1
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
+        },
+        {
+          "time_start": 86.94,
+          "time_end": 88.93,
+          "text": "Thank you for your time, Hiba. Have a wonderful day!",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3727,
+              "percentage": 37.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Hiba. Have a wonderful day!"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2544,
+              "percentage": 25.4
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 52.0,
+          "time_end": 53.0,
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1998,
+              "percentage": 20.0
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Is there any alternative"
+        },
+        {
+          "time_start": 82.0,
+          "time_end": 83.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2141,
+              "percentage": 21.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 89.0,
+          "time_end": 90.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2656,
+              "percentage": 26.6
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Hiba. Have a wonderful day!"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.761,
+            "end": 3.161,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.112,
+            "end": 10.581666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.231,
+            "end": 12.471,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.417,
+            "end": 26.456291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.621,
+            "end": 28.940998999999998,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.879,
+            "end": 33.7355,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.271,
+            "end": 37.071,
+            "text": "Yes. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 38.975,
+            "end": 49.40104174804687,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.480998,
+            "end": 53.921,
+            "text": "Is there any alternative"
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.583,
+            "end": 68.63479174804688,
+            "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 70.361,
+            "end": 71.001,
+            "text": "Okay. Fine."
+          },
+          {
+            "speaker": "Agent",
+            "start": 72.883,
+            "end": 82.24033325195313,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.671,
+            "end": 84.231,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 86.79,
+            "end": 89.263,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_8689771f4158667f546f14726aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bbdc1cb9876a63d4b74629440c12074fb4e6a5aac94c0ea87d5d049396eb396e/recording_multichannel.wav",
+        "start_timestamp": 1762789260119,
+        "end_timestamp": 1762789349419,
+        "duration_ms": 89300,
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "retell_llm_dynamic_variables": {
+          "lead_status": "new",
+          "program": "Machine Learning with Python",
+          "first_name": "Hiba",
+          "university": "Arcadia University",
+          "timezone": "pacific time"
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program, maintaining calmness throughout the interaction. Hiba initially expresses boredom but shifts to a muted acceptance at 70.4s when she agrees to receive a text link for scheduling a meeting, stating, \"Okay. Fine.\" The Agent's determination to assist is evident, particularly when she offers to connect Hiba with an Admissions Representative. The call concludes with Hiba confirming no further questions, indicating a commitment to the next step."
+    },
+    {
+      "filename": "call_8689771f4158667f546f14726aa_agent.wav",
+      "prosody": [
+        {
+          "time_start": 6.12,
+          "time_end": 9.02,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4898,
+              "percentage": 49.0
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 9.32,
+          "time_end": 10.36,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1934,
+              "percentage": 19.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+        },
+        {
+          "time_start": 14.29,
+          "time_end": 16.94,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2043,
+              "percentage": 20.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 16.94,
+          "time_end": 20.38,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3071,
+              "percentage": 30.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 20.38,
+          "time_end": 23.82,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3227,
+              "percentage": 32.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 23.82,
+          "time_end": 31.19,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program.",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4463,
+              "percentage": 44.6
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 31.51,
+          "time_end": 39.37,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2509,
+              "percentage": 25.1
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 39.69,
+          "time_end": 43.47,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3297,
+              "percentage": 33.0
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 43.77,
+          "time_end": 47.12,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3838,
+              "percentage": 38.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 47.12,
+          "time_end": 56.72,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2022,
+              "percentage": 20.2
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 56.72,
+          "time_end": 60.78,
+          "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5071,
+              "percentage": 50.7
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 60.78,
+          "time_end": 64.76,
+          "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4888,
+              "percentage": 48.9
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 64.76,
+          "time_end": 73.06,
+          "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2535,
+              "percentage": 25.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 73.3,
+          "time_end": 78.0,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.338,
+              "percentage": 33.8
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 78.4,
+          "time_end": 86.94,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4122,
+              "percentage": 41.2
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 86.94,
+          "time_end": 88.93,
+          "text": "Thank you for your time, Hiba. Have a wonderful day!",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3727,
+              "percentage": 37.3
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Hiba. Have a wonderful day!"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 82.0,
+          "time_end": 83.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2141,
+              "percentage": 21.4
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 89.0,
+          "time_end": 90.0,
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2656,
+              "percentage": 26.6
+            }
+          ],
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Hiba. Have a wonderful day!"
+        }
+      ],
+      "metadata": {
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.761,
+            "end": 3.161,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.112,
+            "end": 10.581666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.231,
+            "end": 12.471,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.417,
+            "end": 26.456291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.621,
+            "end": 28.940998999999998,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.879,
+            "end": 33.7355,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.271,
+            "end": 37.071,
+            "text": "Yes. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 38.975,
+            "end": 49.40104174804687,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.480998,
+            "end": 53.921,
+            "text": "Is there any alternative"
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.583,
+            "end": 68.63479174804688,
+            "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 70.361,
+            "end": 71.001,
+            "text": "Okay. Fine."
+          },
+          {
+            "speaker": "Agent",
+            "start": 72.883,
+            "end": 82.24033325195313,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.671,
+            "end": 84.231,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 86.79,
+            "end": 89.263,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_8689771f4158667f546f14726aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bbdc1cb9876a63d4b74629440c12074fb4e6a5aac94c0ea87d5d049396eb396e/recording_multichannel.wav",
+        "start_timestamp": 1762789260119,
+        "end_timestamp": 1762789349419,
+        "duration_ms": 89300,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "retell_llm_dynamic_variables": {
+          "lead_status": "new",
+          "program": "Machine Learning with Python",
+          "first_name": "Hiba",
+          "university": "Arcadia University",
+          "timezone": "pacific time"
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program, maintaining calmness throughout the interaction. Hiba initially expresses boredom but shifts to a muted acceptance at 70.4s when she agrees to receive a text link for scheduling a meeting, stating, \"Okay. Fine.\" The Agent's determination to assist is evident, particularly when she offers to connect Hiba with an Admissions Representative. The call concludes with Hiba confirming no further questions, indicating a commitment to the next step."
+    },
+    {
+      "filename": "call_8689771f4158667f546f14726aa_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.83,
+          "time_end": 3.31,
+          "text": "Hello.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2932,
+              "percentage": 29.3
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 12.32,
+          "time_end": 12.64,
+          "text": "Yes.",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2639,
+              "percentage": 26.4
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 29.23,
+          "text": "Okay.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2303,
+              "percentage": 23.0
+            }
+          ]
+        },
+        {
+          "time_start": 36.16,
+          "time_end": 37.2,
+          "text": "Yes. I guess.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.227,
+              "percentage": 22.7
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Yes. I guess."
+        },
+        {
+          "time_start": 52.5,
+          "time_end": 54.04,
+          "text": "Is there any alternative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.3307,
+              "percentage": 33.1
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Is there any alternative"
+        },
+        {
+          "time_start": 70.52,
+          "time_end": 71.15,
+          "text": "Okay. Fine.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.3667,
+              "percentage": 36.7
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Okay. Fine."
+        },
+        {
+          "time_start": 83.75,
+          "time_end": 84.39,
+          "text": "No. Thanks.",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.371,
+              "percentage": 37.1
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2544,
+              "percentage": 25.4
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 52.0,
+          "time_end": 53.0,
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1998,
+              "percentage": 20.0
+            }
+          ],
+          "speaker": "Customer",
+          "transcript_text": "Is there any alternative"
+        }
+      ],
+      "metadata": {
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.761,
+            "end": 3.161,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.112,
+            "end": 10.581666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.231,
+            "end": 12.471,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.417,
+            "end": 26.456291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.621,
+            "end": 28.940998999999998,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.879,
+            "end": 33.7355,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.271,
+            "end": 37.071,
+            "text": "Yes. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 38.975,
+            "end": 49.40104174804687,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.480998,
+            "end": 53.921,
+            "text": "Is there any alternative"
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.583,
+            "end": 68.63479174804688,
+            "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 70.361,
+            "end": 71.001,
+            "text": "Okay. Fine."
+          },
+          {
+            "speaker": "Agent",
+            "start": 72.883,
+            "end": 82.24033325195313,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.671,
+            "end": 84.231,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 86.79,
+            "end": 89.263,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_8689771f4158667f546f14726aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bbdc1cb9876a63d4b74629440c12074fb4e6a5aac94c0ea87d5d049396eb396e/recording_multichannel.wav",
+        "start_timestamp": 1762789260119,
+        "end_timestamp": 1762789349419,
+        "duration_ms": 89300,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "retell_llm_dynamic_variables": {
+          "lead_status": "new",
+          "program": "Machine Learning with Python",
+          "first_name": "Hiba",
+          "university": "Arcadia University",
+          "timezone": "pacific time"
+        }
+      },
+      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program, maintaining calmness throughout the interaction. Hiba initially expresses boredom but shifts to a muted acceptance at 70.4s when she agrees to receive a text link for scheduling a meeting, stating, \"Okay. Fine.\" The Agent's determination to assist is evident, particularly when she offers to connect Hiba with an Admissions Representative. The call concludes with Hiba confirming no further questions, indicating a commitment to the next step."
+    }
+  ]
+}

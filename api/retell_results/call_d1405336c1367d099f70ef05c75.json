@@ -1,0 +1,213 @@
+{
+  "call_id": "call_d1405336c1367d099f70ef05c75",
+  "retell_metadata": {
+    "agent_id": null,
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5fdc638ad39a792c5108b6f8689d77ebf09928e426aa427ee0ef83c56cb8cb94/recording_multichannel.wav"
+  },
+  "analysis": [
+    {
+      "filename": "call_d1405336c1367d099f70ef05c75_combined",
+      "prosody": [
+        {
+          "time_start": 2.58,
+          "time_end": 2.98,
+          "text": "Hello?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3207,
+              "percentage": 32.1
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 5.55,
+          "time_end": 8.2,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.8254,
+              "percentage": 82.5
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 8.66,
+          "time_end": 9.78,
+          "text": "May I speak with Hub?",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.1901,
+              "percentage": 19.0
+            }
+          ],
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 11.09,
+          "time_end": 12.53,
+          "text": "Sorry I'm gonna busy.",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2309,
+              "percentage": 23.1
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 13.79,
+          "time_end": 18.66,
+          "text": "Of course, Hub, thank you for your time and we'll reach out again at a better time. Have a great day.",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.5574,
+              "percentage": 55.7
+            }
+          ],
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1856,
+              "percentage": 18.6
+            }
+          ],
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 13.0,
+          "time_end": 14.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1927,
+              "percentage": 19.3
+            }
+          ],
+          "speaker": "Agent"
+        }
+      ],
+      "metadata": {
+        "agent": {},
+        "customer": {},
+        "retell_transcript_segments": [],
+        "retell_call_id": "call_d1405336c1367d099f70ef05c75",
+        "retell_transcript_available": false
+      },
+      "summary": "Agent Courtney contacts Hub on behalf of Arcadia University, expressing interest at 5.5s. Hub initially feels disappointment (1.0s) but remains calm (2.6s) before expressing awkwardness (11.1s) about being busy. The conversation concludes positively with Courtney's satisfaction (13.8s) as she thanks Hub and offers to reconnect later, leaving both parties agreeable to follow up."
+    },
+    {
+      "filename": "call_d1405336c1367d099f70ef05c75_agent.wav",
+      "prosody": [
+        {
+          "time_start": 5.55,
+          "time_end": 8.2,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.8254,
+              "percentage": 82.5
+            }
+          ]
+        },
+        {
+          "time_start": 8.66,
+          "time_end": 9.78,
+          "text": "May I speak with Hub?",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.1901,
+              "percentage": 19.0
+            }
+          ]
+        },
+        {
+          "time_start": 13.79,
+          "time_end": 18.66,
+          "text": "Of course, Hub, thank you for your time and we'll reach out again at a better time. Have a great day.",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.5574,
+              "percentage": 55.7
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 13.0,
+          "time_end": 14.0,
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1927,
+              "percentage": 19.3
+            }
+          ]
+        }
+      ],
+      "summary": "Agent Courtney contacts Hub on behalf of Arcadia University, expressing interest at 5.5s. Hub initially feels disappointment (1.0s) but remains calm (2.6s) before expressing awkwardness (11.1s) about being busy. The conversation concludes positively with Courtney's satisfaction (13.8s) as she thanks Hub and offers to reconnect later, leaving both parties agreeable to follow up."
+    },
+    {
+      "filename": "call_d1405336c1367d099f70ef05c75_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.58,
+          "time_end": 2.98,
+          "text": "Hello?",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3207,
+              "percentage": 32.1
+            }
+          ]
+        },
+        {
+          "time_start": 11.09,
+          "time_end": 12.53,
+          "text": "Sorry I'm gonna busy.",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2309,
+              "percentage": 23.1
+            }
+          ]
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1856,
+              "percentage": 18.6
+            }
+          ]
+        }
+      ],
+      "summary": "Agent Courtney contacts Hub on behalf of Arcadia University, expressing interest at 5.5s. Hub initially feels disappointment (1.0s) but remains calm (2.6s) before expressing awkwardness (11.1s) about being busy. The conversation concludes positively with Courtney's satisfaction (13.8s) as she thanks Hub and offers to reconnect later, leaving both parties agreeable to follow up."
+    }
+  ]
+}

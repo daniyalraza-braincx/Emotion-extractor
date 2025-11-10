@@ -45,7 +45,7 @@
         "retell_call_id": "call_ff5a41cb0a528621b96aa427fdc",
         "retell_transcript_available": false
       },
-      "summary": "The customer expresses interest at 3.5s with \"Hello?\" while initiating the call. The agent responds with interest at 5.3s by saying \"Hi.\" Both parties maintain a tone of curiosity, indicating a willingness to engage further. The call does not progress beyond initial greetings, leaving the outcome open-ended without a clear resolution or next steps established."
+      "summary": "The customer initiates the call with mild interest at 3.5s, asking \"Hello?\" The agent responds with interest at 5.3s, saying \"Hi.\" Both parties display a shared curiosity, indicating a potential for engagement. The call's outcome remains open-ended, as no specific decisions or next steps are established in this brief interaction."
     },
     {
       "filename": "call_ff5a41cb0a528621b96aa427fdc_agent.wav",
@@ -64,7 +64,7 @@
         }
       ],
       "burst": [],
-      "summary": "The customer expresses interest at 3.5s with \"Hello?\" while initiating the call. The agent responds with interest at 5.3s by saying \"Hi.\" Both parties maintain a tone of curiosity, indicating a willingness to engage further. The call does not progress beyond initial greetings, leaving the outcome open-ended without a clear resolution or next steps established."
+      "summary": "The customer initiates the call with mild interest at 3.5s, asking \"Hello?\" The agent responds with interest at 5.3s, saying \"Hi.\" Both parties display a shared curiosity, indicating a potential for engagement. The call's outcome remains open-ended, as no specific decisions or next steps are established in this brief interaction."
     },
     {
       "filename": "call_ff5a41cb0a528621b96aa427fdc_user.wav",
@@ -83,7 +83,7 @@
         }
       ],
       "burst": [],
-      "summary": "The customer expresses interest at 3.5s with \"Hello?\" while initiating the call. The agent responds with interest at 5.3s by saying \"Hi.\" Both parties maintain a tone of curiosity, indicating a willingness to engage further. The call does not progress beyond initial greetings, leaving the outcome open-ended without a clear resolution or next steps established."
+      "summary": "The customer initiates the call with mild interest at 3.5s, asking \"Hello?\" The agent responds with interest at 5.3s, saying \"Hi.\" Both parties display a shared curiosity, indicating a potential for engagement. The call's outcome remains open-ended, as no specific decisions or next steps are established in this brief interaction."
     }
   ]
 }
