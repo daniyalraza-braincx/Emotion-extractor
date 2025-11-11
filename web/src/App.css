@@ -261,7 +261,7 @@
 .calls-table-meta,
 .calls-table-row {
   display: grid;
-  grid-template-columns: 180px 160px minmax(0, 1fr) 140px 110px 120px 120px;
+  grid-template-columns: 180px 210px minmax(0, 1fr) 140px 110px 120px 120px;
   align-items: flex-start;
   gap: 1rem;
 }
@@ -398,6 +398,17 @@
   min-width: 0;
 }
 
+.calls-table-cell--id {
+  min-width: 0;
+}
+
+.calls-table-cell--id .cell-primary {
+  font-size: 0.87rem;
+  line-height: 1.3;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
 .calls-table-cell--title .cell-primary {
   font-size: 0.95rem;
 }
@@ -405,7 +416,7 @@
 @media (max-width: 1024px) {
   .calls-table-meta,
   .calls-table-row {
-    grid-template-columns: 160px 140px minmax(0, 1fr) 120px 100px 110px;
+    grid-template-columns: 150px 190px minmax(0, 1fr) 120px 100px 110px 110px;
   }
 
   .calls-table-meta__label:last-child {

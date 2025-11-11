@@ -143,9 +143,20 @@ export function transformApiDataToChart(apiResponse) {
     negative: 0,
   };
 
+  const normalizeCategory = (value) => {
+    if (!value) {
+      return 'neutral';
+    }
+    const normalized = String(value).trim().toLowerCase();
+    if (normalized === 'positive' || normalized === 'neutral' || normalized === 'negative') {
+      return normalized;
+    }
+    return 'neutral';
+  };
+
   const recordEmotion = (categoryKey, emotionName, score) => {
-    const normalizedCategory = categoryEmotionMap[categoryKey] ? categoryKey : 'neutral';
-    const bucket = categoryEmotionMap[normalizedCategory];
+    const normalizedCategory = normalizeCategory(categoryKey);
+    const bucket = categoryEmotionMap[normalizedCategory] || categoryEmotionMap.neutral;
     const existing = bucket.get(emotionName) || { count: 0, maxScore: 0, maxPercentage: 0, source: 'prosody' };
     existing.count += 1;
     if (typeof score === 'number') {
@@ -178,10 +189,12 @@ export function transformApiDataToChart(apiResponse) {
       .slice()
       .sort((a, b) => (typeof b.score === 'number' ? b.score : 0) - (typeof a.score === 'number' ? a.score : 0));
     const dominantEmotion = sortedEmotions[0] || null;
-    const primaryCategory = segment.primary_category
+    const primaryCategory = normalizeCategory(
+      segment.primary_category
       || dominantEmotion?.category
       || emotionList[0]?.category
-      || 'neutral';
+      || 'neutral'
+    );
 
     let speaker = normalizeSpeakerName(segment.speaker);
     if (!speaker) {
@@ -209,14 +222,10 @@ export function transformApiDataToChart(apiResponse) {
       text: segment.transcript_text || segment.text || ''
     });
 
-    if (categoryCounts[primaryCategory] !== undefined) {
-      categoryCounts[primaryCategory] += 1;
-    } else {
-      categoryCounts.neutral += 1;
-    }
+    categoryCounts[primaryCategory] = (categoryCounts[primaryCategory] ?? 0) + 1;
 
     emotionList.forEach((emotion) => {
-      const categoryKey = emotion.category || primaryCategory || 'neutral';
+      const categoryKey = normalizeCategory(emotion.category || primaryCategory || 'neutral');
       recordEmotion(categoryKey, emotion.name, emotion.score);
     });
 
@@ -247,7 +256,7 @@ export function transformApiDataToChart(apiResponse) {
         : [];
 
       emotionList.forEach((emotion) => {
-        const categoryKey = emotion.category || segment.primary_category || 'neutral';
+        const categoryKey = normalizeCategory(emotion.category || segment.primary_category || 'neutral');
         const bucket = categoryEmotionMap[categoryKey] || categoryEmotionMap.neutral;
         const existing = bucket.get(emotion.name) || { count: 0, maxScore: 0, maxPercentage: 0, source: 'prosody' };
         existing.count += 0; // don't increment count for bursts
@@ -284,6 +293,7 @@ export function transformApiDataToChart(apiResponse) {
         score: typeof segment.dominantEmotion?.score === 'number' ? segment.dominantEmotion.score : 0,
         emotions: emotionScores,
         speaker: segment.speaker || null,
+        category: segment.category || 'neutral',
       };
     })
     .sort((a, b) => a.intervalStart - b.intervalStart);
@@ -318,7 +328,7 @@ export function transformApiDataToChart(apiResponse) {
           end: segment.end,
           topEmotion: dominantEmotion?.name || null,
           score: typeof dominantEmotion?.score === 'number' ? dominantEmotion.score : null,
-          category: dominantEmotion?.category || 'neutral',
+          category: normalizeCategory(dominantEmotion?.category || 'neutral'),
           text: segment.text || ''
         };
 

@@ -36,51 +36,6 @@ const SPEAKER_ICONS = Object.freeze({
 import humanAvatar from '../assets/human.png';
 import agentAvatar from '../assets/agent.png';
 
-function generateUniqueColors(count) {
-  const colors = [];
-  const hueStep = 360 / (count || 1);
-
-  for (let i = 0; i < count; i += 1) {
-    const hue = (i * hueStep) % 360;
-    const saturation = 70 + (i % 3) * 10;
-    const lightness = 50 + (i % 2) * 10;
-
-    const h = hue / 360;
-    const s = saturation / 100;
-    const l = lightness / 100;
-
-    const c = (1 - Math.abs(2 * l - 1)) * s;
-    const x = c * (1 - Math.abs(((h * 6) % 2) - 1));
-    const m = l - c / 2;
-
-    let r;
-    let g;
-    let b;
-
-    if (h < 1 / 6) {
-      r = c; g = x; b = 0;
-    } else if (h < 2 / 6) {
-      r = x; g = c; b = 0;
-    } else if (h < 3 / 6) {
-      r = 0; g = c; b = x;
-    } else if (h < 4 / 6) {
-      r = 0; g = x; b = c;
-    } else if (h < 5 / 6) {
-      r = x; g = 0; b = c;
-    } else {
-      r = c; g = 0; b = x;
-    }
-
-    const red = Math.round((r + m) * 255);
-    const green = Math.round((g + m) * 255);
-    const blue = Math.round((b + m) * 255);
-
-    colors.push(`#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue.toString(16).padStart(2, '0')}`);
-  }
-
-  return colors;
-}
-
 function CustomTooltip({ active, payload, emotionColorMap }) {
   if (!active || !payload || payload.length === 0) {
     return null;
@@ -433,16 +388,48 @@ function AnalysisPage() {
     }
   }, [audioSource]);
 
-  const emotionColorMap = useMemo(() => {
+  const emotionCategoryMap = useMemo(() => {
     const mapping = {};
-    if (emotions.length === 0) return mapping;
-
-    const palette = generateUniqueColors(emotions.length);
-    emotions.forEach((emotion, index) => {
-      mapping[emotion] = palette[index];
+    Object.entries(categorizedEmotions).forEach(([categoryKey, items]) => {
+      if (!Array.isArray(items)) {
+        return;
+      }
+      items.forEach((emotion) => {
+        if (emotion?.name) {
+          const normalized = String(categoryKey).trim().toLowerCase();
+          mapping[emotion.name] = normalized;
+        }
+      });
+    });
+    chartData.forEach((entry) => {
+      if (entry?.topEmotion) {
+        const normalized = typeof entry.category === 'string'
+          ? entry.category.trim().toLowerCase()
+          : null;
+        if (normalized) {
+          mapping[entry.topEmotion] = normalized;
+        }
+      }
     });
     return mapping;
-  }, [emotions]);
+  }, [categorizedEmotions, chartData]);
+
+  const emotionColorMap = useMemo(() => {
+    const mapping = {};
+    if (emotions.length === 0) {
+      return mapping;
+    }
+
+    emotions.forEach((emotion) => {
+      const categoryKey = typeof emotionCategoryMap[emotion] === 'string'
+        ? emotionCategoryMap[emotion].toLowerCase()
+        : null;
+      const color = CATEGORY_COLORS[categoryKey] || CATEGORY_COLORS.neutral;
+      mapping[emotion] = color;
+    });
+
+    return mapping;
+  }, [emotions, emotionCategoryMap]);
 
   const intervalDuration = useMemo(() => {
     if (chartData.length === 0) return 10;
@@ -1101,14 +1088,25 @@ const applyAnalysisResponse = useCallback((
                   />
                 )}
               >
-                {chartData.map((entry, index) => (
-                  <Cell
-                    key={`${entry.intervalStart}-${index}`}
-                    fill={entry.topEmotion ? (emotionColorMap[entry.topEmotion] || '#999999') : '#555555'}
-                    stroke={entry.speaker ? (SPEAKER_COLORS[entry.speaker] || '#222222') : 'transparent'}
-                    strokeWidth={entry.speaker ? 2 : 0}
-                  />
-                ))}
+                {chartData.map((entry, index) => {
+                  const categoryKey = typeof entry.category === 'string'
+                    ? entry.category.toLowerCase()
+                    : null;
+                  const categoryColor = categoryKey ? CATEGORY_COLORS[categoryKey] : null;
+                  const emotionColor = entry.topEmotion
+                    ? emotionColorMap[entry.topEmotion]
+                    : null;
+                  const fillColor = emotionColor || categoryColor || CATEGORY_COLORS.neutral;
+
+                  return (
+                    <Cell
+                      key={`${entry.intervalStart}-${index}`}
+                      fill={fillColor}
+                      stroke={entry.speaker ? (SPEAKER_COLORS[entry.speaker] || '#222222') : 'transparent'}
+                      strokeWidth={entry.speaker ? 2 : 0}
+                    />
+                  );
+                })}
                 <LabelList
                   dataKey="speaker"
                   content={(labelProps) => <SpeakerLabel {...labelProps} />}

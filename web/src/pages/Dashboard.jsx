@@ -163,9 +163,9 @@ function Dashboard() {
         <div className="calls-table-header">
           <div className="calls-table-meta">
             <span className="calls-table-meta__label">Call Logs</span>
+            <span className="calls-table-meta__label">Call ID</span>
             <span className="calls-table-meta__label">Title</span>
             <span className="calls-table-meta__label calls-table-meta__label--wide">Summary</span>
-            <span className="calls-table-meta__label">Labels</span>
             <span className="calls-table-meta__label">Duration</span>
             <span className="calls-table-meta__label">Entry</span>
             <span className="calls-table-meta__label" aria-hidden />
@@ -203,6 +203,10 @@ function Dashboard() {
                     )}
                   </div>
 
+                  <div className="calls-table-cell calls-table-cell--id">
+                    <span className="cell-primary">{call.call_id || '—'}</span>
+                  </div>
+
                   <div className="calls-table-cell calls-table-cell--title">
                     <span className="cell-primary">Callback Request</span>
                     <span className="cell-secondary">{call.agent_name || call.agent_id || 'Unknown agent'}</span>
@@ -210,10 +214,6 @@ function Dashboard() {
 
                   <div className="calls-table-cell calls-table-cell--summary">
                     <p>{renderSummary(call)}</p>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--labels">
-                    <button type="button" className="label-button">Add label ＋</button>
                   </div>
 
                   <div className="calls-table-cell calls-table-cell--duration">
@@ -232,7 +232,15 @@ function Dashboard() {
 
                   <div className="calls-table-cell calls-table-cell--actions">
                     {isBlocked ? (
-                      <span className="row-action row-action--disabled">Analysis unavailable</span>
+                      <button
+                        type="button"
+                        className="row-action row-action--disabled"
+                        disabled
+                        aria-disabled="true"
+                        title={blockReason || 'Analysis unavailable'}
+                      >
+                        View analysis
+                      </button>
                     ) : (
                       <button
                         type="button"
