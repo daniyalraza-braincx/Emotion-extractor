@@ -1,0 +1,622 @@
+{
+  "call_id": "call_bf04fd6dbb3f37d890aca15733c",
+  "retell_metadata": {
+    "retell_call_id": "call_bf04fd6dbb3f37d890aca15733c",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/39e1797e39e24a296f3262a0c9bc02c1ba030d58bf694960ff4702fe4c3ac8f5/recording_multichannel.wav",
+    "start_timestamp": 1762882594485,
+    "end_timestamp": 1762882639605,
+    "duration_ms": 45120,
+    "agent": {
+      "id": "agent_c101a9f4d479ac7332c11db255",
+      "name": "Single-Prompt Agent - demo",
+      "version": 0
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 45120
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_bf04fd6dbb3f37d890aca15733c_combined",
+      "prosody": [
+        {
+          "time_start": 1.23,
+          "time_end": 5.22,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3318,
+              "percentage": 33.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 5.7,
+          "time_end": 9.84,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5097,
+              "percentage": 51.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 9.84,
+          "time_end": 13.98,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3277,
+              "percentage": 32.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 13.98,
+          "time_end": 24.21,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4266,
+              "percentage": 42.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 19.62,
+          "time_end": 20.89,
+          "text": "No. I'm not interested.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.1825,
+              "percentage": 18.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. I'm not interested."
+        },
+        {
+          "time_start": 24.21,
+          "time_end": 29.0,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2741,
+              "percentage": 27.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 33.88,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1502,
+              "percentage": 15.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        },
+        {
+          "time_start": 33.88,
+          "time_end": 38.76,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2545,
+              "percentage": 25.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        },
+        {
+          "time_start": 38.76,
+          "time_end": 42.11,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2099,
+              "percentage": 21.0,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1743,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 23.0,
+          "time_end": 24.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1759,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_c101a9f4d479ac7332c11db255",
+          "name": "Single-Prompt Agent - demo",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 7,
+          "neutral": 0,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 1.206,
+            "end": 16.810166748046875,
+            "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 19.599,
+            "end": 20.559,
+            "text": "No. I'm not interested."
+          },
+          {
+            "speaker": "Agent",
+            "start": 23.938,
+            "end": 42.45575,
+            "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+          }
+        ],
+        "retell_call_id": "call_bf04fd6dbb3f37d890aca15733c",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/39e1797e39e24a296f3262a0c9bc02c1ba030d58bf694960ff4702fe4c3ac8f5/recording_multichannel.wav",
+        "start_timestamp": 1762882594485,
+        "end_timestamp": 1762882639605,
+        "duration_ms": 45120,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 45120
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "The customer explicitly stated, 'No. I'm not interested,' indicating a refusal to engage with the agent's offer. Despite the agent's attempts to persuade, there was no commitment from the customer.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Angela reaches out to share life insurance information, expressing determination throughout. The customer initially shows doubt at 19.6s, stating, \"No. I'm not interested,\" which leads to the Agent feeling disappointment. Despite the customer's reluctance, Angela attempts to emphasize the importance of life insurance for loved ones, but the call ends without a commitment from the customer."
+    },
+    {
+      "filename": "call_bf04fd6dbb3f37d890aca15733c_agent.wav",
+      "prosody": [
+        {
+          "time_start": 1.23,
+          "time_end": 5.22,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3318,
+              "percentage": 33.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 5.7,
+          "time_end": 9.84,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5097,
+              "percentage": 51.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 9.84,
+          "time_end": 13.98,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3277,
+              "percentage": 32.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 13.98,
+          "time_end": 24.21,
+          "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4266,
+              "percentage": 42.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        },
+        {
+          "time_start": 24.21,
+          "time_end": 29.0,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2741,
+              "percentage": 27.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 33.88,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1502,
+              "percentage": 15.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        },
+        {
+          "time_start": 33.88,
+          "time_end": 38.76,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2545,
+              "percentage": 25.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        },
+        {
+          "time_start": 38.76,
+          "time_end": 42.11,
+          "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2099,
+              "percentage": 21.0,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 23.0,
+          "time_end": 24.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1759,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 7,
+          "neutral": 0,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 1.206,
+            "end": 16.810166748046875,
+            "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 19.599,
+            "end": 20.559,
+            "text": "No. I'm not interested."
+          },
+          {
+            "speaker": "Agent",
+            "start": 23.938,
+            "end": 42.45575,
+            "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+          }
+        ],
+        "retell_call_id": "call_bf04fd6dbb3f37d890aca15733c",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/39e1797e39e24a296f3262a0c9bc02c1ba030d58bf694960ff4702fe4c3ac8f5/recording_multichannel.wav",
+        "start_timestamp": 1762882594485,
+        "end_timestamp": 1762882639605,
+        "duration_ms": 45120,
+        "agent": {
+          "id": "agent_c101a9f4d479ac7332c11db255",
+          "name": "Single-Prompt Agent - demo",
+          "version": 0
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 45120
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "The customer explicitly stated, 'No. I'm not interested,' indicating a refusal to engage with the agent's offer. Despite the agent's attempts to persuade, there was no commitment from the customer.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Angela reaches out to share life insurance information, expressing determination throughout. The customer initially shows doubt at 19.6s, stating, \"No. I'm not interested,\" which leads to the Agent feeling disappointment. Despite the customer's reluctance, Angela attempts to emphasize the importance of life insurance for loved ones, but the call ends without a commitment from the customer."
+    },
+    {
+      "filename": "call_bf04fd6dbb3f37d890aca15733c_user.wav",
+      "prosody": [
+        {
+          "time_start": 19.62,
+          "time_end": 20.89,
+          "text": "No. I'm not interested.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.1825,
+              "percentage": 18.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. I'm not interested."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1743,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 1.206,
+            "end": 16.810166748046875,
+            "text": "Hello! This is Angela from ABC Insurance. I hope you\u2019re having a great day. I\u2019m reaching out to share some important information about our life insurance plans that can help protect you and your loved ones. Would you be interested in hearing how life insurance can provide financial security for your family?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 19.599,
+            "end": 20.559,
+            "text": "No. I'm not interested."
+          },
+          {
+            "speaker": "Agent",
+            "start": 23.938,
+            "end": 42.45575,
+            "text": "I understand, but let me just share why life insurance is so important. Life insurance isn\u2019t just for you\u2014it\u2019s for your loved ones. It ensures that your family is financially protected if anything unexpected happens. Even a basic plan can make a huge difference in their lives. Wouldn\u2019t you want to make sure your family is taken care of, no matter what?What do you think?"
+          }
+        ],
+        "retell_call_id": "call_bf04fd6dbb3f37d890aca15733c",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/39e1797e39e24a296f3262a0c9bc02c1ba030d58bf694960ff4702fe4c3ac8f5/recording_multichannel.wav",
+        "start_timestamp": 1762882594485,
+        "end_timestamp": 1762882639605,
+        "duration_ms": 45120,
+        "agent": {
+          "id": "agent_c101a9f4d479ac7332c11db255",
+          "name": "Single-Prompt Agent - demo",
+          "version": 0
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 45120
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "The customer explicitly stated, 'No. I'm not interested,' indicating a refusal to engage with the agent's offer. Despite the agent's attempts to persuade, there was no commitment from the customer.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Angela reaches out to share life insurance information, expressing determination throughout. The customer initially shows doubt at 19.6s, stating, \"No. I'm not interested,\" which leads to the Agent feeling disappointment. Despite the customer's reluctance, Angela attempts to emphasize the importance of life insurance for loved ones, but the call ends without a commitment from the customer."
+    }
+  ]
+}

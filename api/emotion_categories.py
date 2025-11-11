@@ -6,11 +6,11 @@ EMOTION_CATEGORIES = {
     "anger": "negative",
     "anxiety": "negative",
     "awe": "positive",
-    "awkwardness": "negative",
-    "boredom": "neutral",
+    "awkwardness": "neutral",
+    "boredom": "negative",
     "calmness": "neutral",
     "concentration": "neutral",
-    "confusion": "negative",
+    "confusion": "neutral",
     "contemplation": "neutral",
     "contentment": "positive",
     "craving": "neutral",
@@ -43,7 +43,7 @@ EMOTION_CATEGORIES = {
     "surprise (negative)": "negative",
     "surprise (positive)": "positive",
     "sympathy": "positive",
-    "tiredness": "negative",
+    "tiredness": "neutral",
     "triumph": "positive",
 }
 

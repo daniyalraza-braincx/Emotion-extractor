@@ -3,6 +3,7 @@ import os
 import json
 import time
 import wave
+import logging
 try:
     import audioop  # type: ignore
 except ModuleNotFoundError:  # pragma: no cover - fallback for Python>=3.13
@@ -745,6 +746,194 @@ Keep it under 100 words."""
         return None
 
 
+def _normalize_sentiment_category(value: Optional[str]) -> str:
+    if not value:
+        return DEFAULT_EMOTION_CATEGORY
+    normalized = str(value).strip().lower()
+    if normalized in {"positive", "neutral", "negative"}:
+        return normalized
+    return DEFAULT_EMOTION_CATEGORY
+
+
+def determine_overall_call_emotion(
+    results: List[Dict[str, Any]],
+    summary: Optional[str] = None,
+    openai_client: Optional[OpenAI] = None,
+) -> Optional[Dict[str, Any]]:
+    if not results:
+        return None
+
+    timeline_segments: List[Dict[str, Any]] = []
+    aggregated_counts = {"positive": 0, "neutral": 0, "negative": 0}
+
+    for result in results:
+        prosody_segments = result.get("prosody", []) or []
+        metadata = result.get("metadata", {}) or {}
+        for segment in prosody_segments:
+            time_start = segment.get("time_start")
+            time_end = segment.get("time_end", time_start)
+            if time_start is None or time_end is None:
+                continue
+            try:
+                start_val = float(time_start)
+                end_val = float(time_end)
+            except (TypeError, ValueError):
+                continue
+
+            speaker = segment.get("speaker") or metadata.get("speaker") or "Unknown"
+            top_emotions = segment.get("top_emotions") or []
+            primary_category = segment.get("primary_category")
+            if not primary_category and top_emotions:
+                primary_category = top_emotions[0].get("category")
+            normalized_category = _normalize_sentiment_category(primary_category)
+            aggregated_counts[normalized_category] += 1
+
+            timeline_segments.append({
+                "start": round(start_val, 2),
+                "end": round(end_val, 2),
+                "speaker": speaker,
+                "category": normalized_category,
+                "emotion": (top_emotions[0].get("name") if top_emotions else None),
+                "text": (segment.get("text") or segment.get("transcript_text") or "").strip(),
+            })
+
+    if not timeline_segments:
+        return None
+
+    timeline_segments.sort(key=lambda item: item.get("start", 0.0))
+    tail_segments = timeline_segments[-12:]
+    final_customer_segment = next(
+        (segment for segment in reversed(timeline_segments)
+         if str(segment.get("speaker", "")).lower() in {"customer", "user", "caller"}),
+        timeline_segments[-1],
+    )
+    final_customer_info = {
+        "start": final_customer_segment.get("start"),
+        "end": final_customer_segment.get("end"),
+        "category": final_customer_segment.get("category"),
+        "emotion": final_customer_segment.get("emotion"),
+        "text": final_customer_segment.get("text"),
+    }
+
+    if openai_client is None:
+        openai_client = get_openai_client()
+
+    if openai_client is not None:
+        classification_payload = {
+            "summary": summary,
+            "tail_segments": tail_segments,
+            "category_counts": aggregated_counts,
+            "final_customer": final_customer_info,
+        }
+        prompt = (
+            "You are an expert QA reviewer for contact-center calls. Analyse the data and decide the call's final sentiment/outcome.\n"
+            "Rules:\n"
+            "- Look at the customer's willingness to proceed with the AGENT'S ask (e.g. scheduling, link, callback). Emotions alone are not enough.\n"
+            "- If the customer accepts or agrees (even reluctantly, e.g. \"fine\", \"okay\", \"send it\"), treat that as a commitment: call_outcome=success and overall_emotion=positive.\n"
+            "- If the customer explicitly refuses (e.g. \"no\", \"not interested\", \"don't\") or prosody shows strong negativity matching a refusal, call_outcome=unsuccessful and overall_emotion=negative.\n"
+            "- If the customer is busy, asks for a callback, or defers without a definite acceptance (e.g. \"call me later\", \"text me when\" with no confirmation), call_outcome=pending and overall_emotion=neutral unless their tone is unmistakably negative.\n"
+            "- Saying \"no\" to additional questions after agreeing does NOT cancel a prior acceptance.\n"
+            "- When the behaviour is ambiguous, prefer pending/neutral and document the uncertainty.\n"
+            "Return STRICT JSON with keys overall_emotion (positive|neutral|negative), call_outcome (success|unsuccessful|pending), confidence (0-1), reasoning (<=2 sentences referencing the final customer behaviour).\n\n"
+            f"Data:\n{json.dumps(classification_payload, ensure_ascii=False, indent=2)}"
+        )
+
+        try:
+            response = openai_client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are an expert contact-center analyst who produces outcome-focused labels."
+                        ),
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.1,
+                max_tokens=220,
+            )
+            content = response.choices[0].message.content.strip()
+            parsed: Optional[Dict[str, Any]] = None
+            try:
+                parsed = json.loads(content)
+            except json.JSONDecodeError:
+                match = re.search(r"\{.*\}", content, re.DOTALL)
+                if match:
+                    try:
+                        parsed = json.loads(match.group(0))
+                    except json.JSONDecodeError:
+                        parsed = None
+
+            if parsed:
+                label_value = _normalize_sentiment_category(parsed.get("overall_emotion"))
+                call_outcome_value = str(parsed.get("call_outcome") or "").strip().lower()
+                if call_outcome_value not in {"success", "pending", "unsuccessful"}:
+                    call_outcome_value = {
+                        "positive": "success",
+                        "negative": "unsuccessful",
+                    }.get(label_value, "pending")
+
+                confidence_raw = parsed.get("confidence")
+                try:
+                    confidence_value = float(confidence_raw)
+                except (TypeError, ValueError):
+                    confidence_value = None
+                reasoning_text = parsed.get("reasoning")
+                if isinstance(reasoning_text, list):
+                    reasoning_text = " ".join(str(part) for part in reasoning_text)
+                if label_value in {"positive", "neutral", "negative"}:
+                    overall_result = {
+                        "label": label_value,
+                        "call_outcome": call_outcome_value,
+                        "confidence": confidence_value if confidence_value is not None else 0.75,
+                        "reasoning": str(reasoning_text).strip() if reasoning_text else "",
+                        "source": "openai",
+                    }
+                    logging.getLogger(__name__).info(
+                        "Overall call emotion classified by OpenAI (label=%s, outcome=%s)",
+                        overall_result.get("label"),
+                        overall_result.get("call_outcome"),
+                    )
+                    return overall_result
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"Warning: Overall emotion classification via OpenAI failed: {exc}")
+
+    fallback_label = _normalize_sentiment_category(final_customer_info.get("category"))
+    final_text = (final_customer_info.get("text") or "").lower()
+    deferral_keywords = (
+        "call back", "later", "another time", "not a good time", "busy",
+        "can't talk", "cannot talk", "next time", "maybe later"
+    )
+    if any(keyword in final_text for keyword in deferral_keywords):
+        fallback_outcome = "pending"
+        fallback_label = "neutral" if fallback_label != "negative" else "negative"
+    else:
+        outcome_map = {
+            "positive": "success",
+            "neutral": "pending",
+            "negative": "unsuccessful",
+        }
+        fallback_outcome = outcome_map.get(fallback_label, "pending")
+    fallback_reason = "Fallback classification from final customer segment"
+    if final_customer_info.get("text"):
+        fallback_reason += f": '{final_customer_info['text']}'"
+
+    fallback_result = {
+        "label": fallback_label,
+        "call_outcome": fallback_outcome,
+        "confidence": 0.6 if fallback_label == "positive" else 0.5,
+        "reasoning": fallback_reason,
+        "source": "fallback",
+    }
+    logging.getLogger(__name__).info(
+        "Overall call emotion determined via fallback (label=%s, outcome=%s)",
+        fallback_result.get("label"),
+        fallback_result.get("call_outcome"),
+    )
+    return fallback_result
+
+
 def analyze_audio_files(
     file_contents: List[Tuple[str, bytes]],
     client: Optional[HumeClient] = None,
@@ -816,6 +1005,7 @@ def analyze_audio_files(
             result.setdefault("metadata", {}).update(combined_retell_metadata)
     
     # Generate summary using OpenAI if available
+    summary: Optional[str] = None
     if include_summary:
         summary = summarize_predictions(results)
         if summary:
@@ -823,6 +1013,214 @@ def analyze_audio_files(
             for result in results:
                 result["summary"] = summary
     
+    overall_emotion = determine_overall_call_emotion(results, summary)
+    if overall_emotion:
+        for result in results:
+            result.setdefault("metadata", {})["overall_call_emotion"] = overall_emotion
+    
     return results
 
+def _normalize_title_text(value: str, max_words: int = 3) -> str:
+    if not value:
+        return ""
+    cleaned = re.sub(r"[^\w\s'-]", " ", str(value))
+    tokens = re.findall(r"[A-Za-z0-9']+", cleaned)
+    if not tokens:
+        return ""
+    trimmed = tokens[:max_words]
+    normalized_tokens = []
+    for token in trimmed:
+        if token.isupper():
+            normalized_tokens.append(token)
+        else:
+            normalized_tokens.append(token.capitalize())
+    return " ".join(normalized_tokens)
 
+
+def _heuristic_title_from_summary(summary_text: str) -> Optional[str]:
+    lowered = summary_text.lower()
+
+    if "not interested" in lowered or "declined" in lowered or "declines" in lowered or "refused" in lowered:
+        return "Not Interested"
+
+    if "voicemail" in lowered:
+        if "left a message" in lowered or "leave a message" in lowered:
+            return "Left Message"
+        return "Voicemail"
+
+    if "callback" in lowered or "call back" in lowered or "follow up" in lowered or "follow-up" in lowered:
+        return "Callback Requested"
+
+    if (
+        "unreachable" in lowered
+        or "no answer" in lowered
+        or "did not answer" in lowered
+        or "didn't answer" in lowered
+        or "unable to reach" in lowered
+        or "could not reach" in lowered
+        or "never answered" in lowered
+    ):
+        return "Unreachable"
+
+    if "reschedule" in lowered or "rescheduled" in lowered:
+        return "Reschedule"
+
+    if "scheduled" in lowered or "booked" in lowered or "appointment" in lowered or "meeting set" in lowered:
+        return "Scheduled"
+
+    if "payment" in lowered and (
+        "processed" in lowered
+        or "completed" in lowered
+        or "taken" in lowered
+        or "made" in lowered
+    ):
+        return "Payment Taken"
+
+    if "transfer" in lowered or "transferred" in lowered or "warm transfer" in lowered:
+        return "Transferred"
+
+    if "qualified" in lowered or "approved" in lowered:
+        return "Qualified"
+
+    if (
+        "interested" in lowered
+        or "wants to proceed" in lowered
+        or "wants to continue" in lowered
+        or "keen to proceed" in lowered
+        or "eager to continue" in lowered
+    ) and "not interested" not in lowered:
+        return "Interested"
+
+    return None
+
+
+def generate_call_title_from_summary(summary: str, openai_client: Optional[OpenAI] = None) -> Optional[str]:
+    summary_text = (summary or "").strip()
+    if not summary_text:
+        return None
+
+    heuristic_title = _heuristic_title_from_summary(summary_text)
+    if heuristic_title:
+        return heuristic_title
+
+    if openai_client is None:
+        openai_client = get_openai_client()
+
+    if openai_client is not None:
+        try:
+            response = openai_client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You create concise contact-center call titles. "
+                            "Respond with a single title of at most three words in Title Case, "
+                            "without punctuation or extra commentary."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Call summary:\n{summary_text}\n\nProvide a 1-3 word title:",
+                    },
+                ],
+                temperature=0.2,
+                max_tokens=16,
+            )
+            candidate = response.choices[0].message.content.strip()
+            normalized = _normalize_title_text(candidate)
+            if normalized:
+                return normalized
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"Warning: Could not generate call title via OpenAI: {exc}")
+
+    tokens = re.findall(r"[A-Za-z0-9']+", summary_text)
+    if tokens:
+        return _normalize_title_text(" ".join(tokens[:2]))
+    return None
+
+
+def generate_call_purpose_from_summary(summary: str, openai_client: Optional[OpenAI] = None) -> Optional[str]:
+    summary_text = (summary or "").strip()
+    if not summary_text:
+        return None
+
+    if openai_client is None:
+        openai_client = get_openai_client()
+
+    if openai_client is None:
+        return None
+
+    try:
+        response = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You classify the primary purpose of contact-center calls. "
+                        "Respond with a single label that is exactly one or two words, Title Case, "
+                        "describing the customer's main intent or the call outcome (e.g., 'Appointment Booking', 'Insurance Inquiry'). "
+                        "Do not add punctuation or commentary."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        "Call summary:\n"
+                        f"{summary_text}\n\n"
+                        "Provide the purpose (one or two words):"
+                    ),
+                },
+            ],
+            temperature=0.1,
+            max_tokens=16,
+        )
+        candidate = response.choices[0].message.content.strip()
+        normalized = _normalize_title_text(candidate, max_words=2)
+        return normalized or None
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"Warning: Could not generate call purpose via OpenAI: {exc}")
+        return None
+
+
+def derive_short_call_title(
+    call_payload: Dict[str, Any],
+    fallback_summary: Optional[str] = None,
+    openai_client: Optional[OpenAI] = None,
+) -> Optional[str]:
+    if not isinstance(call_payload, dict):
+        return None
+
+    summary_candidates: List[str] = []
+    call_analysis = call_payload.get("call_analysis")
+    if isinstance(call_analysis, dict):
+        for key in ("call_title", "call_summary_title", "summary_title", "call_summary_heading"):
+            candidate = call_analysis.get(key)
+            normalized = _normalize_title_text(candidate)
+            if normalized:
+                return normalized
+
+        for key in ("call_summary", "summary", "call_overview", "customer_summary"):
+            candidate = call_analysis.get(key)
+            if isinstance(candidate, str) and candidate.strip():
+                summary_candidates.append(candidate.strip())
+
+    for key in ("call_summary", "summary"):
+        candidate = call_payload.get(key)
+        if isinstance(candidate, str) and candidate.strip():
+            summary_candidates.append(candidate.strip())
+
+    if isinstance(fallback_summary, str) and fallback_summary.strip():
+        summary_candidates.append(fallback_summary.strip())
+
+    seen = set()
+    for summary_text in summary_candidates:
+        if not summary_text or summary_text in seen:
+            continue
+        seen.add(summary_text)
+        title = generate_call_title_from_summary(summary_text, openai_client=openai_client)
+        if title:
+            return title
+
+    return None

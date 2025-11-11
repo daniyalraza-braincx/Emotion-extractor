@@ -120,6 +120,7 @@ export function transformApiDataToChart(apiResponse) {
         negative: 0,
       },
       transcriptSegments: [],
+      overallEmotion: null,
     };
   }
 
@@ -387,6 +388,19 @@ export function transformApiDataToChart(apiResponse) {
     })
   );
 
+  const overallEmotion = (() => {
+    if (results?.metadata && typeof results.metadata === 'object') {
+      const overall = results.metadata.overall_call_emotion || results.metadata.overallEmotion;
+      if (overall) {
+        return { ...overall };
+      }
+    }
+    if (results?.overall_call_emotion) {
+      return { ...results.overall_call_emotion };
+    }
+    return null;
+  })();
+
   return {
     chartData,
     emotions: emotionsList,
@@ -398,6 +412,7 @@ export function transformApiDataToChart(apiResponse) {
     categorizedEmotions,
     categoryCounts,
     transcriptSegments,
+    overallEmotion,
   };
 }
 

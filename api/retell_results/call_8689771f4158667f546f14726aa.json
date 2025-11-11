@@ -39,13 +39,13 @@
           "time_start": 2.83,
           "time_end": 3.31,
           "text": "Hello.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2932,
               "percentage": 29.3,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -175,28 +175,28 @@
           "time_start": 29.0,
           "time_end": 29.23,
           "text": "Okay.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2303,
               "percentage": 23.0,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
           "speaker": "Customer"
         },
         {
-          "time_start": 31.59,
+          "time_start": 31.51,
           "time_end": 39.37,
           "text": "Great! Do you have a high school diploma or equivalent?",
           "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.2479,
-              "percentage": 24.8,
+              "score": 0.2509,
+              "percentage": 25.1,
               "category": "positive"
             }
           ],
@@ -208,13 +208,13 @@
           "time_start": 36.16,
           "time_end": 37.2,
           "text": "Yes. I guess.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.227,
               "percentage": 22.7,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -274,15 +274,15 @@
         },
         {
           "time_start": 52.5,
-          "time_end": 54.02,
+          "time_end": 54.04,
           "text": "Is there any alternative",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
-              "score": 0.3248,
-              "percentage": 32.5,
-              "category": "neutral"
+              "score": 0.3307,
+              "percentage": 33.1,
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -344,13 +344,13 @@
           "time_start": 70.52,
           "time_end": 71.15,
           "text": "Okay. Fine.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.3667,
               "percentage": 36.7,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -395,13 +395,13 @@
           "time_start": 83.75,
           "time_end": 84.39,
           "text": "No. Thanks.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.371,
               "percentage": 37.1,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -430,13 +430,13 @@
         {
           "time_start": 2.0,
           "time_end": 3.0,
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2544,
               "percentage": 25.4,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "burst",
@@ -446,13 +446,13 @@
         {
           "time_start": 52.0,
           "time_end": 53.0,
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.1998,
               "percentage": 20.0,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "burst",
@@ -462,13 +462,13 @@
         {
           "time_start": 82.0,
           "time_end": 83.0,
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Tiredness",
               "score": 0.2141,
               "percentage": 21.4,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "burst",
@@ -478,13 +478,13 @@
         {
           "time_start": 89.0,
           "time_end": 90.0,
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Tiredness",
               "score": 0.2656,
               "percentage": 26.6,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "burst",
@@ -493,15 +493,16 @@
         }
       ],
       "metadata": {
-        "agent": {
-          "id": "agent_efd77b346717ad7983449e92c0",
-          "name": "Single-Prompt Agent Hiba",
-          "version": 0
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Machine Learning with Python",
+          "lead_status": "new",
+          "university": "Arcadia University"
         },
         "category_counts": {
-          "positive": 11,
-          "neutral": 5,
-          "negative": 2
+          "positive": 0,
+          "neutral": 1,
+          "negative": 8
         },
         "retell_transcript_available": true,
         "retell_transcript_segments": [
@@ -595,6 +596,292 @@
         "start_timestamp": 1762789260119,
         "end_timestamp": 1762789349419,
         "duration_ms": 89300,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 89300
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.85,
+          "reasoning": "Despite displaying boredom and reluctance, the customer ultimately agreed to receive a text for scheduling a meeting, indicating a commitment to proceed.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Hiba regarding the Machine Learning with Python program, and Hiba displays boredom throughout the call, notably at 2.8s with \"Hello.\" Despite her disinterest, she shifts to calmness at 12.3s when confirming her interest. Hiba expresses reluctance with \"Is there any alternative\" at 52.5s but ultimately agrees to receive a text for scheduling a 30-minute meeting at 70.4s. The call concludes with Hiba stating, \"No. Thanks,\" but a commitment to the next step is established."
+    },
+    {
+      "filename": "call_8689771f4158667f546f14726aa_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.83,
+          "time_end": 3.31,
+          "text": "Hello.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2932,
+              "percentage": 29.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 12.32,
+          "time_end": 12.64,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2639,
+              "percentage": 26.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 29.23,
+          "text": "Okay.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2303,
+              "percentage": 23.0,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 36.16,
+          "time_end": 37.2,
+          "text": "Yes. I guess.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.227,
+              "percentage": 22.7,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes. I guess."
+        },
+        {
+          "time_start": 52.5,
+          "time_end": 54.04,
+          "text": "Is there any alternative",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.3307,
+              "percentage": 33.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Is there any alternative"
+        },
+        {
+          "time_start": 70.52,
+          "time_end": 71.15,
+          "text": "Okay. Fine.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.3667,
+              "percentage": 36.7,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Okay. Fine."
+        },
+        {
+          "time_start": 83.75,
+          "time_end": 84.39,
+          "text": "No. Thanks.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.371,
+              "percentage": 37.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2544,
+              "percentage": 25.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 52.0,
+          "time_end": 53.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1998,
+              "percentage": 20.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Is there any alternative"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 1,
+          "negative": 8
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.761,
+            "end": 3.161,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.112,
+            "end": 10.581666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.231,
+            "end": 12.471,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.417,
+            "end": 26.456291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.621,
+            "end": 28.940998999999998,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.879,
+            "end": 33.7355,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.271,
+            "end": 37.071,
+            "text": "Yes. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 38.975,
+            "end": 49.40104174804687,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.480998,
+            "end": 53.921,
+            "text": "Is there any alternative"
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.583,
+            "end": 68.63479174804688,
+            "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 70.361,
+            "end": 71.001,
+            "text": "Okay. Fine."
+          },
+          {
+            "speaker": "Agent",
+            "start": 72.883,
+            "end": 82.24033325195313,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.671,
+            "end": 84.231,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 86.79,
+            "end": 89.263,
+            "text": "Thank you for your time, Hiba. Have a wonderful day!"
+          }
+        ],
+        "retell_call_id": "call_8689771f4158667f546f14726aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bbdc1cb9876a63d4b74629440c12074fb4e6a5aac94c0ea87d5d049396eb396e/recording_multichannel.wav",
+        "start_timestamp": 1762789260119,
+        "end_timestamp": 1762789349419,
+        "duration_ms": 89300,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
         "customer": {
           "first_name": "Hiba",
           "program": "Machine Learning with Python",
@@ -613,9 +900,16 @@
           },
           "too_short": false,
           "duration_ms": 89300
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.85,
+          "reasoning": "Despite displaying boredom and reluctance, the customer ultimately agreed to receive a text for scheduling a meeting, indicating a commitment to proceed.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Hiba regarding her interest in the Machine Learning with Python program. Hiba initially expresses boredom but shifts to calmness at 12.3s when confirming her identity. The agent maintains determination throughout, effectively guiding Hiba to commit to receiving a text link for scheduling a 30-minute consultation with an Admissions Representative. The call concludes positively, with Hiba affirming her next step by stating, \"Okay. Fine,\" at 70.4s, while the agent remains calm and appreciative until the end."
+      "summary": "Agent Courtney contacts Hiba regarding the Machine Learning with Python program, and Hiba displays boredom throughout the call, notably at 2.8s with \"Hello.\" Despite her disinterest, she shifts to calmness at 12.3s when confirming her interest. Hiba expresses reluctance with \"Is there any alternative\" at 52.5s but ultimately agrees to receive a text for scheduling a 30-minute meeting at 70.4s. The call concludes with Hiba stating, \"No. Thanks,\" but a commitment to the next step is established."
     },
     {
       "filename": "call_8689771f4158667f546f14726aa_agent.wav",
@@ -723,15 +1017,15 @@
           "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
         },
         {
-          "time_start": 31.59,
+          "time_start": 31.51,
           "time_end": 39.37,
           "text": "Great! Do you have a high school diploma or equivalent?",
           "primary_category": "positive",
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.2479,
-              "percentage": 24.8,
+              "score": 0.2509,
+              "percentage": 25.1,
               "category": "positive"
             }
           ],
@@ -897,13 +1191,13 @@
         {
           "time_start": 82.0,
           "time_end": 83.0,
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Tiredness",
               "score": 0.2141,
               "percentage": 21.4,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "burst",
@@ -913,13 +1207,13 @@
         {
           "time_start": 89.0,
           "time_end": 90.0,
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Tiredness",
               "score": 0.2656,
               "percentage": 26.6,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "burst",
@@ -930,287 +1224,7 @@
       "metadata": {
         "category_counts": {
           "positive": 11,
-          "neutral": 5,
-          "negative": 2
-        },
-        "retell_transcript_available": true,
-        "retell_transcript_segments": [
-          {
-            "speaker": "Customer",
-            "start": 2.761,
-            "end": 3.161,
-            "text": "Hello."
-          },
-          {
-            "speaker": "Agent",
-            "start": 6.112,
-            "end": 10.581666748046874,
-            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Hiba?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 12.231,
-            "end": 12.471,
-            "text": "Yes."
-          },
-          {
-            "speaker": "Agent",
-            "start": 14.417,
-            "end": 26.456291748046876,
-            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Machine Learning with Python program! Before we move forward, let me pull up the requirements for your program."
-          },
-          {
-            "speaker": "Customer",
-            "start": 28.621,
-            "end": 28.940998999999998,
-            "text": "Okay."
-          },
-          {
-            "speaker": "Agent",
-            "start": 30.879,
-            "end": 33.7355,
-            "text": "Great! Do you have a high school diploma or equivalent?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 36.271,
-            "end": 37.071,
-            "text": "Yes. I guess."
-          },
-          {
-            "speaker": "Agent",
-            "start": 38.975,
-            "end": 49.40104174804687,
-            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 52.480998,
-            "end": 53.921,
-            "text": "Is there any alternative"
-          },
-          {
-            "speaker": "Agent",
-            "start": 56.583,
-            "end": 68.63479174804688,
-            "text": "We offer a variety of programs, and the best way to explore your options is to connect with an Admissions Representative. They can provide detailed information and help you find the right fit. How about I text you a link to choose a 30-minute spot?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 70.361,
-            "end": 71.001,
-            "text": "Okay. Fine."
-          },
-          {
-            "speaker": "Agent",
-            "start": 72.883,
-            "end": 82.24033325195313,
-            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 83.671,
-            "end": 84.231,
-            "text": "No. Thanks."
-          },
-          {
-            "speaker": "Agent",
-            "start": 86.79,
-            "end": 89.263,
-            "text": "Thank you for your time, Hiba. Have a wonderful day!"
-          }
-        ],
-        "retell_call_id": "call_8689771f4158667f546f14726aa",
-        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bbdc1cb9876a63d4b74629440c12074fb4e6a5aac94c0ea87d5d049396eb396e/recording_multichannel.wav",
-        "start_timestamp": 1762789260119,
-        "end_timestamp": 1762789349419,
-        "duration_ms": 89300,
-        "agent": {
-          "id": "agent_efd77b346717ad7983449e92c0",
-          "name": "Single-Prompt Agent Hiba",
-          "version": 0
-        },
-        "customer": {
-          "first_name": "Hiba",
-          "program": "Machine Learning with Python",
-          "lead_status": "new",
-          "university": "Arcadia University"
-        },
-        "analysis_constraints": {
-          "voicemail_detected": false,
-          "voicemail_flags": {
-            "in_voicemail": false,
-            "summary_mentions_voicemail": false,
-            "transcript_mentions_voicemail": false,
-            "disconnection_reason": "agent_hangup",
-            "summary_mentions_leave_message": false,
-            "transcript_mentions_leave_message": false
-          },
-          "too_short": false,
-          "duration_ms": 89300
-        }
-      },
-      "summary": "Agent Courtney contacts Hiba regarding her interest in the Machine Learning with Python program. Hiba initially expresses boredom but shifts to calmness at 12.3s when confirming her identity. The agent maintains determination throughout, effectively guiding Hiba to commit to receiving a text link for scheduling a 30-minute consultation with an Admissions Representative. The call concludes positively, with Hiba affirming her next step by stating, \"Okay. Fine,\" at 70.4s, while the agent remains calm and appreciative until the end."
-    },
-    {
-      "filename": "call_8689771f4158667f546f14726aa_user.wav",
-      "prosody": [
-        {
-          "time_start": 2.83,
-          "time_end": 3.31,
-          "text": "Hello.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.2932,
-              "percentage": 29.3,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Hello."
-        },
-        {
-          "time_start": 12.32,
-          "time_end": 12.64,
-          "text": "Yes.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Calmness",
-              "score": 0.2639,
-              "percentage": 26.4,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Yes."
-        },
-        {
-          "time_start": 29.0,
-          "time_end": 29.23,
-          "text": "Okay.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.2303,
-              "percentage": 23.0,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody"
-        },
-        {
-          "time_start": 36.16,
-          "time_end": 37.2,
-          "text": "Yes. I guess.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.227,
-              "percentage": 22.7,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Yes. I guess."
-        },
-        {
-          "time_start": 52.5,
-          "time_end": 54.02,
-          "text": "Is there any alternative",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.3248,
-              "percentage": 32.5,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Is there any alternative"
-        },
-        {
-          "time_start": 70.52,
-          "time_end": 71.15,
-          "text": "Okay. Fine.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.3667,
-              "percentage": 36.7,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Okay. Fine."
-        },
-        {
-          "time_start": 83.75,
-          "time_end": 84.39,
-          "text": "No. Thanks.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.371,
-              "percentage": 37.1,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "No. Thanks."
-        }
-      ],
-      "burst": [
-        {
-          "time_start": 2.0,
-          "time_end": 3.0,
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.2544,
-              "percentage": 25.4,
-              "category": "neutral"
-            }
-          ],
-          "source": "burst",
-          "speaker": "Customer",
-          "transcript_text": "Hello."
-        },
-        {
-          "time_start": 52.0,
-          "time_end": 53.0,
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Boredom",
-              "score": 0.1998,
-              "percentage": 20.0,
-              "category": "neutral"
-            }
-          ],
-          "source": "burst",
-          "speaker": "Customer",
-          "transcript_text": "Is there any alternative"
-        }
-      ],
-      "metadata": {
-        "category_counts": {
-          "positive": 0,
-          "neutral": 9,
+          "neutral": 7,
           "negative": 0
         },
         "retell_transcript_available": true,
@@ -1328,9 +1342,16 @@
           },
           "too_short": false,
           "duration_ms": 89300
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.85,
+          "reasoning": "Despite displaying boredom and reluctance, the customer ultimately agreed to receive a text for scheduling a meeting, indicating a commitment to proceed.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Hiba regarding her interest in the Machine Learning with Python program. Hiba initially expresses boredom but shifts to calmness at 12.3s when confirming her identity. The agent maintains determination throughout, effectively guiding Hiba to commit to receiving a text link for scheduling a 30-minute consultation with an Admissions Representative. The call concludes positively, with Hiba affirming her next step by stating, \"Okay. Fine,\" at 70.4s, while the agent remains calm and appreciative until the end."
+      "summary": "Agent Courtney contacts Hiba regarding the Machine Learning with Python program, and Hiba displays boredom throughout the call, notably at 2.8s with \"Hello.\" Despite her disinterest, she shifts to calmness at 12.3s when confirming her interest. Hiba expresses reluctance with \"Is there any alternative\" at 52.5s but ultimately agrees to receive a text for scheduling a 30-minute meeting at 70.4s. The call concludes with Hiba stating, \"No. Thanks,\" but a commitment to the next step is established."
     }
   ]
 }
