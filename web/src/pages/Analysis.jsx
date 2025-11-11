@@ -908,9 +908,9 @@ const applyAnalysisResponse = useCallback((
   ]), []);
 
   const metricsOptions = useMemo(() => ([
+    { id: 'combined', label: 'Combined' },
     { id: 'customer', label: 'User' },
     { id: 'agent', label: 'Agent' },
-    { id: 'combined', label: 'Combined' },
   ]), []);
 
   const activeSpeakerMetrics = useMemo(() => {
@@ -1433,22 +1433,22 @@ const applyAnalysisResponse = useCallback((
             <div className={`overall-emotion-card overall-emotion-card--${(activeSpeakerMetrics.overallEmotion?.label) || 'unknown'}`}>
               <div className="overall-emotion-card__header">
                 <span className="overall-emotion-card__title">Overall Status</span>
-                {activeSpeakerMetrics.overallEmotion?.call_outcome && (
+                {/* {activeSpeakerMetrics.overallEmotion?.call_outcome && (
                   <span className="overall-emotion-card__tag">
                     {formatStatusLabel(activeSpeakerMetrics.overallEmotion.call_outcome)}
                   </span>
-                )}
+                )} */}
               </div>
               {activeSpeakerMetrics.overallEmotion ? (
                 <>
                   <div className="overall-emotion-card__label">
                     {formatStatusLabel(activeSpeakerMetrics.overallEmotion.label || 'neutral')}
                   </div>
-                  {Number.isFinite(activeSpeakerMetrics.overallEmotion.confidence) && (
+                  {/* {Number.isFinite(activeSpeakerMetrics.overallEmotion.confidence) && (
                     <div className="overall-emotion-card__confidence">
                       {Math.round(Math.max(0, Math.min(1, activeSpeakerMetrics.overallEmotion.confidence)) * 100)}% confidence
                     </div>
-                  )}
+                  )} */}
                   {activeSpeakerMetrics.overallEmotion.reasoning && (
                     <p className="overall-emotion-card__reason">{activeSpeakerMetrics.overallEmotion.reasoning}</p>
                   )}
