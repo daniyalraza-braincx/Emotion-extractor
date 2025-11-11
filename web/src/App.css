@@ -279,7 +279,7 @@
 }
 
 .calls-table-meta__label--wide {
-  grid-column: 3 / 4;
+  grid-column: 4 / 5;
 }
 
 .calls-table-body {
