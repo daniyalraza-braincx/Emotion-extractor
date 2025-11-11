@@ -33,6 +33,33 @@ const SPEAKER_ICONS = Object.freeze({
   Agent: '🤖',
   Unknown: '❔',
 });
+
+const EMPTY_CATEGORY_COUNTS = Object.freeze({
+  positive: 0,
+  neutral: 0,
+  negative: 0,
+});
+
+function createEmptyMetricSummary() {
+  return {
+    categoryCounts: { ...EMPTY_CATEGORY_COUNTS },
+    categorizedEmotions: {
+      positive: [],
+      neutral: [],
+      negative: [],
+    },
+    overallEmotion: null,
+    segmentCount: 0,
+  };
+}
+
+function createEmptySpeakerMetrics() {
+  return {
+    combined: createEmptyMetricSummary(),
+    agent: createEmptyMetricSummary(),
+    customer: createEmptyMetricSummary(),
+  };
+}
 import humanAvatar from '../assets/human.png';
 import agentAvatar from '../assets/agent.png';
 
@@ -445,6 +472,8 @@ function AnalysisPage() {
     negative: [],
   });
   const [overallEmotion, setOverallEmotion] = useState(null);
+  const [speakerMetrics, setSpeakerMetrics] = useState(() => createEmptySpeakerMetrics());
+  const [activeMetricsSpeaker, setActiveMetricsSpeaker] = useState('combined');
   const [timeline, setTimeline] = useState(() => createEmptyTimeline());
   const [transcriptSegments, setTranscriptSegments] = useState([]);
   const [errorInfo, setErrorInfo] = useState({ message: null, retryAllowed: true });
@@ -548,6 +577,8 @@ function AnalysisPage() {
     setEmotions([]);
     setSummary(null);
     setOverallEmotion(null);
+    setSpeakerMetrics(createEmptySpeakerMetrics());
+    setActiveMetricsSpeaker('combined');
     setTimeline(createEmptyTimeline());
     setTranscriptSegments([]);
     setErrorInfo({ message: null, retryAllowed: true });
@@ -561,6 +592,7 @@ const applyAnalysisResponse = useCallback((
   fallbackRecordingUrl = null,
   fallbackIsObjectUrl = false,
 ) => {
+  const transformedPayload = transformApiDataToChart(response);
   const {
     chartData: transformed,
     emotions: detected,
@@ -569,7 +601,8 @@ const applyAnalysisResponse = useCallback((
     categoryCounts: counts,
     transcriptSegments: transcriptList,
     overallEmotion: overall,
-  } = transformApiDataToChart(response);
+    speakerMetrics: metrics,
+  } = transformedPayload;
 
   if (transformed.length === 0) {
     throw new Error('No emotion data found in the analysis results');
@@ -585,6 +618,12 @@ const applyAnalysisResponse = useCallback((
   setCategoryCounts(counts || { positive: 0, neutral: 0, negative: 0 });
   setCategorizedEmotions(categorized || { positive: [], neutral: [], negative: [] });
   setOverallEmotion(overall || null);
+  const resolvedMetrics = metrics || createEmptySpeakerMetrics();
+  setSpeakerMetrics(resolvedMetrics);
+  setActiveMetricsSpeaker(() => {
+    const combinedMetrics = resolvedMetrics.combined || createEmptyMetricSummary();
+    return combinedMetrics.segmentCount > 0 ? 'combined' : 'combined';
+  });
   setTimeline(normalizeTimeline(speakerTimeline));
   setTranscriptSegments(Array.isArray(transcriptList) ? transcriptList : []);
 
@@ -867,6 +906,30 @@ const applyAnalysisResponse = useCallback((
     { id: 'metrics', label: 'Metrics' },
     // { id: 'evaluations', label: 'Evaluations' },
   ]), []);
+
+  const metricsOptions = useMemo(() => ([
+    { id: 'customer', label: 'User' },
+    { id: 'agent', label: 'Agent' },
+    { id: 'combined', label: 'Combined' },
+  ]), []);
+
+  const activeSpeakerMetrics = useMemo(() => {
+    const fallback = speakerMetrics?.combined ?? createEmptyMetricSummary();
+    const selected = speakerMetrics?.[activeMetricsSpeaker] ?? fallback;
+    const safeCounts = selected?.categoryCounts ?? { ...EMPTY_CATEGORY_COUNTS };
+    const safeCategories = selected?.categorizedEmotions ?? {
+      positive: [],
+      neutral: [],
+      negative: [],
+    };
+
+    return {
+      categoryCounts: safeCounts,
+      categorizedEmotions: safeCategories,
+      overallEmotion: selected?.overallEmotion ?? null,
+      segmentCount: selected?.segmentCount ?? 0,
+    };
+  }, [speakerMetrics, activeMetricsSpeaker]);
 
   const hasError = Boolean(errorInfo.message);
   const errorMessage = errorInfo.message;
@@ -1300,6 +1363,26 @@ const applyAnalysisResponse = useCallback((
             <p className="analysis-metrics__subtitle">
               Breakdown of detected emotions grouped into positive, neutral, and negative categories.
             </p>
+
+            <div className="analysis-metrics-toggle" role="group" aria-label="Select speaker focus for emotion metrics">
+              {metricsOptions.map((option) => {
+                const optionMetrics = speakerMetrics?.[option.id];
+                const hasSegments = optionMetrics && (optionMetrics.segmentCount ?? 0) > 0;
+                const isActive = activeMetricsSpeaker === option.id;
+                const isDisabled = option.id !== 'combined' && !hasSegments;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    className={`analysis-tab analysis-metrics-toggle__button ${isActive ? 'is-active' : ''}`}
+                    onClick={() => setActiveMetricsSpeaker(option.id)}
+                    disabled={isDisabled}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
             
             <div className="emotion-category-grid">
               {['positive', 'neutral', 'negative'].map((categoryKey) => {
@@ -1308,8 +1391,8 @@ const applyAnalysisResponse = useCallback((
                   neutral: 'Neutral Emotions',
                   negative: 'Negative Emotions',
                 };
-                const items = categorizedEmotions[categoryKey] || [];
-                const segmentCount = categoryCounts?.[categoryKey] ?? 0;
+                const items = activeSpeakerMetrics.categorizedEmotions[categoryKey] || [];
+                const segmentCount = activeSpeakerMetrics.categoryCounts?.[categoryKey] ?? 0;
 
                 return (
                   <div className={`emotion-category-card emotion-category-card--${categoryKey}`} key={categoryKey}>
@@ -1347,27 +1430,27 @@ const applyAnalysisResponse = useCallback((
                 );
               })}
             </div>
-            <div className={`overall-emotion-card overall-emotion-card--${overallEmotion?.label || 'unknown'}`}>
+            <div className={`overall-emotion-card overall-emotion-card--${(activeSpeakerMetrics.overallEmotion?.label) || 'unknown'}`}>
               <div className="overall-emotion-card__header">
                 <span className="overall-emotion-card__title">Overall Status</span>
-                {overallEmotion?.call_outcome && (
+                {activeSpeakerMetrics.overallEmotion?.call_outcome && (
                   <span className="overall-emotion-card__tag">
-                    {formatStatusLabel(overallEmotion.call_outcome)}
+                    {formatStatusLabel(activeSpeakerMetrics.overallEmotion.call_outcome)}
                   </span>
                 )}
               </div>
-              {overallEmotion ? (
+              {activeSpeakerMetrics.overallEmotion ? (
                 <>
                   <div className="overall-emotion-card__label">
-                    {formatStatusLabel(overallEmotion.label || 'neutral')}
+                    {formatStatusLabel(activeSpeakerMetrics.overallEmotion.label || 'neutral')}
                   </div>
-                  {Number.isFinite(overallEmotion.confidence) && (
+                  {Number.isFinite(activeSpeakerMetrics.overallEmotion.confidence) && (
                     <div className="overall-emotion-card__confidence">
-                      {Math.round(Math.max(0, Math.min(1, overallEmotion.confidence)) * 100)}% confidence
+                      {Math.round(Math.max(0, Math.min(1, activeSpeakerMetrics.overallEmotion.confidence)) * 100)}% confidence
                     </div>
                   )}
-                  {overallEmotion.reasoning && (
-                    <p className="overall-emotion-card__reason">{overallEmotion.reasoning}</p>
+                  {activeSpeakerMetrics.overallEmotion.reasoning && (
+                    <p className="overall-emotion-card__reason">{activeSpeakerMetrics.overallEmotion.reasoning}</p>
                   )}
                 </>
               ) : (
