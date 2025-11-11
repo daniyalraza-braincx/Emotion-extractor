@@ -11,8 +11,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from extractor import (
     analyze_audio_files,
+    derive_short_call_title,
     download_retell_recording,
     extract_retell_transcript_segments,
+    generate_call_purpose_from_summary,
+    get_openai_client,
     get_retell_call_details,
     split_stereo_wav_channels,
 )
@@ -217,6 +220,37 @@ def _upsert_retell_call_metadata(call_data: Dict[str, Any], status: Optional[str
             "duration_ms": call_data.get("duration_ms") or existing.get("duration_ms"),
         }
 
+        call_summary_text: Optional[str] = None
+        call_analysis = call_data.get("call_analysis")
+        if isinstance(call_analysis, dict):
+            summary_candidate = call_analysis.get("call_summary") or call_analysis.get("summary")
+            if isinstance(summary_candidate, str) and summary_candidate.strip():
+                call_summary_text = summary_candidate.strip()
+        if not call_summary_text:
+            for key in ("summary", "call_summary"):
+                summary_candidate = call_data.get(key)
+                if isinstance(summary_candidate, str) and summary_candidate.strip():
+                    call_summary_text = summary_candidate.strip()
+                    break
+
+        llm_client = None
+
+        if call_summary_text:
+            merged["call_summary"] = call_summary_text
+            if not merged.get("call_purpose"):
+                llm_client = llm_client or get_openai_client()
+                purpose = generate_call_purpose_from_summary(call_summary_text, openai_client=llm_client)
+                if purpose:
+                    merged["call_purpose"] = purpose
+
+        if not merged.get("call_title"):
+            call_title = derive_short_call_title(
+                call_data,
+                fallback_summary=call_summary_text,
+            )
+            if call_title:
+                merged["call_title"] = call_title
+
         constraints = _evaluate_call_constraints(call_data)
         merged["analysis_allowed"] = constraints["analysis_allowed"]
         merged["analysis_block_reason"] = constraints["analysis_block_reason"]
@@ -410,6 +444,19 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             merged_data.update({k: v for k, v in call_data.items() if v is not None})
             call_data = merged_data
 
+        call_summary_text: Optional[str] = None
+        call_analysis = call_data.get("call_analysis")
+        if isinstance(call_analysis, dict):
+            summary_candidate = call_analysis.get("call_summary") or call_analysis.get("summary")
+            if isinstance(summary_candidate, str) and summary_candidate.strip():
+                call_summary_text = summary_candidate.strip()
+        if not call_summary_text:
+            for key in ("summary", "call_summary"):
+                candidate = call_data.get(key)
+                if isinstance(candidate, str) and candidate.strip():
+                    call_summary_text = candidate.strip()
+                    break
+
         if not call_data.get("recording_multi_channel_url"):
             logger.error("No recording URL available for call %s", call_id)
             raise RuntimeError("No recording URL available for this call")
@@ -425,6 +472,19 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             "agent_id": call_data.get("agent_id"),
             "agent_name": call_data.get("agent_name"),
         }
+        if call_summary_text:
+            metadata_updates["call_summary"] = call_summary_text
+            purpose = generate_call_purpose_from_summary(call_summary_text)
+            if purpose:
+                metadata_updates["call_purpose"] = purpose
+
+        call_title = derive_short_call_title(
+            call_data,
+            fallback_summary=call_summary_text,
+        )
+        if call_title:
+            metadata_updates["call_title"] = call_title
+
         if not constraint_info["analysis_allowed"]:
             metadata_updates["analysis_status"] = "blocked"
             metadata_updates["error_message"] = None
@@ -497,6 +557,14 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             combined_result = _merge_channel_results(call_id, analysis_results, transcript_segments)
             analysis_results.insert(0, combined_result)
 
+        analysis_summary: Optional[str] = None
+        for result in analysis_results:
+            if isinstance(result, dict):
+                summary_candidate = result.get("summary")
+                if isinstance(summary_candidate, str) and summary_candidate.strip():
+                    analysis_summary = summary_candidate.strip()
+                    break
+
         payload_to_store = {
             "call_id": call_id,
             "retell_metadata": retell_metadata,
@@ -505,13 +573,44 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
 
         saved_path = _persist_retell_results(call_id, payload_to_store)
         try:
+            final_updates: Dict[str, Any] = {
+                "analysis_status": "completed",
+                "analysis_filename": os.path.basename(saved_path),
+                "recording_multi_channel_url": recording_url,
+            }
+
+            try:
+                existing_entry = _get_retell_call_entry(call_id)
+            except KeyError:
+                existing_entry = None
+
+            openai_client = None
+            fallback_summary = analysis_summary or call_summary_text
+
+            if analysis_summary and (not existing_entry or not existing_entry.get("call_summary")):
+                final_updates["call_summary"] = analysis_summary
+
+            needs_title = not existing_entry or not existing_entry.get("call_title")
+            if needs_title and fallback_summary:
+                openai_client = openai_client or get_openai_client()
+                derived_title = derive_short_call_title(
+                    call_data,
+                    fallback_summary=fallback_summary,
+                    openai_client=openai_client,
+                )
+                if derived_title:
+                    final_updates["call_title"] = derived_title
+
+            needs_purpose = not existing_entry or not existing_entry.get("call_purpose")
+            if needs_purpose and fallback_summary:
+                openai_client = openai_client or get_openai_client()
+                purpose = generate_call_purpose_from_summary(fallback_summary, openai_client=openai_client)
+                if purpose:
+                    final_updates["call_purpose"] = purpose
+
             _update_retell_call_entry(
                 call_id,
-                {
-                    "analysis_status": "completed",
-                    "analysis_filename": os.path.basename(saved_path),
-                    "recording_multi_channel_url": recording_url,
-                },
+                final_updates,
             )
         except KeyError:
             logger.warning("Retell call %s not found in metadata store while finalizing analysis", call_id)

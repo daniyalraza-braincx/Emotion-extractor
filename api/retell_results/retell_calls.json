@@ -650,6 +650,142 @@
         "duration_ms": 18941
       },
       "duration_ms": 18941
+    },
+    "call_967b8cd5046e0ce0872fb0790d0": {
+      "call_id": "call_967b8cd5046e0ce0872fb0790d0",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762875657931,
+      "end_timestamp": 1762875705347,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d11626ef881fd2abd6f17f171a3419f102e6cd149d63f52e99e2d59c2b635722/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_967b8cd5046e0ce0872fb0790d0.json",
+      "duration_ms": 47416,
+      "call_summary": "The agent from ABC Insurance attempted to inform the user about life insurance plans, but the user declined and indicated they were busy and not interested. The agent tried to emphasize the importance of life insurance, but the user remained uninterested and ended the conversation.",
+      "call_title": "Not Interested",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 47416
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-11T17:58:34Z",
+      "call_purpose": "Insurance Selling"
+    },
+    "call_90873bb66541a92fbd911fa9439": {
+      "call_id": "call_90873bb66541a92fbd911fa9439",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762883972826,
+      "end_timestamp": 1762884030012,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a1bc1d882b8eb8bb669cfea81cc8a16182dff39b701f6e8d4b6bcc1772add08b/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 57186,
+      "call_summary": "The agent contacted the user to discuss life and car insurance plans, confirming the user already has life insurance. The user declined to hear more about enhancing their current coverage, and the agent attempted to emphasize the importance of comprehensive insurance.",
+      "call_purpose": "Insurance Selling",
+      "call_title": "Not Interested",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 57186
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-11T18:00:35Z"
+    },
+    "call_4ef04cd8499413986710fac59af": {
+      "call_id": "call_4ef04cd8499413986710fac59af",
+      "agent_id": "agent_1066530c099777da500e93f5cb",
+      "agent_name": "Single-Prompt Agent Daniyal",
+      "user_phone_number": null,
+      "start_timestamp": 1762884087749,
+      "end_timestamp": 1762884159145,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/807ad8838e6032e5ad33c675796c209fcefe87c036ee434dcf59cfe7f7a23c68/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_4ef04cd8499413986710fac59af.json",
+      "duration_ms": 71396,
+      "call_summary": "The agent, Courtney, called Daniyal on behalf of Arcadia University to discuss the Certification Exam Preparation Course program. They confirmed Daniyal's eligibility by verifying his high school diploma and discussed the recommended technical background and skills for the program. The call was ongoing and appeared to be progressing smoothly.",
+      "call_purpose": "Technical Support",
+      "call_title": "Certification Course Discussion",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 71396
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-11T18:05:11Z"
+    },
+    "call_50eb5ecaa86c385a335e2388a29": {
+      "call_id": "call_50eb5ecaa86c385a335e2388a29",
+      "agent_id": "agent_1066530c099777da500e93f5cb",
+      "agent_name": "Single-Prompt Agent Daniyal",
+      "user_phone_number": null,
+      "start_timestamp": 1762885063143,
+      "end_timestamp": 1762885153513,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/82c4afa727b05776442a369e3a22dd041101d235376959d439f7ec1561781386/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 90370,
+      "call_summary": "The agent from Arcadia University contacted Daniyal to discuss the Certification Exam Preparation Course program, confirmed his eligibility and interest, and offered to connect him with an Admissions Representative by sending a scheduling link via text. Daniyal agreed to receive the text and proceed with the next steps.",
+      "call_purpose": "Course Enrollment Assistance",
+      "call_title": "Certification Course Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 90370
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-11T18:19:21Z"
     }
   }
 }

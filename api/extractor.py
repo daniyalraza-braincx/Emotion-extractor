@@ -745,6 +745,212 @@ Keep it under 100 words."""
         return None
 
 
+def _normalize_title_text(value: str, max_words: int = 3) -> str:
+    if not value:
+        return ""
+    cleaned = re.sub(r"[^\w\s'-]", " ", str(value))
+    tokens = re.findall(r"[A-Za-z0-9']+", cleaned)
+    if not tokens:
+        return ""
+    trimmed = tokens[:max_words]
+    normalized_tokens = []
+    for token in trimmed:
+        if token.isupper():
+            normalized_tokens.append(token)
+        else:
+            normalized_tokens.append(token.capitalize())
+    return " ".join(normalized_tokens)
+
+
+def _heuristic_title_from_summary(summary_text: str) -> Optional[str]:
+    lowered = summary_text.lower()
+
+    if "not interested" in lowered or "declined" in lowered or "declines" in lowered or "refused" in lowered:
+        return "Not Interested"
+
+    if "voicemail" in lowered:
+        if "left a message" in lowered or "leave a message" in lowered:
+            return "Left Message"
+        return "Voicemail"
+
+    if "callback" in lowered or "call back" in lowered or "follow up" in lowered or "follow-up" in lowered:
+        return "Callback Requested"
+
+    if (
+        "unreachable" in lowered
+        or "no answer" in lowered
+        or "did not answer" in lowered
+        or "didn't answer" in lowered
+        or "unable to reach" in lowered
+        or "could not reach" in lowered
+        or "never answered" in lowered
+    ):
+        return "Unreachable"
+
+    if "reschedule" in lowered or "rescheduled" in lowered:
+        return "Reschedule"
+
+    if "scheduled" in lowered or "booked" in lowered or "appointment" in lowered or "meeting set" in lowered:
+        return "Scheduled"
+
+    if "payment" in lowered and (
+        "processed" in lowered
+        or "completed" in lowered
+        or "taken" in lowered
+        or "made" in lowered
+    ):
+        return "Payment Taken"
+
+    if "transfer" in lowered or "transferred" in lowered or "warm transfer" in lowered:
+        return "Transferred"
+
+    if "qualified" in lowered or "approved" in lowered:
+        return "Qualified"
+
+    if (
+        "interested" in lowered
+        or "wants to proceed" in lowered
+        or "wants to continue" in lowered
+        or "keen to proceed" in lowered
+        or "eager to continue" in lowered
+    ) and "not interested" not in lowered:
+        return "Interested"
+
+    return None
+
+
+def generate_call_title_from_summary(summary: str, openai_client: Optional[OpenAI] = None) -> Optional[str]:
+    summary_text = (summary or "").strip()
+    if not summary_text:
+        return None
+
+    heuristic_title = _heuristic_title_from_summary(summary_text)
+    if heuristic_title:
+        return heuristic_title
+
+    if openai_client is None:
+        openai_client = get_openai_client()
+
+    if openai_client is not None:
+        try:
+            response = openai_client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You create concise contact-center call titles. "
+                            "Respond with a single title of at most three words in Title Case, "
+                            "without punctuation or extra commentary."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Call summary:\n{summary_text}\n\nProvide a 1-3 word title:",
+                    },
+                ],
+                temperature=0.2,
+                max_tokens=16,
+            )
+            candidate = response.choices[0].message.content.strip()
+            normalized = _normalize_title_text(candidate)
+            if normalized:
+                return normalized
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"Warning: Could not generate call title via OpenAI: {exc}")
+
+    tokens = re.findall(r"[A-Za-z0-9']+", summary_text)
+    if tokens:
+        return _normalize_title_text(" ".join(tokens[:2]))
+    return None
+
+
+def generate_call_purpose_from_summary(summary: str, openai_client: Optional[OpenAI] = None) -> Optional[str]:
+    summary_text = (summary or "").strip()
+    if not summary_text:
+        return None
+
+    if openai_client is None:
+        openai_client = get_openai_client()
+
+    if openai_client is None:
+        return None
+
+    try:
+        response = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You classify the primary purpose of contact-center calls. "
+                        "Respond with a single label that is exactly one or two words, Title Case, "
+                        "describing the customer's main intent or the call outcome (e.g., 'Appointment Booking', 'Insurance Inquiry'). "
+                        "Do not add punctuation or commentary."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        "Call summary:\n"
+                        f"{summary_text}\n\n"
+                        "Provide the purpose (one or two words):"
+                    ),
+                },
+            ],
+            temperature=0.1,
+            max_tokens=16,
+        )
+        candidate = response.choices[0].message.content.strip()
+        normalized = _normalize_title_text(candidate, max_words=2)
+        return normalized or None
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"Warning: Could not generate call purpose via OpenAI: {exc}")
+        return None
+
+
+def derive_short_call_title(
+    call_payload: Dict[str, Any],
+    fallback_summary: Optional[str] = None,
+    openai_client: Optional[OpenAI] = None,
+) -> Optional[str]:
+    if not isinstance(call_payload, dict):
+        return None
+
+    summary_candidates: List[str] = []
+    call_analysis = call_payload.get("call_analysis")
+    if isinstance(call_analysis, dict):
+        for key in ("call_title", "call_summary_title", "summary_title", "call_summary_heading"):
+            candidate = call_analysis.get(key)
+            normalized = _normalize_title_text(candidate)
+            if normalized:
+                return normalized
+
+        for key in ("call_summary", "summary", "call_overview", "customer_summary"):
+            candidate = call_analysis.get(key)
+            if isinstance(candidate, str) and candidate.strip():
+                summary_candidates.append(candidate.strip())
+
+    for key in ("call_summary", "summary"):
+        candidate = call_payload.get(key)
+        if isinstance(candidate, str) and candidate.strip():
+            summary_candidates.append(candidate.strip())
+
+    if isinstance(fallback_summary, str) and fallback_summary.strip():
+        summary_candidates.append(fallback_summary.strip())
+
+    seen = set()
+    for summary_text in summary_candidates:
+        if not summary_text or summary_text in seen:
+            continue
+        seen.add(summary_text)
+        title = generate_call_title_from_summary(summary_text, openai_client=openai_client)
+        if title:
+            return title
+
+    return None
+
+
 def analyze_audio_files(
     file_contents: List[Tuple[str, bytes]],
     client: Optional[HumeClient] = None,

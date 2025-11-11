@@ -1,0 +1,877 @@
+{
+  "call_id": "call_4ef04cd8499413986710fac59af",
+  "retell_metadata": {
+    "retell_call_id": "call_4ef04cd8499413986710fac59af",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/807ad8838e6032e5ad33c675796c209fcefe87c036ee434dcf59cfe7f7a23c68/recording_multichannel.wav",
+    "start_timestamp": 1762884087749,
+    "end_timestamp": 1762884159145,
+    "duration_ms": 71396,
+    "agent": {
+      "id": "agent_1066530c099777da500e93f5cb",
+      "name": "Single-Prompt Agent Daniyal",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Daniyal",
+      "program": "Certification Exam Preparation Course",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 71396
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_4ef04cd8499413986710fac59af_combined",
+      "prosody": [
+        {
+          "time_start": 7.92,
+          "time_end": 8.42,
+          "text": "Hello.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.2178,
+              "percentage": 21.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 10.97,
+          "time_end": 14.03,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.8263,
+              "percentage": 82.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+        },
+        {
+          "time_start": 14.56,
+          "time_end": 15.68,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.161,
+              "percentage": 16.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+        },
+        {
+          "time_start": 17.34,
+          "time_end": 17.74,
+          "text": "Yes.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.5113,
+              "percentage": 51.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 20.71,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2995,
+              "percentage": 29.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 21.19,
+          "time_end": 25.25,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.8381,
+              "percentage": 83.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 25.73,
+          "time_end": 29.08,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.5489,
+              "percentage": 54.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 29.65,
+          "time_end": 32.77,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.7618,
+              "percentage": 76.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 45.25,
+          "time_end": 47.08,
+          "text": "Just checking in, Daniyal\u2014are you still with me?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.239,
+              "percentage": 23.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Just checking in, Daniyal\u2014are you still with me?"
+        },
+        {
+          "time_start": 48.78,
+          "time_end": 49.25,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1965,
+              "percentage": 19.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 50.75,
+          "time_end": 53.22,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.4249,
+              "percentage": 42.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 55.42,
+          "time_end": 55.9,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1573,
+              "percentage": 15.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 58.25,
+          "time_end": 62.56,
+          "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.8639,
+              "percentage": 86.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+        },
+        {
+          "time_start": 62.56,
+          "time_end": 67.51,
+          "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.9021,
+              "percentage": 90.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+        },
+        {
+          "time_start": 67.51,
+          "time_end": 71.02,
+          "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.5993,
+              "percentage": 59.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1735,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_1066530c099777da500e93f5cb",
+          "name": "Single-Prompt Agent Daniyal",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 2,
+          "neutral": 9,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 7.827,
+            "end": 8.307,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.025,
+            "end": 15.97075,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 17.276999,
+            "end": 17.597,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 20.131,
+            "end": 33.02975,
+            "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Agent",
+            "start": 45.291,
+            "end": 47.299,
+            "text": "Just checking in, Daniyal\u2014are you still with me?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 48.757,
+            "end": 49.077,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 50.676,
+            "end": 53.474375,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 55.387,
+            "end": 55.706998,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 58.243,
+            "end": 70.39866674804688,
+            "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+          }
+        ],
+        "retell_call_id": "call_4ef04cd8499413986710fac59af",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/807ad8838e6032e5ad33c675796c209fcefe87c036ee434dcf59cfe7f7a23c68/recording_multichannel.wav",
+        "start_timestamp": 1762884087749,
+        "end_timestamp": 1762884159145,
+        "duration_ms": 71396,
+        "customer": {
+          "first_name": "Daniyal",
+          "program": "Certification Exam Preparation Course",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 71396
+        }
+      },
+      "summary": "Agent Courtney contacts Daniyal regarding the Certification Exam Preparation Course, maintaining a calm demeanor throughout. Daniyal starts with amusement at 7.9s but shifts to confusion at 17.3s when prompted for details. Despite this, he confirms having a high school diploma at 55.4s, committing to the next steps. The Agent remains concentrated and determined, ensuring clarity in the process, which helps maintain the conversation's flow and ends with both parties aligned on the program's requirements."
+    },
+    {
+      "filename": "call_4ef04cd8499413986710fac59af_agent.wav",
+      "prosody": [
+        {
+          "time_start": 10.97,
+          "time_end": 14.03,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.8263,
+              "percentage": 82.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+        },
+        {
+          "time_start": 14.56,
+          "time_end": 15.68,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.161,
+              "percentage": 16.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 20.71,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2995,
+              "percentage": 29.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 21.19,
+          "time_end": 25.25,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.8381,
+              "percentage": 83.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 25.73,
+          "time_end": 29.08,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.5489,
+              "percentage": 54.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 29.65,
+          "time_end": 32.77,
+          "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.7618,
+              "percentage": 76.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+        },
+        {
+          "time_start": 45.25,
+          "time_end": 47.08,
+          "text": "Just checking in, Daniyal\u2014are you still with me?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.239,
+              "percentage": 23.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Just checking in, Daniyal\u2014are you still with me?"
+        },
+        {
+          "time_start": 50.75,
+          "time_end": 53.22,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.4249,
+              "percentage": 42.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 58.25,
+          "time_end": 62.56,
+          "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.8639,
+              "percentage": 86.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+        },
+        {
+          "time_start": 62.56,
+          "time_end": 67.51,
+          "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.9021,
+              "percentage": 90.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+        },
+        {
+          "time_start": 67.51,
+          "time_end": 71.02,
+          "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.5993,
+              "percentage": 59.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 2,
+          "neutral": 9,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 7.827,
+            "end": 8.307,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.025,
+            "end": 15.97075,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 17.276999,
+            "end": 17.597,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 20.131,
+            "end": 33.02975,
+            "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Agent",
+            "start": 45.291,
+            "end": 47.299,
+            "text": "Just checking in, Daniyal\u2014are you still with me?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 48.757,
+            "end": 49.077,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 50.676,
+            "end": 53.474375,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 55.387,
+            "end": 55.706998,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 58.243,
+            "end": 70.39866674804688,
+            "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+          }
+        ],
+        "retell_call_id": "call_4ef04cd8499413986710fac59af",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/807ad8838e6032e5ad33c675796c209fcefe87c036ee434dcf59cfe7f7a23c68/recording_multichannel.wav",
+        "start_timestamp": 1762884087749,
+        "end_timestamp": 1762884159145,
+        "duration_ms": 71396,
+        "agent": {
+          "id": "agent_1066530c099777da500e93f5cb",
+          "name": "Single-Prompt Agent Daniyal",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Daniyal",
+          "program": "Certification Exam Preparation Course",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 71396
+        }
+      },
+      "summary": "Agent Courtney contacts Daniyal regarding the Certification Exam Preparation Course, maintaining a calm demeanor throughout. Daniyal starts with amusement at 7.9s but shifts to confusion at 17.3s when prompted for details. Despite this, he confirms having a high school diploma at 55.4s, committing to the next steps. The Agent remains concentrated and determined, ensuring clarity in the process, which helps maintain the conversation's flow and ends with both parties aligned on the program's requirements."
+    },
+    {
+      "filename": "call_4ef04cd8499413986710fac59af_user.wav",
+      "prosody": [
+        {
+          "time_start": 7.92,
+          "time_end": 8.42,
+          "text": "Hello.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.2178,
+              "percentage": 21.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 17.34,
+          "time_end": 17.74,
+          "text": "Yes.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.5113,
+              "percentage": 51.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 48.78,
+          "time_end": 49.25,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1965,
+              "percentage": 19.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 55.42,
+          "time_end": 55.9,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1573,
+              "percentage": 15.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1735,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 2,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 7.827,
+            "end": 8.307,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.025,
+            "end": 15.97075,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Daniyal?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 17.276999,
+            "end": 17.597,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 20.131,
+            "end": 33.02975,
+            "text": "Hi Daniyal! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program."
+          },
+          {
+            "speaker": "Agent",
+            "start": 45.291,
+            "end": 47.299,
+            "text": "Just checking in, Daniyal\u2014are you still with me?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 48.757,
+            "end": 49.077,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 50.676,
+            "end": 53.474375,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 55.387,
+            "end": 55.706998,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 58.243,
+            "end": 70.39866674804688,
+            "text": "For the Certification Exam Preparation Course at Arcadia University, a technical background is recommended, along with strong problem-solving and analytical abilities. It helps to be comfortable with complex IT systems and quick to learn new "
+          }
+        ],
+        "retell_call_id": "call_4ef04cd8499413986710fac59af",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/807ad8838e6032e5ad33c675796c209fcefe87c036ee434dcf59cfe7f7a23c68/recording_multichannel.wav",
+        "start_timestamp": 1762884087749,
+        "end_timestamp": 1762884159145,
+        "duration_ms": 71396,
+        "agent": {
+          "id": "agent_1066530c099777da500e93f5cb",
+          "name": "Single-Prompt Agent Daniyal",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Daniyal",
+          "program": "Certification Exam Preparation Course",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 71396
+        }
+      },
+      "summary": "Agent Courtney contacts Daniyal regarding the Certification Exam Preparation Course, maintaining a calm demeanor throughout. Daniyal starts with amusement at 7.9s but shifts to confusion at 17.3s when prompted for details. Despite this, he confirms having a high school diploma at 55.4s, committing to the next steps. The Agent remains concentrated and determined, ensuring clarity in the process, which helps maintain the conversation's flow and ends with both parties aligned on the program's requirements."
+    }
+  ]
+}
