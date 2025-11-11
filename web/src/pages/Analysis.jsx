@@ -36,51 +36,6 @@ const SPEAKER_ICONS = Object.freeze({
 import humanAvatar from '../assets/human.png';
 import agentAvatar from '../assets/agent.png';
 
-function generateUniqueColors(count) {
-  const colors = [];
-  const hueStep = 360 / (count || 1);
-
-  for (let i = 0; i < count; i += 1) {
-    const hue = (i * hueStep) % 360;
-    const saturation = 70 + (i % 3) * 10;
-    const lightness = 50 + (i % 2) * 10;
-
-    const h = hue / 360;
-    const s = saturation / 100;
-    const l = lightness / 100;
-
-    const c = (1 - Math.abs(2 * l - 1)) * s;
-    const x = c * (1 - Math.abs(((h * 6) % 2) - 1));
-    const m = l - c / 2;
-
-    let r;
-    let g;
-    let b;
-
-    if (h < 1 / 6) {
-      r = c; g = x; b = 0;
-    } else if (h < 2 / 6) {
-      r = x; g = c; b = 0;
-    } else if (h < 3 / 6) {
-      r = 0; g = c; b = x;
-    } else if (h < 4 / 6) {
-      r = 0; g = x; b = c;
-    } else if (h < 5 / 6) {
-      r = x; g = 0; b = c;
-    } else {
-      r = c; g = 0; b = x;
-    }
-
-    const red = Math.round((r + m) * 255);
-    const green = Math.round((g + m) * 255);
-    const blue = Math.round((b + m) * 255);
-
-    colors.push(`#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue.toString(16).padStart(2, '0')}`);
-  }
-
-  return colors;
-}
-
 function CustomTooltip({ active, payload, emotionColorMap }) {
   if (!active || !payload || payload.length === 0) {
     return null;
@@ -272,6 +227,7 @@ function SpeakerTimeline({
   avatarMap = {},
   speakerColors = {},
   categoryColors = {},
+  onSeek,
 }) {
   if (!timeline) {
     return null;
@@ -295,6 +251,67 @@ function SpeakerTimeline({
   }
 
   const clampedProgress = Math.min(Math.max((currentTime / effectiveDuration) * 100, 0), 100);
+  const clampedTime = Math.min(Math.max(currentTime, 0), effectiveDuration);
+
+  const computeSeekTime = (clientX, element) => {
+    if (!element || typeof clientX !== 'number') {
+      return null;
+    }
+    const rect = element.getBoundingClientRect();
+    if (!rect || rect.width <= 0) {
+      return null;
+    }
+    const offset = clientX - rect.left;
+    const ratio = Math.min(Math.max(offset / rect.width, 0), 1);
+    return ratio * effectiveDuration;
+  };
+
+  const handleTrackClick = (event) => {
+    if (typeof onSeek !== 'function') {
+      return;
+    }
+    const element = event.currentTarget;
+    const nextTime = computeSeekTime(event.clientX, element);
+    if (Number.isFinite(nextTime)) {
+      onSeek(nextTime);
+    }
+  };
+
+  const handleTrackTouch = (event) => {
+    if (typeof onSeek !== 'function') {
+      return;
+    }
+    const touch = event.touches && event.touches[0];
+    if (!touch) {
+      return;
+    }
+    event.preventDefault();
+    const element = event.currentTarget;
+    const nextTime = computeSeekTime(touch.clientX, element);
+    if (Number.isFinite(nextTime)) {
+      onSeek(nextTime);
+    }
+  };
+
+  const handleTrackKeyDown = (event) => {
+    if (typeof onSeek !== 'function') {
+      return;
+    }
+    const step = effectiveDuration > 0 ? Math.max(effectiveDuration / 40, 0.5) : 1;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      onSeek(Math.min(clampedTime + step, effectiveDuration));
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      onSeek(Math.max(clampedTime - step, 0));
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      onSeek(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      onSeek(effectiveDuration);
+    }
+  };
 
   return (
     <div className="speaker-timeline">
@@ -309,7 +326,19 @@ function SpeakerTimeline({
               )}
               <span>{name}</span>
             </div>
-            <div className="speaker-timeline-track">
+            <div
+              className="speaker-timeline-track"
+              onClick={handleTrackClick}
+              onTouchStart={handleTrackTouch}
+              role={typeof onSeek === 'function' ? 'slider' : undefined}
+              tabIndex={typeof onSeek === 'function' ? 0 : undefined}
+              aria-valuemin={0}
+              aria-valuemax={Math.round(effectiveDuration)}
+              aria-valuenow={Math.round(clampedTime)}
+              aria-valuetext={`${clampedTime.toFixed(2)} seconds`}
+              aria-label={`Timeline for ${name}`}
+              onKeyDown={handleTrackKeyDown}
+            >
               {segments.map((segment, index) => {
                 const segmentStart = typeof segment.start === 'number' ? segment.start : 0;
                 const segmentEnd = typeof segment.end === 'number' ? segment.end : segmentStart;
@@ -415,6 +444,7 @@ function AnalysisPage() {
     neutral: [],
     negative: [],
   });
+  const [overallEmotion, setOverallEmotion] = useState(null);
   const [timeline, setTimeline] = useState(() => createEmptyTimeline());
   const [transcriptSegments, setTranscriptSegments] = useState([]);
   const [errorInfo, setErrorInfo] = useState({ message: null, retryAllowed: true });
@@ -433,16 +463,48 @@ function AnalysisPage() {
     }
   }, [audioSource]);
 
-  const emotionColorMap = useMemo(() => {
+  const emotionCategoryMap = useMemo(() => {
     const mapping = {};
-    if (emotions.length === 0) return mapping;
-
-    const palette = generateUniqueColors(emotions.length);
-    emotions.forEach((emotion, index) => {
-      mapping[emotion] = palette[index];
+    Object.entries(categorizedEmotions).forEach(([categoryKey, items]) => {
+      if (!Array.isArray(items)) {
+        return;
+      }
+      items.forEach((emotion) => {
+        if (emotion?.name) {
+          const normalized = String(categoryKey).trim().toLowerCase();
+          mapping[emotion.name] = normalized;
+        }
+      });
+    });
+    chartData.forEach((entry) => {
+      if (entry?.topEmotion) {
+        const normalized = typeof entry.category === 'string'
+          ? entry.category.trim().toLowerCase()
+          : null;
+        if (normalized) {
+          mapping[entry.topEmotion] = normalized;
+        }
+      }
     });
     return mapping;
-  }, [emotions]);
+  }, [categorizedEmotions, chartData]);
+
+  const emotionColorMap = useMemo(() => {
+    const mapping = {};
+    if (emotions.length === 0) {
+      return mapping;
+    }
+
+    emotions.forEach((emotion) => {
+      const categoryKey = typeof emotionCategoryMap[emotion] === 'string'
+        ? emotionCategoryMap[emotion].toLowerCase()
+        : null;
+      const color = CATEGORY_COLORS[categoryKey] || CATEGORY_COLORS.neutral;
+      mapping[emotion] = color;
+    });
+
+    return mapping;
+  }, [emotions, emotionCategoryMap]);
 
   const intervalDuration = useMemo(() => {
     if (chartData.length === 0) return 10;
@@ -485,6 +547,7 @@ function AnalysisPage() {
     setChartData([]);
     setEmotions([]);
     setSummary(null);
+    setOverallEmotion(null);
     setTimeline(createEmptyTimeline());
     setTranscriptSegments([]);
     setErrorInfo({ message: null, retryAllowed: true });
@@ -505,6 +568,7 @@ const applyAnalysisResponse = useCallback((
     categorizedEmotions: categorized,
     categoryCounts: counts,
     transcriptSegments: transcriptList,
+    overallEmotion: overall,
   } = transformApiDataToChart(response);
 
   if (transformed.length === 0) {
@@ -520,6 +584,7 @@ const applyAnalysisResponse = useCallback((
   setSummary(response.results.summary || null);
   setCategoryCounts(counts || { positive: 0, neutral: 0, negative: 0 });
   setCategorizedEmotions(categorized || { positive: [], neutral: [], negative: [] });
+  setOverallEmotion(overall || null);
   setTimeline(normalizeTimeline(speakerTimeline));
   setTranscriptSegments(Array.isArray(transcriptList) ? transcriptList : []);
 
@@ -812,6 +877,26 @@ const applyAnalysisResponse = useCallback((
   const formattedDuration = formatClockTime(duration);
   const playbackOptions = [1, 1.25, 1.5, 2];
 
+  const handleTimelineSeek = useCallback((nextTime) => {
+    if (!Number.isFinite(nextTime)) {
+      return;
+    }
+    const audio = audioRef.current;
+    const audioDurationValue = audio && Number.isFinite(audio.duration) && audio.duration > 0
+      ? audio.duration
+      : (Number.isFinite(duration) && duration > 0 ? duration : null);
+    const upperBound = audioDurationValue ?? nextTime;
+    const targetTime = Math.max(0, Math.min(nextTime, upperBound));
+    if (audio) {
+      try {
+        audio.currentTime = targetTime;
+      } catch {
+        // Ignore errors when adjusting playback on partially loaded audio
+      }
+    }
+    setCurrentTime(targetTime);
+  }, [duration]);
+
   const togglePlay = () => {
     if (playDisabled) {
       return;
@@ -929,6 +1014,7 @@ const applyAnalysisResponse = useCallback((
               avatarMap={avatarMap}
               speakerColors={speakerColors}
               categoryColors={CATEGORY_COLORS}
+              onSeek={handleTimelineSeek}
             />
           </div>
         </div>
@@ -1101,14 +1187,25 @@ const applyAnalysisResponse = useCallback((
                   />
                 )}
               >
-                {chartData.map((entry, index) => (
-                  <Cell
-                    key={`${entry.intervalStart}-${index}`}
-                    fill={entry.topEmotion ? (emotionColorMap[entry.topEmotion] || '#999999') : '#555555'}
-                    stroke={entry.speaker ? (SPEAKER_COLORS[entry.speaker] || '#222222') : 'transparent'}
-                    strokeWidth={entry.speaker ? 2 : 0}
-                  />
-                ))}
+                {chartData.map((entry, index) => {
+                  const categoryKey = typeof entry.category === 'string'
+                    ? entry.category.toLowerCase()
+                    : null;
+                  const categoryColor = categoryKey ? CATEGORY_COLORS[categoryKey] : null;
+                  const emotionColor = entry.topEmotion
+                    ? emotionColorMap[entry.topEmotion]
+                    : null;
+                  const fillColor = emotionColor || categoryColor || CATEGORY_COLORS.neutral;
+
+                  return (
+                    <Cell
+                      key={`${entry.intervalStart}-${index}`}
+                      fill={fillColor}
+                      stroke={entry.speaker ? (SPEAKER_COLORS[entry.speaker] || '#222222') : 'transparent'}
+                      strokeWidth={entry.speaker ? 2 : 0}
+                    />
+                  );
+                })}
                 <LabelList
                   dataKey="speaker"
                   content={(labelProps) => <SpeakerLabel {...labelProps} />}
@@ -1203,6 +1300,7 @@ const applyAnalysisResponse = useCallback((
             <p className="analysis-metrics__subtitle">
               Breakdown of detected emotions grouped into positive, neutral, and negative categories.
             </p>
+            
             <div className="emotion-category-grid">
               {['positive', 'neutral', 'negative'].map((categoryKey) => {
                 const labelMap = {
@@ -1248,6 +1346,35 @@ const applyAnalysisResponse = useCallback((
                   </div>
                 );
               })}
+            </div>
+            <div className={`overall-emotion-card overall-emotion-card--${overallEmotion?.label || 'unknown'}`}>
+              <div className="overall-emotion-card__header">
+                <span className="overall-emotion-card__title">Overall Status</span>
+                {overallEmotion?.call_outcome && (
+                  <span className="overall-emotion-card__tag">
+                    {formatStatusLabel(overallEmotion.call_outcome)}
+                  </span>
+                )}
+              </div>
+              {overallEmotion ? (
+                <>
+                  <div className="overall-emotion-card__label">
+                    {formatStatusLabel(overallEmotion.label || 'neutral')}
+                  </div>
+                  {Number.isFinite(overallEmotion.confidence) && (
+                    <div className="overall-emotion-card__confidence">
+                      {Math.round(Math.max(0, Math.min(1, overallEmotion.confidence)) * 100)}% confidence
+                    </div>
+                  )}
+                  {overallEmotion.reasoning && (
+                    <p className="overall-emotion-card__reason">{overallEmotion.reasoning}</p>
+                  )}
+                </>
+              ) : (
+                <p className="overall-emotion-card__empty">
+                  Overall emotion is not available for this analysis.
+                </p>
+              )}
             </div>
           </section>
         )}

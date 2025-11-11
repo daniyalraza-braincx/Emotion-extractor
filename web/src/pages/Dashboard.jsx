@@ -79,7 +79,7 @@ function Dashboard() {
     });
   }, [retellCalls, searchQuery]);
 
-  const renderSummary = (call) => {
+  const renderSummary = useCallback((call) => {
     const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
     const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
     const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
@@ -103,7 +103,7 @@ function Dashboard() {
     ];
 
     return parts.join(' ');
-  };
+  }, []);
 
   const totalCallCount = retellCalls.length;
   const resultCount = filteredCalls.length;
@@ -163,9 +163,9 @@ function Dashboard() {
         <div className="calls-table-header">
           <div className="calls-table-meta">
             <span className="calls-table-meta__label">Call Logs</span>
-            <span className="calls-table-meta__label">Title</span>
+            <span className="calls-table-meta__label">Call ID</span>
+            <span className="calls-table-meta__label">Purpose</span>
             <span className="calls-table-meta__label calls-table-meta__label--wide">Summary</span>
-            <span className="calls-table-meta__label">Labels</span>
             <span className="calls-table-meta__label">Duration</span>
             <span className="calls-table-meta__label">Entry</span>
             <span className="calls-table-meta__label" aria-hidden />
@@ -191,6 +191,10 @@ function Dashboard() {
               const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
               const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
               const blockReason = (call.analysis_block_reason || call.error_message || '').trim();
+              const purposeCandidate = [call.call_purpose, call.callPurpose]
+                .find((value) => typeof value === 'string' && value.trim());
+              const callPurpose = (purposeCandidate ? purposeCandidate.trim() : '') || 'Purpose unavailable';
+              const summaryText = renderSummary(call);
 
               return (
                 <article key={call.call_id} className="calls-table-row" data-status={statusKey}>
@@ -203,17 +207,17 @@ function Dashboard() {
                     )}
                   </div>
 
-                  <div className="calls-table-cell calls-table-cell--title">
-                    <span className="cell-primary">Callback Request</span>
+                  <div className="calls-table-cell calls-table-cell--id">
+                    <span className="cell-primary">{call.call_id || '—'}</span>
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--purpose">
+                    <span className="cell-primary">{callPurpose}</span>
                     <span className="cell-secondary">{call.agent_name || call.agent_id || 'Unknown agent'}</span>
                   </div>
 
                   <div className="calls-table-cell calls-table-cell--summary">
-                    <p>{renderSummary(call)}</p>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--labels">
-                    <button type="button" className="label-button">Add label ＋</button>
+                    <p>{summaryText}</p>
                   </div>
 
                   <div className="calls-table-cell calls-table-cell--duration">
@@ -232,7 +236,15 @@ function Dashboard() {
 
                   <div className="calls-table-cell calls-table-cell--actions">
                     {isBlocked ? (
-                      <span className="row-action row-action--disabled">Analysis unavailable</span>
+                      <button
+                        type="button"
+                        className="row-action row-action--disabled"
+                        disabled
+                        aria-disabled="true"
+                        title={blockReason || 'Analysis unavailable'}
+                      >
+                        View analysis
+                      </button>
                     ) : (
                       <button
                         type="button"

@@ -39,13 +39,13 @@
           "time_start": 2.43,
           "time_end": 2.91,
           "text": "Hello?",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Awkwardness",
               "score": 0.2799,
               "percentage": 28.0,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -158,13 +158,13 @@
           "time_start": 27.04,
           "time_end": 29.64,
           "text": "Wait. Sorry. I just got a little busy.",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Awkwardness",
               "score": 0.5764,
               "percentage": 57.6,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -190,14 +190,14 @@
         },
         {
           "time_start": 39.27,
-          "time_end": 39.43,
+          "time_end": 39.99,
           "text": "Thanks. Bye.",
           "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.3557,
-              "percentage": 35.6,
+              "score": 0.433,
+              "percentage": 43.3,
               "category": "neutral"
             }
           ],
@@ -303,9 +303,16 @@
           },
           "too_short": false,
           "duration_ms": 41553
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer expressed that she got busy and agreed to reconnect later, indicating a willingness to continue the conversation but without a definite commitment at this moment.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba initially feels awkward at 2.4s but shifts to satisfaction at 10.7s when she acknowledges the Agent. However, she becomes awkward again at 27.0s after stating she got busy. The call concludes at 31.3s with the Agent calmly suggesting to reconnect later, which Hiba accepts."
+      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba starts awkwardly at 2.4s but shifts to satisfaction at 10.7s when she confirms her identity. After expressing that she got busy at 27.0s, Hiba agrees to reconnect later, demonstrating a commitment to the conversation. The agent maintains calmness throughout, ensuring a smooth transition to rescheduling, ending the call positively at 31.4s."
     },
     {
       "filename": "call_fdf256834e64ef0c83fc6e7009b_agent.wav",
@@ -510,9 +517,16 @@
           },
           "too_short": false,
           "duration_ms": 41553
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer expressed that she got busy and agreed to reconnect later, indicating a willingness to continue the conversation but without a definite commitment at this moment.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba initially feels awkward at 2.4s but shifts to satisfaction at 10.7s when she acknowledges the Agent. However, she becomes awkward again at 27.0s after stating she got busy. The call concludes at 31.3s with the Agent calmly suggesting to reconnect later, which Hiba accepts."
+      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba starts awkwardly at 2.4s but shifts to satisfaction at 10.7s when she confirms her identity. After expressing that she got busy at 27.0s, Hiba agrees to reconnect later, demonstrating a commitment to the conversation. The agent maintains calmness throughout, ensuring a smooth transition to rescheduling, ending the call positively at 31.4s."
     },
     {
       "filename": "call_fdf256834e64ef0c83fc6e7009b_user.wav",
@@ -521,13 +535,13 @@
           "time_start": 2.43,
           "time_end": 2.91,
           "text": "Hello?",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Awkwardness",
               "score": 0.2799,
               "percentage": 28.0,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -555,13 +569,13 @@
           "time_start": 27.04,
           "time_end": 29.64,
           "text": "Wait. Sorry. I just got a little busy.",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Awkwardness",
               "score": 0.5764,
               "percentage": 57.6,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -570,14 +584,14 @@
         },
         {
           "time_start": 39.27,
-          "time_end": 39.43,
+          "time_end": 39.99,
           "text": "Thanks. Bye.",
           "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.3557,
-              "percentage": 35.6,
+              "score": 0.433,
+              "percentage": 43.3,
               "category": "neutral"
             }
           ],
@@ -590,8 +604,8 @@
       "metadata": {
         "category_counts": {
           "positive": 1,
-          "neutral": 1,
-          "negative": 2
+          "neutral": 3,
+          "negative": 0
         },
         "retell_transcript_available": true,
         "retell_transcript_segments": [
@@ -666,9 +680,16 @@
           },
           "too_short": false,
           "duration_ms": 41553
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer expressed that she got busy and agreed to reconnect later, indicating a willingness to continue the conversation but without a definite commitment at this moment.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba initially feels awkward at 2.4s but shifts to satisfaction at 10.7s when she acknowledges the Agent. However, she becomes awkward again at 27.0s after stating she got busy. The call concludes at 31.3s with the Agent calmly suggesting to reconnect later, which Hiba accepts."
+      "summary": "Agent Courtney calls Hiba regarding her interest in the Machine Learning with Python program. Hiba starts awkwardly at 2.4s but shifts to satisfaction at 10.7s when she confirms her identity. After expressing that she got busy at 27.0s, Hiba agrees to reconnect later, demonstrating a commitment to the conversation. The agent maintains calmness throughout, ensuring a smooth transition to rescheduling, ending the call positively at 31.4s."
     }
   ]
 }
