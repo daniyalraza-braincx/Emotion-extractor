@@ -125,13 +125,13 @@
         {
           "time_start": 5.0,
           "time_end": 6.0,
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2015,
               "percentage": 20.2,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "burst",
@@ -163,8 +163,8 @@
         },
         "category_counts": {
           "positive": 2,
-          "neutral": 2,
-          "negative": 0
+          "neutral": 1,
+          "negative": 1
         },
         "retell_transcript_available": true,
         "retell_transcript_segments": [
@@ -204,9 +204,16 @@
           },
           "too_short": false,
           "duration_ms": 16640
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer greeted the agent with joy but did not express any commitment or refusal regarding the life insurance plans. The absence of a clear acceptance or refusal results in a pending outcome.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Angela discusses life insurance plans with the customer, who expresses joy at the start of the call at 4.25s. However, the customer experiences a shift to sadness at 14.6s during the agent's pitch. Despite this, the agent remains determined and calm throughout, ultimately leading to a commitment from the customer to consider the plans. The call concludes with the agent feeling satisfied, indicating a positive resolution despite the emotional fluctuations."
+      "summary": "The Agent contacts the customer about life insurance plans, maintaining interest and determination throughout. The customer greets with joy at 4.25s but does not express further emotions or commitments. The Agent's initial boredom shifts to interest at 6.0s, determination at 9.8s, and calmness at 13.6s, ending with satisfaction at 16.0s. The call concludes without a clear commitment from the customer, and the Agent's emotional shifts do not significantly alter the outcome."
     },
     {
       "filename": "call_1e9eadc3b1bcabf40ad454ff31c_agent.wav",
@@ -267,13 +274,13 @@
         {
           "time_start": 5.0,
           "time_end": 6.0,
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2015,
               "percentage": 20.2,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "burst",
@@ -284,8 +291,8 @@
       "metadata": {
         "category_counts": {
           "positive": 2,
-          "neutral": 2,
-          "negative": 0
+          "neutral": 1,
+          "negative": 1
         },
         "retell_transcript_available": true,
         "retell_transcript_segments": [
@@ -330,9 +337,16 @@
           },
           "too_short": false,
           "duration_ms": 16640
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer greeted the agent with joy but did not express any commitment or refusal regarding the life insurance plans. The absence of a clear acceptance or refusal results in a pending outcome.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Angela discusses life insurance plans with the customer, who expresses joy at the start of the call at 4.25s. However, the customer experiences a shift to sadness at 14.6s during the agent's pitch. Despite this, the agent remains determined and calm throughout, ultimately leading to a commitment from the customer to consider the plans. The call concludes with the agent feeling satisfied, indicating a positive resolution despite the emotional fluctuations."
+      "summary": "The Agent contacts the customer about life insurance plans, maintaining interest and determination throughout. The customer greets with joy at 4.25s but does not express further emotions or commitments. The Agent's initial boredom shifts to interest at 6.0s, determination at 9.8s, and calmness at 13.6s, ending with satisfaction at 16.0s. The call concludes without a clear commitment from the customer, and the Agent's emotional shifts do not significantly alter the outcome."
     },
     {
       "filename": "call_1e9eadc3b1bcabf40ad454ff31c_user.wav",
@@ -439,9 +453,16 @@
           },
           "too_short": false,
           "duration_ms": 16640
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer greeted the agent with joy but did not express any commitment or refusal regarding the life insurance plans. The absence of a clear acceptance or refusal results in a pending outcome.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Angela discusses life insurance plans with the customer, who expresses joy at the start of the call at 4.25s. However, the customer experiences a shift to sadness at 14.6s during the agent's pitch. Despite this, the agent remains determined and calm throughout, ultimately leading to a commitment from the customer to consider the plans. The call concludes with the agent feeling satisfied, indicating a positive resolution despite the emotional fluctuations."
+      "summary": "The Agent contacts the customer about life insurance plans, maintaining interest and determination throughout. The customer greets with joy at 4.25s but does not express further emotions or commitments. The Agent's initial boredom shifts to interest at 6.0s, determination at 9.8s, and calmness at 13.6s, ending with satisfaction at 16.0s. The call concludes without a clear commitment from the customer, and the Agent's emotional shifts do not significantly alter the outcome."
     }
   ]
 }

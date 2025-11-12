@@ -33,6 +33,33 @@ const SPEAKER_ICONS = Object.freeze({
   Agent: '🤖',
   Unknown: '❔',
 });
+
+const EMPTY_CATEGORY_COUNTS = Object.freeze({
+  positive: 0,
+  neutral: 0,
+  negative: 0,
+});
+
+function createEmptyMetricSummary() {
+  return {
+    categoryCounts: { ...EMPTY_CATEGORY_COUNTS },
+    categorizedEmotions: {
+      positive: [],
+      neutral: [],
+      negative: [],
+    },
+    overallEmotion: null,
+    segmentCount: 0,
+  };
+}
+
+function createEmptySpeakerMetrics() {
+  return {
+    combined: createEmptyMetricSummary(),
+    agent: createEmptyMetricSummary(),
+    customer: createEmptyMetricSummary(),
+  };
+}
 import humanAvatar from '../assets/human.png';
 import agentAvatar from '../assets/agent.png';
 
@@ -217,6 +244,82 @@ function normalizeTimeline(timeline) {
     speakers: speakerOrder,
     segments
   };
+}
+
+const TIMELINE_PARTS = Object.freeze([
+  { id: 'start', label: 'Start' },
+  { id: 'mid', label: 'Mid' },
+  { id: 'end', label: 'End' },
+]);
+
+const TIMELINE_SPEAKERS = Object.freeze([
+  { key: 'combined', label: 'Combined' },
+  { key: 'customer', label: 'User' },
+  { key: 'agent', label: 'Agent' },
+]);
+
+function createEmptyEmotionTimelineSummary() {
+  const baseParts = TIMELINE_PARTS.map((part) => ({
+    id: part.id,
+    label: part.label,
+    start: 0,
+    end: 0,
+    duration: 0,
+    category: null,
+    emotion: null,
+    hasData: false,
+  }));
+
+  return TIMELINE_SPEAKERS.reduce((acc, speaker) => {
+    acc[speaker.key] = baseParts.map((part) => ({ ...part }));
+    return acc;
+  }, {});
+}
+
+function normalizeEmotionTimeline(timeline) {
+  const emptyTimeline = createEmptyEmotionTimelineSummary();
+  if (!timeline || typeof timeline !== 'object') {
+    return emptyTimeline;
+  }
+
+  const normalized = { ...emptyTimeline };
+
+  TIMELINE_SPEAKERS.forEach((speaker) => {
+    const parts = Array.isArray(timeline[speaker.key]) ? timeline[speaker.key] : [];
+    normalized[speaker.key] = TIMELINE_PARTS.map((part) => {
+      const match = parts.find((entry) => entry && entry.id === part.id) || {};
+      const start = Number.isFinite(match.start) ? match.start : 0;
+      const end = Number.isFinite(match.end) ? match.end : 0;
+      const duration = Number.isFinite(match.duration) ? match.duration : Math.max(0, end - start);
+      const category = typeof match.category === 'string' && match.category ? match.category.toLowerCase() : null;
+      const emotionPayload = match.emotion && typeof match.emotion === 'object' ? match.emotion : null;
+      const hasData = Boolean(match.hasData && emotionPayload && emotionPayload.name);
+      const score = Number.isFinite(emotionPayload?.score) ? emotionPayload.score : null;
+      const percentage = Number.isFinite(emotionPayload?.percentage)
+        ? emotionPayload.percentage
+        : (Number.isFinite(score) ? Number((score * 100).toFixed(1)) : null);
+
+      return {
+        id: part.id,
+        label: match.label || part.label,
+        start,
+        end,
+        duration: Math.max(0, duration),
+        category,
+        hasData,
+        emotion: hasData
+          ? {
+            name: emotionPayload?.name || null,
+            score,
+            percentage,
+            category: emotionPayload?.category || category,
+          }
+          : null,
+      };
+    });
+  });
+
+  return normalized;
 }
 
 function SpeakerTimeline({
@@ -445,7 +548,10 @@ function AnalysisPage() {
     negative: [],
   });
   const [overallEmotion, setOverallEmotion] = useState(null);
+  const [speakerMetrics, setSpeakerMetrics] = useState(() => createEmptySpeakerMetrics());
+  const [activeMetricsSpeaker, setActiveMetricsSpeaker] = useState('combined');
   const [timeline, setTimeline] = useState(() => createEmptyTimeline());
+  const [emotionTimeline, setEmotionTimeline] = useState(() => createEmptyEmotionTimelineSummary());
   const [transcriptSegments, setTranscriptSegments] = useState([]);
   const [errorInfo, setErrorInfo] = useState({ message: null, retryAllowed: true });
   const [isLoading, setIsLoading] = useState(false);
@@ -548,7 +654,10 @@ function AnalysisPage() {
     setEmotions([]);
     setSummary(null);
     setOverallEmotion(null);
+    setSpeakerMetrics(createEmptySpeakerMetrics());
+    setActiveMetricsSpeaker('combined');
     setTimeline(createEmptyTimeline());
+    setEmotionTimeline(createEmptyEmotionTimelineSummary());
     setTranscriptSegments([]);
     setErrorInfo({ message: null, retryAllowed: true });
     setIsPlaying(false);
@@ -561,6 +670,7 @@ const applyAnalysisResponse = useCallback((
   fallbackRecordingUrl = null,
   fallbackIsObjectUrl = false,
 ) => {
+  const transformedPayload = transformApiDataToChart(response);
   const {
     chartData: transformed,
     emotions: detected,
@@ -569,7 +679,9 @@ const applyAnalysisResponse = useCallback((
     categoryCounts: counts,
     transcriptSegments: transcriptList,
     overallEmotion: overall,
-  } = transformApiDataToChart(response);
+    speakerMetrics: metrics,
+    emotionTimeline: timelineSummary,
+  } = transformedPayload;
 
   if (transformed.length === 0) {
     throw new Error('No emotion data found in the analysis results');
@@ -585,7 +697,14 @@ const applyAnalysisResponse = useCallback((
   setCategoryCounts(counts || { positive: 0, neutral: 0, negative: 0 });
   setCategorizedEmotions(categorized || { positive: [], neutral: [], negative: [] });
   setOverallEmotion(overall || null);
+  const resolvedMetrics = metrics || createEmptySpeakerMetrics();
+  setSpeakerMetrics(resolvedMetrics);
+  setActiveMetricsSpeaker(() => {
+    const combinedMetrics = resolvedMetrics.combined || createEmptyMetricSummary();
+    return combinedMetrics.segmentCount > 0 ? 'combined' : 'combined';
+  });
   setTimeline(normalizeTimeline(speakerTimeline));
+  setEmotionTimeline(normalizeEmotionTimeline(timelineSummary));
   setTranscriptSegments(Array.isArray(transcriptList) ? transcriptList : []);
 
   if (response.recording_url) {
@@ -867,6 +986,30 @@ const applyAnalysisResponse = useCallback((
     { id: 'metrics', label: 'Metrics' },
     // { id: 'evaluations', label: 'Evaluations' },
   ]), []);
+
+  const metricsOptions = useMemo(() => ([
+    { id: 'combined', label: 'Combined' },
+    { id: 'customer', label: 'User' },
+    { id: 'agent', label: 'Agent' },
+  ]), []);
+
+  const activeSpeakerMetrics = useMemo(() => {
+    const fallback = speakerMetrics?.combined ?? createEmptyMetricSummary();
+    const selected = speakerMetrics?.[activeMetricsSpeaker] ?? fallback;
+    const safeCounts = selected?.categoryCounts ?? { ...EMPTY_CATEGORY_COUNTS };
+    const safeCategories = selected?.categorizedEmotions ?? {
+      positive: [],
+      neutral: [],
+      negative: [],
+    };
+
+    return {
+      categoryCounts: safeCounts,
+      categorizedEmotions: safeCategories,
+      overallEmotion: selected?.overallEmotion ?? null,
+      segmentCount: selected?.segmentCount ?? 0,
+    };
+  }, [speakerMetrics, activeMetricsSpeaker]);
 
   const hasError = Boolean(errorInfo.message);
   const errorMessage = errorInfo.message;
@@ -1300,6 +1443,26 @@ const applyAnalysisResponse = useCallback((
             <p className="analysis-metrics__subtitle">
               Breakdown of detected emotions grouped into positive, neutral, and negative categories.
             </p>
+
+            <div className="analysis-metrics-toggle" role="group" aria-label="Select speaker focus for emotion metrics">
+              {metricsOptions.map((option) => {
+                const optionMetrics = speakerMetrics?.[option.id];
+                const hasSegments = optionMetrics && (optionMetrics.segmentCount ?? 0) > 0;
+                const isActive = activeMetricsSpeaker === option.id;
+                const isDisabled = option.id !== 'combined' && !hasSegments;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    className={`analysis-tab analysis-metrics-toggle__button ${isActive ? 'is-active' : ''}`}
+                    onClick={() => setActiveMetricsSpeaker(option.id)}
+                    disabled={isDisabled}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
             
             <div className="emotion-category-grid">
               {['positive', 'neutral', 'negative'].map((categoryKey) => {
@@ -1308,8 +1471,8 @@ const applyAnalysisResponse = useCallback((
                   neutral: 'Neutral Emotions',
                   negative: 'Negative Emotions',
                 };
-                const items = categorizedEmotions[categoryKey] || [];
-                const segmentCount = categoryCounts?.[categoryKey] ?? 0;
+                const items = activeSpeakerMetrics.categorizedEmotions[categoryKey] || [];
+                const segmentCount = activeSpeakerMetrics.categoryCounts?.[categoryKey] ?? 0;
 
                 return (
                   <div className={`emotion-category-card emotion-category-card--${categoryKey}`} key={categoryKey}>
@@ -1347,27 +1510,100 @@ const applyAnalysisResponse = useCallback((
                 );
               })}
             </div>
-            <div className={`overall-emotion-card overall-emotion-card--${overallEmotion?.label || 'unknown'}`}>
+            <section className="emotion-timeline-section">
+              <header className="emotion-timeline-section__header">
+                <h3>Emotion Timeline</h3>
+                <p>Dominant emotions across the start, mid, and end of the call for the selected speaker.</p>
+              </header>
+              {(() => {
+                const activeTimelineConfig = TIMELINE_SPEAKERS.find((config) => config.key === activeMetricsSpeaker)
+                  || TIMELINE_SPEAKERS[0];
+                const parts = Array.isArray(emotionTimeline[activeTimelineConfig.key])
+                  ? emotionTimeline[activeTimelineConfig.key]
+                  : [];
+                const hasAnyData = parts.some((part) => part?.hasData);
+
+                if (!hasAnyData) {
+                  return (
+                    <div className="emotion-timeline-empty">
+                      No dominant emotions detected for this speaker.
+                    </div>
+                  );
+                }
+
+                return (
+                  <article className="emotion-timeline-group">
+                    <div className="emotion-timeline-group__header">
+                      <span className="emotion-timeline-group__label">{activeTimelineConfig.label}</span>
+                    </div>
+                    <div className="emotion-timeline-group__parts">
+                      {parts.map((part) => {
+                        const category = part?.category ? part.category.toLowerCase() : null;
+                        const percentageValue = Number.isFinite(part?.emotion?.percentage)
+                          ? part.emotion.percentage
+                          : (Number.isFinite(part?.emotion?.score)
+                            ? Number((part.emotion.score * 100).toFixed(1))
+                            : null);
+                        const percentageLabel = Number.isFinite(percentageValue) ? `${percentageValue}%` : null;
+                        const cardCategoryClass = part?.hasData && category
+                          ? `emotion-timeline-card--${category}`
+                          : 'emotion-timeline-card--empty';
+                        const categoryLabel = category
+                          ? `${category.charAt(0).toUpperCase()}${category.slice(1)}`
+                          : null;
+                        const rangeLabel = `${formatSecondsCompact(part.start)} - ${formatSecondsCompact(part.end)}`;
+
+                        return (
+                          <div
+                            key={`${activeTimelineConfig.key}-${part.id}`}
+                            className={`emotion-timeline-card ${cardCategoryClass}`}
+                          >
+                            <div className="emotion-timeline-card__header">
+                              <span className="emotion-timeline-card__part">{part.label}</span>
+                              {part.hasData && categoryLabel && (
+                                <span className={`emotion-timeline-card__badge emotion-timeline-card__badge--${category}`}>
+                                  {categoryLabel}
+                                </span>
+                              )}
+                            </div>
+                            <div className="emotion-timeline-card__body">
+                              <span className="emotion-timeline-card__emotion">
+                                {part.hasData ? (part?.emotion?.name || '—') : 'No dominant emotion'}
+                              </span>
+                              {/* <span className="emotion-timeline-card__meta">
+                                {part.hasData && percentageLabel ? `${percentageLabel} · ` : ''}
+                                {rangeLabel}
+                              </span> */}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </article>
+                );
+              })()}
+            </section>
+            <div className={`overall-emotion-card overall-emotion-card--${(activeSpeakerMetrics.overallEmotion?.label) || 'unknown'}`}>
               <div className="overall-emotion-card__header">
                 <span className="overall-emotion-card__title">Overall Status</span>
-                {overallEmotion?.call_outcome && (
+                {/* {activeSpeakerMetrics.overallEmotion?.call_outcome && (
                   <span className="overall-emotion-card__tag">
-                    {formatStatusLabel(overallEmotion.call_outcome)}
+                    {formatStatusLabel(activeSpeakerMetrics.overallEmotion.call_outcome)}
                   </span>
-                )}
+                )} */}
               </div>
-              {overallEmotion ? (
+              {activeSpeakerMetrics.overallEmotion ? (
                 <>
                   <div className="overall-emotion-card__label">
-                    {formatStatusLabel(overallEmotion.label || 'neutral')}
+                    {formatStatusLabel(activeSpeakerMetrics.overallEmotion.label || 'neutral')}
                   </div>
-                  {Number.isFinite(overallEmotion.confidence) && (
+                  {/* {Number.isFinite(activeSpeakerMetrics.overallEmotion.confidence) && (
                     <div className="overall-emotion-card__confidence">
-                      {Math.round(Math.max(0, Math.min(1, overallEmotion.confidence)) * 100)}% confidence
+                      {Math.round(Math.max(0, Math.min(1, activeSpeakerMetrics.overallEmotion.confidence)) * 100)}% confidence
                     </div>
-                  )}
-                  {overallEmotion.reasoning && (
-                    <p className="overall-emotion-card__reason">{overallEmotion.reasoning}</p>
+                  )} */}
+                  {activeSpeakerMetrics.overallEmotion.reasoning && (
+                    <p className="overall-emotion-card__reason">{activeSpeakerMetrics.overallEmotion.reasoning}</p>
                   )}
                 </>
               ) : (

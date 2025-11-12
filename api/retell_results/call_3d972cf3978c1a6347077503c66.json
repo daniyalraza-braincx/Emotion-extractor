@@ -1,0 +1,1011 @@
+{
+  "call_id": "call_3d972cf3978c1a6347077503c66",
+  "retell_metadata": {
+    "retell_call_id": "call_3d972cf3978c1a6347077503c66",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d301a2d22e9f5a33b0daf0570506895013b7f9a4afa97ca5456e231bd6f3fc45/recording_multichannel.wav",
+    "start_timestamp": 1762899003408,
+    "end_timestamp": 1762899096919,
+    "duration_ms": 93511,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Jenny",
+      "program": "Phlebotomy Technician",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 93511
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_3d972cf3978c1a6347077503c66_combined",
+      "prosody": [
+        {
+          "time_start": 9.45,
+          "time_end": 12.34,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3527,
+              "percentage": 35.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 12.72,
+          "time_end": 13.67,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1331,
+              "percentage": 13.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 18.79,
+          "time_end": 23.02,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2365,
+              "percentage": 23.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.02,
+          "time_end": 27.5,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2033,
+              "percentage": 20.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 27.5,
+          "time_end": 30.54,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3058,
+              "percentage": 30.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 30.7,
+          "time_end": 45.35,
+          "text": "I live In this Wisconsin.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1381,
+              "percentage": 13.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I live In this Wisconsin."
+        },
+        {
+          "time_start": 45.67,
+          "time_end": 55.04,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1902,
+              "percentage": 19.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 52.32,
+          "time_end": 52.82,
+          "text": "Yes.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1862,
+              "percentage": 18.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 55.44,
+          "time_end": 59.36,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2189,
+              "percentage": 21.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 59.36,
+          "time_end": 62.55,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2938,
+              "percentage": 29.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 62.55,
+          "time_end": 69.75,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1689,
+              "percentage": 16.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 69.99,
+          "time_end": 74.78,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2073,
+              "percentage": 20.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 74.78,
+          "time_end": 89.24,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2497,
+              "percentage": 25.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 89.24,
+          "time_end": 93.15,
+          "text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2846,
+              "percentage": 28.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2039,
+              "percentage": 20.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 13.0,
+          "time_end": 14.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1674,
+              "percentage": 16.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 34.0,
+          "time_end": 35.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1842,
+              "percentage": 18.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 39.0,
+          "time_end": 40.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contemplation",
+              "score": 0.5382,
+              "percentage": 53.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "I live In this Wisconsin."
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 4,
+          "neutral": 9,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 7.0189997,
+            "end": 7.4189998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 9.549,
+            "end": 13.995666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 17.129,
+            "end": 17.369,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 18.871,
+            "end": 32.72145825195312,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 38.339,
+            "end": 42.929,
+            "text": "I live In this Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 45.096,
+            "end": 47.905625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.189,
+            "end": 52.429,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 54.674,
+            "end": 65.1225,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 67.43900000000001,
+            "end": 67.99900000000001,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.533,
+            "end": 78.92479174804687,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.01899,
+            "end": 83.57900000000001,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 89.09,
+            "end": 93.46679174804687,
+            "text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day."
+          }
+        ],
+        "retell_call_id": "call_3d972cf3978c1a6347077503c66",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d301a2d22e9f5a33b0daf0570506895013b7f9a4afa97ca5456e231bd6f3fc45/recording_multichannel.wav",
+        "start_timestamp": 1762899003408,
+        "end_timestamp": 1762899096919,
+        "duration_ms": 93511,
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 93511
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 1.0,
+          "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to proceed with the application process. The Agent reinforces interest at 55.4s while offering to connect Jenny with an Admissions Representative, who will guide her through the next steps. The call concludes positively, with Jenny agreeing to receive a text link to schedule a meeting."
+    },
+    {
+      "filename": "call_3d972cf3978c1a6347077503c66_agent.wav",
+      "prosody": [
+        {
+          "time_start": 9.45,
+          "time_end": 12.34,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3527,
+              "percentage": 35.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 12.72,
+          "time_end": 13.67,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1331,
+              "percentage": 13.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 18.79,
+          "time_end": 23.02,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2365,
+              "percentage": 23.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.02,
+          "time_end": 27.5,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2033,
+              "percentage": 20.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 27.5,
+          "time_end": 30.54,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3058,
+              "percentage": 30.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 30.7,
+          "time_end": 45.35,
+          "text": "I live In this Wisconsin.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1381,
+              "percentage": 13.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I live In this Wisconsin."
+        },
+        {
+          "time_start": 45.67,
+          "time_end": 55.04,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1902,
+              "percentage": 19.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 55.44,
+          "time_end": 59.36,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2189,
+              "percentage": 21.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 59.36,
+          "time_end": 62.55,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2938,
+              "percentage": 29.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 62.55,
+          "time_end": 69.75,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1689,
+              "percentage": 16.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 69.99,
+          "time_end": 74.78,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2073,
+              "percentage": 20.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 74.78,
+          "time_end": 89.24,
+          "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2497,
+              "percentage": 25.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 89.24,
+          "time_end": 93.15,
+          "text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2846,
+              "percentage": 28.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day."
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 9,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 7.0189997,
+            "end": 7.4189998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 9.549,
+            "end": 13.995666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 17.129,
+            "end": 17.369,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 18.871,
+            "end": 32.72145825195312,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 38.339,
+            "end": 42.929,
+            "text": "I live In this Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 45.096,
+            "end": 47.905625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.189,
+            "end": 52.429,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 54.674,
+            "end": 65.1225,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 67.43900000000001,
+            "end": 67.99900000000001,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.533,
+            "end": 78.92479174804687,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.01899,
+            "end": 83.57900000000001,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 89.09,
+            "end": 93.46679174804687,
+            "text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day."
+          }
+        ],
+        "retell_call_id": "call_3d972cf3978c1a6347077503c66",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d301a2d22e9f5a33b0daf0570506895013b7f9a4afa97ca5456e231bd6f3fc45/recording_multichannel.wav",
+        "start_timestamp": 1762899003408,
+        "end_timestamp": 1762899096919,
+        "duration_ms": 93511,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 93511
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 1.0,
+          "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to proceed with the application process. The Agent reinforces interest at 55.4s while offering to connect Jenny with an Admissions Representative, who will guide her through the next steps. The call concludes positively, with Jenny agreeing to receive a text link to schedule a meeting."
+    },
+    {
+      "filename": "call_3d972cf3978c1a6347077503c66_user.wav",
+      "prosody": [
+        {
+          "time_start": 52.32,
+          "time_end": 52.82,
+          "text": "Yes.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1862,
+              "percentage": 18.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2039,
+              "percentage": 20.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 13.0,
+          "time_end": 14.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1674,
+              "percentage": 16.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 34.0,
+          "time_end": 35.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1842,
+              "percentage": 18.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 39.0,
+          "time_end": 40.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contemplation",
+              "score": 0.5382,
+              "percentage": 53.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "I live In this Wisconsin."
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 1,
+          "negative": 3
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 7.0189997,
+            "end": 7.4189998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 9.549,
+            "end": 13.995666748046874,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 17.129,
+            "end": 17.369,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 18.871,
+            "end": 32.72145825195312,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 38.339,
+            "end": 42.929,
+            "text": "I live In this Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 45.096,
+            "end": 47.905625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.189,
+            "end": 52.429,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 54.674,
+            "end": 65.1225,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 67.43900000000001,
+            "end": 67.99900000000001,
+            "text": "Okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.533,
+            "end": 78.92479174804687,
+            "text": "Great! A text message will be sent your way. Simply click the link and choose a time that works best for you. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 83.01899,
+            "end": 83.57900000000001,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 89.09,
+            "end": 93.46679174804687,
+            "text": "Thank you, Jenny! Wishing you the best as you take the next step. Have a wonderful day."
+          }
+        ],
+        "retell_call_id": "call_3d972cf3978c1a6347077503c66",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d301a2d22e9f5a33b0daf0570506895013b7f9a4afa97ca5456e231bd6f3fc45/recording_multichannel.wav",
+        "start_timestamp": 1762899003408,
+        "end_timestamp": 1762899096919,
+        "duration_ms": 93511,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 93511
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 1.0,
+          "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to proceed with the application process. The Agent reinforces interest at 55.4s while offering to connect Jenny with an Admissions Representative, who will guide her through the next steps. The call concludes positively, with Jenny agreeing to receive a text link to schedule a meeting."
+    }
+  ]
+}

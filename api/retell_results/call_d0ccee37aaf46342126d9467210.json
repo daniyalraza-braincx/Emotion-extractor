@@ -219,12 +219,12 @@
         "overall_call_emotion": {
           "label": "negative",
           "call_outcome": "unsuccessful",
-          "confidence": 0.9,
-          "reasoning": "The customer explicitly requested to be removed from the call list and expressed anger about the repeated calls, indicating a clear refusal.",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly demanded removal from the call list, indicating a refusal to engage further. The agent confirmed this request, ensuring no future contact.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program, initiating the conversation with interest at 4.6s. Hiba expresses anger at 10.7s, stating, \u201cTold you not to call me,\u201d demanding to be removed from the call list. The agent remains calm and confirms the removal at 18.8s, successfully addressing Hiba's request. The call concludes with the agent ensuring no future calls will be made, reflecting a resolution despite the customer's frustration."
+      "summary": "Agent contacts Hiba regarding the Machine Learning with Python program. Hiba starts calmly at 2.9s but becomes angry at 10.7s, demanding removal from the call list. The Agent, initially interested, shifts to calmness at 18.8s, confirming Hiba's removal from future calls. The call concludes with the Agent acknowledging Hiba's request, ensuring no further contact."
     },
     {
       "filename": "call_d0ccee37aaf46342126d9467210_agent.wav",
@@ -347,12 +347,12 @@
         "overall_call_emotion": {
           "label": "negative",
           "call_outcome": "unsuccessful",
-          "confidence": 0.9,
-          "reasoning": "The customer explicitly requested to be removed from the call list and expressed anger about the repeated calls, indicating a clear refusal.",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly demanded removal from the call list, indicating a refusal to engage further. The agent confirmed this request, ensuring no future contact.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program, initiating the conversation with interest at 4.6s. Hiba expresses anger at 10.7s, stating, \u201cTold you not to call me,\u201d demanding to be removed from the call list. The agent remains calm and confirms the removal at 18.8s, successfully addressing Hiba's request. The call concludes with the agent ensuring no future calls will be made, reflecting a resolution despite the customer's frustration."
+      "summary": "Agent contacts Hiba regarding the Machine Learning with Python program. Hiba starts calmly at 2.9s but becomes angry at 10.7s, demanding removal from the call list. The Agent, initially interested, shifts to calmness at 18.8s, confirming Hiba's removal from future calls. The call concludes with the Agent acknowledging Hiba's request, ensuring no further contact."
     },
     {
       "filename": "call_d0ccee37aaf46342126d9467210_user.wav",
@@ -489,12 +489,12 @@
         "overall_call_emotion": {
           "label": "negative",
           "call_outcome": "unsuccessful",
-          "confidence": 0.9,
-          "reasoning": "The customer explicitly requested to be removed from the call list and expressed anger about the repeated calls, indicating a clear refusal.",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly demanded removal from the call list, indicating a refusal to engage further. The agent confirmed this request, ensuring no future contact.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney calls Hiba regarding the Machine Learning with Python program, initiating the conversation with interest at 4.6s. Hiba expresses anger at 10.7s, stating, \u201cTold you not to call me,\u201d demanding to be removed from the call list. The agent remains calm and confirms the removal at 18.8s, successfully addressing Hiba's request. The call concludes with the agent ensuring no future calls will be made, reflecting a resolution despite the customer's frustration."
+      "summary": "Agent contacts Hiba regarding the Machine Learning with Python program. Hiba starts calmly at 2.9s but becomes angry at 10.7s, demanding removal from the call list. The Agent, initially interested, shifts to calmness at 18.8s, confirming Hiba's removal from future calls. The call concludes with the Agent acknowledging Hiba's request, ensuring no further contact."
     }
   ]
 }

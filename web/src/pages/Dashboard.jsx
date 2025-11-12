@@ -75,7 +75,11 @@ function Dashboard() {
       const idMatch = call.call_id?.toLowerCase().includes(query);
       const agentMatch = call.agent_id?.toLowerCase().includes(query) || call.agent_name?.toLowerCase().includes(query);
       const statusMatch = call.analysis_status?.toLowerCase().includes(query);
-      return idMatch || agentMatch || statusMatch;
+      const purposeMatch = call.call_purpose?.toLowerCase().includes(query);
+      const summaryMatch = call.call_summary?.toLowerCase().includes(query);
+      const overallEmotionLabel = call.overall_emotion_label || call.overall_emotion?.label;
+      const overallEmotionMatch = overallEmotionLabel?.toLowerCase().includes(query);
+      return idMatch || agentMatch || statusMatch || purposeMatch || summaryMatch || overallEmotionMatch;
     });
   }, [retellCalls, searchQuery]);
 
@@ -121,7 +125,7 @@ function Dashboard() {
             <span aria-hidden className="calls-search__icon">🔍</span>
             <input
               type="search"
-              placeholder="Search by transcript, agent, or call ID..."
+              placeholder="Search by agent, call ID, or emotion..."
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
             />
@@ -167,6 +171,7 @@ function Dashboard() {
             <span className="calls-table-meta__label">Purpose</span>
             <span className="calls-table-meta__label calls-table-meta__label--wide">Summary</span>
             <span className="calls-table-meta__label">Duration</span>
+            <span className="calls-table-meta__label">Overall Emotion</span>
             <span className="calls-table-meta__label">Entry</span>
             <span className="calls-table-meta__label" aria-hidden />
           </div>
@@ -195,6 +200,13 @@ function Dashboard() {
                 .find((value) => typeof value === 'string' && value.trim());
               const callPurpose = (purposeCandidate ? purposeCandidate.trim() : '') || 'Purpose unavailable';
               const summaryText = renderSummary(call);
+              const rawEmotionLabel = call.overall_emotion_label || call.overall_emotion?.label;
+              const formattedEmotionLabel = rawEmotionLabel ? formatStatusLabel(rawEmotionLabel) : '—';
+              const emotionKey = rawEmotionLabel ? rawEmotionLabel.toLowerCase() : null;
+              const shouldShowEmotion = statusKey === 'completed' && formattedEmotionLabel !== '—';
+              const emotionClassName = shouldShowEmotion && emotionKey
+                ? `emotion-pill emotion-${emotionKey}`
+                : 'emotion-pill emotion-pill--empty';
 
               return (
                 <article key={call.call_id} className="calls-table-row" data-status={statusKey}>
@@ -226,6 +238,12 @@ function Dashboard() {
                     ) : (
                       <span className="cell-secondary">Pending</span>
                     )}
+                  </div>
+
+                  <div className="calls-table-cell calls-table-cell--emotion">
+                    <span className={emotionClassName}>
+                      {shouldShowEmotion ? formattedEmotionLabel : '—'}
+                    </span>
                   </div>
 
                   <div className="calls-table-cell calls-table-cell--entry">

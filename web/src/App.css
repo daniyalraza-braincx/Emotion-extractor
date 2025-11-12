@@ -15,7 +15,7 @@
 
 .page-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -90,7 +90,7 @@
 
 .calls-page {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
@@ -149,7 +149,7 @@
   border-radius: 999px;
   box-shadow: 0 6px 14px rgba(15, 31, 60, 0.04);
   width: 100%;
-  max-width: 320px;
+  max-width: 330px;
   box-sizing: border-box;
 }
 
@@ -261,7 +261,7 @@
 .calls-table-meta,
 .calls-table-row {
   display: grid;
-  grid-template-columns: 180px 210px minmax(0, 1fr) 140px 110px 120px 120px;
+  grid-template-columns: 180px 210px minmax(0, 1fr) 140px 110px 140px 120px 120px;
   align-items: flex-start;
   gap: 1rem;
 }
@@ -390,8 +390,46 @@
 }
 
 .calls-table-cell--duration,
+.calls-table-cell--emotion,
 .calls-table-cell--entry {
   justify-content: center;
+}
+
+.emotion-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+}
+
+.emotion-pill--empty {
+  background: #f2f4fb;
+  color: #8a91ab;
+  border-color: #dde1f0;
+}
+
+.emotion-positive {
+  background: rgba(52, 208, 139, 0.18);
+  color: #1f7b56;
+  border-color: rgba(52, 208, 139, 0.4);
+}
+
+.emotion-neutral {
+  background: rgba(255, 202, 40, 0.2);
+  color: #8a6d04;
+  border-color: rgba(255, 202, 40, 0.45);
+}
+
+.emotion-negative {
+  background: rgba(252, 118, 118, 0.2);
+  color: #b43d3d;
+  border-color: rgba(252, 118, 118, 0.45);
 }
 
 .calls-table-cell--start {
@@ -416,7 +454,7 @@
 @media (max-width: 1024px) {
   .calls-table-meta,
   .calls-table-row {
-    grid-template-columns: 150px 190px minmax(0, 1fr) 120px 100px 110px 110px;
+    grid-template-columns: 150px 190px minmax(0, 1fr) 120px 100px 120px 110px 110px;
   }
 
   .calls-table-meta__label:last-child {
@@ -505,6 +543,15 @@
   text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #9299b5;
+  }
+
+  .calls-table-cell--emotion::before {
+    content: 'Overall Emotion';
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9299b5;
+    margin-bottom: 0.15rem;
   }
 
   .calls-table-cell--entry::before {
@@ -1248,6 +1295,24 @@
   font-size: 0.95rem;
 }
 
+.analysis-metrics-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.analysis-metrics-toggle__button {
+  min-width: 110px;
+}
+
+.analysis-metrics-toggle__button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .overall-emotion-card {
   display: flex;
   flex-direction: column;
@@ -1447,6 +1512,178 @@
   box-shadow: 0 0 0 3px rgba(241, 120, 120, 0.22);
 }
 
+.emotion-timeline-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 1rem;
+}
+
+.emotion-timeline-section__header h3 {
+  margin: 0;
+  color: #1d2453;
+  font-size: 1.1rem;
+}
+
+.emotion-timeline-section__header p {
+  margin: 0;
+  color: #5a6285;
+  font-size: 0.9rem;
+}
+
+.emotion-timeline-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.emotion-timeline-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid #dce1f6;
+  background: #ffffff;
+  box-shadow: 0 12px 22px rgba(30, 42, 95, 0.06);
+}
+
+.emotion-timeline-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.emotion-timeline-group__label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1f2d55;
+}
+
+.emotion-timeline-group__empty {
+  font-size: 0.78rem;
+  color: #8a92b3;
+  font-style: italic;
+}
+
+.emotion-timeline-group__parts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.emotion-timeline-empty {
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px dashed #d8ddf4;
+  background: linear-gradient(135deg, rgba(248, 249, 255, 0.85), rgba(255, 255, 255, 0.96));
+  color: #6a7295;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.emotion-timeline-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.85rem;
+  border-radius: 14px;
+  border: 1px solid #dfe3f7;
+  background: linear-gradient(135deg, rgba(246, 247, 255, 0.92), rgba(255, 255, 255, 0.98));
+  box-shadow: 0 10px 18px rgba(31, 42, 95, 0.08);
+  min-height: 110px;
+}
+
+.emotion-timeline-card--positive {
+  border-color: rgba(99, 211, 173, 0.65);
+  background: linear-gradient(135deg, rgba(224, 255, 244, 0.92), rgba(255, 255, 255, 0.98));
+}
+
+.emotion-timeline-card--neutral {
+  border-color: rgba(245, 211, 123, 0.65);
+  background: linear-gradient(135deg, rgba(255, 248, 226, 0.92), rgba(255, 255, 249, 0.98));
+}
+
+.emotion-timeline-card--negative {
+  border-color: rgba(241, 120, 120, 0.68);
+  background: linear-gradient(135deg, rgba(255, 232, 232, 0.9), rgba(255, 244, 244, 0.98));
+}
+
+.emotion-timeline-card--empty {
+  border-style: dashed;
+  border-color: rgba(206, 210, 233, 0.9);
+  background: linear-gradient(135deg, rgba(247, 248, 255, 0.9), rgba(255, 255, 255, 0.98));
+}
+
+.emotion-timeline-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.emotion-timeline-card__part {
+  font-weight: 600;
+  color: #1f2d55;
+  font-size: 0.9rem;
+}
+
+.emotion-timeline-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1c2355;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(210, 214, 240, 0.65);
+}
+
+.emotion-timeline-card__badge--positive {
+  color: #1b6b4b;
+  border-color: rgba(99, 211, 173, 0.7);
+  background: rgba(224, 255, 244, 0.72);
+}
+
+.emotion-timeline-card__badge--neutral {
+  color: #8a6a1f;
+  border-color: rgba(245, 211, 123, 0.7);
+  background: rgba(255, 248, 223, 0.72);
+}
+
+.emotion-timeline-card__badge--negative {
+  color: #9f2f2f;
+  border-color: rgba(241, 120, 120, 0.7);
+  background: rgba(255, 234, 234, 0.72);
+}
+
+.emotion-timeline-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.emotion-timeline-card__emotion {
+  font-weight: 600;
+  color: #1f2d55;
+  font-size: 1rem;
+}
+
+.emotion-timeline-card--empty .emotion-timeline-card__emotion {
+  color: #7a82a5;
+  font-weight: 500;
+}
+
+.emotion-timeline-card__meta {
+  color: #6d7597;
+  font-size: 0.78rem;
+}
 @media (min-width: 960px) {
   
 
@@ -1507,6 +1744,14 @@
 
   .analysis-hero__timeline {
     padding: 1.2rem 1.1rem;
+  }
+
+  .emotion-timeline-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .emotion-timeline-group__parts {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 }
 
@@ -1607,6 +1852,14 @@
 
   .speaker-timeline-row {
     gap: 0.8rem;
+  }
+
+  .emotion-timeline-group__parts {
+    grid-template-columns: 1fr;
+  }
+
+  .emotion-timeline-card {
+    min-height: 100px;
   }
 
   .analysis-tabs {
