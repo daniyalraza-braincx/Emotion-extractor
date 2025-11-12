@@ -39,13 +39,13 @@
           "time_start": 2.67,
           "time_end": 3.31,
           "text": "Who's this?",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Confusion",
               "score": 0.5686,
               "percentage": 56.9,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -90,13 +90,13 @@
           "time_start": 15.52,
           "time_end": 15.68,
           "text": "Okay.",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Confusion",
               "score": 0.2324,
               "percentage": 23.2,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -496,13 +496,13 @@
           "time_start": 99.83,
           "time_end": 100.31,
           "text": "No. Thanks.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2447,
               "percentage": 24.5,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -714,9 +714,16 @@
           },
           "too_short": false,
           "duration_ms": 105074
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "The customer agreed to receive a scheduling link and expressed satisfaction with the process, indicating a commitment to proceed. The final 'No. Thanks.' was in response to additional questions and does not negate the prior acceptance.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Hiba regarding her interest in the CISSP Certification Exam Preparation Course. Hiba initially feels confusion at 2.7s but shifts to calmness at 42.0s after confirming her high school diploma. The Agent maintains determination throughout, leading to Hiba expressing amusement at 81.1s when she agrees to receive a text link for scheduling. The call concludes with Hiba confirming her willingness to proceed and thanking the Agent at 99.0s."
+      "summary": "Agent contacts Hiba about the CISSP Certification Exam Preparation Course, maintaining determination and interest throughout. Hiba starts confused at 2.7s but becomes calm and agreeable, committing to the next steps by confirming her qualifications and agreeing to receive a scheduling link at 81.1s. The call concludes with Hiba expressing satisfaction and no further questions, ensuring a successful lead conversion."
     },
     {
       "filename": "call_b8472b0344daa43453561bfeb99_agent.wav",
@@ -1218,9 +1225,16 @@
           },
           "too_short": false,
           "duration_ms": 105074
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "The customer agreed to receive a scheduling link and expressed satisfaction with the process, indicating a commitment to proceed. The final 'No. Thanks.' was in response to additional questions and does not negate the prior acceptance.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Hiba regarding her interest in the CISSP Certification Exam Preparation Course. Hiba initially feels confusion at 2.7s but shifts to calmness at 42.0s after confirming her high school diploma. The Agent maintains determination throughout, leading to Hiba expressing amusement at 81.1s when she agrees to receive a text link for scheduling. The call concludes with Hiba confirming her willingness to proceed and thanking the Agent at 99.0s."
+      "summary": "Agent contacts Hiba about the CISSP Certification Exam Preparation Course, maintaining determination and interest throughout. Hiba starts confused at 2.7s but becomes calm and agreeable, committing to the next steps by confirming her qualifications and agreeing to receive a scheduling link at 81.1s. The call concludes with Hiba expressing satisfaction and no further questions, ensuring a successful lead conversion."
     },
     {
       "filename": "call_b8472b0344daa43453561bfeb99_user.wav",
@@ -1229,13 +1243,13 @@
           "time_start": 2.67,
           "time_end": 3.31,
           "text": "Who's this?",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Confusion",
               "score": 0.5686,
               "percentage": 56.9,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody",
@@ -1246,13 +1260,13 @@
           "time_start": 15.52,
           "time_end": 15.68,
           "text": "Okay.",
-          "primary_category": "negative",
+          "primary_category": "neutral",
           "top_emotions": [
             {
               "name": "Confusion",
               "score": 0.2324,
               "percentage": 23.2,
-              "category": "negative"
+              "category": "neutral"
             }
           ],
           "source": "prosody"
@@ -1344,13 +1358,13 @@
           "time_start": 99.83,
           "time_end": 100.31,
           "text": "No. Thanks.",
-          "primary_category": "neutral",
+          "primary_category": "negative",
           "top_emotions": [
             {
               "name": "Boredom",
               "score": 0.2447,
               "percentage": 24.5,
-              "category": "neutral"
+              "category": "negative"
             }
           ],
           "source": "prosody",
@@ -1411,8 +1425,8 @@
       "metadata": {
         "category_counts": {
           "positive": 3,
-          "neutral": 5,
-          "negative": 3
+          "neutral": 6,
+          "negative": 2
         },
         "retell_transcript_available": true,
         "retell_transcript_segments": [
@@ -1529,9 +1543,16 @@
           },
           "too_short": false,
           "duration_ms": 105074
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "The customer agreed to receive a scheduling link and expressed satisfaction with the process, indicating a commitment to proceed. The final 'No. Thanks.' was in response to additional questions and does not negate the prior acceptance.",
+          "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Hiba regarding her interest in the CISSP Certification Exam Preparation Course. Hiba initially feels confusion at 2.7s but shifts to calmness at 42.0s after confirming her high school diploma. The Agent maintains determination throughout, leading to Hiba expressing amusement at 81.1s when she agrees to receive a text link for scheduling. The call concludes with Hiba confirming her willingness to proceed and thanking the Agent at 99.0s."
+      "summary": "Agent contacts Hiba about the CISSP Certification Exam Preparation Course, maintaining determination and interest throughout. Hiba starts confused at 2.7s but becomes calm and agreeable, committing to the next steps by confirming her qualifications and agreeing to receive a scheduling link at 81.1s. The call concludes with Hiba expressing satisfaction and no further questions, ensuring a successful lead conversion."
     }
   ]
 }

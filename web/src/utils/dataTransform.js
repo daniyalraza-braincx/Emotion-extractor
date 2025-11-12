@@ -328,25 +328,32 @@ function convertEmotionBucket(bucketMap) {
 
 const SENTIMENT_PRIORITY = ['positive', 'neutral', 'negative'];
 
-function selectDominantCategory(counts = {}) {
-  let bestCategory = 'neutral';
-  let bestCount = 0;
-
-  SENTIMENT_PRIORITY.forEach((category) => {
-    const value = Number.isFinite(counts[category]) ? counts[category] : 0;
-    const currentBestPriority = SENTIMENT_PRIORITY.indexOf(bestCategory);
-    const candidatePriority = SENTIMENT_PRIORITY.indexOf(category);
-
-    if (value > bestCount) {
-      bestCategory = category;
-      bestCount = value;
-    } else if (value === bestCount && candidatePriority < currentBestPriority) {
-      bestCategory = category;
-      bestCount = value;
-    }
+function selectDominantCategory(counts = {}, categorizedEmotions = {}) {
+  const categories = SENTIMENT_KEYS.map((category) => {
+    const count = Number.isFinite(counts[category]) ? counts[category] : 0;
+    const topEmotion = Array.isArray(categorizedEmotions?.[category])
+      ? categorizedEmotions[category][0]
+      : null;
+    const strength = Number.isFinite(topEmotion?.maxScore)
+      ? topEmotion.maxScore
+      : (Number.isFinite(topEmotion?.percentage) ? topEmotion.percentage / 100 : 0);
+    return { category, count, strength };
   });
 
-  return { category: bestCategory, count: bestCount };
+  categories.sort((a, b) => {
+    if (b.count !== a.count) {
+      return b.count - a.count;
+    }
+
+    if (b.strength !== a.strength) {
+      return b.strength - a.strength;
+    }
+
+    return SENTIMENT_PRIORITY.indexOf(a.category) - SENTIMENT_PRIORITY.indexOf(b.category);
+  });
+
+  const best = categories[0] || { category: 'neutral', count: 0 };
+  return { category: best.category, count: best.count };
 }
 
 function deriveOverallEmotionFromMetrics(metrics, speakerLabel, fallbackOverallEmotion = null) {
@@ -360,8 +367,9 @@ function deriveOverallEmotionFromMetrics(metrics, speakerLabel, fallbackOverallE
   }
 
   const counts = metrics.categoryCounts || {};
-  const { category: dominantCategory, count: dominantCount } = selectDominantCategory(counts);
-  const dominantEmotions = metrics.categorizedEmotions?.[dominantCategory] || [];
+  const categorizedEmotions = metrics.categorizedEmotions || {};
+  const { category: dominantCategory, count: dominantCount } = selectDominantCategory(counts, categorizedEmotions);
+  const dominantEmotions = categorizedEmotions[dominantCategory] || [];
   const topEmotion = dominantEmotions.length > 0 ? dominantEmotions[0] : null;
 
   const confidenceRatio = totalSegments > 0 ? dominantCount / totalSegments : 0;

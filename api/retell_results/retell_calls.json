@@ -12,7 +12,7 @@
       "analysis_available": true,
       "analysis_filename": "call_1e9eadc3b1bcabf40ad454ff31c.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:45:22Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -30,7 +30,17 @@
         "duration_ms": 16640
       },
       "duration_ms": 16640,
-      "call_purpose": "Insurance Inquiry"
+      "call_purpose": "Insurance Inquiry",
+      "call_summary": "The call began with the agent introducing herself and discussing life insurance plans offered by ABC Insurance, aiming to provide peace of mind to the user and their loved ones.",
+      "call_title": "Life Insurance Overview",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.7,
+        "reasoning": "The customer greeted the agent with joy but did not express any commitment or refusal regarding the life insurance plans. The absence of a clear acceptance or refusal results in a pending outcome.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_0af44db68a4417eed813bca083c": {
       "call_id": "call_0af44db68a4417eed813bca083c",
@@ -76,7 +86,7 @@
       "analysis_available": true,
       "analysis_filename": "call_b8472b0344daa43453561bfeb99.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:45:30Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -94,7 +104,17 @@
         "duration_ms": 105074
       },
       "duration_ms": 105074,
-      "call_purpose": "Course Inquiry"
+      "call_purpose": "Course Inquiry",
+      "call_summary": "The agent, Courtney, called Hiba to discuss her interest in the CISSP Certification Exam Preparation Course program. After confirming Hiba's qualifications and state of residence, the agent offered to send a text message with a link to schedule a meeting with an Admissions Representative.",
+      "call_title": "CISSP Course Inquiry",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.95,
+        "reasoning": "The customer agreed to receive a scheduling link and expressed satisfaction with the process, indicating a commitment to proceed. The final 'No. Thanks.' was in response to additional questions and does not negate the prior acceptance.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_275ff93c7040ffb9fc250b9368a": {
       "call_id": "call_275ff93c7040ffb9fc250b9368a",
@@ -108,7 +128,7 @@
       "analysis_available": true,
       "analysis_filename": "call_275ff93c7040ffb9fc250b9368a.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:45:32Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -126,7 +146,17 @@
         "duration_ms": 129558
       },
       "duration_ms": 129558,
-      "call_purpose": "Appointment Scheduling"
+      "call_purpose": "Interview Scheduling",
+      "call_summary": "The agent contacted Hiba to follow up on a missed admission interview for the CISSP Certification Exam Preparation Course at Arcadia University. Hiba confirmed her eligibility and interest, and the agent arranged to send a text with a link to schedule a 30-minute appointment with an Admissions Representative. The call ended with Hiba having her questions acknowledged and a clear next step provided.",
+      "call_title": "Callback Requested",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.95,
+        "reasoning": "The customer agreed to receive a scheduling link and committed to discussing payment options with an Admissions Representative, indicating willingness to proceed with the agent's requests.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_48d196f60ef0b137c3b264bb1f2": {
       "call_id": "call_48d196f60ef0b137c3b264bb1f2",
@@ -172,7 +202,7 @@
       "analysis_available": true,
       "analysis_filename": "call_e7858b80632cca5ef34192305be.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:45:37Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -190,7 +220,15 @@
         "duration_ms": 53200
       },
       "duration_ms": 53200,
-      "call_purpose": "Car Insurance"
+      "call_purpose": "Car Insurance",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.9,
+        "reasoning": "The customer expressed satisfaction with car insurance, stating, 'Car insurance is so good,' and committed to learning more about it, indicating a successful outcome.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_5c04d49e00a2410984f5a53357a": {
       "call_id": "call_5c04d49e00a2410984f5a53357a",
@@ -364,7 +402,7 @@
       "analysis_available": true,
       "analysis_filename": "call_8689771f4158667f546f14726aa.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:45:52Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -382,7 +420,15 @@
         "duration_ms": 89300
       },
       "duration_ms": 89300,
-      "call_purpose": "Appointment Scheduling"
+      "call_purpose": "Appointment Scheduling",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.85,
+        "reasoning": "Despite displaying boredom and reluctance, the customer ultimately agreed to receive a text for scheduling a meeting, indicating a commitment to proceed.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_2b1d2fa73e723fcfbe6ab73742c": {
       "call_id": "call_2b1d2fa73e723fcfbe6ab73742c",
@@ -620,7 +666,7 @@
       "analysis_available": true,
       "analysis_filename": "call_fdf256834e64ef0c83fc6e7009b.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:46:11Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -638,7 +684,15 @@
         "duration_ms": 41553
       },
       "duration_ms": 41553,
-      "call_purpose": "Program Inquiry"
+      "call_purpose": "Program Inquiry",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer expressed that she got busy and agreed to reconnect later, indicating a willingness to continue the conversation but without a definite commitment at this moment.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_d1405336c1367d099f70ef05c75": {
       "call_id": "call_d1405336c1367d099f70ef05c75",
@@ -652,7 +706,7 @@
       "analysis_available": true,
       "analysis_filename": "call_d1405336c1367d099f70ef05c75.json",
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:46:14Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "error_message": null,
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -670,7 +724,15 @@
         "duration_ms": 18941
       },
       "duration_ms": 18941,
-      "call_purpose": "Follow Up"
+      "call_purpose": "Follow Up",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.85,
+        "reasoning": "The customer expressed that they are busy and did not commit to a specific follow-up, indicating a deferral. The tone was neutral, reflecting their reluctance to engage further at this time.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_967b8cd5046e0ce0872fb0790d0": {
       "call_id": "call_967b8cd5046e0ce0872fb0790d0",
@@ -703,8 +765,16 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:46:19Z",
-      "call_purpose": "Insurance Sales"
+      "last_updated": "2025-11-12T19:41:35Z",
+      "call_purpose": "Sales Attempt",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer expressed being busy and requested a callback, indicating no definite acceptance or refusal. The lack of a strong negative tone suggests a neutral outcome.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_90873bb66541a92fbd911fa9439": {
       "call_id": "call_90873bb66541a92fbd911fa9439",
@@ -769,8 +839,16 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:46:24Z",
-      "call_purpose": "Insurance Sales"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "call_purpose": "Insurance Sales",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 0.9,
+        "reasoning": "The customer explicitly stated, 'No. I'm not interested,' indicating a refusal to engage with the agent's offer. Despite the agent's attempts to persuade, there was no commitment from the customer.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_7aa98794cb2f76b40a9168dfc14": {
       "call_id": "call_7aa98794cb2f76b40a9168dfc14",
@@ -801,8 +879,16 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:46:26Z",
-      "call_purpose": "Insurance Inquiry"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "call_purpose": "Insurance Inquiry",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer did not provide a clear commitment or refusal, and the call concluded without any next steps being confirmed.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_d0ccee37aaf46342126d9467210": {
       "call_id": "call_d0ccee37aaf46342126d9467210",
@@ -833,8 +919,18 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:46:29Z",
-      "call_purpose": "Do Not"
+      "last_updated": "2025-11-12T19:59:28Z",
+      "call_purpose": "Do Not",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 1.0,
+        "reasoning": "The customer explicitly demanded removal from the call list, indicating a refusal to engage further. The agent confirmed this request, ensuring no future contact.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative",
+      "call_summary": "The agent called Hiba on behalf of Arcadia University, but the user expressed frustration about repeated calls and requested to be removed from the call list. The agent acknowledged the request and confirmed removal from future calls.",
+      "call_title": "Do Not Call"
     },
     "call_363e9597d82f61e820745e0e8ef": {
       "call_id": "call_363e9597d82f61e820745e0e8ef",
@@ -865,10 +961,18 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T19:52:51Z",
+      "last_updated": "2025-11-12T19:36:54Z",
       "call_purpose": "Program Inquiry",
       "call_summary": "The agent contacted John regarding his interest in the Phlebotomy Technician program at Arcadia University but informed him that the program is not available for residents of Wisconsin. The agent then inquired if John was interested in another program.",
-      "call_title": "Interested"
+      "call_title": "Interested",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer expressed doubt about the program availability in Wisconsin, leading to disappointment. However, he engaged with the agent's inquiry about alternative programs, indicating a willingness to explore options without a definitive commitment.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_a35059f44fba4e407c968683dee": {
       "call_id": "call_a35059f44fba4e407c968683dee",
@@ -1242,7 +1346,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:03:56Z"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.9,
+        "reasoning": "The customer expressed contentment and agreed to receive a text link for scheduling a meeting, indicating a commitment to proceed with the agent's ask.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_b4edd38cb69eab46a4db2cd6211": {
       "call_id": "call_b4edd38cb69eab46a4db2cd6211",
@@ -1582,7 +1694,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:54:30Z"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer expressed calmness when providing their state but did not commit to enrolling in the program, leading to a pending outcome. The agent's follow-up agreement indicates a willingness to revisit the conversation, but no definitive acceptance was made.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_ec07f9e3ec663a454a259fa5f0e": {
       "call_id": "call_ec07f9e3ec663a454a259fa5f0e",
@@ -2000,9 +2120,9 @@
       "start_timestamp": 1762897822654,
       "end_timestamp": 1762897965108,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/dd0facfa8a85bee36a8d01a769bf94f25512882db8894b7629e36047badc4351/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_28b429204180cb921445f202d86.json",
       "duration_ms": 142454,
       "call_summary": "The agent contacted Jenny regarding her interest in the CISSP Certification Exam Preparation Course at Arcadia University. They confirmed her eligibility, discussed program details, and arranged to send a text link for scheduling a 30-minute appointment with an Admissions Representative. Jenny's questions about faculty and payment plans were addressed with a referral to the Admissions Representative.",
       "call_purpose": "Course Inquiry",
@@ -2024,7 +2144,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:52:49Z"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.9,
+        "reasoning": "Jenny committed to scheduling a follow-up by responding 'Okay. Yeah.' to the agent's proposal, indicating acceptance of the next steps despite earlier mixed emotions.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_d719632414d1ef32569cf04ffdb": {
       "call_id": "call_d719632414d1ef32569cf04ffdb",
@@ -2128,40 +2256,6 @@
       "transcript_available": true,
       "last_updated": "2025-11-11T21:54:32Z"
     },
-    "call_9a85ddb3a879304527bf074a649": {
-      "call_id": "call_9a85ddb3a879304527bf074a649",
-      "agent_id": "agent_efd77b346717ad7983449e92c0",
-      "agent_name": "Single-Prompt Agent Hiba",
-      "user_phone_number": null,
-      "start_timestamp": 1762898071964,
-      "end_timestamp": 1762898170130,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a750c0ed783d490e001b3b84ce39bc299046c08c5bc99226283abdd3711da6e7/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 98166,
-      "call_summary": "The agent contacted Jenny regarding her interest in the CISSP Certification Exam Preparation Course at Arcadia University. Jenny asked about the university's library, and the agent offered to connect her with an Admissions Representative for further questions and to schedule a 30-minute appointment. The call ended with the agent proposing to send a scheduling link via text.",
-      "call_purpose": "Course Inquiry",
-      "call_title": "Scheduled",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 98166
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-11T21:56:25Z"
-    },
     "call_f9c9606cbf0ff95405f8094571c": {
       "call_id": "call_f9c9606cbf0ff95405f8094571c",
       "agent_id": "agent_efd77b346717ad7983449e92c0",
@@ -2170,9 +2264,9 @@
       "start_timestamp": 1762898707928,
       "end_timestamp": 1762898832450,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/80875737fee66f2ce0caf8d0fe86332d3de720668413814cf79bc1aeb8109fbf/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_f9c9606cbf0ff95405f8094571c.json",
       "duration_ms": 124522,
       "call_summary": "The agent contacted Jenny regarding her interest in the CISSP Certification Exam Preparation Course at Arcadia University. They confirmed her residency and diploma status, addressed her question about payment plans, and scheduled a follow-up with an Admissions Representative by sending a text link for appointment booking.",
       "call_purpose": "Course Inquiry",
@@ -2194,7 +2288,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T22:07:17Z"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.9,
+        "reasoning": "Despite expressing sadness at the end, the customer agreed to receive a text link to schedule a follow-up, indicating commitment to the next step.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_e2da68fcda0cccb18f0ba3f87f6": {
       "call_id": "call_e2da68fcda0cccb18f0ba3f87f6",
@@ -2272,9 +2374,9 @@
       "start_timestamp": 1762899003408,
       "end_timestamp": 1762899096919,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d301a2d22e9f5a33b0daf0570506895013b7f9a4afa97ca5456e231bd6f3fc45/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_3d972cf3978c1a6347077503c66.json",
       "duration_ms": 93511,
       "call_summary": "The agent contacted Jenny regarding her interest in the Phlebotomy Technician program at Arcadia University, confirmed her residency and educational qualifications, and successfully scheduled an appointment by sending a text link for her to choose a time slot. The call concluded with no further questions from Jenny.",
       "call_purpose": "Appointment Scheduling",
@@ -2296,7 +2398,365 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T22:11:41Z"
+      "last_updated": "2025-11-12T19:36:54Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 1.0,
+        "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
+    },
+    "call_4b413f44bf4f0f8ef2b241fe835": {
+      "call_id": "call_4b413f44bf4f0f8ef2b241fe835",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762974354822,
+      "end_timestamp": 1762974457289,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b8dc8b2253e7a1484616bc06bd364cf64d895fdb015356fa4c5ddeb70309b332/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 102467,
+      "call_summary": "The agent called to check the authorization status for patient Tariq and confirmed the authorization number, copay, deductible, and benefit details with the user. The user provided all necessary information, including coverage and cost details, and the call ended successfully with the agent expressing thanks.",
+      "call_purpose": "Authorization Confirmation",
+      "call_title": "Authorization Status Check",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 102467
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:07:45Z"
+    },
+    "call_eb6afd14c1548db5b50ae3d8a36": {
+      "call_id": "call_eb6afd14c1548db5b50ae3d8a36",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762976074315,
+      "end_timestamp": 1762976074315,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:34:36Z"
+    },
+    "call_0d18d1f07045c4ddab6528563c9": {
+      "call_id": "call_0d18d1f07045c4ddab6528563c9",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762976668717,
+      "end_timestamp": 1762976668717,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:44:30Z"
+    },
+    "call_5483a4f61b6421d9f936051a0ea": {
+      "call_id": "call_5483a4f61b6421d9f936051a0ea",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762976784049,
+      "end_timestamp": 1762976784049,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:46:26Z"
+    },
+    "call_1104121e6719f9f8e1b19fc7bee": {
+      "call_id": "call_1104121e6719f9f8e1b19fc7bee",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977007728,
+      "end_timestamp": 1762977007728,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:50:09Z"
+    },
+    "call_278a85f4f2a630602bf4c19a83b": {
+      "call_id": "call_278a85f4f2a630602bf4c19a83b",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977130825,
+      "end_timestamp": 1762977236454,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/67f6c930010db5871df26aa9d2262f78e1c57323bcb92171f2638002fe9198cd/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 105629,
+      "call_summary": "The agent called to check the authorization status for patient Tariq, provided the member ID, and received confirmation of the authorization number, copay, deductible, and benefit details for CPT code 12345. The call concluded successfully with all necessary information noted.",
+      "call_purpose": "Authorization Confirmation",
+      "call_title": "Authorization Status Confirmation",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 105629
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:54:06Z"
+    },
+    "call_9156698f39d96c7c823752429e8": {
+      "call_id": "call_9156698f39d96c7c823752429e8",
+      "agent_id": "agent_6b5c759acd35bfbb4d331015c8",
+      "agent_name": "EasyPA IVR Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977131038,
+      "end_timestamp": 1762977237610,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/f322d54d8044a74643298b3518cb1bbb47a30843d9fbc76a7ec5fdcfead55d6f/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 106572,
+      "call_summary": "The user called to check the authorization status and benefit details for patient Tarek. The agent provided the authorization number, copay, deductible, and confirmed outpatient coverage with coinsurance details. The user acknowledged the information and ended the call positively.",
+      "call_purpose": "Authorization Inquiry",
+      "call_title": "Authorization Status Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 106572
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:54:11Z"
+    },
+    "call_467051dc89b2f35f41fd25bb484": {
+      "call_id": "call_467051dc89b2f35f41fd25bb484",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977428051,
+      "end_timestamp": 1762977428051,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:57:10Z"
+    },
+    "call_87519e55fbb86bc822c02677bd5": {
+      "call_id": "call_87519e55fbb86bc822c02677bd5",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977447323,
+      "end_timestamp": 1762977447323,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T19:57:29Z"
+    },
+    "call_bdb5ed68468eb3b58edbd8e6c6c": {
+      "call_id": "call_bdb5ed68468eb3b58edbd8e6c6c",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977611969,
+      "end_timestamp": 1762977611969,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T20:00:13Z"
+    },
+    "call_d3b7b2a0db1b09b2a515c4fe1b9": {
+      "call_id": "call_d3b7b2a0db1b09b2a515c4fe1b9",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762977745127,
+      "end_timestamp": 1762977745127,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-12T20:02:27Z"
     }
   }
 }

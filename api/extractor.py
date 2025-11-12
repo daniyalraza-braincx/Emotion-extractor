@@ -728,12 +728,12 @@ Example formats:
 Keep it under 100 words."""
 
         response = openai_client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are an expert contact-center analyst. Produce concise (under 100 words) summaries that report the call outcome, describe the narrative context, and highlight key emotion shifts—always emphasize the customer's emotional journey first, then the agent's only when it impacts the result. Note any customer commitments even when their emotion is muted or negative, and avoid repeating the same emotion unless it changes."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.5,
+            temperature=0,
             max_tokens=150
         )
         
@@ -840,7 +840,7 @@ def determine_overall_call_emotion(
 
         try:
             response = openai_client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="gpt-4o",
                 messages=[
                     {
                         "role": "system",
@@ -1109,7 +1109,7 @@ def generate_call_title_from_summary(summary: str, openai_client: Optional[OpenA
     if openai_client is not None:
         try:
             response = openai_client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="gpt-4o",
                 messages=[
                     {
                         "role": "system",
@@ -1153,7 +1153,7 @@ def generate_call_purpose_from_summary(summary: str, openai_client: Optional[Ope
 
     try:
         response = openai_client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "system",

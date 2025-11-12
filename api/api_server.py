@@ -3,7 +3,7 @@ import logging
 import os
 import threading
 from datetime import datetime
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.responses import JSONResponse
@@ -366,6 +366,52 @@ def _persist_retell_results(call_id: str, payload: Dict[str, Any]) -> str:
         raise
 
 
+def _extract_overall_emotion_from_results(
+    analysis_results: Optional[List[Dict[str, Any]]],
+) -> Optional[Dict[str, Any]]:
+    if not analysis_results:
+        return None
+
+    for result in analysis_results:
+        if not isinstance(result, dict):
+            continue
+        metadata = result.get("metadata")
+        if not isinstance(metadata, dict):
+            continue
+        overall_emotion = metadata.get("overall_call_emotion")
+        if isinstance(overall_emotion, dict) and overall_emotion:
+            return overall_emotion
+
+        overall_status = metadata.get("overall_call_status")
+        if isinstance(overall_status, dict) and overall_status:
+            return overall_status
+
+    return None
+
+
+def _load_overall_emotion_for_call(entry: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    analysis_filename = entry.get("analysis_filename")
+    if not analysis_filename:
+        return None
+
+    analysis_path = os.path.join(RETELL_RESULTS_DIR, analysis_filename)
+    if not os.path.exists(analysis_path):
+        return None
+
+    try:
+        with open(analysis_path, "r", encoding="utf-8") as file:
+            payload = json.load(file)
+    except (OSError, json.JSONDecodeError) as exc:
+        logger.warning("Failed to read analysis for %s: %s", entry.get("call_id"), exc)
+        return None
+
+    analysis_results = payload.get("analysis")
+    if not isinstance(analysis_results, list):
+        return None
+
+    return _extract_overall_emotion_from_results(analysis_results)
+
+
 def _merge_channel_results(
     call_identifier: str,
     channel_results: list,
@@ -582,6 +628,8 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             combined_result = _merge_channel_results(call_id, analysis_results, transcript_segments)
             analysis_results.insert(0, combined_result)
 
+        overall_emotion = _extract_overall_emotion_from_results(analysis_results)
+
         analysis_summary: Optional[str] = None
         for result in analysis_results:
             if isinstance(result, dict):
@@ -603,6 +651,10 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
                 "analysis_filename": os.path.basename(saved_path),
                 "recording_multi_channel_url": recording_url,
             }
+
+            if overall_emotion:
+                final_updates["overall_emotion"] = overall_emotion
+                final_updates["overall_emotion_label"] = overall_emotion.get("label")
 
             try:
                 existing_entry = _get_retell_call_entry(call_id)
@@ -697,7 +749,35 @@ async def list_retell_calls():
         key=lambda entry: entry.get("start_timestamp") or 0,
         reverse=True,
     )
-    return JSONResponse(content={"success": True, "calls": sorted_calls})
+    enriched_calls = []
+    for entry in sorted_calls:
+        call_entry = dict(entry)
+        if call_entry.get("analysis_status") == "completed":
+            overall_emotion = call_entry.get("overall_emotion")
+            if not isinstance(overall_emotion, dict):
+                overall_emotion = _load_overall_emotion_for_call(call_entry)
+                if overall_emotion:
+                    call_entry["overall_emotion"] = overall_emotion
+                    call_entry["overall_emotion_label"] = overall_emotion.get("label")
+                    call_id = call_entry.get("call_id")
+                    if call_id:
+                        try:
+                            _update_retell_call_entry(
+                                call_id,
+                                {
+                                    "overall_emotion": overall_emotion,
+                                    "overall_emotion_label": overall_emotion.get("label"),
+                                },
+                            )
+                        except KeyError:
+                            logger.warning("Call %s missing when caching overall emotion", call_id)
+            else:
+                label = call_entry.get("overall_emotion_label")
+                if not label:
+                    call_entry["overall_emotion_label"] = overall_emotion.get("label")
+        enriched_calls.append(call_entry)
+
+    return JSONResponse(content={"success": True, "calls": enriched_calls})
 
 
 @app.post("/retell/calls/refresh")

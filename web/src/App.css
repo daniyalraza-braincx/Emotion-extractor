@@ -15,7 +15,7 @@
 
 .page-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -90,7 +90,7 @@
 
 .calls-page {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
@@ -149,7 +149,7 @@
   border-radius: 999px;
   box-shadow: 0 6px 14px rgba(15, 31, 60, 0.04);
   width: 100%;
-  max-width: 320px;
+  max-width: 330px;
   box-sizing: border-box;
 }
 
@@ -261,7 +261,7 @@
 .calls-table-meta,
 .calls-table-row {
   display: grid;
-  grid-template-columns: 180px 210px minmax(0, 1fr) 140px 110px 120px 120px;
+  grid-template-columns: 180px 210px minmax(0, 1fr) 140px 110px 140px 120px 120px;
   align-items: flex-start;
   gap: 1rem;
 }
@@ -390,8 +390,46 @@
 }
 
 .calls-table-cell--duration,
+.calls-table-cell--emotion,
 .calls-table-cell--entry {
   justify-content: center;
+}
+
+.emotion-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+}
+
+.emotion-pill--empty {
+  background: #f2f4fb;
+  color: #8a91ab;
+  border-color: #dde1f0;
+}
+
+.emotion-positive {
+  background: rgba(52, 208, 139, 0.18);
+  color: #1f7b56;
+  border-color: rgba(52, 208, 139, 0.4);
+}
+
+.emotion-neutral {
+  background: rgba(255, 202, 40, 0.2);
+  color: #8a6d04;
+  border-color: rgba(255, 202, 40, 0.45);
+}
+
+.emotion-negative {
+  background: rgba(252, 118, 118, 0.2);
+  color: #b43d3d;
+  border-color: rgba(252, 118, 118, 0.45);
 }
 
 .calls-table-cell--start {
@@ -416,7 +454,7 @@
 @media (max-width: 1024px) {
   .calls-table-meta,
   .calls-table-row {
-    grid-template-columns: 150px 190px minmax(0, 1fr) 120px 100px 110px 110px;
+    grid-template-columns: 150px 190px minmax(0, 1fr) 120px 100px 120px 110px 110px;
   }
 
   .calls-table-meta__label:last-child {
@@ -505,6 +543,15 @@
   text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #9299b5;
+  }
+
+  .calls-table-cell--emotion::before {
+    content: 'Overall Emotion';
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9299b5;
+    margin-bottom: 0.15rem;
   }
 
   .calls-table-cell--entry::before {
