@@ -326,16 +326,15 @@
         }
       ],
       "metadata": {
-        "customer": {
-          "first_name": "Jenny",
-          "program": "CISSP Certification Exam Preparation Course",
-          "lead_status": "converted",
-          "university": "Arcadia University"
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
         },
         "category_counts": {
-          "positive": 1,
-          "neutral": 4,
-          "negative": 0
+          "positive": 5,
+          "neutral": 6,
+          "negative": 1
         },
         "retell_transcript_available": true,
         "retell_transcript_segments": [
@@ -393,190 +392,6 @@
         "start_timestamp": 1762895100219,
         "end_timestamp": 1762895159986,
         "duration_ms": 59767,
-        "agent": {
-          "id": "agent_efd77b346717ad7983449e92c0",
-          "name": "Single-Prompt Agent Hiba",
-          "version": 0
-        },
-        "analysis_constraints": {
-          "voicemail_detected": false,
-          "voicemail_flags": {
-            "in_voicemail": false,
-            "summary_mentions_voicemail": false,
-            "transcript_mentions_voicemail": false,
-            "disconnection_reason": "agent_hangup",
-            "summary_mentions_leave_message": false,
-            "transcript_mentions_leave_message": false
-          },
-          "too_short": false,
-          "duration_ms": 59767
-        },
-        "overall_call_emotion": {
-          "label": "negative",
-          "call_outcome": "unsuccessful",
-          "confidence": 0.9,
-          "reasoning": "The customer explicitly declined further interest in the program by stating, 'No. Thank you.' This clear refusal indicates a lack of commitment to proceed.",
-          "source": "openai"
-        }
-      },
-      "summary": "Agent Courtney follows up with Jenny regarding her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny displays confusion at 2.6s but shifts to amusement at 11.0s. Upon learning the program isn\u2019t available for Louisiana residents, she remains calm at 32.5s but expresses tiredness at 49.0s, ultimately declining further interest with \"No. Thank you.\" Agent maintains determination throughout, concluding with sympathy, offering support for future inquiries."
-    },
-    {
-      "filename": "call_f38d156fde2127d2de6494d85c2_user.wav",
-      "prosody": [
-        {
-          "time_start": 2.59,
-          "time_end": 2.99,
-          "text": "Hello?",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Confusion",
-              "score": 0.216,
-              "percentage": 21.6,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Hello?"
-        },
-        {
-          "time_start": 11.83,
-          "time_end": 12.87,
-          "text": "Yes. This is she.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Realization",
-              "score": 0.2961,
-              "percentage": 29.6,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "Yes. This is she."
-        },
-        {
-          "time_start": 32.53,
-          "time_end": 33.81,
-          "text": "I live in Louisiana.",
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Calmness",
-              "score": 0.1621,
-              "percentage": 16.2,
-              "category": "neutral"
-            }
-          ],
-          "source": "prosody",
-          "speaker": "Customer",
-          "transcript_text": "I live in Louisiana."
-        }
-      ],
-      "burst": [
-        {
-          "time_start": 11.0,
-          "time_end": 12.0,
-          "primary_category": "positive",
-          "top_emotions": [
-            {
-              "name": "Amusement",
-              "score": 0.1723,
-              "percentage": 17.2,
-              "category": "positive"
-            }
-          ],
-          "source": "burst",
-          "speaker": "Customer",
-          "transcript_text": "Yes. This is she."
-        },
-        {
-          "time_start": 49.0,
-          "time_end": 50.0,
-          "primary_category": "neutral",
-          "top_emotions": [
-            {
-              "name": "Tiredness",
-              "score": 0.2435,
-              "percentage": 24.3,
-              "category": "neutral"
-            }
-          ],
-          "source": "burst",
-          "speaker": "Customer",
-          "transcript_text": "No. Thank you."
-        }
-      ],
-      "metadata": {
-        "category_counts": {
-          "positive": 1,
-          "neutral": 4,
-          "negative": 0
-        },
-        "retell_transcript_available": true,
-        "retell_transcript_segments": [
-          {
-            "speaker": "Customer",
-            "start": 2.4889998999999996,
-            "end": 2.8889999,
-            "text": "Hello?"
-          },
-          {
-            "speaker": "Agent",
-            "start": 5.149,
-            "end": 9.537916748046875,
-            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 11.809,
-            "end": 12.769,
-            "text": "Yes. This is she."
-          },
-          {
-            "speaker": "Agent",
-            "start": 14.164,
-            "end": 29.895625,
-            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 32.199002,
-            "end": 33.479002,
-            "text": "I live in Louisiana."
-          },
-          {
-            "speaker": "Agent",
-            "start": 35.255,
-            "end": 47.07433325195313,
-            "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
-          },
-          {
-            "speaker": "Customer",
-            "start": 49.909,
-            "end": 50.628996,
-            "text": "No. Thank you."
-          },
-          {
-            "speaker": "Agent",
-            "start": 53.232,
-            "end": 59.7455,
-            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
-          }
-        ],
-        "retell_call_id": "call_f38d156fde2127d2de6494d85c2",
-        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/e968bbde2a69e571ab03b131b12dcedc098bbf4781bfc475321fbaccfb9b51d5/recording_multichannel.wav",
-        "start_timestamp": 1762895100219,
-        "end_timestamp": 1762895159986,
-        "duration_ms": 59767,
-        "agent": {
-          "id": "agent_efd77b346717ad7983449e92c0",
-          "name": "Single-Prompt Agent Hiba",
-          "version": 0
-        },
         "customer": {
           "first_name": "Jenny",
           "program": "CISSP Certification Exam Preparation Course",
@@ -600,11 +415,11 @@
           "label": "negative",
           "call_outcome": "unsuccessful",
           "confidence": 0.9,
-          "reasoning": "The customer explicitly declined further interest in the program by stating, 'No. Thank you.' This clear refusal indicates a lack of commitment to proceed.",
+          "reasoning": "The customer expressed tiredness and declined further options after learning the course was not available in her state, indicating a refusal to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney follows up with Jenny regarding her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny displays confusion at 2.6s but shifts to amusement at 11.0s. Upon learning the program isn\u2019t available for Louisiana residents, she remains calm at 32.5s but expresses tiredness at 49.0s, ultimately declining further interest with \"No. Thank you.\" Agent maintains determination throughout, concluding with sympathy, offering support for future inquiries."
+      "summary": "Agent Courtney contacts Jenny to reschedule her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny initially feels confused at 2.6s but shifts to realization at 11.8s when she confirms her identity. After learning the course isn't available in Louisiana, she expresses tiredness at 49.0s and declines further options. The call concludes with the Agent expressing sympathy, leaving the door open for future contact."
     },
     {
       "filename": "call_f38d156fde2127d2de6494d85c2_agent.wav",
@@ -905,11 +720,196 @@
           "label": "negative",
           "call_outcome": "unsuccessful",
           "confidence": 0.9,
-          "reasoning": "The customer explicitly declined further interest in the program by stating, 'No. Thank you.' This clear refusal indicates a lack of commitment to proceed.",
+          "reasoning": "The customer expressed tiredness and declined further options after learning the course was not available in her state, indicating a refusal to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney follows up with Jenny regarding her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny displays confusion at 2.6s but shifts to amusement at 11.0s. Upon learning the program isn\u2019t available for Louisiana residents, she remains calm at 32.5s but expresses tiredness at 49.0s, ultimately declining further interest with \"No. Thank you.\" Agent maintains determination throughout, concluding with sympathy, offering support for future inquiries."
+      "summary": "Agent Courtney contacts Jenny to reschedule her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny initially feels confused at 2.6s but shifts to realization at 11.8s when she confirms her identity. After learning the course isn't available in Louisiana, she expresses tiredness at 49.0s and declines further options. The call concludes with the Agent expressing sympathy, leaving the door open for future contact."
+    },
+    {
+      "filename": "call_f38d156fde2127d2de6494d85c2_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.59,
+          "time_end": 2.99,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.216,
+              "percentage": 21.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 11.83,
+          "time_end": 12.87,
+          "text": "Yes. This is she.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.2961,
+              "percentage": 29.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes. This is she."
+        },
+        {
+          "time_start": 32.53,
+          "time_end": 33.81,
+          "text": "I live in Louisiana.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1621,
+              "percentage": 16.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I live in Louisiana."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 11.0,
+          "time_end": 12.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.1723,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Yes. This is she."
+        },
+        {
+          "time_start": 49.0,
+          "time_end": 50.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2435,
+              "percentage": 24.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "No. Thank you."
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 4,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.4889998999999996,
+            "end": 2.8889999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.149,
+            "end": 9.537916748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.809,
+            "end": 12.769,
+            "text": "Yes. This is she."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.164,
+            "end": 29.895625,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I'm following up on your missed admission interview. No worries! We understand that things come up. Before we get you rescheduled, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 32.199002,
+            "end": 33.479002,
+            "text": "I live in Louisiana."
+          },
+          {
+            "speaker": "Agent",
+            "start": 35.255,
+            "end": 47.07433325195313,
+            "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 49.909,
+            "end": 50.628996,
+            "text": "No. Thank you."
+          },
+          {
+            "speaker": "Agent",
+            "start": 53.232,
+            "end": 59.7455,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_f38d156fde2127d2de6494d85c2",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/e968bbde2a69e571ab03b131b12dcedc098bbf4781bfc475321fbaccfb9b51d5/recording_multichannel.wav",
+        "start_timestamp": 1762895100219,
+        "end_timestamp": 1762895159986,
+        "duration_ms": 59767,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "converted",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 59767
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "The customer expressed tiredness and declined further options after learning the course was not available in her state, indicating a refusal to proceed.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Jenny to reschedule her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny initially feels confused at 2.6s but shifts to realization at 11.8s when she confirms her identity. After learning the course isn't available in Louisiana, she expresses tiredness at 49.0s and declines further options. The call concludes with the Agent expressing sympathy, leaving the door open for future contact."
     }
   ]
 }
