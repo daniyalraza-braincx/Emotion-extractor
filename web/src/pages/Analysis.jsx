@@ -246,6 +246,82 @@ function normalizeTimeline(timeline) {
   };
 }
 
+const TIMELINE_PARTS = Object.freeze([
+  { id: 'start', label: 'Start' },
+  { id: 'mid', label: 'Mid' },
+  { id: 'end', label: 'End' },
+]);
+
+const TIMELINE_SPEAKERS = Object.freeze([
+  { key: 'combined', label: 'Combined' },
+  { key: 'customer', label: 'User' },
+  { key: 'agent', label: 'Agent' },
+]);
+
+function createEmptyEmotionTimelineSummary() {
+  const baseParts = TIMELINE_PARTS.map((part) => ({
+    id: part.id,
+    label: part.label,
+    start: 0,
+    end: 0,
+    duration: 0,
+    category: null,
+    emotion: null,
+    hasData: false,
+  }));
+
+  return TIMELINE_SPEAKERS.reduce((acc, speaker) => {
+    acc[speaker.key] = baseParts.map((part) => ({ ...part }));
+    return acc;
+  }, {});
+}
+
+function normalizeEmotionTimeline(timeline) {
+  const emptyTimeline = createEmptyEmotionTimelineSummary();
+  if (!timeline || typeof timeline !== 'object') {
+    return emptyTimeline;
+  }
+
+  const normalized = { ...emptyTimeline };
+
+  TIMELINE_SPEAKERS.forEach((speaker) => {
+    const parts = Array.isArray(timeline[speaker.key]) ? timeline[speaker.key] : [];
+    normalized[speaker.key] = TIMELINE_PARTS.map((part) => {
+      const match = parts.find((entry) => entry && entry.id === part.id) || {};
+      const start = Number.isFinite(match.start) ? match.start : 0;
+      const end = Number.isFinite(match.end) ? match.end : 0;
+      const duration = Number.isFinite(match.duration) ? match.duration : Math.max(0, end - start);
+      const category = typeof match.category === 'string' && match.category ? match.category.toLowerCase() : null;
+      const emotionPayload = match.emotion && typeof match.emotion === 'object' ? match.emotion : null;
+      const hasData = Boolean(match.hasData && emotionPayload && emotionPayload.name);
+      const score = Number.isFinite(emotionPayload?.score) ? emotionPayload.score : null;
+      const percentage = Number.isFinite(emotionPayload?.percentage)
+        ? emotionPayload.percentage
+        : (Number.isFinite(score) ? Number((score * 100).toFixed(1)) : null);
+
+      return {
+        id: part.id,
+        label: match.label || part.label,
+        start,
+        end,
+        duration: Math.max(0, duration),
+        category,
+        hasData,
+        emotion: hasData
+          ? {
+            name: emotionPayload?.name || null,
+            score,
+            percentage,
+            category: emotionPayload?.category || category,
+          }
+          : null,
+      };
+    });
+  });
+
+  return normalized;
+}
+
 function SpeakerTimeline({
   timeline,
   currentTime,
@@ -475,6 +551,7 @@ function AnalysisPage() {
   const [speakerMetrics, setSpeakerMetrics] = useState(() => createEmptySpeakerMetrics());
   const [activeMetricsSpeaker, setActiveMetricsSpeaker] = useState('combined');
   const [timeline, setTimeline] = useState(() => createEmptyTimeline());
+  const [emotionTimeline, setEmotionTimeline] = useState(() => createEmptyEmotionTimelineSummary());
   const [transcriptSegments, setTranscriptSegments] = useState([]);
   const [errorInfo, setErrorInfo] = useState({ message: null, retryAllowed: true });
   const [isLoading, setIsLoading] = useState(false);
@@ -580,6 +657,7 @@ function AnalysisPage() {
     setSpeakerMetrics(createEmptySpeakerMetrics());
     setActiveMetricsSpeaker('combined');
     setTimeline(createEmptyTimeline());
+    setEmotionTimeline(createEmptyEmotionTimelineSummary());
     setTranscriptSegments([]);
     setErrorInfo({ message: null, retryAllowed: true });
     setIsPlaying(false);
@@ -602,6 +680,7 @@ const applyAnalysisResponse = useCallback((
     transcriptSegments: transcriptList,
     overallEmotion: overall,
     speakerMetrics: metrics,
+    emotionTimeline: timelineSummary,
   } = transformedPayload;
 
   if (transformed.length === 0) {
@@ -625,6 +704,7 @@ const applyAnalysisResponse = useCallback((
     return combinedMetrics.segmentCount > 0 ? 'combined' : 'combined';
   });
   setTimeline(normalizeTimeline(speakerTimeline));
+  setEmotionTimeline(normalizeEmotionTimeline(timelineSummary));
   setTranscriptSegments(Array.isArray(transcriptList) ? transcriptList : []);
 
   if (response.recording_url) {
@@ -1430,6 +1510,79 @@ const applyAnalysisResponse = useCallback((
                 );
               })}
             </div>
+            <section className="emotion-timeline-section">
+              <header className="emotion-timeline-section__header">
+                <h3>Emotion Timeline</h3>
+                <p>Dominant emotions across the start, mid, and end of the call for the selected speaker.</p>
+              </header>
+              {(() => {
+                const activeTimelineConfig = TIMELINE_SPEAKERS.find((config) => config.key === activeMetricsSpeaker)
+                  || TIMELINE_SPEAKERS[0];
+                const parts = Array.isArray(emotionTimeline[activeTimelineConfig.key])
+                  ? emotionTimeline[activeTimelineConfig.key]
+                  : [];
+                const hasAnyData = parts.some((part) => part?.hasData);
+
+                if (!hasAnyData) {
+                  return (
+                    <div className="emotion-timeline-empty">
+                      No dominant emotions detected for this speaker.
+                    </div>
+                  );
+                }
+
+                return (
+                  <article className="emotion-timeline-group">
+                    <div className="emotion-timeline-group__header">
+                      <span className="emotion-timeline-group__label">{activeTimelineConfig.label}</span>
+                    </div>
+                    <div className="emotion-timeline-group__parts">
+                      {parts.map((part) => {
+                        const category = part?.category ? part.category.toLowerCase() : null;
+                        const percentageValue = Number.isFinite(part?.emotion?.percentage)
+                          ? part.emotion.percentage
+                          : (Number.isFinite(part?.emotion?.score)
+                            ? Number((part.emotion.score * 100).toFixed(1))
+                            : null);
+                        const percentageLabel = Number.isFinite(percentageValue) ? `${percentageValue}%` : null;
+                        const cardCategoryClass = part?.hasData && category
+                          ? `emotion-timeline-card--${category}`
+                          : 'emotion-timeline-card--empty';
+                        const categoryLabel = category
+                          ? `${category.charAt(0).toUpperCase()}${category.slice(1)}`
+                          : null;
+                        const rangeLabel = `${formatSecondsCompact(part.start)} - ${formatSecondsCompact(part.end)}`;
+
+                        return (
+                          <div
+                            key={`${activeTimelineConfig.key}-${part.id}`}
+                            className={`emotion-timeline-card ${cardCategoryClass}`}
+                          >
+                            <div className="emotion-timeline-card__header">
+                              <span className="emotion-timeline-card__part">{part.label}</span>
+                              {part.hasData && categoryLabel && (
+                                <span className={`emotion-timeline-card__badge emotion-timeline-card__badge--${category}`}>
+                                  {categoryLabel}
+                                </span>
+                              )}
+                            </div>
+                            <div className="emotion-timeline-card__body">
+                              <span className="emotion-timeline-card__emotion">
+                                {part.hasData ? (part?.emotion?.name || '—') : 'No dominant emotion'}
+                              </span>
+                              {/* <span className="emotion-timeline-card__meta">
+                                {part.hasData && percentageLabel ? `${percentageLabel} · ` : ''}
+                                {rangeLabel}
+                              </span> */}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </article>
+                );
+              })()}
+            </section>
             <div className={`overall-emotion-card overall-emotion-card--${(activeSpeakerMetrics.overallEmotion?.label) || 'unknown'}`}>
               <div className="overall-emotion-card__header">
                 <span className="overall-emotion-card__title">Overall Status</span>

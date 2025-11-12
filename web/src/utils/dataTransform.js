@@ -97,6 +97,180 @@ function getDominantEmotionForRange(rangeStart, rangeEnd, prosodySegments) {
   return bestEmotion;
 }
 
+const TIMELINE_PARTS = [
+  { id: 'start', label: 'Start' },
+  { id: 'mid', label: 'Mid' },
+  { id: 'end', label: 'End' },
+];
+
+function buildEmptyEmotionTimeline() {
+  const emptyParts = TIMELINE_PARTS.map((part) => ({
+    id: part.id,
+    label: part.label,
+    start: 0,
+    end: 0,
+    duration: 0,
+    category: null,
+    emotion: null,
+    hasData: false,
+  }));
+
+  return {
+    combined: emptyParts.map((part) => ({ ...part })),
+    agent: emptyParts.map((part) => ({ ...part })),
+    customer: emptyParts.map((part) => ({ ...part })),
+  };
+}
+
+function createTimelineRanges(totalDuration) {
+  const safeDuration = Number.isFinite(totalDuration) && totalDuration > 0 ? totalDuration : 0;
+
+  if (safeDuration === 0) {
+    return TIMELINE_PARTS.map((part) => ({
+      ...part,
+      start: 0,
+      end: 0,
+      duration: 0,
+    }));
+  }
+
+  const third = safeDuration / 3;
+  const startEnd = third;
+  const midStart = third;
+  const midEnd = Math.min(third * 2, safeDuration);
+  const endStart = Math.min(third * 2, safeDuration);
+
+  return [
+    {
+      id: 'start',
+      label: 'Start',
+      start: 0,
+      end: startEnd,
+      duration: Math.max(0, startEnd),
+    },
+    {
+      id: 'mid',
+      label: 'Mid',
+      start: midStart,
+      end: midEnd,
+      duration: Math.max(0, midEnd - midStart),
+    },
+    {
+      id: 'end',
+      label: 'End',
+      start: endStart,
+      end: safeDuration,
+      duration: Math.max(0, safeDuration - endStart),
+    },
+  ];
+}
+
+function computeDominantEmotionForWindow(rangeStart, rangeEnd, segments) {
+  if (!Array.isArray(segments) || segments.length === 0) {
+    return null;
+  }
+
+  if (!Number.isFinite(rangeStart) || !Number.isFinite(rangeEnd) || rangeEnd <= rangeStart) {
+    return null;
+  }
+
+  let best = null;
+
+  segments.forEach((segment) => {
+    const segmentStart = Number(segment?.start);
+    const segmentEnd = Number(segment?.end ?? segment?.start);
+
+    if (
+      Number.isNaN(segmentStart)
+      || Number.isNaN(segmentEnd)
+      || !Number.isFinite(segmentStart)
+      || !Number.isFinite(segmentEnd)
+    ) {
+      return;
+    }
+
+    const overlap = Math.max(0, Math.min(rangeEnd, segmentEnd) - Math.max(rangeStart, segmentStart));
+    if (overlap <= 0) {
+      return;
+    }
+
+    const dominantEmotion = segment?.dominantEmotion;
+    const dominantScore = dominantEmotion?.score;
+    if (!dominantEmotion || typeof dominantScore !== 'number' || !Number.isFinite(dominantScore)) {
+      return;
+    }
+
+    const weight = overlap * dominantScore;
+    if (!best || weight > best.weight) {
+      best = {
+        weight,
+        name: dominantEmotion.name || null,
+        score: dominantScore,
+        category: normalizeSentimentCategory(
+          segment?.category
+          || dominantEmotion?.category
+          || (segment?.emotions?.[0]?.category)
+          || 'neutral',
+        ),
+      };
+    }
+  });
+
+  if (!best) {
+    return null;
+  }
+
+  const percentage = best.score * 100;
+
+  return {
+    name: best.name,
+    score: best.score,
+    percentage: Number.isFinite(percentage) ? Number(percentage.toFixed(1)) : null,
+    category: best.category,
+  };
+}
+
+function buildEmotionTimeline(prosodySegments, totalDurationSeconds) {
+  if (!Array.isArray(prosodySegments) || prosodySegments.length === 0) {
+    return buildEmptyEmotionTimeline();
+  }
+
+  const ranges = createTimelineRanges(totalDurationSeconds);
+  const segmentGroups = {
+    combined: prosodySegments,
+    agent: prosodySegments.filter((segment) => segment?.speaker === 'Agent'),
+    customer: prosodySegments.filter((segment) => segment?.speaker === 'Customer'),
+  };
+
+  return Object.entries(segmentGroups).reduce((acc, [key, segments]) => {
+    acc[key] = ranges.map((range) => {
+      const dominant = computeDominantEmotionForWindow(range.start, range.end, segments);
+      return {
+        id: range.id,
+        label: range.label,
+        start: range.start,
+        end: range.end,
+        duration: Math.max(0, range.end - range.start),
+        category: dominant?.category ?? null,
+        emotion: dominant
+          ? {
+            name: dominant.name,
+            score: dominant.score,
+            percentage: dominant.percentage,
+            category: dominant.category,
+          }
+          : null,
+        hasData: Boolean(dominant),
+      };
+    });
+    return acc;
+  }, {
+    combined: [],
+    agent: [],
+    customer: [],
+  });
+}
+
 const SENTIMENT_KEYS = ['positive', 'neutral', 'negative'];
 
 function normalizeSentimentCategory(value) {
@@ -319,6 +493,7 @@ export function transformApiDataToChart(apiResponse) {
         speakers: [],
         segments: {}
       },
+      emotionTimeline: buildEmptyEmotionTimeline(),
       categorizedEmotions: {
         positive: [],
         neutral: [],
@@ -551,6 +726,8 @@ export function transformApiDataToChart(apiResponse) {
     speakerTimelineSegments[speaker] = speakerTimelineSegmentsMap.get(speaker) || [];
   });
 
+  const emotionTimeline = buildEmotionTimeline(prosodySegments, latestTime);
+
   const combinedMetrics = materializeAccumulator(metricsAccumulators.combined);
   const speakerMetrics = {
     combined: combinedMetrics,
@@ -591,6 +768,7 @@ export function transformApiDataToChart(apiResponse) {
       speakers: speakerTimelineSpeakers,
       segments: speakerTimelineSegments
     },
+    emotionTimeline,
     categorizedEmotions: combinedMetrics.categorizedEmotions,
     categoryCounts: combinedMetrics.categoryCounts,
     transcriptSegments,
