@@ -165,6 +165,132 @@ function createTimelineRanges(totalDuration) {
   ];
 }
 
+function normalizeSpeakerSegments(segments) {
+  if (!Array.isArray(segments) || segments.length === 0) {
+    return [];
+  }
+
+  return segments
+    .map((segment) => {
+      const segmentStart = Number(segment?.start);
+      const segmentEndCandidate = Number(segment?.end ?? segment?.start);
+
+      if (
+        Number.isNaN(segmentStart)
+        || Number.isNaN(segmentEndCandidate)
+        || !Number.isFinite(segmentStart)
+        || !Number.isFinite(segmentEndCandidate)
+      ) {
+        return null;
+      }
+
+      const segmentEnd = Math.max(segmentEndCandidate, segmentStart);
+      return {
+        ...segment,
+        start: segmentStart,
+        end: segmentEnd,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.start - b.start);
+}
+
+function accumulateSpeakerDuration(segments) {
+  return segments.reduce((total, segment) => {
+    const duration = Math.max(0, (segment.end ?? segment.start) - segment.start);
+    return total + duration;
+  }, 0);
+}
+
+function findSpeakerTimeAtDuration(segments, targetDuration, defaultValue) {
+  if (!Array.isArray(segments) || segments.length === 0) {
+    return defaultValue;
+  }
+
+  const clampedTarget = Math.max(0, targetDuration);
+  let accumulated = 0;
+
+  for (let index = 0; index < segments.length; index += 1) {
+    const segment = segments[index];
+    const duration = Math.max(0, (segment.end ?? segment.start) - segment.start);
+
+    if (duration <= 0) {
+      continue;
+    }
+
+    if (clampedTarget <= accumulated + duration) {
+      const offset = clampedTarget - accumulated;
+      return segment.start + offset;
+    }
+
+    accumulated += duration;
+  }
+
+  return segments[segments.length - 1].end;
+}
+
+function cloneRanges(ranges) {
+  return TIMELINE_PARTS.map((part) => {
+    const existing = ranges.find((range) => range.id === part.id);
+    if (!existing) {
+      return {
+        id: part.id,
+        label: part.label,
+        start: 0,
+        end: 0,
+        duration: 0,
+      };
+    }
+    return {
+      id: existing.id,
+      label: existing.label,
+      start: existing.start,
+      end: existing.end,
+      duration: Math.max(0, existing.end - existing.start),
+    };
+  });
+}
+
+function createSpeakerTimelineRanges(segments, fallbackRanges) {
+  const normalizedSegments = normalizeSpeakerSegments(segments);
+  if (normalizedSegments.length === 0) {
+    return cloneRanges(fallbackRanges);
+  }
+
+  const totalDuration = accumulateSpeakerDuration(normalizedSegments);
+  if (!Number.isFinite(totalDuration) || totalDuration <= 0) {
+    return cloneRanges(fallbackRanges);
+  }
+
+  const oneThird = totalDuration / 3;
+  const twoThirds = oneThird * 2;
+  const checkpoints = [0, oneThird, twoThirds, totalDuration];
+
+  const boundaryTimes = checkpoints.map((checkpoint, index) => {
+    if (index === 0) {
+      return normalizedSegments[0].start;
+    }
+    if (index === checkpoints.length - 1) {
+      return normalizedSegments[normalizedSegments.length - 1].end;
+    }
+    return findSpeakerTimeAtDuration(normalizedSegments, checkpoint, normalizedSegments[0].start);
+  });
+
+  return TIMELINE_PARTS.map((part, index) => {
+    const start = boundaryTimes[index];
+    const end = boundaryTimes[index + 1];
+    const safeStart = Number.isFinite(start) ? start : 0;
+    const safeEnd = Number.isFinite(end) ? end : safeStart;
+    return {
+      id: part.id,
+      label: part.label,
+      start: safeStart,
+      end: Math.max(safeEnd, safeStart),
+      duration: Math.max(0, Math.max(safeEnd, safeStart) - safeStart),
+    };
+  });
+}
+
 function computeDominantEmotionForWindow(rangeStart, rangeEnd, segments) {
   if (!Array.isArray(segments) || segments.length === 0) {
     return null;
@@ -194,21 +320,32 @@ function computeDominantEmotionForWindow(rangeStart, rangeEnd, segments) {
       return;
     }
 
-    const dominantEmotion = segment?.dominantEmotion;
-    const dominantScore = dominantEmotion?.score;
-    if (!dominantEmotion || typeof dominantScore !== 'number' || !Number.isFinite(dominantScore)) {
+    const dominantEmotion = segment?.dominantEmotion && typeof segment.dominantEmotion === 'object'
+      ? segment.dominantEmotion
+      : null;
+    const fallbackEmotion = Array.isArray(segment?.emotions) && segment.emotions.length > 0
+      ? segment.emotions[0]
+      : null;
+    const emotionCandidate = dominantEmotion?.name ? dominantEmotion : (fallbackEmotion?.name ? fallbackEmotion : null);
+
+    if (!emotionCandidate) {
       return;
     }
 
-    const weight = overlap * dominantScore;
+    const rawScore = typeof emotionCandidate.score === 'number' && Number.isFinite(emotionCandidate.score)
+      ? emotionCandidate.score
+      : null;
+    const weightScore = rawScore !== null ? Math.max(rawScore, 0) : 1;
+    const weight = overlap * (weightScore > 0 ? weightScore : Number.EPSILON);
+
     if (!best || weight > best.weight) {
       best = {
         weight,
-        name: dominantEmotion.name || null,
-        score: dominantScore,
+        name: emotionCandidate.name || null,
+        score: rawScore,
         category: normalizeSentimentCategory(
           segment?.category
-          || dominantEmotion?.category
+          || emotionCandidate?.category
           || (segment?.emotions?.[0]?.category)
           || 'neutral',
         ),
@@ -220,7 +357,9 @@ function computeDominantEmotionForWindow(rangeStart, rangeEnd, segments) {
     return null;
   }
 
-  const percentage = best.score * 100;
+  const percentage = typeof best.score === 'number' && Number.isFinite(best.score)
+    ? best.score * 100
+    : null;
 
   return {
     name: best.name,
@@ -235,15 +374,28 @@ function buildEmotionTimeline(prosodySegments, totalDurationSeconds) {
     return buildEmptyEmotionTimeline();
   }
 
-  const ranges = createTimelineRanges(totalDurationSeconds);
+  const combinedRanges = createTimelineRanges(totalDurationSeconds);
   const segmentGroups = {
     combined: prosodySegments,
     agent: prosodySegments.filter((segment) => segment?.speaker === 'Agent'),
     customer: prosodySegments.filter((segment) => segment?.speaker === 'Customer'),
   };
 
+  const rangeGroups = {
+    combined: combinedRanges,
+    agent: createSpeakerTimelineRanges(
+      segmentGroups.agent,
+      combinedRanges,
+    ),
+    customer: createSpeakerTimelineRanges(
+      segmentGroups.customer,
+      combinedRanges,
+    ),
+  };
+
   return Object.entries(segmentGroups).reduce((acc, [key, segments]) => {
-    acc[key] = ranges.map((range) => {
+    const targetRanges = rangeGroups[key] ? cloneRanges(rangeGroups[key]) : cloneRanges(combinedRanges);
+    acc[key] = targetRanges.map((range) => {
       const dominant = computeDominantEmotionForWindow(range.start, range.end, segments);
       return {
         id: range.id,
