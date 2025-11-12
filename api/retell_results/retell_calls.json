@@ -1490,7 +1490,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T20:38:37Z"
+      "last_updated": "2025-11-12T22:06:38Z"
     },
     "call_67db9c4ee8cc1708e8a665b8df7": {
       "call_id": "call_67db9c4ee8cc1708e8a665b8df7",
@@ -2398,7 +2398,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T19:36:54Z",
+      "last_updated": "2025-11-12T21:51:05Z",
       "overall_emotion": {
         "label": "positive",
         "call_outcome": "success",

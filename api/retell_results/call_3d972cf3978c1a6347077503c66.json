@@ -451,12 +451,12 @@
         "overall_call_emotion": {
           "label": "positive",
           "call_outcome": "success",
-          "confidence": 1.0,
-          "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+          "confidence": 0.95,
+          "reasoning": "The customer, Jenny, agreed to the agent's proposal to send a text link for scheduling a follow-up, indicating a commitment to proceed with the next steps.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to proceed with the application process. The Agent reinforces interest at 55.4s while offering to connect Jenny with an Admissions Representative, who will guide her through the next steps. The call concludes positively, with Jenny agreeing to receive a text link to schedule a meeting."
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to connect with an Admissions Representative. The Agent\u2019s determination at 27.5s supports this outcome, as she proposes sending a text link for scheduling a follow-up. The call concludes positively with Jenny agreeing to the next step at 67.4s, despite earlier signs of contemplation."
     },
     {
       "filename": "call_3d972cf3978c1a6347077503c66_agent.wav",
@@ -797,12 +797,12 @@
         "overall_call_emotion": {
           "label": "positive",
           "call_outcome": "success",
-          "confidence": 1.0,
-          "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+          "confidence": 0.95,
+          "reasoning": "The customer, Jenny, agreed to the agent's proposal to send a text link for scheduling a follow-up, indicating a commitment to proceed with the next steps.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to proceed with the application process. The Agent reinforces interest at 55.4s while offering to connect Jenny with an Admissions Representative, who will guide her through the next steps. The call concludes positively, with Jenny agreeing to receive a text link to schedule a meeting."
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to connect with an Admissions Representative. The Agent\u2019s determination at 27.5s supports this outcome, as she proposes sending a text link for scheduling a follow-up. The call concludes positively with Jenny agreeing to the next step at 67.4s, despite earlier signs of contemplation."
     },
     {
       "filename": "call_3d972cf3978c1a6347077503c66_user.wav",
@@ -1000,12 +1000,12 @@
         "overall_call_emotion": {
           "label": "positive",
           "call_outcome": "success",
-          "confidence": 1.0,
-          "reasoning": "The customer, Jenny, confirmed her willingness to proceed by agreeing to receive a text link to schedule a meeting, indicating a commitment to the application process.",
+          "confidence": 0.95,
+          "reasoning": "The customer, Jenny, agreed to the agent's proposal to send a text link for scheduling a follow-up, indicating a commitment to proceed with the next steps.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to proceed with the application process. The Agent reinforces interest at 55.4s while offering to connect Jenny with an Admissions Representative, who will guide her through the next steps. The call concludes positively, with Jenny agreeing to receive a text link to schedule a meeting."
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to connect with an Admissions Representative. The Agent\u2019s determination at 27.5s supports this outcome, as she proposes sending a text link for scheduling a follow-up. The call concludes positively with Jenny agreeing to the next step at 67.4s, despite earlier signs of contemplation."
     }
   ]
 }

@@ -415,11 +415,11 @@
           "label": "negative",
           "call_outcome": "unsuccessful",
           "confidence": 0.9,
-          "reasoning": "The customer explicitly declined further options with a polite 'No. Thank you' after being informed that the desired program was not available in her state, indicating a refusal to proceed.",
+          "reasoning": "The customer explicitly declined further interest in the program by stating, 'No. Thank you.' This clear refusal indicates a lack of commitment to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Jenny contacts Arcadia University regarding her missed CISSP Certification Exam Preparation Course interview, expressing confusion at 2.6s. She shifts to amusement at 11.0s when she realizes the agent's friendly demeanor. Calmness follows at 32.5s as she shares her Louisiana residency, but she feels tiredness at 49.0s when the agent informs her that the program isn't available in her state. Ultimately, she declines further options with a polite \"No. Thank you\" at 49.9s. The agent, maintaining sympathy, wraps up the call, leaving the door open for future contact."
+      "summary": "Agent Courtney follows up with Jenny regarding her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny displays confusion at 2.6s but shifts to amusement at 11.0s. Upon learning the program isn\u2019t available for Louisiana residents, she remains calm at 32.5s but expresses tiredness at 49.0s, ultimately declining further interest with \"No. Thank you.\" Agent maintains determination throughout, concluding with sympathy, offering support for future inquiries."
     },
     {
       "filename": "call_f38d156fde2127d2de6494d85c2_user.wav",
@@ -600,11 +600,11 @@
           "label": "negative",
           "call_outcome": "unsuccessful",
           "confidence": 0.9,
-          "reasoning": "The customer explicitly declined further options with a polite 'No. Thank you' after being informed that the desired program was not available in her state, indicating a refusal to proceed.",
+          "reasoning": "The customer explicitly declined further interest in the program by stating, 'No. Thank you.' This clear refusal indicates a lack of commitment to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Jenny contacts Arcadia University regarding her missed CISSP Certification Exam Preparation Course interview, expressing confusion at 2.6s. She shifts to amusement at 11.0s when she realizes the agent's friendly demeanor. Calmness follows at 32.5s as she shares her Louisiana residency, but she feels tiredness at 49.0s when the agent informs her that the program isn't available in her state. Ultimately, she declines further options with a polite \"No. Thank you\" at 49.9s. The agent, maintaining sympathy, wraps up the call, leaving the door open for future contact."
+      "summary": "Agent Courtney follows up with Jenny regarding her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny displays confusion at 2.6s but shifts to amusement at 11.0s. Upon learning the program isn\u2019t available for Louisiana residents, she remains calm at 32.5s but expresses tiredness at 49.0s, ultimately declining further interest with \"No. Thank you.\" Agent maintains determination throughout, concluding with sympathy, offering support for future inquiries."
     },
     {
       "filename": "call_f38d156fde2127d2de6494d85c2_agent.wav",
@@ -905,11 +905,11 @@
           "label": "negative",
           "call_outcome": "unsuccessful",
           "confidence": 0.9,
-          "reasoning": "The customer explicitly declined further options with a polite 'No. Thank you' after being informed that the desired program was not available in her state, indicating a refusal to proceed.",
+          "reasoning": "The customer explicitly declined further interest in the program by stating, 'No. Thank you.' This clear refusal indicates a lack of commitment to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Jenny contacts Arcadia University regarding her missed CISSP Certification Exam Preparation Course interview, expressing confusion at 2.6s. She shifts to amusement at 11.0s when she realizes the agent's friendly demeanor. Calmness follows at 32.5s as she shares her Louisiana residency, but she feels tiredness at 49.0s when the agent informs her that the program isn't available in her state. Ultimately, she declines further options with a polite \"No. Thank you\" at 49.9s. The agent, maintaining sympathy, wraps up the call, leaving the door open for future contact."
+      "summary": "Agent Courtney follows up with Jenny regarding her missed admission interview for the CISSP Certification Exam Preparation Course. Jenny displays confusion at 2.6s but shifts to amusement at 11.0s. Upon learning the program isn\u2019t available for Louisiana residents, she remains calm at 32.5s but expresses tiredness at 49.0s, ultimately declining further interest with \"No. Thank you.\" Agent maintains determination throughout, concluding with sympathy, offering support for future inquiries."
     }
   ]
 }
