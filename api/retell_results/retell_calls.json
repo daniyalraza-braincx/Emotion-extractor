@@ -1466,9 +1466,9 @@
       "start_timestamp": 1762895100219,
       "end_timestamp": 1762895159986,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/e968bbde2a69e571ab03b131b12dcedc098bbf4781bfc475321fbaccfb9b51d5/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_f38d156fde2127d2de6494d85c2.json",
       "duration_ms": 59767,
       "call_summary": "The agent contacted Jenny to follow up on a missed admission interview and inquired about her state of residence. Upon learning she lives in Louisiana, the agent informed her that the CISSP Certification Exam Preparation Course is not available in her state. Jenny declined interest in other programs, and the call ended politely.",
       "call_purpose": "Course Availability",
@@ -1490,7 +1490,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:06:06Z"
+      "last_updated": "2025-11-12T20:38:37Z"
     },
     "call_67db9c4ee8cc1708e8a665b8df7": {
       "call_id": "call_67db9c4ee8cc1708e8a665b8df7",
@@ -2230,9 +2230,9 @@
       "start_timestamp": 1762898029144,
       "end_timestamp": 1762898052692,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0834a0f29159e3fc6f7ad3070cd1a06f1f4bca69d2633eecb5e21f237392d379/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_b627e272fd3306bdee29ff1ed48.json",
       "duration_ms": 23548,
       "call_summary": "The agent called Jenny on behalf of Arcadia University, but Jenny indicated she was busy. The agent ended the call politely, stating they would reach out again at a better time.",
       "call_purpose": "Follow Up",
@@ -2254,7 +2254,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:54:32Z"
+      "last_updated": "2025-11-12T20:32:47Z"
     },
     "call_f9c9606cbf0ff95405f8094571c": {
       "call_id": "call_f9c9606cbf0ff95405f8094571c",
@@ -2288,7 +2288,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T19:36:54Z",
+      "last_updated": "2025-11-12T21:22:04Z",
       "overall_emotion": {
         "label": "positive",
         "call_outcome": "success",
@@ -2306,13 +2306,13 @@
       "start_timestamp": 1762898840797,
       "end_timestamp": 1762898894951,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/3c2407fa28920cbbbe5ce8ec586859d5407bf8bcdaf6fa65b83d5e224dcf4db8/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_e2da68fcda0cccb18f0ba3f87f6.json",
       "duration_ms": 54154,
       "call_summary": "The agent contacted Jenny regarding her interest in the CISSP Certification Exam Preparation Course but informed her that the program is not available in Wisconsin, where she resides. Jenny did not express interest in any other programs, and the call ended without further action.",
       "call_purpose": "Course Inquiry",
-      "call_title": "CISSP Course Inquiry",
+      "call_title": "CISSP Availability Inquiry",
       "analysis_allowed": true,
       "analysis_block_reason": null,
       "analysis_constraints": {
@@ -2330,7 +2330,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T22:08:25Z"
+      "last_updated": "2025-11-12T20:34:50Z"
     },
     "call_3a433f4e47792a039a55bdca53e": {
       "call_id": "call_3a433f4e47792a039a55bdca53e",
@@ -2416,12 +2416,12 @@
       "start_timestamp": 1762974354822,
       "end_timestamp": 1762974457289,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b8dc8b2253e7a1484616bc06bd364cf64d895fdb015356fa4c5ddeb70309b332/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_4b413f44bf4f0f8ef2b241fe835.json",
       "duration_ms": 102467,
       "call_summary": "The agent called to check the authorization status for patient Tariq and confirmed the authorization number, copay, deductible, and benefit details with the user. The user provided all necessary information, including coverage and cost details, and the call ended successfully with the agent expressing thanks.",
-      "call_purpose": "Authorization Confirmation",
+      "call_purpose": "Authorization Check",
       "call_title": "Authorization Status Check",
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -2440,7 +2440,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T19:07:45Z"
+      "last_updated": "2025-11-12T20:24:04Z"
     },
     "call_eb6afd14c1548db5b50ae3d8a36": {
       "call_id": "call_eb6afd14c1548db5b50ae3d8a36",
