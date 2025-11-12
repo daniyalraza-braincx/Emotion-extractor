@@ -99,6 +99,19 @@ def _current_timestamp_iso() -> str:
     return datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
 
 
+def _prune_zero_duration_calls(calls: Dict[str, Any]) -> Dict[str, Any]:
+    removed_ids = [call_id for call_id, entry in calls.items() if _is_zero_duration_call(entry)]
+    if not removed_ids:
+        return calls
+
+    for call_id in removed_ids:
+        logger.info("Removing zero-duration Retell call %s from metadata store", call_id)
+        calls.pop(call_id, None)
+
+    _save_retell_calls(calls)
+    return calls
+
+
 def _load_retell_calls() -> Dict[str, Any]:
     if not os.path.exists(RETELL_CALLS_FILENAME):
         return {}
@@ -109,11 +122,30 @@ def _load_retell_calls() -> Dict[str, Any]:
             if isinstance(data, dict):
                 calls = data.get("calls")
                 if isinstance(calls, dict):
-                    return calls
+                    return _prune_zero_duration_calls(dict(calls))
     except json.JSONDecodeError:
         logger.error("Failed to decode %s; resetting call metadata store", RETELL_CALLS_FILENAME)
 
     return {}
+
+
+def _calculate_duration_ms(call_data: Dict[str, Any]) -> Optional[int]:
+    duration_ms = call_data.get("duration_ms")
+    if isinstance(duration_ms, (int, float)):
+        return int(duration_ms)
+
+    start_ts = call_data.get("start_timestamp")
+    end_ts = call_data.get("end_timestamp")
+    if isinstance(start_ts, (int, float)) and isinstance(end_ts, (int, float)):
+        calculated = int(end_ts - start_ts)
+        if calculated >= 0:
+            return calculated
+    return None
+
+
+def _is_zero_duration_call(call_data: Dict[str, Any]) -> bool:
+    duration_ms = _calculate_duration_ms(call_data) or 0
+    return duration_ms <= 0
 
 
 def _save_retell_calls(calls: Dict[str, Any]) -> None:
@@ -131,12 +163,7 @@ def _evaluate_call_constraints(call_data: Dict[str, Any]) -> Dict[str, Any]:
         or ""
     )
 
-    duration_ms = call_data.get("duration_ms")
-    if duration_ms is None:
-        start_ts = call_data.get("start_timestamp")
-        end_ts = call_data.get("end_timestamp")
-        if isinstance(start_ts, (int, float)) and isinstance(end_ts, (int, float)) and end_ts > start_ts:
-            duration_ms = int(end_ts - start_ts)
+    duration_ms = _calculate_duration_ms(call_data)
 
     too_short = duration_ms is not None and duration_ms < 15_000
 
@@ -219,6 +246,27 @@ def _upsert_retell_call_metadata(call_data: Dict[str, Any], status: Optional[str
             "analysis_filename": existing.get("analysis_filename"),
             "duration_ms": call_data.get("duration_ms") or existing.get("duration_ms"),
         }
+
+        duration_ms = _calculate_duration_ms(merged)
+        if duration_ms is not None:
+            merged["duration_ms"] = duration_ms
+
+        if duration_ms is not None and duration_ms <= 0:
+            logger.info("Skipping Retell call %s due to zero duration", call_id)
+            zero_duration_response = {
+                **merged,
+                "duration_ms": 0,
+                "analysis_allowed": False,
+                "analysis_block_reason": "Call contains no audio (duration 0s).",
+                "analysis_status": "blocked",
+                "analysis_available": False,
+                "analysis_filename": None,
+                "error_message": None,
+            }
+            if call_id in calls:
+                calls.pop(call_id)
+                _save_retell_calls(calls)
+            return zero_duration_response
 
         call_summary_text: Optional[str] = None
         call_analysis = call_data.get("call_analysis")
@@ -744,8 +792,12 @@ async def retell_webhook(payload: Dict[str, Any]):
 async def list_retell_calls():
     """Return available Retell calls registered via webhook."""
     calls = _load_retell_calls()
+    filtered_calls = [
+        entry for entry in calls.values()
+        if not _is_zero_duration_call(entry)
+    ]
     sorted_calls = sorted(
-        calls.values(),
+        filtered_calls,
         key=lambda entry: entry.get("start_timestamp") or 0,
         reverse=True,
     )
