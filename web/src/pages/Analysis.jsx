@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ReferenceLine,
   Cell,
   LabelList,
@@ -33,6 +32,12 @@ const SPEAKER_ICONS = Object.freeze({
   Agent: '🤖',
   Unknown: '❔',
 });
+
+const SENTIMENT_LEGEND_ITEMS = Object.freeze([
+  { key: 'positive', label: 'Positive', color: CATEGORY_COLORS.positive },
+  { key: 'neutral', label: 'Neutral', color: CATEGORY_COLORS.neutral },
+  { key: 'negative', label: 'Negative', color: CATEGORY_COLORS.negative },
+]);
 
 const EMPTY_CATEGORY_COUNTS = Object.freeze({
   positive: 0,
@@ -869,14 +874,6 @@ const applyAnalysisResponse = useCallback((
     }
   }, [playbackRate]);
 
-  const legendPayload = useMemo(() => (
-    emotions.map((emotion) => ({
-      value: emotion,
-      type: 'square',
-      color: emotionColorMap[emotion] || '#888888',
-    }))
-  ), [emotions, emotionColorMap]);
-
   const loadingMessage = activeRequest?.type === 'retell'
     ? 'Analyzing Retell call… This may take a moment.'
     : 'Analyzing audio file… This may take a moment.';
@@ -1298,7 +1295,6 @@ const applyAnalysisResponse = useCallback((
                   <CustomTooltip {...props} emotionColorMap={emotionColorMap} />
                 )}
               />
-              <Legend wrapperStyle={{ paddingTop: '20px' }} payload={legendPayload} />
               {currentTime >= 0 && chartData.length > 0 && duration > 0 && (
                 <ReferenceLine
                   key={`timeline-${Math.floor(currentTime)}`}
@@ -1356,6 +1352,17 @@ const applyAnalysisResponse = useCallback((
               </Bar>
             </BarChart>
                       </ResponsiveContainer>
+                    </div>
+                    <div className="analysis-chart-card__sentiment-legend">
+                      {SENTIMENT_LEGEND_ITEMS.map((item) => (
+                        <div key={item.key} className="sentiment-legend-entry">
+                          <span
+                            className="sentiment-legend-swatch"
+                            style={{ backgroundColor: item.color }}
+                          />
+                          <span className="sentiment-legend-label">{item.label}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}

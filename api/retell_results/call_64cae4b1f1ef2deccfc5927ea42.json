@@ -1,0 +1,1084 @@
+{
+  "call_id": "call_64cae4b1f1ef2deccfc5927ea42",
+  "retell_metadata": {
+    "retell_call_id": "call_64cae4b1f1ef2deccfc5927ea42",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bad9604780c66c063ce62a55ab6368043e7ff0caad40e5950174fa254ad3c2cb/recording_multichannel.wav",
+    "start_timestamp": 1762895784276,
+    "end_timestamp": 1762895860623,
+    "duration_ms": 76347,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Jenny",
+      "program": "CISSP Certification Exam Preparation Course",
+      "lead_status": "re-market",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 76347
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_64cae4b1f1ef2deccfc5927ea42_combined",
+      "prosody": [
+        {
+          "time_start": 3.39,
+          "time_end": 3.79,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1994,
+              "percentage": 19.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 5.96,
+          "time_end": 9.02,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4767,
+              "percentage": 47.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 9.48,
+          "time_end": 10.44,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1536,
+              "percentage": 15.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 11.77,
+          "time_end": 12.09,
+          "text": "Yes.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2008,
+              "percentage": 20.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 13.89,
+          "time_end": 18.74,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3655,
+              "percentage": 36.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 19.22,
+          "time_end": 22.98,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3077,
+              "percentage": 30.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.76,
+          "time_end": 25.75,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3306,
+              "percentage": 33.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 26.24,
+          "time_end": 31.12,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4484,
+              "percentage": 44.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 31.12,
+          "time_end": 40.48,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3035,
+              "percentage": 30.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 37.73,
+          "time_end": 38.55,
+          "text": "Rhode Island.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1459,
+              "percentage": 14.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Rhode Island."
+        },
+        {
+          "time_start": 40.48,
+          "time_end": 45.05,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.1592,
+              "percentage": 15.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 45.27,
+          "time_end": 49.33,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3952,
+              "percentage": 39.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 49.33,
+          "time_end": 57.15,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2762,
+              "percentage": 27.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 54.12,
+          "time_end": 54.76,
+          "text": "No. Thanks.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2062,
+              "percentage": 20.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
+        },
+        {
+          "time_start": 57.15,
+          "time_end": 60.41,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.285,
+              "percentage": 28.5,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 60.41,
+          "time_end": 69.67,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3976,
+              "percentage": 39.8,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 65.43,
+          "time_end": 67.5,
+          "text": "Yeah. I'm sure. I'm not interested.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.1934,
+              "percentage": 19.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yeah. I'm sure. I'm not interested."
+        },
+        {
+          "time_start": 69.67,
+          "time_end": 73.1,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1947,
+              "percentage": 19.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 73.1,
+          "time_end": 76.05,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4344,
+              "percentage": 43.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2491,
+              "percentage": 24.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 13.0,
+          "time_end": 14.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2312,
+              "percentage": 23.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 7,
+          "neutral": 6,
+          "negative": 3
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.2979998999999998,
+            "end": 3.6980000000000004,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.004,
+            "end": 10.635875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.678,
+            "end": 13.038,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.86,
+            "end": 35.39679174804687,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 37.517998,
+            "end": 38.478,
+            "text": "Rhode Island."
+          },
+          {
+            "speaker": "Agent",
+            "start": 40.267,
+            "end": 52.43404174804687,
+            "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 53.978,
+            "end": 54.698,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.995,
+            "end": 63.519541748046876,
+            "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.44800000000001,
+            "end": 67.288,
+            "text": "Yeah. I'm sure. I'm not interested."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.495,
+            "end": 76.31016674804688,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_64cae4b1f1ef2deccfc5927ea42",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bad9604780c66c063ce62a55ab6368043e7ff0caad40e5950174fa254ad3c2cb/recording_multichannel.wav",
+        "start_timestamp": 1762895784276,
+        "end_timestamp": 1762895860623,
+        "duration_ms": 76347,
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "re-market",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 76347
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly refused the agent's offer by stating 'I'm not interested,' indicating a clear disinterest in proceeding with any program.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the CISSP Certification Exam Preparation Course, maintaining determination while explaining the program at 13.9s. Jenny remains calm initially but shifts to disappointment at 54.1s upon learning the program isn't available in her state. She expresses doubt at 65.4s, confirming disinterest in other programs. The call concludes with the Agent expressing calmness, offering future assistance if Jenny decides to pursue other options."
+    },
+    {
+      "filename": "call_64cae4b1f1ef2deccfc5927ea42_agent.wav",
+      "prosody": [
+        {
+          "time_start": 5.96,
+          "time_end": 9.02,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4767,
+              "percentage": 47.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 9.48,
+          "time_end": 10.44,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1536,
+              "percentage": 15.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 13.89,
+          "time_end": 18.74,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3655,
+              "percentage": 36.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 19.22,
+          "time_end": 22.98,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3077,
+              "percentage": 30.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.76,
+          "time_end": 25.75,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3306,
+              "percentage": 33.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 26.24,
+          "time_end": 31.12,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4484,
+              "percentage": 44.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 31.12,
+          "time_end": 40.48,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3035,
+              "percentage": 30.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 40.48,
+          "time_end": 45.05,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.1592,
+              "percentage": 15.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 45.27,
+          "time_end": 49.33,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3952,
+              "percentage": 39.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 49.33,
+          "time_end": 57.15,
+          "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2762,
+              "percentage": 27.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 57.15,
+          "time_end": 60.41,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.285,
+              "percentage": 28.5,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 60.41,
+          "time_end": 69.67,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3976,
+              "percentage": 39.8,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 69.67,
+          "time_end": 73.1,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1947,
+              "percentage": 19.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 73.1,
+          "time_end": 76.05,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4344,
+              "percentage": 43.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2491,
+              "percentage": 24.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 13.0,
+          "time_end": 14.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2312,
+              "percentage": 23.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 7,
+          "neutral": 6,
+          "negative": 3
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.2979998999999998,
+            "end": 3.6980000000000004,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.004,
+            "end": 10.635875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.678,
+            "end": 13.038,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.86,
+            "end": 35.39679174804687,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 37.517998,
+            "end": 38.478,
+            "text": "Rhode Island."
+          },
+          {
+            "speaker": "Agent",
+            "start": 40.267,
+            "end": 52.43404174804687,
+            "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 53.978,
+            "end": 54.698,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.995,
+            "end": 63.519541748046876,
+            "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.44800000000001,
+            "end": 67.288,
+            "text": "Yeah. I'm sure. I'm not interested."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.495,
+            "end": 76.31016674804688,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_64cae4b1f1ef2deccfc5927ea42",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bad9604780c66c063ce62a55ab6368043e7ff0caad40e5950174fa254ad3c2cb/recording_multichannel.wav",
+        "start_timestamp": 1762895784276,
+        "end_timestamp": 1762895860623,
+        "duration_ms": 76347,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "re-market",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 76347
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly refused the agent's offer by stating 'I'm not interested,' indicating a clear disinterest in proceeding with any program.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the CISSP Certification Exam Preparation Course, maintaining determination while explaining the program at 13.9s. Jenny remains calm initially but shifts to disappointment at 54.1s upon learning the program isn't available in her state. She expresses doubt at 65.4s, confirming disinterest in other programs. The call concludes with the Agent expressing calmness, offering future assistance if Jenny decides to pursue other options."
+    },
+    {
+      "filename": "call_64cae4b1f1ef2deccfc5927ea42_user.wav",
+      "prosody": [
+        {
+          "time_start": 3.39,
+          "time_end": 3.79,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1994,
+              "percentage": 19.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 11.77,
+          "time_end": 12.09,
+          "text": "Yes.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2008,
+              "percentage": 20.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 37.73,
+          "time_end": 38.55,
+          "text": "Rhode Island.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1459,
+              "percentage": 14.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Rhode Island."
+        },
+        {
+          "time_start": 54.12,
+          "time_end": 54.76,
+          "text": "No. Thanks.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2062,
+              "percentage": 20.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Thanks."
+        },
+        {
+          "time_start": 65.43,
+          "time_end": 67.5,
+          "text": "Yeah. I'm sure. I'm not interested.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.1934,
+              "percentage": 19.3,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yeah. I'm sure. I'm not interested."
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 2,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.2979998999999998,
+            "end": 3.6980000000000004,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.004,
+            "end": 10.635875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 11.678,
+            "end": 13.038,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.86,
+            "end": 35.39679174804687,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. It's been a while since we connected on your interest in the CISSP Certification Exam Preparation Course program. Let's get you back on track for meeting your education goals. The first step is confirming you meet the program requirements. Let me pull those up now.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 37.517998,
+            "end": 38.478,
+            "text": "Rhode Island."
+          },
+          {
+            "speaker": "Agent",
+            "start": 40.267,
+            "end": 52.43404174804687,
+            "text": "Thank you for letting me know. At this time, unfortunately, the CISSP Certification Exam Preparation Course program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 53.978,
+            "end": 54.698,
+            "text": "No. Thanks."
+          },
+          {
+            "speaker": "Agent",
+            "start": 56.995,
+            "end": 63.519541748046876,
+            "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.44800000000001,
+            "end": 67.288,
+            "text": "Yeah. I'm sure. I'm not interested."
+          },
+          {
+            "speaker": "Agent",
+            "start": 69.495,
+            "end": 76.31016674804688,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_64cae4b1f1ef2deccfc5927ea42",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bad9604780c66c063ce62a55ab6368043e7ff0caad40e5950174fa254ad3c2cb/recording_multichannel.wav",
+        "start_timestamp": 1762895784276,
+        "end_timestamp": 1762895860623,
+        "duration_ms": 76347,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "re-market",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 76347
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly refused the agent's offer by stating 'I'm not interested,' indicating a clear disinterest in proceeding with any program.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the CISSP Certification Exam Preparation Course, maintaining determination while explaining the program at 13.9s. Jenny remains calm initially but shifts to disappointment at 54.1s upon learning the program isn't available in her state. She expresses doubt at 65.4s, confirming disinterest in other programs. The call concludes with the Agent expressing calmness, offering future assistance if Jenny decides to pursue other options."
+    }
+  ]
+}
