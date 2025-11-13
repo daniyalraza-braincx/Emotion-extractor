@@ -43,8 +43,8 @@
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.3527,
-              "percentage": 35.3,
+              "score": 0.3555,
+              "percentage": 35.6,
               "category": "positive"
             }
           ],
@@ -60,8 +60,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1331,
-              "percentage": 13.3,
+              "score": 0.1453,
+              "percentage": 14.5,
               "category": "neutral"
             }
           ],
@@ -77,8 +77,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2365,
-              "percentage": 23.6,
+              "score": 0.2322,
+              "percentage": 23.2,
               "category": "neutral"
             }
           ],
@@ -90,13 +90,13 @@
           "time_start": 23.02,
           "time_end": 27.5,
           "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
-          "primary_category": "neutral",
+          "primary_category": "positive",
           "top_emotions": [
             {
-              "name": "Concentration",
-              "score": 0.2033,
-              "percentage": 20.3,
-              "category": "neutral"
+              "name": "Determination",
+              "score": 0.2133,
+              "percentage": 21.3,
+              "category": "positive"
             }
           ],
           "source": "prosody",
@@ -111,8 +111,8 @@
           "top_emotions": [
             {
               "name": "Determination",
-              "score": 0.3058,
-              "percentage": 30.6,
+              "score": 0.301,
+              "percentage": 30.1,
               "category": "positive"
             }
           ],
@@ -122,7 +122,7 @@
         },
         {
           "time_start": 30.7,
-          "time_end": 45.35,
+          "time_end": 45.44,
           "text": "I live In this Wisconsin.",
           "primary_category": "neutral",
           "top_emotions": [
@@ -145,8 +145,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1902,
-              "percentage": 19.0,
+              "score": 0.1791,
+              "percentage": 17.9,
               "category": "neutral"
             }
           ],
@@ -179,8 +179,8 @@
           "top_emotions": [
             {
               "name": "Concentration",
-              "score": 0.2189,
-              "percentage": 21.9,
+              "score": 0.2292,
+              "percentage": 22.9,
               "category": "neutral"
             }
           ],
@@ -196,8 +196,8 @@
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.2938,
-              "percentage": 29.4,
+              "score": 0.3008,
+              "percentage": 30.1,
               "category": "positive"
             }
           ],
@@ -213,8 +213,8 @@
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.1689,
-              "percentage": 16.9,
+              "score": 0.1951,
+              "percentage": 19.5,
               "category": "positive"
             }
           ],
@@ -230,8 +230,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2073,
-              "percentage": 20.7,
+              "score": 0.2151,
+              "percentage": 21.5,
               "category": "neutral"
             }
           ],
@@ -247,8 +247,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2497,
-              "percentage": 25.0,
+              "score": 0.2525,
+              "percentage": 25.2,
               "category": "neutral"
             }
           ],
@@ -264,8 +264,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2846,
-              "percentage": 28.5,
+              "score": 0.2922,
+              "percentage": 29.2,
               "category": "neutral"
             }
           ],
@@ -345,8 +345,8 @@
           "version": 0
         },
         "category_counts": {
-          "positive": 4,
-          "neutral": 9,
+          "positive": 5,
+          "neutral": 8,
           "negative": 0
         },
         "retell_transcript_available": true,
@@ -451,12 +451,12 @@
         "overall_call_emotion": {
           "label": "positive",
           "call_outcome": "success",
-          "confidence": 0.95,
-          "reasoning": "The customer, Jenny, agreed to the agent's proposal to send a text link for scheduling a follow-up, indicating a commitment to proceed with the next steps.",
+          "confidence": 1.0,
+          "reasoning": "The customer, Jenny, expressed satisfaction by confirming her high school diploma and agreed to receive a text to schedule a meeting, indicating a commitment to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to connect with an Admissions Representative. The Agent\u2019s determination at 27.5s supports this outcome, as she proposes sending a text link for scheduling a follow-up. The call concludes positively with Jenny agreeing to the next step at 67.4s, despite earlier signs of contemplation."
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining a calm demeanor throughout. Jenny exhibits realization at 30.7s when confirming her Wisconsin residency, leading to a positive shift as she expresses satisfaction with the next steps at 52.3s. The Agent proposes sending a text to schedule a meeting, to which Jenny agrees at 67.4s. The call concludes with the Agent wishing Jenny well as she prepares to take her next steps."
     },
     {
       "filename": "call_3d972cf3978c1a6347077503c66_agent.wav",
@@ -469,8 +469,8 @@
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.3527,
-              "percentage": 35.3,
+              "score": 0.3555,
+              "percentage": 35.6,
               "category": "positive"
             }
           ],
@@ -486,8 +486,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1331,
-              "percentage": 13.3,
+              "score": 0.1453,
+              "percentage": 14.5,
               "category": "neutral"
             }
           ],
@@ -503,8 +503,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2365,
-              "percentage": 23.6,
+              "score": 0.2322,
+              "percentage": 23.2,
               "category": "neutral"
             }
           ],
@@ -516,13 +516,13 @@
           "time_start": 23.02,
           "time_end": 27.5,
           "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
-          "primary_category": "neutral",
+          "primary_category": "positive",
           "top_emotions": [
             {
-              "name": "Concentration",
-              "score": 0.2033,
-              "percentage": 20.3,
-              "category": "neutral"
+              "name": "Determination",
+              "score": 0.2133,
+              "percentage": 21.3,
+              "category": "positive"
             }
           ],
           "source": "prosody",
@@ -537,8 +537,8 @@
           "top_emotions": [
             {
               "name": "Determination",
-              "score": 0.3058,
-              "percentage": 30.6,
+              "score": 0.301,
+              "percentage": 30.1,
               "category": "positive"
             }
           ],
@@ -548,7 +548,7 @@
         },
         {
           "time_start": 30.7,
-          "time_end": 45.35,
+          "time_end": 45.44,
           "text": "I live In this Wisconsin.",
           "primary_category": "neutral",
           "top_emotions": [
@@ -571,8 +571,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.1902,
-              "percentage": 19.0,
+              "score": 0.1791,
+              "percentage": 17.9,
               "category": "neutral"
             }
           ],
@@ -588,8 +588,8 @@
           "top_emotions": [
             {
               "name": "Concentration",
-              "score": 0.2189,
-              "percentage": 21.9,
+              "score": 0.2292,
+              "percentage": 22.9,
               "category": "neutral"
             }
           ],
@@ -605,8 +605,8 @@
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.2938,
-              "percentage": 29.4,
+              "score": 0.3008,
+              "percentage": 30.1,
               "category": "positive"
             }
           ],
@@ -622,8 +622,8 @@
           "top_emotions": [
             {
               "name": "Interest",
-              "score": 0.1689,
-              "percentage": 16.9,
+              "score": 0.1951,
+              "percentage": 19.5,
               "category": "positive"
             }
           ],
@@ -639,8 +639,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2073,
-              "percentage": 20.7,
+              "score": 0.2151,
+              "percentage": 21.5,
               "category": "neutral"
             }
           ],
@@ -656,8 +656,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2497,
-              "percentage": 25.0,
+              "score": 0.2525,
+              "percentage": 25.2,
               "category": "neutral"
             }
           ],
@@ -673,8 +673,8 @@
           "top_emotions": [
             {
               "name": "Calmness",
-              "score": 0.2846,
-              "percentage": 28.5,
+              "score": 0.2922,
+              "percentage": 29.2,
               "category": "neutral"
             }
           ],
@@ -686,8 +686,8 @@
       "burst": [],
       "metadata": {
         "category_counts": {
-          "positive": 4,
-          "neutral": 9,
+          "positive": 5,
+          "neutral": 8,
           "negative": 0
         },
         "retell_transcript_available": true,
@@ -797,12 +797,12 @@
         "overall_call_emotion": {
           "label": "positive",
           "call_outcome": "success",
-          "confidence": 0.95,
-          "reasoning": "The customer, Jenny, agreed to the agent's proposal to send a text link for scheduling a follow-up, indicating a commitment to proceed with the next steps.",
+          "confidence": 1.0,
+          "reasoning": "The customer, Jenny, expressed satisfaction by confirming her high school diploma and agreed to receive a text to schedule a meeting, indicating a commitment to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to connect with an Admissions Representative. The Agent\u2019s determination at 27.5s supports this outcome, as she proposes sending a text link for scheduling a follow-up. The call concludes positively with Jenny agreeing to the next step at 67.4s, despite earlier signs of contemplation."
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining a calm demeanor throughout. Jenny exhibits realization at 30.7s when confirming her Wisconsin residency, leading to a positive shift as she expresses satisfaction with the next steps at 52.3s. The Agent proposes sending a text to schedule a meeting, to which Jenny agrees at 67.4s. The call concludes with the Agent wishing Jenny well as she prepares to take her next steps."
     },
     {
       "filename": "call_3d972cf3978c1a6347077503c66_user.wav",
@@ -1000,12 +1000,12 @@
         "overall_call_emotion": {
           "label": "positive",
           "call_outcome": "success",
-          "confidence": 0.95,
-          "reasoning": "The customer, Jenny, agreed to the agent's proposal to send a text link for scheduling a follow-up, indicating a commitment to proceed with the next steps.",
+          "confidence": 1.0,
+          "reasoning": "The customer, Jenny, expressed satisfaction by confirming her high school diploma and agreed to receive a text to schedule a meeting, indicating a commitment to proceed.",
           "source": "openai"
         }
       },
-      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining calmness throughout. Jenny expresses realization at 30.7s when confirming her Wisconsin residency, leading to a commitment to connect with an Admissions Representative. The Agent\u2019s determination at 27.5s supports this outcome, as she proposes sending a text link for scheduling a follow-up. The call concludes positively with Jenny agreeing to the next step at 67.4s, despite earlier signs of contemplation."
+      "summary": "Agent Courtney contacts Jenny regarding the Phlebotomy Technician program, maintaining a calm demeanor throughout. Jenny exhibits realization at 30.7s when confirming her Wisconsin residency, leading to a positive shift as she expresses satisfaction with the next steps at 52.3s. The Agent proposes sending a text to schedule a meeting, to which Jenny agrees at 67.4s. The call concludes with the Agent wishing Jenny well as she prepares to take her next steps."
     }
   ]
 }
