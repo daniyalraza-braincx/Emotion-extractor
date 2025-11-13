@@ -1,0 +1,1078 @@
+{
+  "call_id": "call_beef9b1a3100da0a656f1b484aa",
+  "retell_metadata": {
+    "retell_call_id": "call_beef9b1a3100da0a656f1b484aa",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bc71ee9a2881a101d3bb8472b2ee359b09b952bf88be877c3123aecb7042eb17/recording_multichannel.wav",
+    "start_timestamp": 1762897479566,
+    "end_timestamp": 1762897553668,
+    "duration_ms": 74102,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Jenny",
+      "program": "Phlebotomy Technician",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 74102
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_beef9b1a3100da0a656f1b484aa_combined",
+      "prosody": [
+        {
+          "time_start": 4.58,
+          "time_end": 9.44,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3133,
+              "percentage": 31.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 9.83,
+          "time_end": 12.46,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1448,
+              "percentage": 14.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 12.96,
+          "time_end": 15.76,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3527,
+              "percentage": 35.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 15.76,
+          "time_end": 28.97,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.171,
+              "percentage": 17.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.64,
+          "time_end": 24.12,
+          "text": "Wisconsin.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.1898,
+              "percentage": 19.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 26.28,
+          "time_end": 26.78,
+          "text": "Wisconsin.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1037,
+              "percentage": 10.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Wisconsin."
+        },
+        {
+          "time_start": 28.97,
+          "time_end": 39.85,
+          "text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2638,
+              "percentage": 26.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 34.59,
+          "time_end": 35.39,
+          "text": "Yes. I do.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.215,
+              "percentage": 21.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes. I do."
+        },
+        {
+          "time_start": 40.25,
+          "time_end": 43.92,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2766,
+              "percentage": 27.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 43.92,
+          "time_end": 47.43,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.268,
+              "percentage": 26.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 47.5,
+          "time_end": 55.82,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2781,
+              "percentage": 27.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 52.21,
+          "time_end": 53.72,
+          "text": "No. I changed my mind.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1163,
+              "percentage": 11.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. I changed my mind."
+        },
+        {
+          "time_start": 55.98,
+          "time_end": 59.5,
+          "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.1386,
+              "percentage": 13.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+        },
+        {
+          "time_start": 59.5,
+          "time_end": 68.06,
+          "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2042,
+              "percentage": 20.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+        },
+        {
+          "time_start": 65.8,
+          "time_end": 66.44,
+          "text": "Hello. I'm okay.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1468,
+              "percentage": 14.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello. I'm okay."
+        },
+        {
+          "time_start": 68.06,
+          "time_end": 71.09,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Sympathy",
+              "score": 0.1415,
+              "percentage": 14.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 71.09,
+          "time_end": 73.81,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2883,
+              "percentage": 28.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1705,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2333,
+              "percentage": 23.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hi."
+        },
+        {
+          "time_start": 51.0,
+          "time_end": 52.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.3403,
+              "percentage": 34.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 6,
+          "neutral": 6,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.836,
+            "end": 3.1559999999999997,
+            "text": "Hi."
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.616,
+            "end": 18.803875,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 20.866,
+            "end": 22.066,
+            "text": "This one, seven."
+          },
+          {
+            "speaker": "Customer",
+            "start": 24.546,
+            "end": 24.625999999999998,
+            "text": "Responsible."
+          },
+          {
+            "speaker": "Customer",
+            "start": 25.805999999999997,
+            "end": 26.445999999999998,
+            "text": "Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 28.786,
+            "end": 33.070041748046876,
+            "text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.555997999999995,
+            "end": 35.275999999999996,
+            "text": "Yes. I do."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.462,
+            "end": 49.957625,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.226,
+            "end": 53.746,
+            "text": "No. I changed my mind."
+          },
+          {
+            "speaker": "Agent",
+            "start": 55.575,
+            "end": 62.45920825195312,
+            "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.31599600000001,
+            "end": 66.19600000000001,
+            "text": "Hello. I'm okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 67.853,
+            "end": 74.06433325195313,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_beef9b1a3100da0a656f1b484aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bc71ee9a2881a101d3bb8472b2ee359b09b952bf88be877c3123aecb7042eb17/recording_multichannel.wav",
+        "start_timestamp": 1762897479566,
+        "end_timestamp": 1762897553668,
+        "duration_ms": 74102,
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 74102
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.95,
+          "reasoning": "The customer explicitly refused to proceed by stating, 'No. I changed my mind,' indicating a clear decision against the agent's proposal. Despite the agent's attempts to leave the door open for future contact, the call concluded without any commitment from the customer.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining determination and calmness throughout. Jenny initially shows interest at 26.3s but shifts to satisfaction at 52.2s when she decides against proceeding, stating, \"No. I changed my mind.\" The agent remains sympathetic and calm, offering future assistance. The call concludes without a commitment from Jenny, but the agent leaves the door open for future contact."
+    },
+    {
+      "filename": "call_beef9b1a3100da0a656f1b484aa_agent.wav",
+      "prosody": [
+        {
+          "time_start": 4.58,
+          "time_end": 9.44,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3133,
+              "percentage": 31.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 9.83,
+          "time_end": 12.46,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1448,
+              "percentage": 14.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 12.96,
+          "time_end": 15.76,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3527,
+              "percentage": 35.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 15.76,
+          "time_end": 28.97,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.171,
+              "percentage": 17.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 28.97,
+          "time_end": 39.85,
+          "text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2638,
+              "percentage": 26.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 40.25,
+          "time_end": 43.92,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2766,
+              "percentage": 27.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 43.92,
+          "time_end": 47.43,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.268,
+              "percentage": 26.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 47.5,
+          "time_end": 55.82,
+          "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2781,
+              "percentage": 27.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+        },
+        {
+          "time_start": 55.98,
+          "time_end": 59.5,
+          "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.1386,
+              "percentage": 13.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+        },
+        {
+          "time_start": 59.5,
+          "time_end": 68.06,
+          "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2042,
+              "percentage": 20.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+        },
+        {
+          "time_start": 68.06,
+          "time_end": 71.09,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Sympathy",
+              "score": 0.1415,
+              "percentage": 14.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 71.09,
+          "time_end": 73.81,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2883,
+              "percentage": 28.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 6,
+          "neutral": 6,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.836,
+            "end": 3.1559999999999997,
+            "text": "Hi."
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.616,
+            "end": 18.803875,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 20.866,
+            "end": 22.066,
+            "text": "This one, seven."
+          },
+          {
+            "speaker": "Customer",
+            "start": 24.546,
+            "end": 24.625999999999998,
+            "text": "Responsible."
+          },
+          {
+            "speaker": "Customer",
+            "start": 25.805999999999997,
+            "end": 26.445999999999998,
+            "text": "Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 28.786,
+            "end": 33.070041748046876,
+            "text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.555997999999995,
+            "end": 35.275999999999996,
+            "text": "Yes. I do."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.462,
+            "end": 49.957625,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.226,
+            "end": 53.746,
+            "text": "No. I changed my mind."
+          },
+          {
+            "speaker": "Agent",
+            "start": 55.575,
+            "end": 62.45920825195312,
+            "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.31599600000001,
+            "end": 66.19600000000001,
+            "text": "Hello. I'm okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 67.853,
+            "end": 74.06433325195313,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_beef9b1a3100da0a656f1b484aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bc71ee9a2881a101d3bb8472b2ee359b09b952bf88be877c3123aecb7042eb17/recording_multichannel.wav",
+        "start_timestamp": 1762897479566,
+        "end_timestamp": 1762897553668,
+        "duration_ms": 74102,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 74102
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.95,
+          "reasoning": "The customer explicitly refused to proceed by stating, 'No. I changed my mind,' indicating a clear decision against the agent's proposal. Despite the agent's attempts to leave the door open for future contact, the call concluded without any commitment from the customer.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining determination and calmness throughout. Jenny initially shows interest at 26.3s but shifts to satisfaction at 52.2s when she decides against proceeding, stating, \"No. I changed my mind.\" The agent remains sympathetic and calm, offering future assistance. The call concludes without a commitment from Jenny, but the agent leaves the door open for future contact."
+    },
+    {
+      "filename": "call_beef9b1a3100da0a656f1b484aa_user.wav",
+      "prosody": [
+        {
+          "time_start": 23.64,
+          "time_end": 24.12,
+          "text": "Wisconsin.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.1898,
+              "percentage": 19.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 26.28,
+          "time_end": 26.78,
+          "text": "Wisconsin.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1037,
+              "percentage": 10.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Wisconsin."
+        },
+        {
+          "time_start": 34.59,
+          "time_end": 35.39,
+          "text": "Yes. I do.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.215,
+              "percentage": 21.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes. I do."
+        },
+        {
+          "time_start": 52.21,
+          "time_end": 53.72,
+          "text": "No. I changed my mind.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1163,
+              "percentage": 11.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. I changed my mind."
+        },
+        {
+          "time_start": 65.8,
+          "time_end": 66.44,
+          "text": "Hello. I'm okay.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1468,
+              "percentage": 14.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello. I'm okay."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1705,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 2.0,
+          "time_end": 3.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2333,
+              "percentage": 23.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hi."
+        },
+        {
+          "time_start": 51.0,
+          "time_end": 52.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.3403,
+              "percentage": 34.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 3,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.836,
+            "end": 3.1559999999999997,
+            "text": "Hi."
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.616,
+            "end": 18.803875,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 20.866,
+            "end": 22.066,
+            "text": "This one, seven."
+          },
+          {
+            "speaker": "Customer",
+            "start": 24.546,
+            "end": 24.625999999999998,
+            "text": "Responsible."
+          },
+          {
+            "speaker": "Customer",
+            "start": 25.805999999999997,
+            "end": 26.445999999999998,
+            "text": "Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 28.786,
+            "end": 33.070041748046876,
+            "text": "Thank you for letting me know. Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 34.555997999999995,
+            "end": 35.275999999999996,
+            "text": "Yes. I do."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.462,
+            "end": 49.957625,
+            "text": "Perfect! I\u2019d love to help get you connected with an Admissions Representative who can answer your questions and guide you through the next steps. How about I text you a link to choose a 30-minute spot?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 52.226,
+            "end": 53.746,
+            "text": "No. I changed my mind."
+          },
+          {
+            "speaker": "Agent",
+            "start": 55.575,
+            "end": 62.45920825195312,
+            "text": "Jenny, even if it\u2019s not a fit now, you\u2019ll walk away with insight that helps down the road. Why don\u2019t we get you a time to chat with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.31599600000001,
+            "end": 66.19600000000001,
+            "text": "Hello. I'm okay."
+          },
+          {
+            "speaker": "Agent",
+            "start": 67.853,
+            "end": 74.06433325195313,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_beef9b1a3100da0a656f1b484aa",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bc71ee9a2881a101d3bb8472b2ee359b09b952bf88be877c3123aecb7042eb17/recording_multichannel.wav",
+        "start_timestamp": 1762897479566,
+        "end_timestamp": 1762897553668,
+        "duration_ms": 74102,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 74102
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.95,
+          "reasoning": "The customer explicitly refused to proceed by stating, 'No. I changed my mind,' indicating a clear decision against the agent's proposal. Despite the agent's attempts to leave the door open for future contact, the call concluded without any commitment from the customer.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining determination and calmness throughout. Jenny initially shows interest at 26.3s but shifts to satisfaction at 52.2s when she decides against proceeding, stating, \"No. I changed my mind.\" The agent remains sympathetic and calm, offering future assistance. The call concludes without a commitment from Jenny, but the agent leaves the door open for future contact."
+    }
+  ]
+}

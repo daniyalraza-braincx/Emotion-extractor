@@ -622,6 +622,7 @@ export function transformApiDataToChart(apiResponse) {
   const transcriptSegments = buildTranscriptSegments(results?.metadata);
   const baseSpeakers = ['Customer', 'Agent'];
   const speakerSegmentsMap = new Map();
+  const fallbackSegmentsForMetrics = [];
   baseSpeakers.forEach((speaker) => speakerSegmentsMap.set(speaker, []));
 
   let latestTime = 0;
@@ -703,7 +704,8 @@ export function transformApiDataToChart(apiResponse) {
       topEmotion: dominantEmotion?.name || null,
       score: typeof dominantEmotion?.score === 'number' ? dominantEmotion.score : null,
       category: primaryCategory,
-      text: segment.transcript_text || segment.text || ''
+      text: segment.transcript_text || segment.text || '',
+      source: 'prosody'
     });
   });
 
@@ -767,6 +769,37 @@ export function transformApiDataToChart(apiResponse) {
     })
     .sort((a, b) => a.intervalStart - b.intervalStart);
 
+  if (fallbackSegmentsForMetrics.length > 0) {
+    const fallbackEntries = fallbackSegmentsForMetrics
+      .filter(({ segment }) => segment && segment.topEmotion)
+      .map(({ speaker, segment }) => {
+        const duration = Math.max(0, (segment.end ?? segment.start) - segment.start);
+        const midpoint = segment.start + (duration / 2);
+        const category = normalizeSentimentCategory(segment.category || 'neutral');
+        const scoreValue = typeof segment.score === 'number' && Number.isFinite(segment.score)
+          ? segment.score
+          : 0;
+        const emotionScores = segment.topEmotion
+          ? { [segment.topEmotion]: scoreValue }
+          : {};
+
+        return {
+          time: midpoint,
+          intervalStart: segment.start,
+          intervalEnd: segment.end,
+          duration,
+          topEmotion: segment.topEmotion,
+          score: scoreValue,
+          emotions: emotionScores,
+          speaker,
+          category,
+        };
+      });
+
+    chartData.push(...fallbackEntries);
+    chartData.sort((a, b) => a.intervalStart - b.intervalStart);
+  }
+
   const speakerTimelineSegmentsMap = new Map();
   baseSpeakers.forEach((speaker) => {
     speakerTimelineSegmentsMap.set(speaker, []);
@@ -802,8 +835,38 @@ export function transformApiDataToChart(apiResponse) {
         };
 
         speakerTimelineSegmentsMap.get(speaker).push(entry);
+        fallbackSegmentsForMetrics.push({ speaker, segment: entry });
         latestTime = Math.max(latestTime, segment.end);
       }
+    });
+  }
+
+  if (fallbackSegmentsForMetrics.length > 0) {
+    fallbackSegmentsForMetrics.forEach(({ speaker, segment }) => {
+      if (!segment || !segment.topEmotion) {
+        return;
+      }
+
+      const categoryKey = normalizeSentimentCategory(segment.category || 'neutral');
+      const emotionPayload = [{
+        name: segment.topEmotion,
+        score: typeof segment.score === 'number' && Number.isFinite(segment.score) ? segment.score : null,
+        category: categoryKey,
+      }];
+
+      const speakerKey = getAccumulatorKeyForSpeaker(speaker);
+      const targetAccumulator = metricsAccumulators[speakerKey];
+      if (targetAccumulator) {
+        mergeSegmentIntoAccumulator(targetAccumulator, categoryKey, emotionPayload, {
+          source: 'transcript',
+          incrementCounts: true,
+        });
+      }
+
+      mergeSegmentIntoAccumulator(metricsAccumulators.combined, categoryKey, emotionPayload, {
+        source: 'transcript',
+        incrementCounts: false,
+      });
     });
   }
 

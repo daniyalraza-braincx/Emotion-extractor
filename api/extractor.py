@@ -831,6 +831,7 @@ def determine_overall_call_emotion(
             "- Look at the customer's willingness to proceed with the AGENT'S ask (e.g. scheduling, link, callback). Emotions alone are not enough.\n"
             "- If the customer accepts or agrees (even reluctantly, e.g. \"fine\", \"okay\", \"send it\"), treat that as a commitment: call_outcome=success and overall_emotion=positive.\n"
             "- If the customer explicitly refuses (e.g. \"no\", \"not interested\", \"don't\") or prosody shows strong negativity matching a refusal, call_outcome=unsuccessful and overall_emotion=negative.\n"
+            "- If the agent cannot proceed because requirements are not met or the customer is disqualified (e.g. missing documents, ineligible), treat the call as unsuccessful with overall_emotion=negative unless the customer clearly pivots to an alternative success.\n"
             "- If the customer is busy, asks for a callback, or defers without a definite acceptance (e.g. \"call me later\", \"text me when\" with no confirmation), call_outcome=pending and overall_emotion=neutral unless their tone is unmistakably negative.\n"
             "- Saying \"no\" to additional questions after agreeing does NOT cancel a prior acceptance.\n"
             "- When the behaviour is ambiguous, prefer pending/neutral and document the uncertainty.\n"

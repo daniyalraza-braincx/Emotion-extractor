@@ -1,0 +1,931 @@
+{
+  "call_id": "call_03aaed6527161800ae796dbf402",
+  "retell_metadata": {
+    "retell_call_id": "call_03aaed6527161800ae796dbf402",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a21bc1a0158fb124a531c9c695902aa29125f734f783b5a0e11af076cbfe635c/recording_multichannel.wav",
+    "start_timestamp": 1762896895595,
+    "end_timestamp": 1762896951257,
+    "duration_ms": 55662,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Jenny",
+      "program": "Phlebotomy Technician",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 55662
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_03aaed6527161800ae796dbf402_combined",
+      "prosody": [
+        {
+          "time_start": 2.27,
+          "time_end": 2.75,
+          "text": "Hello.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1135,
+              "percentage": 11.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 4.42,
+          "time_end": 8.73,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3826,
+              "percentage": 38.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 10.01,
+          "time_end": 10.49,
+          "text": "Yes.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1836,
+              "percentage": 18.4,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 11.83,
+          "time_end": 14.48,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2433,
+              "percentage": 24.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 14.48,
+          "time_end": 18.7,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4726,
+              "percentage": 47.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 18.78,
+          "time_end": 23.08,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5079,
+              "percentage": 50.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.08,
+          "time_end": 31.54,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.2857,
+              "percentage": 28.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 29.12,
+          "time_end": 29.62,
+          "text": "Wisconsin.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1257,
+              "percentage": 12.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Wisconsin."
+        },
+        {
+          "time_start": 31.54,
+          "time_end": 35.14,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2097,
+              "percentage": 21.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 35.28,
+          "time_end": 38.78,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.268,
+              "percentage": 26.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 38.78,
+          "time_end": 46.68,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2172,
+              "percentage": 21.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 44.52,
+          "time_end": 44.84,
+          "text": "No.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.0973,
+              "percentage": 9.7,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No."
+        },
+        {
+          "time_start": 46.68,
+          "time_end": 49.79,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1758,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 49.79,
+          "time_end": 52.66,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3463,
+              "percentage": 34.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 54.41,
+          "time_end": 55.21,
+          "text": "No. I'm sure.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2015,
+              "percentage": 20.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. I'm sure."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1898,
+              "percentage": 19.0,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 11.0,
+          "time_end": 12.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2749,
+              "percentage": 27.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "category_counts": {
+          "positive": 1,
+          "neutral": 3,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.17699995,
+            "end": 2.5769998999999997,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.515,
+            "end": 9.031125,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 9.936999,
+            "end": 10.257000000000001,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.914,
+            "end": 26.181958251953127,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.717,
+            "end": 29.357,
+            "text": "Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 31.34,
+            "end": 40.95341674804688,
+            "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 44.387002,
+            "end": 44.707,
+            "text": "No."
+          },
+          {
+            "speaker": "Agent",
+            "start": 46.485,
+            "end": 52.90504174804688,
+            "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 54.407000000000004,
+            "end": 55.206998000000006,
+            "text": "No. I'm sure."
+          }
+        ],
+        "retell_call_id": "call_03aaed6527161800ae796dbf402",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a21bc1a0158fb124a531c9c695902aa29125f734f783b5a0e11af076cbfe635c/recording_multichannel.wav",
+        "start_timestamp": 1762896895595,
+        "end_timestamp": 1762896951257,
+        "duration_ms": 55662,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 55662
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.95,
+          "reasoning": "The customer explicitly refused to consider other programs and confirmed no interest in further discussions, indicating a clear refusal.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining interest and determination. Jenny starts calmly at 2.3s, shifts to boredom at 10.0s, and realizes the program isn't available in Wisconsin at 29.1s. She expresses distress at 44.5s when declining other programs and remains calm at 54.4s, confirming no interest in alternatives. The call concludes without Jenny committing to further discussions."
+    },
+    {
+      "filename": "call_03aaed6527161800ae796dbf402_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.27,
+          "time_end": 2.75,
+          "text": "Hello.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1135,
+              "percentage": 11.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello."
+        },
+        {
+          "time_start": 10.01,
+          "time_end": 10.49,
+          "text": "Yes.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1836,
+              "percentage": 18.4,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 29.12,
+          "time_end": 29.62,
+          "text": "Wisconsin.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1257,
+              "percentage": 12.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Wisconsin."
+        },
+        {
+          "time_start": 44.52,
+          "time_end": 44.84,
+          "text": "No.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.0973,
+              "percentage": 9.7,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No."
+        },
+        {
+          "time_start": 54.41,
+          "time_end": 55.21,
+          "text": "No. I'm sure.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2015,
+              "percentage": 20.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. I'm sure."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1898,
+              "percentage": 19.0,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 3,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.17699995,
+            "end": 2.5769998999999997,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.515,
+            "end": 9.031125,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 9.936999,
+            "end": 10.257000000000001,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.914,
+            "end": 26.181958251953127,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.717,
+            "end": 29.357,
+            "text": "Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 31.34,
+            "end": 40.95341674804688,
+            "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 44.387002,
+            "end": 44.707,
+            "text": "No."
+          },
+          {
+            "speaker": "Agent",
+            "start": 46.485,
+            "end": 52.90504174804688,
+            "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 54.407000000000004,
+            "end": 55.206998000000006,
+            "text": "No. I'm sure."
+          }
+        ],
+        "retell_call_id": "call_03aaed6527161800ae796dbf402",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a21bc1a0158fb124a531c9c695902aa29125f734f783b5a0e11af076cbfe635c/recording_multichannel.wav",
+        "start_timestamp": 1762896895595,
+        "end_timestamp": 1762896951257,
+        "duration_ms": 55662,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 55662
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.95,
+          "reasoning": "The customer explicitly refused to consider other programs and confirmed no interest in further discussions, indicating a clear refusal.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining interest and determination. Jenny starts calmly at 2.3s, shifts to boredom at 10.0s, and realizes the program isn't available in Wisconsin at 29.1s. She expresses distress at 44.5s when declining other programs and remains calm at 54.4s, confirming no interest in alternatives. The call concludes without Jenny committing to further discussions."
+    },
+    {
+      "filename": "call_03aaed6527161800ae796dbf402_agent.wav",
+      "prosody": [
+        {
+          "time_start": 4.42,
+          "time_end": 8.73,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3826,
+              "percentage": 38.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 11.83,
+          "time_end": 14.48,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2433,
+              "percentage": 24.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 14.48,
+          "time_end": 18.7,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4726,
+              "percentage": 47.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 18.78,
+          "time_end": 23.08,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5079,
+              "percentage": 50.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.08,
+          "time_end": 31.54,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.2857,
+              "percentage": 28.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 31.54,
+          "time_end": 35.14,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.2097,
+              "percentage": 21.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 35.28,
+          "time_end": 38.78,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.268,
+              "percentage": 26.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 38.78,
+          "time_end": 46.68,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2172,
+              "percentage": 21.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 46.68,
+          "time_end": 49.79,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1758,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        },
+        {
+          "time_start": 49.79,
+          "time_end": 52.66,
+          "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3463,
+              "percentage": 34.6,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 11.0,
+          "time_end": 12.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2749,
+              "percentage": 27.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 5,
+          "neutral": 3,
+          "negative": 3
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.17699995,
+            "end": 2.5769998999999997,
+            "text": "Hello."
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.515,
+            "end": 9.031125,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 9.936999,
+            "end": 10.257000000000001,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 11.914,
+            "end": 26.181958251953127,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.717,
+            "end": 29.357,
+            "text": "Wisconsin."
+          },
+          {
+            "speaker": "Agent",
+            "start": 31.34,
+            "end": 40.95341674804688,
+            "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 44.387002,
+            "end": 44.707,
+            "text": "No."
+          },
+          {
+            "speaker": "Agent",
+            "start": 46.485,
+            "end": 52.90504174804688,
+            "text": "Got it, we have many programs that may meet your goals. Are you sure you don't want to spend a few minutes discussing with our team?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 54.407000000000004,
+            "end": 55.206998000000006,
+            "text": "No. I'm sure."
+          }
+        ],
+        "retell_call_id": "call_03aaed6527161800ae796dbf402",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a21bc1a0158fb124a531c9c695902aa29125f734f783b5a0e11af076cbfe635c/recording_multichannel.wav",
+        "start_timestamp": 1762896895595,
+        "end_timestamp": 1762896951257,
+        "duration_ms": 55662,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 55662
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.95,
+          "reasoning": "The customer explicitly refused to consider other programs and confirmed no interest in further discussions, indicating a clear refusal.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining interest and determination. Jenny starts calmly at 2.3s, shifts to boredom at 10.0s, and realizes the program isn't available in Wisconsin at 29.1s. She expresses distress at 44.5s when declining other programs and remains calm at 54.4s, confirming no interest in alternatives. The call concludes without Jenny committing to further discussions."
+    }
+  ]
+}

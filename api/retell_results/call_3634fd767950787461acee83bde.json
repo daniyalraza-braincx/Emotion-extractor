@@ -1,0 +1,1010 @@
+{
+  "call_id": "call_3634fd767950787461acee83bde",
+  "retell_metadata": {
+    "retell_call_id": "call_3634fd767950787461acee83bde",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/06d68026702ce41f3476ccfdbf4fb2596f07ee44b693b7e31d3d93e4e6555648/recording_multichannel.wav",
+    "start_timestamp": 1762897587479,
+    "end_timestamp": 1762897650270,
+    "duration_ms": 62791,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Jenny",
+      "program": "Phlebotomy Technician",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 62791
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_3634fd767950787461acee83bde_combined",
+      "prosody": [
+        {
+          "time_start": 2.44,
+          "time_end": 2.84,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2324,
+              "percentage": 23.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 4.76,
+          "time_end": 7.82,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.474,
+              "percentage": 47.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 8.28,
+          "time_end": 9.24,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2021,
+              "percentage": 20.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 10.6,
+          "time_end": 10.84,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2203,
+              "percentage": 22.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 12.37,
+          "time_end": 16.76,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3442,
+              "percentage": 34.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 17.16,
+          "time_end": 19.8,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1965,
+              "percentage": 19.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 20.44,
+          "time_end": 25.39,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4197,
+              "percentage": 42.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 28.73,
+          "time_end": 29.23,
+          "text": "Nevada.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1854,
+              "percentage": 18.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Nevada."
+        },
+        {
+          "time_start": 30.92,
+          "time_end": 33.8,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.1809,
+              "percentage": 18.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 39.97,
+          "time_end": 44.12,
+          "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4122,
+              "percentage": 41.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 44.12,
+          "time_end": 48.5,
+          "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2796,
+              "percentage": 28.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 48.5,
+          "time_end": 58.98,
+          "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3107,
+              "percentage": 31.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 54.61,
+          "time_end": 55.08,
+          "text": "I guess, No. I guess.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2018,
+              "percentage": 20.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I guess, No. I guess."
+        },
+        {
+          "time_start": 57.0,
+          "time_end": 57.32,
+          "text": "I guess, No. I guess.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1858,
+              "percentage": 18.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I guess, No. I guess."
+        },
+        {
+          "time_start": 58.98,
+          "time_end": 62.42,
+          "text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4235,
+              "percentage": 42.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1645,
+              "percentage": 16.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2419,
+              "percentage": 24.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 36.0,
+          "time_end": 37.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.3306,
+              "percentage": 33.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "No."
+        },
+        {
+          "time_start": 53.0,
+          "time_end": 54.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.4072,
+              "percentage": 40.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 6,
+          "neutral": 5,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.327,
+            "end": 2.6470000000000002,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.686,
+            "end": 9.44575,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.506999,
+            "end": 10.747,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 12.371,
+            "end": 25.711333251953125,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.597,
+            "end": 29.077,
+            "text": "Nevada."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.869,
+            "end": 34.050625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.776999999999994,
+            "end": 37.177,
+            "text": "No."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.911,
+            "end": 51.776791748046875,
+            "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 54.016997999999994,
+            "end": 57.137,
+            "text": "I guess, No. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 58.811,
+            "end": 62.758166748046875,
+            "text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!"
+          }
+        ],
+        "retell_call_id": "call_3634fd767950787461acee83bde",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/06d68026702ce41f3476ccfdbf4fb2596f07ee44b693b7e31d3d93e4e6555648/recording_multichannel.wav",
+        "start_timestamp": 1762897587479,
+        "end_timestamp": 1762897650270,
+        "duration_ms": 62791,
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 62791
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "Jenny lacks the required diploma, leading to disqualification from the program. She did not commit to any future action, and her tone indicated disinterest, resulting in an unsuccessful outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining determination at 12.4s while discussing requirements. Jenny remains calm initially but shifts to tiredness at 36.0s upon revealing she lacks a diploma, leading to a negative outcome. The agent stays calm and interested, offering a callback option if circumstances change. Jenny expresses boredom at 54.6s, indicating no further questions, and the call concludes without a commitment to proceed."
+    },
+    {
+      "filename": "call_3634fd767950787461acee83bde_agent.wav",
+      "prosody": [
+        {
+          "time_start": 4.76,
+          "time_end": 7.82,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.474,
+              "percentage": 47.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 8.28,
+          "time_end": 9.24,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2021,
+              "percentage": 20.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 12.37,
+          "time_end": 16.76,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3442,
+              "percentage": 34.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 17.16,
+          "time_end": 19.8,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1965,
+              "percentage": 19.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 20.44,
+          "time_end": 25.39,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4197,
+              "percentage": 42.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 30.92,
+          "time_end": 33.8,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.1809,
+              "percentage": 18.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        },
+        {
+          "time_start": 39.97,
+          "time_end": 44.12,
+          "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4122,
+              "percentage": 41.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 44.12,
+          "time_end": 48.5,
+          "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2796,
+              "percentage": 28.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 48.5,
+          "time_end": 58.98,
+          "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3107,
+              "percentage": 31.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+        },
+        {
+          "time_start": 58.98,
+          "time_end": 62.42,
+          "text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4235,
+              "percentage": 42.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2419,
+              "percentage": 24.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 6,
+          "neutral": 5,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.327,
+            "end": 2.6470000000000002,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.686,
+            "end": 9.44575,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.506999,
+            "end": 10.747,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 12.371,
+            "end": 25.711333251953125,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.597,
+            "end": 29.077,
+            "text": "Nevada."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.869,
+            "end": 34.050625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.776999999999994,
+            "end": 37.177,
+            "text": "No."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.911,
+            "end": 51.776791748046875,
+            "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 54.016997999999994,
+            "end": 57.137,
+            "text": "I guess, No. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 58.811,
+            "end": 62.758166748046875,
+            "text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!"
+          }
+        ],
+        "retell_call_id": "call_3634fd767950787461acee83bde",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/06d68026702ce41f3476ccfdbf4fb2596f07ee44b693b7e31d3d93e4e6555648/recording_multichannel.wav",
+        "start_timestamp": 1762897587479,
+        "end_timestamp": 1762897650270,
+        "duration_ms": 62791,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 62791
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "Jenny lacks the required diploma, leading to disqualification from the program. She did not commit to any future action, and her tone indicated disinterest, resulting in an unsuccessful outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining determination at 12.4s while discussing requirements. Jenny remains calm initially but shifts to tiredness at 36.0s upon revealing she lacks a diploma, leading to a negative outcome. The agent stays calm and interested, offering a callback option if circumstances change. Jenny expresses boredom at 54.6s, indicating no further questions, and the call concludes without a commitment to proceed."
+    },
+    {
+      "filename": "call_3634fd767950787461acee83bde_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.44,
+          "time_end": 2.84,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2324,
+              "percentage": 23.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 10.6,
+          "time_end": 10.84,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2203,
+              "percentage": 22.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 28.73,
+          "time_end": 29.23,
+          "text": "Nevada.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1854,
+              "percentage": 18.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Nevada."
+        },
+        {
+          "time_start": 54.61,
+          "time_end": 55.08,
+          "text": "I guess, No. I guess.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2018,
+              "percentage": 20.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I guess, No. I guess."
+        },
+        {
+          "time_start": 57.0,
+          "time_end": 57.32,
+          "text": "I guess, No. I guess.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.1858,
+              "percentage": 18.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I guess, No. I guess."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1645,
+              "percentage": 16.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 36.0,
+          "time_end": 37.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.3306,
+              "percentage": 33.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "No."
+        },
+        {
+          "time_start": 53.0,
+          "time_end": 54.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.4072,
+              "percentage": 40.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 5,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 2.327,
+            "end": 2.6470000000000002,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 4.686,
+            "end": 9.44575,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.506999,
+            "end": 10.747,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 12.371,
+            "end": 25.711333251953125,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.597,
+            "end": 29.077,
+            "text": "Nevada."
+          },
+          {
+            "speaker": "Agent",
+            "start": 30.869,
+            "end": 34.050625,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 36.776999999999994,
+            "end": 37.177,
+            "text": "No."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.911,
+            "end": 51.776791748046875,
+            "text": "Got it. Based on the admissions requirements, it looks like we may not be able to move forward at this time. If the situation changes, feel free to give us a call back. Before we wrap up, do you have any questions that I can help answer for you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 54.016997999999994,
+            "end": 57.137,
+            "text": "I guess, No. I guess."
+          },
+          {
+            "speaker": "Agent",
+            "start": 58.811,
+            "end": 62.758166748046875,
+            "text": "Thank you for your time, Jenny. Wishing you all the best. Have a great day!"
+          }
+        ],
+        "retell_call_id": "call_3634fd767950787461acee83bde",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/06d68026702ce41f3476ccfdbf4fb2596f07ee44b693b7e31d3d93e4e6555648/recording_multichannel.wav",
+        "start_timestamp": 1762897587479,
+        "end_timestamp": 1762897650270,
+        "duration_ms": 62791,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 62791
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 0.9,
+          "reasoning": "Jenny lacks the required diploma, leading to disqualification from the program. She did not commit to any future action, and her tone indicated disinterest, resulting in an unsuccessful outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the Phlebotomy Technician program, maintaining determination at 12.4s while discussing requirements. Jenny remains calm initially but shifts to tiredness at 36.0s upon revealing she lacks a diploma, leading to a negative outcome. The agent stays calm and interested, offering a callback option if circumstances change. Jenny expresses boredom at 54.6s, indicating no further questions, and the call concludes without a commitment to proceed."
+    }
+  ]
+}

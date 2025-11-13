@@ -1050,9 +1050,9 @@
       "start_timestamp": 1762893707850,
       "end_timestamp": 1762893756387,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/3ef1de1c5d71c28d7ddc9c38f895449ced3a249a030a4fd4eb20675e20820c00/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_a7ae5776de79cc6ee90c3e6ecd3.json",
       "duration_ms": 48537,
       "call_summary": "The agent contacted John regarding his interest in the Phlebotomy Technician program but informed him that the program is not available for residents of Pennsylvania. The agent then inquired if John was interested in another program.",
       "call_purpose": "Program Inquiry",
@@ -1074,7 +1074,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T20:42:46Z"
+      "last_updated": "2025-11-13T15:24:26Z",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer did not make a clear commitment to explore other programs after learning the Phlebotomy Technician program is unavailable in their state. The call ended without a definitive acceptance or refusal.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_ebec7674af72b77a7d1b2786bfb": {
       "call_id": "call_ebec7674af72b77a7d1b2786bfb",
@@ -1211,40 +1219,6 @@
       "error_message": null,
       "transcript_available": true,
       "last_updated": "2025-11-11T20:53:00Z"
-    },
-    "call_daa29385578d559b63abff20e19": {
-      "call_id": "call_daa29385578d559b63abff20e19",
-      "agent_id": "agent_efd77b346717ad7983449e92c0",
-      "agent_name": "Single-Prompt Agent Hiba",
-      "user_phone_number": null,
-      "start_timestamp": 1762894420732,
-      "end_timestamp": 1762894535912,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/8849ad69c69e7998cff04e92266f158c9506be6d512215906e6aa3758416a816/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 115180,
-      "call_summary": "The agent contacted Jenny regarding her interest in the Phlebotomy Technician program at Arcadia University. Initially, the agent incorrectly stated that Pennsylvania was a restricted state for the program, but after Jenny's correction, the agent acknowledged the mistake and confirmed that Pennsylvania is not restricted for the Phlebotomy Technician program, only California is. The call involved clarifying program eligibility based on state residency.",
-      "call_purpose": "Program Inquiry",
-      "call_title": "Program Eligibility Clarification",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 115180
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-11T20:55:45Z"
     },
     "call_08f94c90bdd32e33bd831c93efe": {
       "call_id": "call_08f94c90bdd32e33bd831c93efe",
@@ -1490,7 +1464,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T22:43:14Z"
+      "last_updated": "2025-11-13T13:27:11Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 0.9,
+        "reasoning": "The customer expressed tiredness and declined further options after learning the course was not available in her state, indicating a refusal to proceed.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_67db9c4ee8cc1708e8a665b8df7": {
       "call_id": "call_67db9c4ee8cc1708e8a665b8df7",
@@ -1602,9 +1584,9 @@
       "start_timestamp": 1762895784276,
       "end_timestamp": 1762895860623,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bad9604780c66c063ce62a55ab6368043e7ff0caad40e5950174fa254ad3c2cb/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_64cae4b1f1ef2deccfc5927ea42.json",
       "duration_ms": 76347,
       "call_summary": "The agent contacted Jenny to discuss her interest in the CISSP Certification Exam Preparation Course but informed her that the program is not available in Rhode Island. Jenny declined interest in other programs, and the call ended politely with no appointment booked.",
       "call_purpose": "Course Inquiry",
@@ -1626,7 +1608,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:17:47Z"
+      "last_updated": "2025-11-13T14:48:18Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 1.0,
+        "reasoning": "The customer explicitly refused the agent's offer by stating 'I'm not interested,' indicating a clear disinterest in proceeding with any program.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_8933a6198308b08f51ed58252fc": {
       "call_id": "call_8933a6198308b08f51ed58252fc",
@@ -1950,9 +1940,9 @@
       "start_timestamp": 1762896895595,
       "end_timestamp": 1762896951257,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a21bc1a0158fb124a531c9c695902aa29125f734f783b5a0e11af076cbfe635c/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_03aaed6527161800ae796dbf402.json",
       "duration_ms": 55662,
       "call_summary": "The agent contacted Jenny regarding her interest in the Phlebotomy Technician program but informed her that the program is not available for residents of Wisconsin. Jenny declined to discuss other programs or options.",
       "call_purpose": "Program Inquiry",
@@ -1974,7 +1964,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:36:02Z"
+      "last_updated": "2025-11-13T14:43:40Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 0.95,
+        "reasoning": "The customer explicitly refused to consider other programs and confirmed no interest in further discussions, indicating a clear refusal.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_beef9b1a3100da0a656f1b484aa": {
       "call_id": "call_beef9b1a3100da0a656f1b484aa",
@@ -1984,9 +1982,9 @@
       "start_timestamp": 1762897479566,
       "end_timestamp": 1762897553668,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bc71ee9a2881a101d3bb8472b2ee359b09b952bf88be877c3123aecb7042eb17/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_beef9b1a3100da0a656f1b484aa.json",
       "duration_ms": 74102,
       "call_summary": "The agent contacted Jenny regarding her interest in the Phlebotomy Technician program and confirmed her residency and educational qualifications. Jenny initially showed interest but then changed her mind and declined to schedule an appointment. The call ended amicably with the agent offering future assistance if needed.",
       "call_purpose": "Program Inquiry",
@@ -2008,7 +2006,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:45:58Z"
+      "last_updated": "2025-11-13T13:40:01Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 0.95,
+        "reasoning": "The customer explicitly refused to proceed by stating, 'No. I changed my mind,' indicating a clear decision against the agent's proposal. Despite the agent's attempts to leave the door open for future contact, the call concluded without any commitment from the customer.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_15529b40d3983992edc2c450e72": {
       "call_id": "call_15529b40d3983992edc2c450e72",
@@ -2052,12 +2058,12 @@
       "start_timestamp": 1762897587479,
       "end_timestamp": 1762897650270,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/06d68026702ce41f3476ccfdbf4fb2596f07ee44b693b7e31d3d93e4e6555648/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_3634fd767950787461acee83bde.json",
       "duration_ms": 62791,
       "call_summary": "The agent contacted Jenny regarding her interest in the Phlebotomy Technician program at Arcadia University. Upon learning that Jenny does not have a high school diploma or equivalent, the agent informed her that she does not meet the admission requirements and the call concluded without scheduling an appointment.",
-      "call_purpose": "Program Inquiry",
+      "call_purpose": "Admission Inquiry",
       "call_title": "Scheduled",
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -2076,7 +2082,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T21:47:39Z"
+      "last_updated": "2025-11-13T15:21:50Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 0.9,
+        "reasoning": "Jenny lacks the required diploma, leading to disqualification from the program. She did not commit to any future action, and her tone indicated disinterest, resulting in an unsuccessful outcome.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_faf22d2f275670aeba90c665823": {
       "call_id": "call_faf22d2f275670aeba90c665823",
@@ -2254,7 +2268,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T20:32:47Z"
+      "last_updated": "2025-11-13T13:27:11Z",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer indicated being busy and did not provide a commitment to proceed with the agent's request, leading to a pending outcome. The agent acknowledged this and planned to follow up later, reflecting a neutral sentiment.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_f9c9606cbf0ff95405f8094571c": {
       "call_id": "call_f9c9606cbf0ff95405f8094571c",
@@ -2330,7 +2352,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T20:34:50Z"
+      "last_updated": "2025-11-13T13:27:11Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 0.85,
+        "reasoning": "The customer expressed disappointment when informed that the course is not available in Wisconsin and did not show interest in any alternative programs, indicating a refusal to proceed.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_3a433f4e47792a039a55bdca53e": {
       "call_id": "call_3a433f4e47792a039a55bdca53e",
@@ -2440,7 +2470,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-12T20:24:04Z"
+      "last_updated": "2025-11-13T13:27:11Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.95,
+        "reasoning": "The customer confirmed the authorization details and engaged positively throughout the call, indicating a commitment to the agent's requests.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_278a85f4f2a630602bf4c19a83b": {
       "call_id": "call_278a85f4f2a630602bf4c19a83b",
@@ -2509,6 +2547,176 @@
       "error_message": null,
       "transcript_available": true,
       "last_updated": "2025-11-12T19:54:11Z"
+    },
+    "call_121654c258783a20afaa6673d1f": {
+      "call_id": "call_121654c258783a20afaa6673d1f",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763047155305,
+      "end_timestamp": 1763047197900,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/463c7feaad8a83b9fcd3d98be4222a0ff74ac28309c859ece8d8db8e7c2f5d76/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 42595,
+      "call_summary": "The agent contacted John regarding his interest in the Phlebotomy Technician program at Arcadia University and confirmed his residence in Wisconsin and educational background. The call was in the initial stages of verifying eligibility requirements.",
+      "call_purpose": "Program Inquiry",
+      "call_title": "Phlebotomy Program Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 42595
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:20:03Z"
+    },
+    "call_c05e3ea2a94d9b012efac266fda": {
+      "call_id": "call_c05e3ea2a94d9b012efac266fda",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763047199955,
+      "end_timestamp": 1763047235882,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/cf5bb91f1817739e60429bb44aa018287a67145e81b8307fd46b0c6b3578f532/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 35927,
+      "call_summary": "The agent contacted John regarding his interest in the Phlebotomy Technician program at Arcadia University, confirmed his identity, and began verifying his eligibility by asking about his state of residence and educational background.",
+      "call_purpose": "Program Inquiry",
+      "call_title": "Phlebotomy Program Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 35927
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:20:42Z"
+    },
+    "call_ad35e4d144bab95a7d2f3091902": {
+      "call_id": "call_ad35e4d144bab95a7d2f3091902",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763047317504,
+      "end_timestamp": 1763047357031,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6b4d9ab98e77d3a59df1985f6239f1e5868fc1338b51ab89efe18302c6ce288f/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 39527,
+      "call_summary": "The agent contacted John regarding his interest in the CISSP Certification Exam Preparation Course and confirmed his residence in Pennsylvania. The agent then informed John that he is unfortunately not qualified for the program based on his state. The call ended without booking an appointment or further action.",
+      "call_purpose": "Eligibility Inquiry",
+      "call_title": "Scheduled",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 39527
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:22:42Z"
+    },
+    "call_92ce9da92a08c6ecd935ad185a0": {
+      "call_id": "call_92ce9da92a08c6ecd935ad185a0",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763047361705,
+      "end_timestamp": 1763047398280,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5762997bdda80b7b5352b14d587e8e9a9362370daee7598af9c4fd6abbd8068d/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 36575,
+      "call_summary": "The agent contacted John regarding his interest in the Phlebotomy Technician program at Arcadia University. The agent confirmed John's identity and state of residence to proceed with program requirements. The call was in the initial stages and did not reach a conclusion.",
+      "call_purpose": "Program Inquiry",
+      "call_title": "Phlebotomy Program Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 36575
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:23:24Z"
+    },
+    "call_89a42b7c4ee0d39d7de6655ea76": {
+      "call_id": "call_89a42b7c4ee0d39d7de6655ea76",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763047400563,
+      "end_timestamp": 1763047495774,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/3387a544d3ce244cf04e93bf09e58525a30aa074c1868de7eb34aad7527a7e90/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 95211,
+      "call_summary": "The user initially expressed interest in the Phlebotomy Technician program but was informed it is not available in California. The user then inquired about the CISSP certification exam preparation course, which is available in their state. The agent confirmed the user's eligibility and offered to connect them with an Admissions Representative for further assistance.",
+      "call_purpose": "Course Inquiry",
+      "call_title": "Program Availability Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 95211
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:25:03Z"
     }
   }
 }
