@@ -1464,7 +1464,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T13:27:11Z",
+      "last_updated": "2025-11-13T15:09:38Z",
       "overall_emotion": {
         "label": "negative",
         "call_outcome": "unsuccessful",
@@ -2268,7 +2268,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T13:27:11Z",
+      "last_updated": "2025-11-13T15:09:38Z",
       "overall_emotion": {
         "label": "neutral",
         "call_outcome": "pending",
@@ -2352,7 +2352,7 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T13:27:11Z",
+      "last_updated": "2025-11-13T15:09:37Z",
       "overall_emotion": {
         "label": "negative",
         "call_outcome": "unsuccessful",
@@ -2470,13 +2470,42 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T13:27:11Z",
+      "last_updated": "2025-11-13T15:09:37Z",
       "overall_emotion": {
         "label": "positive",
         "call_outcome": "success",
         "confidence": 0.95,
         "reasoning": "The customer confirmed the authorization details and engaged positively throughout the call, indicating a commitment to the agent's requests.",
         "source": "openai"
+      },
+      "overall_emotion_label": "positive"
+    },
+    "call_eb6afd14c1548db5b50ae3d8a36": {
+      "call_id": "call_eb6afd14c1548db5b50ae3d8a36",
+      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
+      "agent_name": "EasyPA AI Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1762976074315,
+      "end_timestamp": 1762976074315,
+      "recording_multi_channel_url": null,
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": null,
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "error_user_not_joined",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 0
       },
       "overall_emotion_label": "positive"
     },
@@ -2682,23 +2711,23 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T15:23:24Z"
+      "last_updated": "2025-11-12T20:02:27Z"
     },
-    "call_89a42b7c4ee0d39d7de6655ea76": {
-      "call_id": "call_89a42b7c4ee0d39d7de6655ea76",
+    "call_83cb1644cc6022e1402863fa877": {
+      "call_id": "call_83cb1644cc6022e1402863fa877",
       "agent_id": "agent_efd77b346717ad7983449e92c0",
       "agent_name": "Single-Prompt Agent Hiba",
       "user_phone_number": null,
-      "start_timestamp": 1763047400563,
-      "end_timestamp": 1763047495774,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/3387a544d3ce244cf04e93bf09e58525a30aa074c1868de7eb34aad7527a7e90/recording_multichannel.wav",
+      "start_timestamp": 1763047271264,
+      "end_timestamp": 1763047315731,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/34f8c51f0befe1c90a7019867e55ed5533af9db3e16048815a50fd5fcfad159f/recording_multichannel.wav",
       "analysis_status": "pending",
       "analysis_available": false,
       "analysis_filename": null,
-      "duration_ms": 95211,
-      "call_summary": "The user initially expressed interest in the Phlebotomy Technician program but was informed it is not available in California. The user then inquired about the CISSP certification exam preparation course, which is available in their state. The agent confirmed the user's eligibility and offered to connect them with an Admissions Representative for further assistance.",
-      "call_purpose": "Course Inquiry",
-      "call_title": "Program Availability Inquiry",
+      "duration_ms": 44467,
+      "call_summary": "The agent contacted John regarding his interest in the CISSP Certification Exam Preparation Course and confirmed his residence in California and educational background to check program eligibility.",
+      "call_purpose": "Program Eligibility",
+      "call_title": "CISSP Course Inquiry",
       "analysis_allowed": true,
       "analysis_block_reason": null,
       "analysis_constraints": {
@@ -2712,11 +2741,283 @@
           "transcript_mentions_leave_message": false
         },
         "too_short": false,
-        "duration_ms": 95211
+        "duration_ms": 44467
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T15:25:03Z"
+      "last_updated": "2025-11-13T15:22:10Z"
+    },
+    "call_05e9d12723986a3dc0b98febc6c": {
+      "call_id": "call_05e9d12723986a3dc0b98febc6c",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763047500589,
+      "end_timestamp": 1763047596292,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/fd04ca9b25b970c9ee2e4980056e9669d6a0350f5f95a92d1467227d1b78f33d/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 95703,
+      "call_summary": "The agent contacted John regarding his interest in the CompTIA Cloud+ program but found he did not meet the technical background requirements. John then expressed interest in the phlebotomy technician program, and the agent began gathering information for that program.",
+      "call_purpose": "Program Inquiry",
+      "call_title": "Program Interest Shift",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 95703
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:26:43Z"
+    },
+    "call_75690d1236b6b5adde43c882ea4": {
+      "call_id": "call_75690d1236b6b5adde43c882ea4",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763048430758,
+      "end_timestamp": 1763048592458,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/c2941c47da060e0abe9a0d32a4313693432a09fe2d5508ef6a9790d874a61cf3/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 161700,
+      "call_summary": "The agent contacted Hiba regarding her interest in the CompTIA Cloud Essentials+ program at Arcadia University, confirmed her qualifications, addressed her concerns about the program difficulty, and successfully scheduled a follow-up appointment by sending a text link for her to choose a time. Hiba appreciated the information about the self-paced nature of the course and ended the call positively.",
+      "call_purpose": "Program Inquiry",
+      "call_title": "Callback Requested",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 161700
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:43:20Z"
+    },
+    "call_989928ec745a63cf1e7d7ae7395": {
+      "call_id": "call_989928ec745a63cf1e7d7ae7395",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763048673229,
+      "end_timestamp": 1763048681661,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/d2677ef7cc3e64be60049cbf9962cd40a2e54ea5fe78a8de1bb30fa576b06ff9/recording_multichannel.wav",
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 8432,
+      "call_summary": "The call was very brief and disjointed, with the user responding only with 'No' and 'Hello?' while the agent attempted to discuss available programs. There was no clear resolution or completion of the call.",
+      "call_purpose": "Unresolved Inquiry",
+      "call_title": "Unresponsive Caller",
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 8432
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:44:48Z"
+    },
+    "call_a18c592220a9dcfa768a14fdd4e": {
+      "call_id": "call_a18c592220a9dcfa768a14fdd4e",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763049176066,
+      "end_timestamp": 1763049201488,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/c43d416c59e4d1ade5525e49c3002cd552b7a675f95fbe7c3448208922b17f06/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 25422,
+      "call_summary": "The agent called Hiba regarding her interest in the Machine Learning with Python program, but Hiba was in a hurry for work and asked to end the call quickly. The agent courteously ended the call and planned to reach out again at a better time.",
+      "call_purpose": "Program Inquiry",
+      "call_title": "Reschedule Program Inquiry",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 25422
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:53:29Z"
+    },
+    "call_191490891d11df8ad7f9bd682cc": {
+      "call_id": "call_191490891d11df8ad7f9bd682cc",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763049456489,
+      "end_timestamp": 1763049553752,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0cc617c7273ff386213cbbab286f70737717821d835af6d76d31837c5257a6d5/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 97263,
+      "call_summary": "The agent contacted Hiba regarding her interest in the Phlebotomy Technician program but informed her that the program is not available to residents of California. The user expressed frustration and declined to hear about other programs, ending the call without booking an appointment or changing programs.",
+      "call_purpose": "Program Availability",
+      "call_title": "Not Interested",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 97263
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T15:59:21Z"
+    },
+    "call_25590819b5320febe430051a41c": {
+      "call_id": "call_25590819b5320febe430051a41c",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1763049544173,
+      "end_timestamp": 1763049686431,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/9f313b71a7f042e6173ebf73ca6f95d34bf8b87097f5573fb9795cc62af33c98/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 142258,
+      "call_summary": "The agent initially offered life insurance, which the user declined. The agent then shifted to discussing car insurance, and the user agreed to hear more. The agent provided details about the car insurance plan and asked for the user's car information, which the user provided. The agent recommended a comprehensive car insurance plan tailored to the user's 2005 Honda City.",
+      "call_purpose": "Car Insurance",
+      "call_title": "Not Interested",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 142258
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T16:01:33Z"
+    },
+    "call_0a0b719025b6cf876da77ad4691": {
+      "call_id": "call_0a0b719025b6cf876da77ad4691",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1763049811365,
+      "end_timestamp": 1763049871819,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/41cee4187e2fcab508eb9fd3d5662440ad49fac444c93a177d9fa2705326b057/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 60454,
+      "call_summary": "The agent from ABC Insurance attempted to inform the user about life insurance benefits and affordable options. The user initially expressed frustration and disinterest but briefly acknowledged liking insurance before ultimately stating they do not need it. The call ended without a clear resolution or agreement on purchasing insurance.",
+      "call_purpose": "Insurance Promotion",
+      "call_title": "Insurance Interest Unclear",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 60454
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T16:04:40Z"
+    },
+    "call_c270892573661f75a1f1edbc14d": {
+      "call_id": "call_c270892573661f75a1f1edbc14d",
+      "agent_id": "agent_c101a9f4d479ac7332c11db255",
+      "agent_name": "Single-Prompt Agent - demo",
+      "user_phone_number": null,
+      "start_timestamp": 1763050457680,
+      "end_timestamp": 1763050479972,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5cc95d55a4e2ca646a3cb19054558206f47754eacb96cc81c6959f20858eef26/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 22292,
+      "call_summary": "The agent introduced herself as Angela from ABC Insurance and offered to share information about life insurance plans to provide peace of mind and financial security. The call was an initial outreach without further user interaction shown.",
+      "call_purpose": "Sales Outreach",
+      "call_title": "Life Insurance Introduction",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 22292
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-13T16:14:47Z"
     }
   }
 }
