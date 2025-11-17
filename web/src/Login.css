@@ -87,6 +87,41 @@
   box-sizing: border-box;
 }
 
+.login-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-password-wrapper input {
+  padding-right: 3rem;
+}
+
+.login-password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #5c6478;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.login-password-toggle:hover:not(:disabled) {
+  color: #1a1f36;
+}
+
+.login-password-toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .login-field input::placeholder {
   color: #5c6478;
 }

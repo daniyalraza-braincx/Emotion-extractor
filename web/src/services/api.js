@@ -18,8 +18,8 @@ export async function analyzeAudioFile(file) {
     });
 
     if (!response.ok) {
-      // Handle expired token
-      if (response.status === 401) {
+      // Handle expired token or forbidden
+      if (response.status === 401 || response.status === 403) {
         logout();
         window.location.href = '/login';
         throw new Error('Your session has expired. Please log in again.');
@@ -80,7 +80,7 @@ export async function fetchRetellCalls() {
     headers: getAuthHeaders(),
   });
   if (!response.ok) {
-    if (response.status === 401) {
+    if (response.status === 401 || response.status === 403) {
       logout();
       window.location.href = '/login';
       throw new Error('Your session has expired. Please log in again.');
@@ -112,7 +112,7 @@ export async function analyzeRetellCall(callId, options = {}) {
   });
 
   if (!response.ok) {
-    if (response.status === 401) {
+    if (response.status === 401 || response.status === 403) {
       logout();
       window.location.href = '/login';
       throw new Error('Your session has expired. Please log in again.');
@@ -146,7 +146,7 @@ export async function getRetellCallAnalysis(callId) {
   });
 
   if (!response.ok) {
-    if (response.status === 401) {
+    if (response.status === 401 || response.status === 403) {
       logout();
       window.location.href = '/login';
       throw new Error('Your session has expired. Please log in again.');

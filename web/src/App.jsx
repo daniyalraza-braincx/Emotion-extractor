@@ -20,10 +20,31 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+function PublicRoute({ children }) {
+  const { authenticated, loading } = useAuth();
+
+  if (loading) {
+    return <div className="app-loading">Loading...</div>;
+  }
+
+  if (authenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+}
+
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        }
+      />
       <Route
         path="/"
         element={
@@ -44,7 +65,7 @@ function AppRoutes() {
           </div>
         }
       />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }

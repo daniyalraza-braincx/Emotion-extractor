@@ -8,7 +8,7 @@ import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/for
 function Dashboard() {
   const navigate = useNavigate();
   const { setAnalysisRequest } = useAnalysis();
-  const { logout } = useAuth();
+  const { logout, authenticated, loading } = useAuth();
 
   const fileInputRef = useRef(null);
 
@@ -19,6 +19,9 @@ function Dashboard() {
   const [hideBlocked, setHideBlocked] = useState(false);
 
   const loadRetellCalls = useCallback(async () => {
+    if (!authenticated || loading) {
+      return;
+    }
     setIsFetchingCalls(true);
     setCallsError(null);
     try {
@@ -29,11 +32,13 @@ function Dashboard() {
     } finally {
       setIsFetchingCalls(false);
     }
-  }, []);
+  }, [authenticated, loading]);
 
   useEffect(() => {
-    loadRetellCalls();
-  }, [loadRetellCalls]);
+    if (authenticated && !loading) {
+      loadRetellCalls();
+    }
+  }, [authenticated, loading, loadRetellCalls]);
 
   const handleAnalyzeCall = (call) => {
     if (!call?.call_id) return;
