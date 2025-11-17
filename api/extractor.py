@@ -15,7 +15,16 @@ import requests
 from dotenv import load_dotenv
 from hume import HumeClient
 from hume.expression_measurement.batch.types import InferenceBaseRequest, Models
+from hume import expression_measurement as _hume_expression_measurement
 
+try:
+    from hume.expression_measurement.batch.batch_client import BatchClientWithUtils
+except ImportError:
+    BatchClientWithUtils = None
+
+if BatchClientWithUtils is not None:
+    # Ensure the global used by HumeClient.batch is defined
+    _hume_expression_measurement.client.BatchClientWithUtils = BatchClientWithUtils
 from emotion_categories import EMOTION_CATEGORIES, DEFAULT_EMOTION_CATEGORY
 
 if TYPE_CHECKING:

@@ -1,3 +1,4 @@
+
 import json
 import logging
 import os
@@ -142,7 +143,7 @@ async def logout():
 async def analyze_audio(file: UploadFile = File(...), token_data: Dict[str, Any] = Depends(verify_token)):
     """
     Analyze audio file for emotion detection using Hume API.
-    
+
     Returns:
         JSON with a top emotion per time segment for prosody and burst models.
     """
@@ -150,7 +151,7 @@ async def analyze_audio(file: UploadFile = File(...), token_data: Dict[str, Any]
         # Read uploaded file
         file_content = await file.read()
         filename = file.filename or "uploaded_audio"
-        
+
         file_contents = [(filename, file_content)]
 
         results = analyze_audio_files(file_contents, include_summary=True)
@@ -171,7 +172,7 @@ async def analyze_audio(file: UploadFile = File(...), token_data: Dict[str, Any]
                 "results": analysis_payload,
             }
         )
-        
+
     except HTTPException:
         raise
     except Exception as e:
@@ -325,6 +326,10 @@ def _evaluate_call_constraints(call_data: Dict[str, Any]) -> Dict[str, Any]:
     transcript_mentions_leave_message = "leave a message" in transcript_lower or "leave me a message" in transcript_lower
     summary_mentions_leave_message = "leave a message" in summary_lower or "leave me a message" in summary_lower
 
+    # Check both call_analysis.in_voicemail and top-level in_voicemail
+    in_voicemail_flag = bool(
+        call_analysis.get("in_voicemail") or call_data.get("in_voicemail")
+    )
     # Check both call_analysis.in_voicemail and top-level in_voicemail
     in_voicemail_flag = bool(
         call_analysis.get("in_voicemail") or call_data.get("in_voicemail")
@@ -918,6 +923,9 @@ async def retell_webhook(payload: Dict[str, Any]):
         logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
         if event == "call_analyzed" and not isinstance(call_data, dict):
             logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
+        logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
+        if event == "call_analyzed" and not isinstance(call_data, dict):
+            logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
         return JSONResponse(content={"success": True, "ignored": True})
 
     call_id = call_data.get("call_id")
@@ -1132,3 +1140,4 @@ async def root():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

@@ -1,0 +1,1294 @@
+{
+  "call_id": "call_191490891d11df8ad7f9bd682cc",
+  "retell_metadata": {
+    "retell_call_id": "call_191490891d11df8ad7f9bd682cc",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0cc617c7273ff386213cbbab286f70737717821d835af6d76d31837c5257a6d5/recording_multichannel.wav",
+    "start_timestamp": 1763049456489,
+    "end_timestamp": 1763049553752,
+    "duration_ms": 97263,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Hiba",
+      "program": "Phlebotomy Technician",
+      "lead_status": "new",
+      "university": "Arcadia university"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "agent_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 97263
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_191490891d11df8ad7f9bd682cc_combined",
+      "prosody": [
+        {
+          "time_start": 4.11,
+          "time_end": 4.51,
+          "text": "Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.361,
+              "percentage": 36.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 6.04,
+          "time_end": 8.86,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5195,
+              "percentage": 51.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+        },
+        {
+          "time_start": 9.24,
+          "time_end": 10.2,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1893,
+              "percentage": 18.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+        },
+        {
+          "time_start": 12.25,
+          "time_end": 13.28,
+          "text": "Oh, yeah.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3015,
+              "percentage": 30.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Oh, yeah."
+        },
+        {
+          "time_start": 14.69,
+          "time_end": 17.4,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2289,
+              "percentage": 22.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 17.4,
+          "time_end": 20.51,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3279,
+              "percentage": 32.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 20.51,
+          "time_end": 23.62,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2661,
+              "percentage": 26.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.62,
+          "time_end": 26.9,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4367,
+              "percentage": 43.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 27.06,
+          "time_end": 34.4,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.2121,
+              "percentage": 21.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 31.34,
+          "time_end": 32.4,
+          "text": "I live in California.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.2543,
+              "percentage": 25.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I live in California."
+        },
+        {
+          "time_start": 34.4,
+          "time_end": 39.35,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.4111,
+              "percentage": 41.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 39.35,
+          "time_end": 48.55,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2991,
+              "percentage": 29.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 45.73,
+          "time_end": 46.77,
+          "text": "Are you kidding me?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.5356,
+              "percentage": 53.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Are you kidding me?"
+        },
+        {
+          "time_start": 48.55,
+          "time_end": 52.78,
+          "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2419,
+              "percentage": 24.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+        },
+        {
+          "time_start": 52.86,
+          "time_end": 57.1,
+          "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4016,
+              "percentage": 40.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+        },
+        {
+          "time_start": 57.51,
+          "time_end": 61.75,
+          "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3354,
+              "percentage": 33.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+        },
+        {
+          "time_start": 61.75,
+          "time_end": 70.72,
+          "text": "What's the point if I can't study the program I want to?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2908,
+              "percentage": 29.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "What's the point if I can't study the program I want to?"
+        },
+        {
+          "time_start": 65.92,
+          "time_end": 68.8,
+          "text": "What's the point if I can't study the program I want to?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4395,
+              "percentage": 43.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "What's the point if I can't study the program I want to?"
+        },
+        {
+          "time_start": 70.72,
+          "time_end": 75.98,
+          "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3179,
+              "percentage": 31.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+        },
+        {
+          "time_start": 75.98,
+          "time_end": 81.07,
+          "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4467,
+              "percentage": 44.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+        },
+        {
+          "time_start": 81.07,
+          "time_end": 91.3,
+          "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5012,
+              "percentage": 50.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+        },
+        {
+          "time_start": 87.17,
+          "time_end": 88.6,
+          "text": "No. Just leave it.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.4387,
+              "percentage": 43.9,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Just leave it."
+        },
+        {
+          "time_start": 91.3,
+          "time_end": 94.34,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2532,
+              "percentage": 25.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 94.34,
+          "time_end": 96.89,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2976,
+              "percentage": 29.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 10.0,
+          "time_end": 11.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.2881,
+              "percentage": 28.8,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+        },
+        {
+          "time_start": 65.0,
+          "time_end": 66.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1856,
+              "percentage": 18.6,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "What's the point if I can't study the program I want to?"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia university"
+        },
+        "category_counts": {
+          "positive": 5,
+          "neutral": 1,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.944,
+            "end": 4.263999999999999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.106,
+            "end": 10.366791748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.143998999999999,
+            "end": 12.623999999999999,
+            "text": "Oh, yeah."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.743,
+            "end": 29.453291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 31.244,
+            "end": 32.524,
+            "text": "I live in California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 34.226,
+            "end": 44.03683325195313,
+            "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 45.674,
+            "end": 46.634,
+            "text": "Are you kidding me?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 48.184,
+            "end": 64.05429174804688,
+            "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.844,
+            "end": 68.72399999999999,
+            "text": "What's the point if I can't study the program I want to?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 70.401,
+            "end": 85.59808325195313,
+            "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 87.194,
+            "end": 88.633995,
+            "text": "No. Just leave it."
+          },
+          {
+            "speaker": "Agent",
+            "start": 91.076,
+            "end": 97.21775,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_191490891d11df8ad7f9bd682cc",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0cc617c7273ff386213cbbab286f70737717821d835af6d76d31837c5257a6d5/recording_multichannel.wav",
+        "start_timestamp": 1763049456489,
+        "end_timestamp": 1763049553752,
+        "duration_ms": 97263,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 97263
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly refused the agent's offer of alternatives by stating, 'No. Just leave it,' indicating a clear decision not to proceed.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Hiba about the Phlebotomy Technician program, but Hiba becomes confused at 45.7s upon learning it's unavailable in California. Despite the Agent's determined offer of alternatives, Hiba expresses disappointment at 87.2s, stating, \"No. Just leave it.\" The call concludes without a commitment from Hiba, as the Agent remains calm, wishing her well."
+    },
+    {
+      "filename": "call_191490891d11df8ad7f9bd682cc_user.wav",
+      "prosody": [
+        {
+          "time_start": 4.11,
+          "time_end": 4.51,
+          "text": "Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.361,
+              "percentage": 36.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 12.25,
+          "time_end": 13.28,
+          "text": "Oh, yeah.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3015,
+              "percentage": 30.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Oh, yeah."
+        },
+        {
+          "time_start": 31.34,
+          "time_end": 32.4,
+          "text": "I live in California.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Contentment",
+              "score": 0.2543,
+              "percentage": 25.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "I live in California."
+        },
+        {
+          "time_start": 45.73,
+          "time_end": 46.77,
+          "text": "Are you kidding me?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.5356,
+              "percentage": 53.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Are you kidding me?"
+        },
+        {
+          "time_start": 65.92,
+          "time_end": 68.8,
+          "text": "What's the point if I can't study the program I want to?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4395,
+              "percentage": 43.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "What's the point if I can't study the program I want to?"
+        },
+        {
+          "time_start": 87.17,
+          "time_end": 88.6,
+          "text": "No. Just leave it.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.4387,
+              "percentage": 43.9,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "No. Just leave it."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 65.0,
+          "time_end": 66.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1856,
+              "percentage": 18.6,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "What's the point if I can't study the program I want to?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 5,
+          "neutral": 1,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.944,
+            "end": 4.263999999999999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.106,
+            "end": 10.366791748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.143998999999999,
+            "end": 12.623999999999999,
+            "text": "Oh, yeah."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.743,
+            "end": 29.453291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 31.244,
+            "end": 32.524,
+            "text": "I live in California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 34.226,
+            "end": 44.03683325195313,
+            "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 45.674,
+            "end": 46.634,
+            "text": "Are you kidding me?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 48.184,
+            "end": 64.05429174804688,
+            "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.844,
+            "end": 68.72399999999999,
+            "text": "What's the point if I can't study the program I want to?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 70.401,
+            "end": 85.59808325195313,
+            "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 87.194,
+            "end": 88.633995,
+            "text": "No. Just leave it."
+          },
+          {
+            "speaker": "Agent",
+            "start": 91.076,
+            "end": 97.21775,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_191490891d11df8ad7f9bd682cc",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0cc617c7273ff386213cbbab286f70737717821d835af6d76d31837c5257a6d5/recording_multichannel.wav",
+        "start_timestamp": 1763049456489,
+        "end_timestamp": 1763049553752,
+        "duration_ms": 97263,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia university"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 97263
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly refused the agent's offer of alternatives by stating, 'No. Just leave it,' indicating a clear decision not to proceed.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Hiba about the Phlebotomy Technician program, but Hiba becomes confused at 45.7s upon learning it's unavailable in California. Despite the Agent's determined offer of alternatives, Hiba expresses disappointment at 87.2s, stating, \"No. Just leave it.\" The call concludes without a commitment from Hiba, as the Agent remains calm, wishing her well."
+    },
+    {
+      "filename": "call_191490891d11df8ad7f9bd682cc_agent.wav",
+      "prosody": [
+        {
+          "time_start": 6.04,
+          "time_end": 8.86,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5195,
+              "percentage": 51.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+        },
+        {
+          "time_start": 9.24,
+          "time_end": 10.2,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1893,
+              "percentage": 18.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+        },
+        {
+          "time_start": 14.69,
+          "time_end": 17.4,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2289,
+              "percentage": 22.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 17.4,
+          "time_end": 20.51,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3279,
+              "percentage": 32.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 20.51,
+          "time_end": 23.62,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2661,
+              "percentage": 26.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 23.62,
+          "time_end": 26.9,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4367,
+              "percentage": 43.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 27.06,
+          "time_end": 34.4,
+          "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Realization",
+              "score": 0.2121,
+              "percentage": 21.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 34.4,
+          "time_end": 39.35,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.4111,
+              "percentage": 41.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 39.35,
+          "time_end": 48.55,
+          "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2991,
+              "percentage": 29.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+        },
+        {
+          "time_start": 48.55,
+          "time_end": 52.78,
+          "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2419,
+              "percentage": 24.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+        },
+        {
+          "time_start": 52.86,
+          "time_end": 57.1,
+          "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4016,
+              "percentage": 40.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+        },
+        {
+          "time_start": 57.51,
+          "time_end": 61.75,
+          "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3354,
+              "percentage": 33.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+        },
+        {
+          "time_start": 61.75,
+          "time_end": 70.72,
+          "text": "What's the point if I can't study the program I want to?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2908,
+              "percentage": 29.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "What's the point if I can't study the program I want to?"
+        },
+        {
+          "time_start": 70.72,
+          "time_end": 75.98,
+          "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3179,
+              "percentage": 31.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+        },
+        {
+          "time_start": 75.98,
+          "time_end": 81.07,
+          "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4467,
+              "percentage": 44.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+        },
+        {
+          "time_start": 81.07,
+          "time_end": 91.3,
+          "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5012,
+              "percentage": 50.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+        },
+        {
+          "time_start": 91.3,
+          "time_end": 94.34,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2532,
+              "percentage": 25.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        },
+        {
+          "time_start": 94.34,
+          "time_end": 96.89,
+          "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2976,
+              "percentage": 29.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 10.0,
+          "time_end": 11.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.2881,
+              "percentage": 28.8,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 10,
+          "neutral": 7,
+          "negative": 2
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.944,
+            "end": 4.263999999999999,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 6.106,
+            "end": 10.366791748046875,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia university. May I speak with Hiba?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 12.143998999999999,
+            "end": 12.623999999999999,
+            "text": "Oh, yeah."
+          },
+          {
+            "speaker": "Agent",
+            "start": 14.743,
+            "end": 29.453291748046876,
+            "text": "Hi Hiba! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the Phlebotomy Technician program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 31.244,
+            "end": 32.524,
+            "text": "I live in California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 34.226,
+            "end": 44.03683325195313,
+            "text": "Thank you for letting me know. At this time, unfortunately, the Phlebotomy Technician program is not offered to students residing in your state. Is there another program you might be interested in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 45.674,
+            "end": 46.634,
+            "text": "Are you kidding me?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 48.184,
+            "end": 64.05429174804688,
+            "text": "I understand this can be disappointing. Unfortunately, the Phlebotomy Technician program at Arcadia university isn\u2019t available to California residents due to state-specific regulations. If you\u2019d like, I can share information about other programs we offer. Is there another area or program you\u2019re interested in exploring?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 65.844,
+            "end": 68.72399999999999,
+            "text": "What's the point if I can't study the program I want to?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 70.401,
+            "end": 85.59808325195313,
+            "text": "I completely understand your frustration. State regulations sometimes limit access to certain programs, and I\u2019m sorry for the inconvenience. We do offer a variety of other programs at Arcadia university that might align with your interests or career goals. Would you like to hear about some alternatives?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 87.194,
+            "end": 88.633995,
+            "text": "No. Just leave it."
+          },
+          {
+            "speaker": "Agent",
+            "start": 91.076,
+            "end": 97.21775,
+            "text": "No problem. We wish you the very best and are only a phone call away if you decide to move forward. Thank you, and have a great day."
+          }
+        ],
+        "retell_call_id": "call_191490891d11df8ad7f9bd682cc",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0cc617c7273ff386213cbbab286f70737717821d835af6d76d31837c5257a6d5/recording_multichannel.wav",
+        "start_timestamp": 1763049456489,
+        "end_timestamp": 1763049553752,
+        "duration_ms": 97263,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Hiba",
+          "program": "Phlebotomy Technician",
+          "lead_status": "new",
+          "university": "Arcadia university"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "agent_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 97263
+        },
+        "overall_call_emotion": {
+          "label": "negative",
+          "call_outcome": "unsuccessful",
+          "confidence": 1.0,
+          "reasoning": "The customer explicitly refused the agent's offer of alternatives by stating, 'No. Just leave it,' indicating a clear decision not to proceed.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Hiba about the Phlebotomy Technician program, but Hiba becomes confused at 45.7s upon learning it's unavailable in California. Despite the Agent's determined offer of alternatives, Hiba expresses disappointment at 87.2s, stating, \"No. Just leave it.\" The call concludes without a commitment from Hiba, as the Agent remains calm, wishing her well."
+    }
+  ]
+}

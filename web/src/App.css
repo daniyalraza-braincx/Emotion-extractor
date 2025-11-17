@@ -1803,11 +1803,23 @@
   }
 
   .analysis-tabs {
-    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.35rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .analysis-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .analysis-tab {
-    width: 100%;
+    flex: 0 0 auto;
+    min-width: 110px;
+    scroll-snap-align: center;
   }
 
   .analysis-summary-panel {
@@ -1949,6 +1961,7 @@
   .analysis-tab {
     padding: 0.45rem 0.9rem;
     font-size: 0.95rem;
+    min-width: 92px;
   }
 
   .analysis-summary-panel__body h2 {
