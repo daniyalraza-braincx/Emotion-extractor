@@ -2370,9 +2370,9 @@
       "start_timestamp": 1762898899096,
       "end_timestamp": 1762898942510,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/52a550caa4afa1b5e31529691b4bf87813653a747f2b0016d46241deb3a4d57a/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_3a433f4e47792a039a55bdca53e.json",
       "duration_ms": 43414,
       "call_summary": "The agent contacted Jenny regarding her interest in the CISSP Certification Exam Preparation Course and confirmed her residency in California and educational background. The call was in progress with the agent verifying program requirements.",
       "call_purpose": "Course Inquiry",
@@ -2394,7 +2394,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-11T22:09:07Z"
+      "last_updated": "2025-11-14T21:12:25Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.9,
+        "reasoning": "Jenny confirmed her residency in California, which is a step forward in the enrollment process, indicating her willingness to proceed with the agent's inquiry.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
     "call_3d972cf3978c1a6347077503c66": {
       "call_id": "call_3d972cf3978c1a6347077503c66",
@@ -2477,35 +2485,6 @@
         "confidence": 0.95,
         "reasoning": "The customer confirmed the authorization details and engaged positively throughout the call, indicating a commitment to the agent's requests.",
         "source": "openai"
-      },
-      "overall_emotion_label": "positive"
-    },
-    "call_eb6afd14c1548db5b50ae3d8a36": {
-      "call_id": "call_eb6afd14c1548db5b50ae3d8a36",
-      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
-      "agent_name": "EasyPA AI Demo",
-      "user_phone_number": null,
-      "start_timestamp": 1762976074315,
-      "end_timestamp": 1762976074315,
-      "recording_multi_channel_url": null,
-      "analysis_status": "blocked",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": null,
-      "analysis_allowed": false,
-      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "error_user_not_joined",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": true,
-        "duration_ms": 0
       },
       "overall_emotion_label": "positive"
     },
@@ -2747,40 +2726,6 @@
       "transcript_available": true,
       "last_updated": "2025-11-13T15:22:10Z"
     },
-    "call_05e9d12723986a3dc0b98febc6c": {
-      "call_id": "call_05e9d12723986a3dc0b98febc6c",
-      "agent_id": "agent_efd77b346717ad7983449e92c0",
-      "agent_name": "Single-Prompt Agent Hiba",
-      "user_phone_number": null,
-      "start_timestamp": 1763047500589,
-      "end_timestamp": 1763047596292,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/fd04ca9b25b970c9ee2e4980056e9669d6a0350f5f95a92d1467227d1b78f33d/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 95703,
-      "call_summary": "The agent contacted John regarding his interest in the CompTIA Cloud+ program but found he did not meet the technical background requirements. John then expressed interest in the phlebotomy technician program, and the agent began gathering information for that program.",
-      "call_purpose": "Program Inquiry",
-      "call_title": "Program Interest Shift",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 95703
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-13T15:26:43Z"
-    },
     "call_75690d1236b6b5adde43c882ea4": {
       "call_id": "call_75690d1236b6b5adde43c882ea4",
       "agent_id": "agent_efd77b346717ad7983449e92c0",
@@ -2857,13 +2802,13 @@
       "start_timestamp": 1763049176066,
       "end_timestamp": 1763049201488,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/c43d416c59e4d1ade5525e49c3002cd552b7a675f95fbe7c3448208922b17f06/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_a18c592220a9dcfa768a14fdd4e.json",
       "duration_ms": 25422,
       "call_summary": "The agent called Hiba regarding her interest in the Machine Learning with Python program, but Hiba was in a hurry for work and asked to end the call quickly. The agent courteously ended the call and planned to reach out again at a better time.",
       "call_purpose": "Program Inquiry",
-      "call_title": "Reschedule Program Inquiry",
+      "call_title": "Follow Up Needed",
       "analysis_allowed": true,
       "analysis_block_reason": null,
       "analysis_constraints": {
@@ -2881,7 +2826,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T15:53:29Z"
+      "last_updated": "2025-11-14T21:25:23Z",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "Hiba did not explicitly refuse the agent's request and showed willingness to continue the conversation at a later time, indicating a pending outcome.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
     },
     "call_191490891d11df8ad7f9bd682cc": {
       "call_id": "call_191490891d11df8ad7f9bd682cc",
@@ -2891,12 +2844,12 @@
       "start_timestamp": 1763049456489,
       "end_timestamp": 1763049553752,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/0cc617c7273ff386213cbbab286f70737717821d835af6d76d31837c5257a6d5/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_191490891d11df8ad7f9bd682cc.json",
       "duration_ms": 97263,
       "call_summary": "The agent contacted Hiba regarding her interest in the Phlebotomy Technician program but informed her that the program is not available to residents of California. The user expressed frustration and declined to hear about other programs, ending the call without booking an appointment or changing programs.",
-      "call_purpose": "Program Availability",
+      "call_purpose": "Program Inquiry",
       "call_title": "Not Interested",
       "analysis_allowed": true,
       "analysis_block_reason": null,
@@ -2915,7 +2868,15 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T15:59:21Z"
+      "last_updated": "2025-11-14T21:13:04Z",
+      "overall_emotion": {
+        "label": "negative",
+        "call_outcome": "unsuccessful",
+        "confidence": 1.0,
+        "reasoning": "The customer explicitly refused the agent's offer of alternatives by stating, 'No. Just leave it,' indicating a clear decision not to proceed.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "negative"
     },
     "call_25590819b5320febe430051a41c": {
       "call_id": "call_25590819b5320febe430051a41c",
@@ -2925,9 +2886,9 @@
       "start_timestamp": 1763049544173,
       "end_timestamp": 1763049686431,
       "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/9f313b71a7f042e6173ebf73ca6f95d34bf8b87097f5573fb9795cc62af33c98/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_25590819b5320febe430051a41c.json",
       "duration_ms": 142258,
       "call_summary": "The agent initially offered life insurance, which the user declined. The agent then shifted to discussing car insurance, and the user agreed to hear more. The agent provided details about the car insurance plan and asked for the user's car information, which the user provided. The agent recommended a comprehensive car insurance plan tailored to the user's 2005 Honda City.",
       "call_purpose": "Car Insurance",
@@ -2949,23 +2910,107 @@
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T16:01:33Z"
+      "last_updated": "2025-11-14T21:19:14Z",
+      "overall_emotion": {
+        "label": "positive",
+        "call_outcome": "success",
+        "confidence": 0.9,
+        "reasoning": "The customer agreed to discuss car insurance and provided car details, indicating a willingness to proceed with the agent's request.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "positive"
     },
-    "call_0a0b719025b6cf876da77ad4691": {
-      "call_id": "call_0a0b719025b6cf876da77ad4691",
-      "agent_id": "agent_c101a9f4d479ac7332c11db255",
-      "agent_name": "Single-Prompt Agent - demo",
+    "call_5ea556c612c87935730e140cbc8": {
+      "call_id": "call_5ea556c612c87935730e140cbc8",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
       "user_phone_number": null,
-      "start_timestamp": 1763049811365,
-      "end_timestamp": 1763049871819,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/41cee4187e2fcab508eb9fd3d5662440ad49fac444c93a177d9fa2705326b057/recording_multichannel.wav",
+      "start_timestamp": 1763156028522,
+      "end_timestamp": 1763156047053,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/041e8e5bc21dbde881a73702b695144850acd67bebf69df3698cab16db70c35f/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_5ea556c612c87935730e140cbc8.json",
+      "duration_ms": 18531,
+      "call_summary": "The agent called Hiba on behalf of Arcadia University but Hiba indicated she was busy, so the call was ended politely with a promise to reach out again later.",
+      "call_purpose": "Follow Up",
+      "call_title": "Reschedule Call Attempt",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "agent_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 18531
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-14T21:35:06Z",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.9,
+        "reasoning": "The customer expressed being busy and agreed to a callback, indicating a willingness to reconnect later without any negative sentiment.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
+    },
+    "call_4fb1d0a4015909c16950e2bcfb2": {
+      "call_id": "call_4fb1d0a4015909c16950e2bcfb2",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763160479164,
+      "end_timestamp": 1763160490377,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/02f020f8f1850a1892ba75fa20ea61be19fd5b323a532893b875ce09d5f6e126/recording_multichannel.wav",
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 11213,
+      "call_summary": "The agent Courtney called on behalf of Arcadia University and asked to speak with Hiba, but there is no further information about the conversation or outcome.",
+      "call_purpose": "Outbound Call",
+      "call_title": "Arcadia University Inquiry",
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 11213
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-14T22:48:14Z"
+    },
+    "call_653e76578af47af367e1fd0bef7": {
+      "call_id": "call_653e76578af47af367e1fd0bef7",
+      "agent_id": "agent_54888f5c152fb7ddcc2c77a051",
+      "agent_name": "EasyPA Website Demo",
+      "user_phone_number": null,
+      "start_timestamp": 1763235910260,
+      "end_timestamp": 1763236145202,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/63e516d9c19e443f6c0dc497e6f4624aac562194e4097e008a48fc1a7b15b93e/recording_multichannel.wav",
       "analysis_status": "pending",
       "analysis_available": false,
       "analysis_filename": null,
-      "duration_ms": 60454,
-      "call_summary": "The agent from ABC Insurance attempted to inform the user about life insurance benefits and affordable options. The user initially expressed frustration and disinterest but briefly acknowledged liking insurance before ultimately stating they do not need it. The call ended without a clear resolution or agreement on purchasing insurance.",
-      "call_purpose": "Insurance Promotion",
-      "call_title": "Insurance Interest Unclear",
+      "duration_ms": 234942,
+      "call_summary": "The user inquired about EasyPA's services, specifically how it supports urgent care prior authorizations, pricing, platform usage, and integration with Epic EHR. The agent provided detailed explanations about the flat-rate pricing, manual and integrated platform use, and confirmed that integration with Epic is included without extra fees. The call ended with the agent offering more information about onboarding.",
+      "call_purpose": "Service Inquiry",
+      "call_title": "Easypa Service Inquiry",
       "analysis_allowed": true,
       "analysis_block_reason": null,
       "analysis_constraints": {
@@ -2979,27 +3024,27 @@
           "transcript_mentions_leave_message": false
         },
         "too_short": false,
-        "duration_ms": 60454
+        "duration_ms": 234942
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T16:04:40Z"
+      "last_updated": "2025-11-15T19:49:09Z"
     },
-    "call_c270892573661f75a1f1edbc14d": {
-      "call_id": "call_c270892573661f75a1f1edbc14d",
-      "agent_id": "agent_c101a9f4d479ac7332c11db255",
-      "agent_name": "Single-Prompt Agent - demo",
+    "call_c96213a63399cec22d6f7d1890a": {
+      "call_id": "call_c96213a63399cec22d6f7d1890a",
+      "agent_id": "agent_54888f5c152fb7ddcc2c77a051",
+      "agent_name": "EasyPA Website Demo",
       "user_phone_number": null,
-      "start_timestamp": 1763050457680,
-      "end_timestamp": 1763050479972,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/5cc95d55a4e2ca646a3cb19054558206f47754eacb96cc81c6959f20858eef26/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 22292,
-      "call_summary": "The agent introduced herself as Angela from ABC Insurance and offered to share information about life insurance plans to provide peace of mind and financial security. The call was an initial outreach without further user interaction shown.",
-      "call_purpose": "Sales Outreach",
-      "call_title": "Life Insurance Introduction",
+      "start_timestamp": 1763236205341,
+      "end_timestamp": 1763236956246,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1eef2d02382835f2f45b6a01a7429321cedc32a79931f0574eba38dfd93a8df8/recording_multichannel.wav",
+      "analysis_status": "completed",
+      "analysis_available": true,
+      "analysis_filename": "call_c96213a63399cec22d6f7d1890a.json",
+      "duration_ms": 750905,
+      "call_summary": "The user, Kway, called EasyPA to learn about the company's platform, integration process, pricing, and investment opportunities. The agent provided detailed information about EasyPA's services, federal mandates, pricing plans, company founders, funding status, and competitive advantages. Kway expressed interest in scheduling a follow-up meeting to discuss investment further.",
+      "call_purpose": "Investment Inquiry",
+      "call_title": "Callback Requested",
       "analysis_allowed": true,
       "analysis_block_reason": null,
       "analysis_constraints": {
@@ -3013,11 +3058,121 @@
           "transcript_mentions_leave_message": false
         },
         "too_short": false,
-        "duration_ms": 22292
+        "duration_ms": 750905
       },
       "error_message": null,
       "transcript_available": true,
-      "last_updated": "2025-11-13T16:14:47Z"
+      "last_updated": "2025-11-17T15:43:32Z",
+      "overall_emotion": {
+        "label": "neutral",
+        "call_outcome": "pending",
+        "confidence": 0.8,
+        "reasoning": "The customer expressed interest in setting up a meeting but deferred the action by stating they will call back to arrange it. This indicates a pending outcome with a neutral emotion.",
+        "source": "openai"
+      },
+      "overall_emotion_label": "neutral"
+    },
+    "call_f722596e7a911debd16e40e2f27": {
+      "call_id": "call_f722596e7a911debd16e40e2f27",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763394783939,
+      "end_timestamp": 1763394791177,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/04a7d41b9ef63e4d74b463a6cef7451ce7af705a546514fae9eee0442dcd32ff/recording_multichannel.wav",
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 7238,
+      "call_summary": "The agent Courtney called on behalf of the university and asked to speak with the user named {{first_name}}. There was no further interaction or information provided in the transcript.",
+      "call_purpose": "Outbound Call",
+      "call_title": "University Outreach Call",
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 7238
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-17T15:53:18Z"
+    },
+    "call_6e88b085b25fe7548a1b29e012d": {
+      "call_id": "call_6e88b085b25fe7548a1b29e012d",
+      "agent_id": "agent_efd77b346717ad7983449e92c0",
+      "agent_name": "Single-Prompt Agent Hiba",
+      "user_phone_number": null,
+      "start_timestamp": 1763399951860,
+      "end_timestamp": 1763399955586,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/2b4c2052d1121d51210b9fcbc0d2ab9398bb5a4e000b640925934eb4f1bf4397/recording_multichannel.wav",
+      "analysis_status": "blocked",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 3726,
+      "call_summary": "The call was initiated by the agent Courtney, but there is no further information or interaction provided in the transcript.",
+      "call_purpose": "Agent Initiated",
+      "call_title": "Agent Initiated Call",
+      "analysis_allowed": false,
+      "analysis_block_reason": "Call too short, insufficient audio for analysis.",
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": true,
+        "duration_ms": 3726
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-17T17:19:20Z"
+    },
+    "call_f768cea57822fd4b9f16d717491": {
+      "call_id": "call_f768cea57822fd4b9f16d717491",
+      "agent_id": "agent_e291619339180d628fd29fca67",
+      "agent_name": "Single-Prompt Agent",
+      "user_phone_number": null,
+      "start_timestamp": 1763400364204,
+      "end_timestamp": 1763400381447,
+      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a84485aa5bf425a67d458f5dcde7e6461e1969b00ea21b5211df614a1998c4ef/recording_multichannel.wav",
+      "analysis_status": "pending",
+      "analysis_available": false,
+      "analysis_filename": null,
+      "duration_ms": 17243,
+      "call_summary": "The call was initiated with the agent greeting the user and offering assistance. No further information or requests from the user were provided in the transcript.",
+      "call_purpose": "No Interaction",
+      "call_title": "No User Request",
+      "analysis_allowed": true,
+      "analysis_block_reason": null,
+      "analysis_constraints": {
+        "voicemail_detected": false,
+        "voicemail_flags": {
+          "in_voicemail": false,
+          "summary_mentions_voicemail": false,
+          "transcript_mentions_voicemail": false,
+          "disconnection_reason": "user_hangup",
+          "summary_mentions_leave_message": false,
+          "transcript_mentions_leave_message": false
+        },
+        "too_short": false,
+        "duration_ms": 17243
+      },
+      "error_message": null,
+      "transcript_available": true,
+      "last_updated": "2025-11-17T17:26:26Z"
     }
   }
 }

@@ -7,7 +7,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
@@ -16,19 +20,24 @@ jobs:
       - name: Deploy to server
         env:
           PROJECT_DIR: ${{ secrets.PROJECT_DIR }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
-            cd \$PROJECT_DIR
-            git pull origin main
-            source api/venv/bin/activate
-            pip install -r api/requirements.txt
-            if git diff --quiet HEAD^ HEAD -- web/; then
-              echo "No frontend changes"
-            else
-              cd web/
-              npm install
-              npm run build
-              cd ..
-            fi
-            sudo systemctl restart emotions.service
+          ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_HOST} << 'EOF'
+          cd ${PROJECT_DIR}
+          git pull origin main
+          source api/venv/bin/activate
+          pip install -r api/requirements.txt
+
+          # Rebuild frontend only if needed
+          if git diff --quiet HEAD^ HEAD -- web/; then
+            echo "No frontend changes"
+          else
+            cd web
+            npm install
+            npm run build
+            cd ..
+          fi
+
+          sudo systemctl restart emotions.service
           EOF

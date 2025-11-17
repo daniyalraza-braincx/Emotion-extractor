@@ -1,9 +1,10 @@
+
 import json
 import logging
 import os
 import threading
 from datetime import datetime
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Tuple
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.responses import JSONResponse
@@ -54,7 +55,7 @@ app.add_middleware(
 async def analyze_audio(file: UploadFile = File(...)):
     """
     Analyze audio file for emotion detection using Hume API.
-    
+
     Returns:
         JSON with a top emotion per time segment for prosody and burst models.
     """
@@ -62,7 +63,7 @@ async def analyze_audio(file: UploadFile = File(...)):
         # Read uploaded file
         file_content = await file.read()
         filename = file.filename or "uploaded_audio"
-        
+
         file_contents = [(filename, file_content)]
 
         results = analyze_audio_files(file_contents, include_summary=True)
@@ -83,7 +84,7 @@ async def analyze_audio(file: UploadFile = File(...)):
                 "results": analysis_payload,
             }
         )
-        
+
     except HTTPException:
         raise
     except Exception as e:
@@ -153,6 +154,61 @@ def _save_retell_calls(calls: Dict[str, Any]) -> None:
         json.dump({"calls": calls}, file, indent=2)
 
 
+def _normalize_retell_payload(payload: Dict[str, Any]) -> Tuple[Optional[str], Optional[Dict[str, Any]]]:
+    """
+    Normalize Retell webhook payload to handle multiple formats:
+    1. Direct Retell format with call wrapper: { "event": "call_analyzed", "call": {...} }
+    2. Direct Retell format without wrapper: { "event": "call_analyzed", "call_id": "...", ... }
+    3. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
+
+    Returns: (event, call_data) tuple
+    """
+    event = None
+    call_data = None
+
+    # Check for n8n format (body wrapper)
+    if "body" in payload and isinstance(payload["body"], dict):
+        body = payload["body"]
+        event = body.get("event")
+        # In n8n format, call data is directly in body - make a copy to avoid mutating original
+        call_data = dict(body)
+    else:
+        # Direct Retell format
+        event = payload.get("event")
+        call_data_raw = payload.get("call")
+
+        if isinstance(call_data_raw, dict):
+            # Format 1: { "event": "call_analyzed", "call": {...} }
+            call_data = dict(call_data_raw)
+        elif "call_id" in payload or "recording_multi_channel_url" in payload:
+            # Format 2: { "event": "call_analyzed", "call_id": "...", ... } - call data at top level
+            call_data = dict(payload)
+            # Remove event from call_data since it's not part of call metadata
+            call_data.pop("event", None)
+        else:
+            # Fallback: use call_data_raw as-is (might be None)
+            call_data = call_data_raw
+
+    # Normalize call_data structure
+    if isinstance(call_data, dict):
+        # If in_voicemail is at top level, ensure it's in call_analysis
+        if "in_voicemail" in call_data:
+            if "call_analysis" not in call_data:
+                call_data["call_analysis"] = {}
+            if "in_voicemail" not in call_data["call_analysis"]:
+                call_data["call_analysis"]["in_voicemail"] = call_data["in_voicemail"]
+
+        # If call_summary is at top level, ensure it's in call_analysis (if call_analysis exists)
+        if "call_summary" in call_data:
+            if "call_analysis" not in call_data:
+                call_data["call_analysis"] = {}
+            # Only set if not already present in call_analysis
+            if "call_summary" not in call_data["call_analysis"]:
+                call_data["call_analysis"]["call_summary"] = call_data["call_summary"]
+
+    return event, call_data
+
+
 def _evaluate_call_constraints(call_data: Dict[str, Any]) -> Dict[str, Any]:
     """Determine if a call should be excluded from analysis."""
     call_analysis = call_data.get("call_analysis") or {}
@@ -182,7 +238,10 @@ def _evaluate_call_constraints(call_data: Dict[str, Any]) -> Dict[str, Any]:
     transcript_mentions_leave_message = "leave a message" in transcript_lower or "leave me a message" in transcript_lower
     summary_mentions_leave_message = "leave a message" in summary_lower or "leave me a message" in summary_lower
 
-    in_voicemail_flag = bool(call_analysis.get("in_voicemail"))
+    # Check both call_analysis.in_voicemail and top-level in_voicemail
+    in_voicemail_flag = bool(
+        call_analysis.get("in_voicemail") or call_data.get("in_voicemail")
+    )
 
     voicemail_detected = any([
         in_voicemail_flag,
@@ -759,12 +818,19 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
 
 @app.post("/retell/webhook")
 async def retell_webhook(payload: Dict[str, Any]):
-    """Endpoint to receive Retell call events and register them for analysis."""
-    event = payload.get("event")
-    call_data = payload.get("call")
+    """
+    Endpoint to receive Retell call events and register them for analysis.
+
+    Supports two payload formats:
+    1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
+    2. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
+    """
+    event, call_data = _normalize_retell_payload(payload)
 
     if event != "call_analyzed" or not isinstance(call_data, dict):
-        logger.info("Ignoring Retell event %s", event)
+        logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
+        if event == "call_analyzed" and not isinstance(call_data, dict):
+            logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
         return JSONResponse(content={"success": True, "ignored": True})
 
     call_id = call_data.get("call_id")
@@ -979,3 +1045,4 @@ async def root():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

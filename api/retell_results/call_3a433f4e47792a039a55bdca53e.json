@@ -1,0 +1,731 @@
+{
+  "call_id": "call_3a433f4e47792a039a55bdca53e",
+  "retell_metadata": {
+    "retell_call_id": "call_3a433f4e47792a039a55bdca53e",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/52a550caa4afa1b5e31529691b4bf87813653a747f2b0016d46241deb3a4d57a/recording_multichannel.wav",
+    "start_timestamp": 1762898899096,
+    "end_timestamp": 1762898942510,
+    "duration_ms": 43414,
+    "agent": {
+      "id": "agent_efd77b346717ad7983449e92c0",
+      "name": "Single-Prompt Agent Hiba",
+      "version": 0
+    },
+    "customer": {
+      "first_name": "Jenny",
+      "program": "CISSP Certification Exam Preparation Course",
+      "lead_status": "new",
+      "university": "Arcadia University"
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 43414
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_3a433f4e47792a039a55bdca53e_combined",
+      "prosody": [
+        {
+          "time_start": 3.31,
+          "time_end": 3.63,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1494,
+              "percentage": 14.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 5.72,
+          "time_end": 9.64,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4464,
+              "percentage": 44.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 10.81,
+          "time_end": 11.21,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.255,
+              "percentage": 25.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 12.69,
+          "time_end": 17.49,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3236,
+              "percentage": 32.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 17.97,
+          "time_end": 22.76,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2844,
+              "percentage": 28.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 22.76,
+          "time_end": 33.15,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5089,
+              "percentage": 50.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 28.38,
+          "time_end": 29.34,
+          "text": "And let's go in here.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2016,
+              "percentage": 20.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "And let's go in here."
+        },
+        {
+          "time_start": 31.18,
+          "time_end": 31.68,
+          "text": "California.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.1696,
+              "percentage": 17.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "California."
+        },
+        {
+          "time_start": 33.47,
+          "time_end": 39.85,
+          "text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2414,
+              "percentage": 24.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?"
+        },
+        {
+          "time_start": 37.79,
+          "time_end": 38.29,
+          "text": "California.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2649,
+              "percentage": 26.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "California."
+        },
+        {
+          "time_start": 40.17,
+          "time_end": 42.16,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1969,
+              "percentage": 19.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 4,
+          "neutral": 1,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.205,
+            "end": 3.6049998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.768,
+            "end": 9.831583251953125,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.735,
+            "end": 11.055001,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 12.743,
+            "end": 27.731875,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.445,
+            "end": 29.485,
+            "text": "And let's go in here."
+          },
+          {
+            "speaker": "Customer",
+            "start": 31.165,
+            "end": 31.484999000000002,
+            "text": "California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 32.432,
+            "end": 36.623,
+            "text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 37.685,
+            "end": 38.165,
+            "text": "California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.675,
+            "end": 42.56516674804688,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          }
+        ],
+        "retell_call_id": "call_3a433f4e47792a039a55bdca53e",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/52a550caa4afa1b5e31529691b4bf87813653a747f2b0016d46241deb3a4d57a/recording_multichannel.wav",
+        "start_timestamp": 1762898899096,
+        "end_timestamp": 1762898942510,
+        "duration_ms": 43414,
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 43414
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.9,
+          "reasoning": "Jenny confirmed her residency in California, which is a step forward in the enrollment process, indicating her willingness to proceed with the agent's inquiry.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the CISSP Certification Exam Preparation Course, maintaining interest and determination throughout. Jenny remains mostly calm, with a brief excitement at 31.2s when confirming her California residency. The agent's doubt at 33.5s does not affect the outcome. The call concludes with Jenny confirming her state and the agent inquiring about her educational qualifications, indicating a progression in the enrollment process."
+    },
+    {
+      "filename": "call_3a433f4e47792a039a55bdca53e_agent.wav",
+      "prosody": [
+        {
+          "time_start": 5.72,
+          "time_end": 9.64,
+          "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4464,
+              "percentage": 44.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+        },
+        {
+          "time_start": 12.69,
+          "time_end": 17.49,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3236,
+              "percentage": 32.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 17.97,
+          "time_end": 22.76,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2844,
+              "percentage": 28.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 22.76,
+          "time_end": 33.15,
+          "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5089,
+              "percentage": 50.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+        },
+        {
+          "time_start": 33.47,
+          "time_end": 39.85,
+          "text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2414,
+              "percentage": 24.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?"
+        },
+        {
+          "time_start": 40.17,
+          "time_end": 42.16,
+          "text": "Great! Do you have a high school diploma or equivalent?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1969,
+              "percentage": 19.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great! Do you have a high school diploma or equivalent?"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 1,
+          "negative": 1
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.205,
+            "end": 3.6049998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.768,
+            "end": 9.831583251953125,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.735,
+            "end": 11.055001,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 12.743,
+            "end": 27.731875,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.445,
+            "end": 29.485,
+            "text": "And let's go in here."
+          },
+          {
+            "speaker": "Customer",
+            "start": 31.165,
+            "end": 31.484999000000002,
+            "text": "California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 32.432,
+            "end": 36.623,
+            "text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 37.685,
+            "end": 38.165,
+            "text": "California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.675,
+            "end": 42.56516674804688,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          }
+        ],
+        "retell_call_id": "call_3a433f4e47792a039a55bdca53e",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/52a550caa4afa1b5e31529691b4bf87813653a747f2b0016d46241deb3a4d57a/recording_multichannel.wav",
+        "start_timestamp": 1762898899096,
+        "end_timestamp": 1762898942510,
+        "duration_ms": 43414,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 43414
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.9,
+          "reasoning": "Jenny confirmed her residency in California, which is a step forward in the enrollment process, indicating her willingness to proceed with the agent's inquiry.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the CISSP Certification Exam Preparation Course, maintaining interest and determination throughout. Jenny remains mostly calm, with a brief excitement at 31.2s when confirming her California residency. The agent's doubt at 33.5s does not affect the outcome. The call concludes with Jenny confirming her state and the agent inquiring about her educational qualifications, indicating a progression in the enrollment process."
+    },
+    {
+      "filename": "call_3a433f4e47792a039a55bdca53e_user.wav",
+      "prosody": [
+        {
+          "time_start": 3.31,
+          "time_end": 3.63,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1494,
+              "percentage": 14.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hello?"
+        },
+        {
+          "time_start": 10.81,
+          "time_end": 11.21,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.255,
+              "percentage": 25.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Yes."
+        },
+        {
+          "time_start": 28.38,
+          "time_end": 29.34,
+          "text": "And let's go in here.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2016,
+              "percentage": 20.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "And let's go in here."
+        },
+        {
+          "time_start": 31.18,
+          "time_end": 31.68,
+          "text": "California.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.1696,
+              "percentage": 17.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "California."
+        },
+        {
+          "time_start": 37.79,
+          "time_end": 38.29,
+          "text": "California.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2649,
+              "percentage": 26.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "California."
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 4,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Customer",
+            "start": 3.205,
+            "end": 3.6049998,
+            "text": "Hello?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 5.768,
+            "end": 9.831583251953125,
+            "text": "Hi, this is Courtney calling on behalf of Arcadia University. May I speak with Jenny?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 10.735,
+            "end": 11.055001,
+            "text": "Yes."
+          },
+          {
+            "speaker": "Agent",
+            "start": 12.743,
+            "end": 27.731875,
+            "text": "Hi Jenny! Before we get started, all calls are recorded for quality assurance and training purposes. I received your interest in the CISSP Certification Exam Preparation Course program! Before we move forward, let me pull up the requirements for your program.\n\nMay I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 28.445,
+            "end": 29.485,
+            "text": "And let's go in here."
+          },
+          {
+            "speaker": "Customer",
+            "start": 31.165,
+            "end": 31.484999000000002,
+            "text": "California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 32.432,
+            "end": 36.623,
+            "text": "Absolutely! Just to confirm\u2014may I know what state you currently reside in?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 37.685,
+            "end": 38.165,
+            "text": "California."
+          },
+          {
+            "speaker": "Agent",
+            "start": 39.675,
+            "end": 42.56516674804688,
+            "text": "Great! Do you have a high school diploma or equivalent?"
+          }
+        ],
+        "retell_call_id": "call_3a433f4e47792a039a55bdca53e",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/52a550caa4afa1b5e31529691b4bf87813653a747f2b0016d46241deb3a4d57a/recording_multichannel.wav",
+        "start_timestamp": 1762898899096,
+        "end_timestamp": 1762898942510,
+        "duration_ms": 43414,
+        "agent": {
+          "id": "agent_efd77b346717ad7983449e92c0",
+          "name": "Single-Prompt Agent Hiba",
+          "version": 0
+        },
+        "customer": {
+          "first_name": "Jenny",
+          "program": "CISSP Certification Exam Preparation Course",
+          "lead_status": "new",
+          "university": "Arcadia University"
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 43414
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.9,
+          "reasoning": "Jenny confirmed her residency in California, which is a step forward in the enrollment process, indicating her willingness to proceed with the agent's inquiry.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent contacts Jenny about the CISSP Certification Exam Preparation Course, maintaining interest and determination throughout. Jenny remains mostly calm, with a brief excitement at 31.2s when confirming her California residency. The agent's doubt at 33.5s does not affect the outcome. The call concludes with Jenny confirming her state and the agent inquiring about her educational qualifications, indicating a progression in the enrollment process."
+    }
+  ]
+}
