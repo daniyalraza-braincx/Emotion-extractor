@@ -1017,6 +1017,25 @@ const applyAnalysisResponse = useCallback((
   const formattedDuration = formatClockTime(duration);
   const playbackOptions = [1, 1.25, 1.5, 2];
 
+  const [chartMargins, setChartMargins] = useState({ top: 80, right: 80, left: 80, bottom: 60 });
+
+  useEffect(() => {
+    const updateChartMargins = () => {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        setChartMargins({ top: 40, right: 20, left: 40, bottom: 50 });
+      } else if (window.innerWidth <= 960) {
+        setChartMargins({ top: 60, right: 40, left: 60, bottom: 55 });
+      } else {
+        setChartMargins({ top: 80, right: 80, left: 80, bottom: 60 });
+      }
+    };
+
+    updateChartMargins();
+    window.addEventListener('resize', updateChartMargins);
+    return () => window.removeEventListener('resize', updateChartMargins);
+  }, []);
+
   const handleTimelineSeek = useCallback((nextTime) => {
     if (!Number.isFinite(nextTime)) {
       return;
@@ -1063,6 +1082,19 @@ const applyAnalysisResponse = useCallback((
     setActiveTab(tabId);
   };
 
+  const handleDownloadAudio = () => {
+    if (recordingUrl) {
+      const link = document.createElement('a');
+      link.href = recordingUrl;
+      link.download = recordingUrl.split('/').pop() || 'audio.wav';
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
     <main className="analysis-page">
       <header className="analysis-hero">
@@ -1076,14 +1108,13 @@ const applyAnalysisResponse = useCallback((
             </div>
           <div className="analysis-hero__actions">
             {recordingUrl && (
-              <a
+              <button
+                type="button"
                 className="analysis-action"
-                href={recordingUrl}
-                target="_blank"
-                rel="noreferrer"
+                onClick={handleDownloadAudio}
               >
                 Download Audio
-              </a>
+              </button>
             )}
           <button
             type="button"
@@ -1234,7 +1265,7 @@ const applyAnalysisResponse = useCallback((
                       <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData}
-              margin={{ top: 80, right: 80, left: 80, bottom: 60 }}
+              margin={chartMargins}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
