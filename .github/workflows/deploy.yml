@@ -1,13 +1,6 @@
-name: Deploy to VPS
-
-on:
-  push:
-    branches: [main]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -17,6 +10,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Debug secrets
+        run: |
+          echo "USER: ${{ secrets.SERVER_USER }}"
+          echo "HOST: ${{ secrets.SERVER_HOST }}"
+
       - name: Deploy to server
         env:
           PROJECT_DIR: ${{ secrets.PROJECT_DIR }}
@@ -24,20 +22,5 @@ jobs:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
         run: |
           ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_HOST} << 'EOF'
-          cd ${PROJECT_DIR}
-          git pull origin main
-          source api/venv/bin/activate
-          pip install -r api/requirements.txt
-
-          # Rebuild frontend only if needed
-          if git diff --quiet HEAD^ HEAD -- web/; then
-            echo "No frontend changes"
-          else
-            cd web
-            npm install
-            npm run build
-            cd ..
-          fi
-
-          sudo systemctl restart emotions.service
+          ...
           EOF
