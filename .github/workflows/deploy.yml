@@ -1,0 +1,34 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to server
+        env:
+          PROJECT_DIR: ${{ secrets.PROJECT_DIR }}
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
+            cd \$PROJECT_DIR
+            git pull origin main
+            source api/venv/bin/activate
+            pip install -r api/requirements.txt
+            if git diff --quiet HEAD^ HEAD -- web/; then
+              echo "No frontend changes"
+            else
+              cd web/
+              npm install
+              npm run build
+              cd ..
+            fi
+            sudo systemctl restart emotions.service
+          EOF
