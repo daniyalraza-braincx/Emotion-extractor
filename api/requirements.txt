@@ -6,4 +6,6 @@ python-dotenv
 requests
 openai
 audioop-lts
+pyjwt
+passlib[bcrypt]
 

@@ -2,11 +2,13 @@ import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchRetellCalls } from '../services/api';
 import { useAnalysis } from '../context/AnalysisContext';
+import { useAuth } from '../context/AuthContext';
 import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/formatters';
 
 function Dashboard() {
   const navigate = useNavigate();
   const { setAnalysisRequest } = useAnalysis();
+  const { logout } = useAuth();
 
   const fileInputRef = useRef(null);
 
@@ -132,7 +134,6 @@ function Dashboard() {
           </div>
 
           <div className="calls-toolbar">
-           
             <button
               type="button"
               className="toolbar-chip"
@@ -144,6 +145,14 @@ function Dashboard() {
             <button type="button" className="upload-button" onClick={triggerUpload}>
               <span aria-hidden className="upload-button__icon">＋</span>
               Upload
+            </button>
+            <button
+              type="button"
+              className="toolbar-chip"
+              onClick={logout}
+              title="Logout"
+            >
+              Logout
             </button>
             <input
               ref={fileInputRef}

@@ -3,6 +3,15 @@
   min-height: 100vh;
 }
 
+.app-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: #666;
+}
+
 .app-root {
   width: 100%;
   min-height: 100vh;

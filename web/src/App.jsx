@@ -2,21 +2,62 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Dashboard from './pages/Dashboard'
 import AnalysisPage from './pages/Analysis'
+import Login from './pages/Login'
 import { AnalysisProvider } from './context/AnalysisContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
+
+function ProtectedRoute({ children }) {
+  const { authenticated, loading } = useAuth();
+
+  if (loading) {
+    return <div className="app-loading">Loading...</div>;
+  }
+
+  if (!authenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/"
+        element={
+          <div className="app-root">
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          </div>
+        }
+      />
+      <Route
+        path="/analysis"
+        element={
+          <div className="app-root">
+            <ProtectedRoute>
+              <AnalysisPage />
+            </ProtectedRoute>
+          </div>
+        }
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
 
 function App() {
   return (
-    <AnalysisProvider>
-      <BrowserRouter>
-        <div className="app-root">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/analysis" element={<AnalysisPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </AnalysisProvider>
+    <AuthProvider>
+      <AnalysisProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AnalysisProvider>
+    </AuthProvider>
   )
 }
 
