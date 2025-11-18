@@ -117,7 +117,7 @@ function Dashboard() {
       <header className="calls-header">
         <div className="calls-header__title">
           <h1>Calls</h1>
-          <p>{totalCallCount} total call</p>
+          <p>{totalCallCount} total calls</p>
         </div>
 
         <div className="calls-header__tools">
