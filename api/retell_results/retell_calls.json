@@ -5146,40 +5146,6 @@
       "transcript_available": true,
       "last_updated": "2025-11-17T20:16:02Z"
     },
-    "call_11dbff74c8aaa24f0dd5c77db80": {
-      "call_id": "call_11dbff74c8aaa24f0dd5c77db80",
-      "agent_id": "agent_33cc28dfe251c099843b04e601",
-      "agent_name": "Core Education OB [PROD.BUILD] (26-SEP-25)",
-      "user_phone_number": "N/A",
-      "start_timestamp": 1763410409941,
-      "end_timestamp": 1763410432650,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6e4a09578720de51d63e45a4e7d496712e92542ea3e307ff87ad4b7dcf5bbcc7/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 22709,
-      "call_summary": "The agent called on behalf of Arcadia University asking for Trinity, but the person answering said Trinity was not available and requested a call back after 4. The agent acknowledged and ended the call, planning to reach out later.",
-      "call_purpose": "Call Back",
-      "call_title": "Callback Requested",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "agent_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 22709
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-17T20:16:03Z"
-    },
     "call_561149149a77b8a37e46e4c1f5d": {
       "call_id": "call_561149149a77b8a37e46e4c1f5d",
       "agent_id": "agent_33cc28dfe251c099843b04e601",
