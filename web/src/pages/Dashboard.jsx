@@ -17,6 +17,8 @@ function Dashboard() {
   const [callsError, setCallsError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [hideBlocked, setHideBlocked] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const callsPerPage = 15;
 
   const loadRetellCalls = useCallback(async () => {
     if (!authenticated || loading) {
@@ -104,6 +106,27 @@ function Dashboard() {
     });
   }, [retellCalls, searchQuery, hideBlocked]);
 
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, hideBlocked]);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredCalls.length / callsPerPage);
+  const startIndex = (currentPage - 1) * callsPerPage;
+  const endIndex = startIndex + callsPerPage;
+  const paginatedCalls = useMemo(() => {
+    return filteredCalls.slice(startIndex, endIndex);
+  }, [filteredCalls, startIndex, endIndex]);
+
+  const handlePageChange = useCallback((newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      // Scroll to top of table
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [totalPages]);
+
   const renderSummary = useCallback((call) => {
     const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
     const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
@@ -132,6 +155,8 @@ function Dashboard() {
 
   const totalCallCount = retellCalls.length;
   const resultCount = filteredCalls.length;
+  const showingFrom = resultCount > 0 ? startIndex + 1 : 0;
+  const showingTo = Math.min(endIndex, resultCount);
 
   return (
     <main className="calls-page">
@@ -229,7 +254,7 @@ function Dashboard() {
               No calls match “{searchQuery}”. Try adjusting your filters.
             </div>
           ) : (
-            filteredCalls.map((call) => {
+            paginatedCalls.map((call) => {
               const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
               const statusLabel = formatStatusLabel(call.analysis_status);
               const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
@@ -318,6 +343,68 @@ function Dashboard() {
             })
           )}
         </div>
+
+        {resultCount > 0 && totalPages > 1 && (
+          <div className="calls-pagination">
+            <div className="calls-pagination__info">
+              Showing {showingFrom}–{showingTo} of {resultCount} calls
+            </div>
+            <div className="calls-pagination__controls">
+              <button
+                type="button"
+                className="pagination-button"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                aria-label="Previous page"
+              >
+                Previous
+              </button>
+              
+              <div className="pagination-pages">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                  // Show first page, last page, current page, and pages around current
+                  const showPage = pageNum === 1 || 
+                                   pageNum === totalPages || 
+                                   (pageNum >= currentPage - 1 && pageNum <= currentPage + 1);
+                  
+                  if (!showPage && pageNum === currentPage - 2 && pageNum > 2) {
+                    return <span key={`ellipsis-start-${pageNum}`} className="pagination-ellipsis">…</span>;
+                  }
+                  if (!showPage && pageNum === currentPage + 2 && pageNum < totalPages - 1) {
+                    return <span key={`ellipsis-end-${pageNum}`} className="pagination-ellipsis">…</span>;
+                  }
+                  
+                  if (!showPage) {
+                    return null;
+                  }
+                  
+                  return (
+                    <button
+                      key={pageNum}
+                      type="button"
+                      className={`pagination-button pagination-button--page ${currentPage === pageNum ? 'pagination-button--active' : ''}`}
+                      onClick={() => handlePageChange(pageNum)}
+                      aria-label={`Page ${pageNum}`}
+                      aria-current={currentPage === pageNum ? 'page' : undefined}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+              
+              <button
+                type="button"
+                className="pagination-button"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                aria-label="Next page"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );

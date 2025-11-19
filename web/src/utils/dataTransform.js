@@ -26,29 +26,62 @@ function normalizeSpeakerName(rawSpeaker) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-function buildTranscriptSegments(metadata) {
+function buildTranscriptSegments(metadata, prosodySegments = null) {
+  // First, try to use retell_transcript_segments if available
   const segments = Array.isArray(metadata?.retell_transcript_segments)
     ? metadata.retell_transcript_segments
     : [];
 
-  return segments
-    .map((segment) => {
-      const speaker = normalizeSpeakerName(segment?.speaker);
-      const start = Number(segment?.start);
-      const end = Number(segment?.end);
+  if (segments.length > 0) {
+    return segments
+      .map((segment) => {
+        const speaker = normalizeSpeakerName(segment?.speaker);
+        const start = Number(segment?.start);
+        const end = Number(segment?.end);
 
-      if (!speaker || Number.isNaN(start) || Number.isNaN(end)) {
-        return null;
-      }
+        if (!speaker || Number.isNaN(start) || Number.isNaN(end)) {
+          return null;
+        }
 
-      return {
-        speaker,
-        start,
-        end,
-        text: segment?.text || segment?.content || ''
-      };
-    })
-    .filter(Boolean);
+        return {
+          speaker,
+          start,
+          end,
+          text: segment?.text || segment?.content || ''
+        };
+      })
+      .filter(Boolean);
+  }
+
+  // Fallback: build transcript from prosody segments if retell_transcript_segments is empty
+  if (prosodySegments && Array.isArray(prosodySegments) && prosodySegments.length > 0) {
+    return prosodySegments
+      .map((segment) => {
+        const speaker = normalizeSpeakerName(segment?.speaker);
+        const timeStart = typeof segment.time_start === 'number' ? segment.time_start : segment?.start;
+        const timeEnd = typeof segment.time_end === 'number' ? segment.time_end : segment?.end;
+        const text = segment.transcript_text || segment.text || '';
+
+        // Only include segments with text
+        if (!text || !text.trim() || Number.isNaN(timeStart) || Number.isNaN(timeEnd)) {
+          return null;
+        }
+
+        if (!speaker) {
+          return null;
+        }
+
+        return {
+          speaker,
+          start: Number(timeStart),
+          end: Number(timeEnd),
+          text: text.trim()
+        };
+      })
+      .filter(Boolean);
+  }
+
+  return [];
 }
 
 function findTranscriptSpeaker(timeStart, timeEnd, transcriptSegments) {
@@ -619,7 +652,6 @@ export function transformApiDataToChart(apiResponse) {
 
   // Collect all unique emotions across segments
   const allEmotions = new Set();
-  const transcriptSegments = buildTranscriptSegments(results?.metadata);
   const baseSpeakers = ['Customer', 'Agent'];
   const speakerSegmentsMap = new Map();
   const fallbackSegmentsForMetrics = [];
@@ -636,6 +668,9 @@ export function transformApiDataToChart(apiResponse) {
 
   const prosodySegments = [];
   let lastKnownSpeaker = null;
+  
+  // Build transcript segments first (with fallback to prosody later)
+  let transcriptSegments = buildTranscriptSegments(results?.metadata);
 
   results.prosody.forEach((segment) => {
     const timeStart = typeof segment.time_start === 'number' ? segment.time_start : null;
@@ -891,6 +926,11 @@ export function transformApiDataToChart(apiResponse) {
   speakerTimelineSpeakers.forEach((speaker) => {
     speakerTimelineSegments[speaker] = speakerTimelineSegmentsMap.get(speaker) || [];
   });
+
+  // If no transcript segments from retell_transcript_segments, build from prosody segments
+  if (transcriptSegments.length === 0) {
+    transcriptSegments = buildTranscriptSegments(results?.metadata, results.prosody);
+  }
 
   const emotionTimeline = buildEmotionTimeline(
     prosodySegments,

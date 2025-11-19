@@ -6,7 +6,7 @@ import threading
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List, Tuple
 
-from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body, BackgroundTasks
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -233,7 +233,15 @@ def _calculate_duration_ms(call_data: Dict[str, Any]) -> Optional[int]:
 
 
 def _is_zero_duration_call(call_data: Dict[str, Any]) -> bool:
-    duration_ms = _calculate_duration_ms(call_data) or 0
+    """
+    Check if a call has zero or negative duration.
+    Returns False if duration is None (unknown) - only removes calls with explicitly zero/negative duration.
+    """
+    duration_ms = _calculate_duration_ms(call_data)
+    # Only consider it zero-duration if we have an explicit value that is <= 0
+    # Don't remove calls with None duration (unknown duration) as they might be valid
+    if duration_ms is None:
+        return False
     return duration_ms <= 0
 
 
@@ -460,7 +468,14 @@ def _upsert_retell_call_metadata(call_data: Dict[str, Any], status: Optional[str
         else:
             merged["error_message"] = existing.get("error_message")
 
-        if call_data.get("transcript_object") is not None:
+        # Store transcript_object if available (for n8n payloads and direct Retell payloads)
+        transcript_object = call_data.get("transcript_object")
+        if transcript_object is not None:
+            merged["transcript_available"] = True
+            merged["transcript_object"] = transcript_object
+        elif existing.get("transcript_object") is not None:
+            # Preserve existing transcript_object if new one is not provided
+            merged["transcript_object"] = existing.get("transcript_object")
             merged["transcript_available"] = True
 
         merged["last_updated"] = _current_timestamp_iso()
@@ -477,7 +492,14 @@ def _update_retell_call_entry(call_id: str, updates: Dict[str, Any]) -> Dict[str
         if entry is None:
             raise KeyError(f"Call {call_id} not found")
 
-        entry.update(updates)
+        # Only update fields that are not None, preserving existing values
+        # This prevents overwriting valid metadata with nulls
+        for key, value in updates.items():
+            if value is not None or key in ["analysis_status", "error_message", "analysis_allowed", "analysis_block_reason"]:
+                # Always update these specific fields even if None
+                entry[key] = value
+            # Otherwise, preserve existing value (don't overwrite with None)
+        
         entry["last_updated"] = _current_timestamp_iso()
 
         if "analysis_filename" in updates:
@@ -710,8 +732,15 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
 
         if detailed_data:
             merged_data = dict(detailed_data)
+            # Only update with non-null values from call_data, preserving existing metadata
             merged_data.update({k: v for k, v in call_data.items() if v is not None})
             call_data = merged_data
+        else:
+            # If we can't fetch from Retell API, preserve existing metadata from call_payload
+            # Don't overwrite existing values with nulls
+            for key in ["start_timestamp", "end_timestamp", "duration_ms", "agent_id", "agent_name", "user_phone_number"]:
+                if call_data.get(key) is None and call_payload.get(key) is not None:
+                    call_data[key] = call_payload[key]
 
         call_summary_text: Optional[str] = None
         call_analysis = call_data.get("call_analysis")
@@ -731,15 +760,29 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             raise RuntimeError("No recording URL available for this call")
 
         constraint_info = _evaluate_call_constraints(call_data)
+        
+        # Get existing entry to preserve metadata
+        existing_entry = _get_retell_call_entry(call_id)
+        
+        # Helper to preserve existing values if new value is None
+        def preserve_or_update(key: str):
+            new_val = call_data.get(key)
+            if new_val is not None:
+                return new_val
+            if existing_entry and existing_entry.get(key) is not None:
+                return existing_entry.get(key)
+            return call_payload.get(key)  # Fallback to original payload
+        
         metadata_updates = {
             "analysis_allowed": constraint_info["analysis_allowed"],
             "analysis_block_reason": constraint_info["analysis_block_reason"],
             "analysis_constraints": constraint_info["constraints"],
-            "start_timestamp": call_data.get("start_timestamp"),
-            "end_timestamp": call_data.get("end_timestamp"),
-            "duration_ms": call_data.get("duration_ms"),
-            "agent_id": call_data.get("agent_id"),
-            "agent_name": call_data.get("agent_name"),
+            # Only update timestamps/duration if we have valid values, otherwise preserve existing
+            "start_timestamp": preserve_or_update("start_timestamp"),
+            "end_timestamp": preserve_or_update("end_timestamp"),
+            "duration_ms": preserve_or_update("duration_ms"),
+            "agent_id": preserve_or_update("agent_id"),
+            "agent_name": preserve_or_update("agent_name"),
         }
 
         if call_summary_text:
@@ -762,7 +805,20 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
         try:
             _update_retell_call_entry(call_id, metadata_updates)
         except KeyError:
-            logger.warning("Retell call %s not found in metadata store when updating constraints", call_id)
+            # Call not in metadata store - create it now, preserving metadata from call_payload
+            logger.warning("Retell call %s not found in metadata store when updating constraints, creating entry", call_id)
+            minimal_call_data = {
+                "call_id": call_id,
+                "recording_multi_channel_url": call_data.get("recording_multi_channel_url") or call_payload.get("recording_multi_channel_url"),
+                "start_timestamp": call_data.get("start_timestamp") or call_payload.get("start_timestamp"),
+                "end_timestamp": call_data.get("end_timestamp") or call_payload.get("end_timestamp"),
+                "duration_ms": call_data.get("duration_ms") or call_payload.get("duration_ms"),
+                "agent_id": call_data.get("agent_id") or call_payload.get("agent_id"),
+                "agent_name": call_data.get("agent_name") or call_payload.get("agent_name"),
+                "user_phone_number": call_data.get("user_phone_number") or call_payload.get("user_phone_number"),
+            }
+            _upsert_retell_call_metadata(minimal_call_data, status="processing")
+            _update_retell_call_entry(call_id, metadata_updates)
 
         if not constraint_info["analysis_allowed"]:
             raise HTTPException(
@@ -884,27 +940,76 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
                 if purpose:
                     final_updates["call_purpose"] = purpose
 
-            _update_retell_call_entry(
-                call_id,
-                final_updates,
-            )
-        except KeyError:
-            logger.warning("Retell call %s not found in metadata store while finalizing analysis", call_id)
+            try:
+                # Get existing entry to preserve metadata
+                existing_entry = _get_retell_call_entry(call_id)
+                
+                # Preserve existing metadata in final_updates if not already set
+                if existing_entry:
+                    if "start_timestamp" not in final_updates and existing_entry.get("start_timestamp"):
+                        final_updates["start_timestamp"] = existing_entry.get("start_timestamp")
+                    if "end_timestamp" not in final_updates and existing_entry.get("end_timestamp"):
+                        final_updates["end_timestamp"] = existing_entry.get("end_timestamp")
+                    if "duration_ms" not in final_updates and existing_entry.get("duration_ms"):
+                        final_updates["duration_ms"] = existing_entry.get("duration_ms")
+                    if "agent_id" not in final_updates and existing_entry.get("agent_id"):
+                        final_updates["agent_id"] = existing_entry.get("agent_id")
+                    if "agent_name" not in final_updates and existing_entry.get("agent_name"):
+                        final_updates["agent_name"] = existing_entry.get("agent_name")
+                    if "user_phone_number" not in final_updates and existing_entry.get("user_phone_number"):
+                        final_updates["user_phone_number"] = existing_entry.get("user_phone_number")
+                
+                _update_retell_call_entry(
+                    call_id,
+                    final_updates,
+                )
+            except KeyError:
+                # Call not in metadata store - create it now with the analysis results
+                logger.warning("Retell call %s not found in metadata store while finalizing analysis, creating entry", call_id)
+                # Create a minimal call entry, preserving metadata from call_payload
+                minimal_call_data = {
+                    "call_id": call_id,
+                    "recording_multi_channel_url": recording_url,
+                    "start_timestamp": call_data.get("start_timestamp") or call_payload.get("start_timestamp"),
+                    "end_timestamp": call_data.get("end_timestamp") or call_payload.get("end_timestamp"),
+                    "duration_ms": call_data.get("duration_ms") or call_payload.get("duration_ms"),
+                    "agent_id": call_data.get("agent_id") or call_payload.get("agent_id"),
+                    "agent_name": call_data.get("agent_name") or call_payload.get("agent_name"),
+                    "user_phone_number": call_data.get("user_phone_number") or call_payload.get("user_phone_number"),
+                }
+                # Use upsert to create the entry
+                _upsert_retell_call_metadata(minimal_call_data, status="completed")
+                # Now update it with the final analysis details
+                _update_retell_call_entry(call_id, final_updates)
+        except Exception as update_exc:  # pylint: disable=broad-except
+            logger.error("Failed to update metadata store for call %s after analysis: %s", call_id, update_exc)
 
         return payload_to_store
 
     except Exception as exc:  # pylint: disable=broad-except
         logger.exception("Error processing Retell call %s: %s", call_id, exc)
         try:
-            _update_retell_call_entry(
-                call_id,
-                {
-                    "analysis_status": "error",
+            try:
+                _update_retell_call_entry(
+                    call_id,
+                    {
+                        "analysis_status": "error",
+                        "error_message": str(exc),
+                    },
+                )
+            except KeyError:
+                # Call not in metadata store - create it with error status
+                logger.warning("Retell call %s not found in metadata store while recording error, creating entry", call_id)
+                minimal_call_data = {
+                    "call_id": call_id,
+                    "recording_multi_channel_url": call_payload.get("recording_multi_channel_url"),
+                }
+                _upsert_retell_call_metadata(minimal_call_data, status="error")
+                _update_retell_call_entry(call_id, {
                     "error_message": str(exc),
-                },
-            )
-        except KeyError:
-            logger.warning("Retell call %s not found in metadata store while recording error", call_id)
+                })
+        except Exception as update_exc:  # pylint: disable=broad-except
+            logger.error("Failed to update metadata store for call %s: %s", call_id, update_exc)
         raise
 
 
@@ -1031,16 +1136,82 @@ def _ensure_call_registered(call_id: str) -> Dict[str, Any]:
 
 
 def _prepare_retell_call_payload(call_entry: Dict[str, Any]) -> Dict[str, Any]:
+    """Prepare call payload for analysis, preserving all existing metadata."""
     payload: Dict[str, Any] = {
         "call_id": call_entry["call_id"],
         "recording_multi_channel_url": call_entry.get("recording_multi_channel_url"),
+        # Preserve existing metadata to avoid overwriting with nulls
+        "start_timestamp": call_entry.get("start_timestamp"),
+        "end_timestamp": call_entry.get("end_timestamp"),
+        "duration_ms": call_entry.get("duration_ms"),
+        "agent_id": call_entry.get("agent_id"),
+        "agent_name": call_entry.get("agent_name"),
+        "user_phone_number": call_entry.get("user_phone_number"),
     }
+    # Include transcript_object if available (from n8n or stored metadata)
+    transcript_object = call_entry.get("transcript_object")
+    if transcript_object is not None:
+        payload["transcript_object"] = transcript_object
     return payload
 
 
+def _process_retell_call_background(call_id: str, call_payload: Dict[str, Any]) -> None:
+    """Background task to process Retell call analysis without blocking the HTTP request."""
+    try:
+        logger.info("Starting background analysis for call %s", call_id)
+        analysis_payload = _process_retell_call(call_payload)
+        logger.info("Completed background analysis for call %s", call_id)
+    except HTTPException as exc:
+        logger.error("HTTP error in background analysis for call %s: %s", call_id, exc.detail)
+        try:
+            _update_retell_call_entry(call_id, {
+                "analysis_status": "error",
+                "error_message": exc.detail
+            })
+        except KeyError:
+            # Call not in metadata store - create it with error status
+            logger.warning("Retell call %s not found in metadata store while recording HTTP error, creating entry", call_id)
+            minimal_call_data = {
+                "call_id": call_id,
+                "recording_multi_channel_url": call_payload.get("recording_multi_channel_url"),
+            }
+            _upsert_retell_call_metadata(minimal_call_data, status="error")
+            _update_retell_call_entry(call_id, {
+                "error_message": exc.detail
+            })
+    except Exception as exc:  # pylint: disable=broad-except
+        logger.exception("Failed to analyze Retell call %s in background: %s", call_id, exc)
+        try:
+            _update_retell_call_entry(call_id, {
+                "analysis_status": "error",
+                "error_message": str(exc)
+            })
+        except KeyError:
+            # Call not in metadata store - create it with error status
+            logger.warning("Retell call %s not found in metadata store while recording error, creating entry", call_id)
+            minimal_call_data = {
+                "call_id": call_id,
+                "recording_multi_channel_url": call_payload.get("recording_multi_channel_url"),
+            }
+            _upsert_retell_call_metadata(minimal_call_data, status="error")
+            _update_retell_call_entry(call_id, {
+                "error_message": str(exc)
+            })
+
+
 @app.post("/retell/calls/{call_id}/analyze")
-async def analyze_retell_call(call_id: str, force: bool = Query(False), token_data: Dict[str, Any] = Depends(verify_token)):
-    """Trigger Hume analysis for a previously-registered Retell call."""
+async def analyze_retell_call(
+    call_id: str, 
+    force: bool = Query(False), 
+    background_tasks: BackgroundTasks = BackgroundTasks(),
+    token_data: Dict[str, Any] = Depends(verify_token)
+):
+    """
+    Trigger Hume analysis for a previously-registered Retell call.
+    
+    Returns immediately and processes in the background to avoid gateway timeouts.
+    Use GET /retell/calls/{call_id}/analysis to check status and retrieve results.
+    """
     call_entry = _ensure_call_registered(call_id)
     if call_entry.get("analysis_allowed") is False:
         reason = call_entry.get("analysis_block_reason") or "Call cannot be analyzed."
@@ -1049,6 +1220,7 @@ async def analyze_retell_call(call_id: str, force: bool = Query(False), token_da
             detail=reason,
         )
 
+    # If analysis already exists and not forcing, return it immediately
     if not force:
         try:
             return await get_retell_call_analysis(call_id)
@@ -1056,41 +1228,67 @@ async def analyze_retell_call(call_id: str, force: bool = Query(False), token_da
             if exc.status_code != 404:
                 raise
 
+    # Check if already processing
+    current_status = call_entry.get("analysis_status")
+    if current_status == "processing":
+        return JSONResponse(content={
+            "success": True,
+            "message": "Analysis already in progress",
+            "call_id": call_id,
+            "status": "processing"
+        })
+
     if force:
         logger.info("Force re-running analysis for Retell call %s", call_id)
 
+    # Mark as processing and start background task
     _update_retell_call_entry(call_id, {"analysis_status": "processing", "error_message": None})
+    
+    call_payload = _prepare_retell_call_payload(call_entry)
+    background_tasks.add_task(_process_retell_call_background, call_id, call_payload)
 
-    try:
-        call_payload = _prepare_retell_call_payload(call_entry)
-        analysis_payload = _process_retell_call(call_payload)
-    except HTTPException:
-        raise
-    except Exception as exc:  # pylint: disable=broad-except
-        logger.exception("Failed to analyze Retell call %s: %s", call_id, exc)
-        raise HTTPException(status_code=500, detail=f"Failed to analyze call: {exc}") from exc
-
-    analysis_results = analysis_payload.get("analysis") or []
-    first_result: Optional[Dict[str, Any]] = analysis_results[0] if analysis_results else None
-
-    response_content: Dict[str, Any] = {
+    # Return immediately - processing happens in background
+    return JSONResponse(content={
         "success": True,
+        "message": "Analysis started in background",
         "call_id": call_id,
-        "results": first_result,
-        "retell_metadata": analysis_payload.get("retell_metadata"),
-    }
-
-    recording_url = analysis_payload.get("retell_metadata", {}).get("recording_multi_channel_url")
-    if recording_url:
-        response_content["recording_url"] = recording_url
-
-    return JSONResponse(content=response_content)
+        "status": "processing",
+        "note": "Use GET /retell/calls/{call_id}/analysis to check status and retrieve results when complete"
+    })
 
 
 @app.get("/retell/calls/{call_id}/analysis")
 async def get_retell_call_analysis(call_id: str, token_data: Dict[str, Any] = Depends(verify_token)):
-    """Return stored analysis for a Retell call if it has been processed."""
+    """
+    Return stored analysis for a Retell call if it has been processed.
+    
+    Returns status information if analysis is still processing or has errors.
+    """
     call_entry = _ensure_call_registered(call_id)
+    
+    # Check if still processing
+    analysis_status = call_entry.get("analysis_status")
+    if analysis_status == "processing":
+        return JSONResponse(content={
+            "success": True,
+            "call_id": call_id,
+            "status": "processing",
+            "message": "Analysis is still in progress. Please check again in a few moments."
+        })
+    
+    # Check if there was an error
+    if analysis_status == "error":
+        error_message = call_entry.get("error_message", "Unknown error occurred")
+        return JSONResponse(
+            status_code=500,
+            content={
+                "success": False,
+                "call_id": call_id,
+                "status": "error",
+                "error_message": error_message
+            }
+        )
+    
     analysis_filename = call_entry.get("analysis_filename")
     if not analysis_filename:
         raise HTTPException(status_code=404, detail="Analysis not available for this call")
