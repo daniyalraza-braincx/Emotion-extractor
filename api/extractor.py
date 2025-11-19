@@ -639,49 +639,7 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                         ]
                     })
             
-            for segment in burst_segments:
-                time_start = segment.get("time_start", 0)
-                time_end = segment.get("time_end", 0)
-                top_emotions = segment.get("top_emotions", [])
-                speaker = segment.get("speaker") or "Unknown"
-                if top_emotions:
-                    primary_emotion = top_emotions[0].get("name")
-                    primary_category = top_emotions[0].get("category", DEFAULT_EMOTION_CATEGORY)
-                    text = (segment.get("transcript_text") or "").strip()
-                    if primary_emotion and text:
-                        last_emotion = speaker_last_emotion.get(speaker)
-                        if primary_emotion != last_emotion:
-                            emotion_highlights.append({
-                                "speaker": speaker,
-                                "time_start": time_start,
-                                "time_end": time_end,
-                                "text": text,
-                                "primary_emotion": primary_emotion,
-                                "score": top_emotions[0].get("score"),
-                                "type": "vocal_burst",
-                                "category": primary_category,
-                            })
-                            speaker_last_emotion[speaker] = primary_emotion
-                        speaker_emotion_counts.setdefault(speaker, {})
-                        speaker_emotion_counts[speaker][primary_emotion] = \
-                            speaker_emotion_counts[speaker].get(primary_emotion, 0) + 1
 
-                    all_segments.append({
-                        "time_start": time_start,
-                        "time_end": time_end,
-                        "time_range": f"{time_start:.1f}s-{time_end:.1f}s",
-                        "type": "vocal_burst",
-                        "speaker": speaker,
-                        "top_emotions": [
-                            {
-                                "name": e.get("name"),
-                                "score": e.get("score"),
-                                "percentage": e.get("percentage"),
-                                "category": e.get("category", DEFAULT_EMOTION_CATEGORY),
-                            }
-                            for e in top_emotions
-                        ]
-                    })
             
             # Sort by time
             all_segments.sort(key=lambda x: x["time_start"])
