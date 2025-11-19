@@ -1,0 +1,1130 @@
+{
+  "call_id": "call_6588011844ae2edfc09bcb25c71",
+  "retell_metadata": {
+    "retell_call_id": "call_6588011844ae2edfc09bcb25c71",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a946f7f7b672408a40777b21169ca97a8267628be5c6d661f3de811a5a008881/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_6588011844ae2edfc09bcb25c71_combined",
+      "prosody": [
+        {
+          "time_start": 0.84,
+          "time_end": 3.4,
+          "text": "Hi. Thank you for returning my call. This is Courtney,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3361,
+              "percentage": 33.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 3.48,
+          "time_end": 6.67,
+          "text": "and I was calling on behalf of Arcadia University. Am",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3523,
+              "percentage": 35.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 6.75,
+          "time_end": 11.63,
+          "text": "I speaking with Britney? Hi,",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1781,
+              "percentage": 17.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 9.88,
+          "time_end": 10.2,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2992,
+              "percentage": 29.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 11.87,
+          "time_end": 15.39,
+          "text": "Britney. Before we get started, all calls are recorded for quality assurance and",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4653,
+              "percentage": 46.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 15.39,
+          "time_end": 18.84,
+          "text": "training purposes, I received your interest in the ph bottom",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3976,
+              "percentage": 39.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 19.05,
+          "time_end": 22.32,
+          "text": "technician program. Before we move forward, let me pull up the requirements",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5678,
+              "percentage": 56.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 22.32,
+          "time_end": 24.71,
+          "text": "for your program. May",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1884,
+              "percentage": 18.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 24.87,
+          "time_end": 31.25,
+          "text": "I know what state you currently reside in? Great.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.3005,
+              "percentage": 30.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 29.33,
+          "time_end": 29.81,
+          "text": "Pennsylvania.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1364,
+              "percentage": 13.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 31.65,
+          "time_end": 37.71,
+          "text": "Do you have a high school diploma or equivalent? Perfect.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1776,
+              "percentage": 17.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 36.03,
+          "time_end": 36.35,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2906,
+              "percentage": 29.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 38.11,
+          "time_end": 41.53,
+          "text": "I'd love to help get you connected with an admissions representative",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3509,
+              "percentage": 35.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 41.53,
+          "time_end": 45.14,
+          "text": "who can answer your and guide you through the next steps. How",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4244,
+              "percentage": 42.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 45.14,
+          "time_end": 52.1,
+          "text": "about I text you a link to choose a thirty minute spot? Great.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4648,
+              "percentage": 46.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 50.2,
+          "time_end": 50.43,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3162,
+              "percentage": 31.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 52.42,
+          "time_end": 56.82,
+          "text": "The text message will be sent your way. Simply click the link and choose a time that works",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3843,
+              "percentage": 38.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 56.82,
+          "time_end": 64.4,
+          "text": "best for you? Before we wrap, do you have any questions that I can help answer for you? Alright.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4764,
+              "percentage": 47.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 62.64,
+          "time_end": 62.88,
+          "text": "No.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.512,
+              "percentage": 51.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 64.64,
+          "time_end": 67.34,
+          "text": "Thanks so much for your time, Britney. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3096,
+              "percentage": 31.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1652,
+              "percentage": 16.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1854,
+              "percentage": 18.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 6.0,
+          "time_end": 7.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1777,
+              "percentage": 17.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 9.0,
+          "time_end": 10.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2413,
+              "percentage": 24.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 16.0,
+          "time_end": 17.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 22.0,
+          "time_end": 23.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1796,
+              "percentage": 18.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2204,
+              "percentage": 22.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2611,
+              "percentage": 26.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 35.0,
+          "time_end": 36.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2277,
+              "percentage": 22.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 45.0,
+          "time_end": 46.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1723,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 57.0,
+          "time_end": 58.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1891,
+              "percentage": 18.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "category_counts": {
+          "positive": 1,
+          "neutral": 5,
+          "negative": 8
+        },
+        "retell_call_id": "call_6588011844ae2edfc09bcb25c71",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a946f7f7b672408a40777b21169ca97a8267628be5c6d661f3de811a5a008881/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "Britney agreed to receive a text link for scheduling a follow-up, indicating a commitment to proceed despite initial disappointment.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The agent contacts Britney about the pharmacy technician program, maintaining determination throughout. Britney initially expresses disappointment but shifts to calmness at 9.9s and 29.3s when confirming details. The agent's interest and determination help guide Britney to agree to receive a text link for scheduling a follow-up at 45.1s. The call concludes with Britney's commitment to choose a convenient time, despite her initial negative emotions."
+    },
+    {
+      "filename": "call_6588011844ae2edfc09bcb25c71_user.wav",
+      "prosody": [
+        {
+          "time_start": 9.88,
+          "time_end": 10.2,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2992,
+              "percentage": 29.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 29.33,
+          "time_end": 29.81,
+          "text": "Pennsylvania.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1364,
+              "percentage": 13.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 36.03,
+          "time_end": 36.35,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2906,
+              "percentage": 29.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 50.2,
+          "time_end": 50.43,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3162,
+              "percentage": 31.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 62.64,
+          "time_end": 62.88,
+          "text": "No.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.512,
+              "percentage": 51.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1652,
+              "percentage": 16.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 6.0,
+          "time_end": 7.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1777,
+              "percentage": 17.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 9.0,
+          "time_end": 10.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2413,
+              "percentage": 24.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 16.0,
+          "time_end": 17.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 22.0,
+          "time_end": 23.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1796,
+              "percentage": 18.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2204,
+              "percentage": 22.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 35.0,
+          "time_end": 36.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2277,
+              "percentage": 22.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 45.0,
+          "time_end": 46.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1723,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 57.0,
+          "time_end": 58.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1891,
+              "percentage": 18.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 5,
+          "negative": 8
+        },
+        "retell_call_id": "call_6588011844ae2edfc09bcb25c71",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a946f7f7b672408a40777b21169ca97a8267628be5c6d661f3de811a5a008881/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "Britney agreed to receive a text link for scheduling a follow-up, indicating a commitment to proceed despite initial disappointment.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts Britney about the pharmacy technician program, maintaining determination throughout. Britney initially expresses disappointment but shifts to calmness at 9.9s and 29.3s when confirming details. The agent's interest and determination help guide Britney to agree to receive a text link for scheduling a follow-up at 45.1s. The call concludes with Britney's commitment to choose a convenient time, despite her initial negative emotions."
+    },
+    {
+      "filename": "call_6588011844ae2edfc09bcb25c71_agent.wav",
+      "prosody": [
+        {
+          "time_start": 0.84,
+          "time_end": 3.4,
+          "text": "Hi. Thank you for returning my call. This is Courtney,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3361,
+              "percentage": 33.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 3.48,
+          "time_end": 6.67,
+          "text": "and I was calling on behalf of Arcadia University. Am",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3523,
+              "percentage": 35.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 6.75,
+          "time_end": 11.63,
+          "text": "I speaking with Britney? Hi,",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1781,
+              "percentage": 17.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 11.87,
+          "time_end": 15.39,
+          "text": "Britney. Before we get started, all calls are recorded for quality assurance and",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4653,
+              "percentage": 46.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 15.39,
+          "time_end": 18.84,
+          "text": "training purposes, I received your interest in the ph bottom",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3976,
+              "percentage": 39.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 19.05,
+          "time_end": 22.32,
+          "text": "technician program. Before we move forward, let me pull up the requirements",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5678,
+              "percentage": 56.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 22.32,
+          "time_end": 24.71,
+          "text": "for your program. May",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1884,
+              "percentage": 18.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 24.87,
+          "time_end": 31.25,
+          "text": "I know what state you currently reside in? Great.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.3005,
+              "percentage": 30.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 31.65,
+          "time_end": 37.71,
+          "text": "Do you have a high school diploma or equivalent? Perfect.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.1776,
+              "percentage": 17.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 38.11,
+          "time_end": 41.53,
+          "text": "I'd love to help get you connected with an admissions representative",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3509,
+              "percentage": 35.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 41.53,
+          "time_end": 45.14,
+          "text": "who can answer your and guide you through the next steps. How",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4244,
+              "percentage": 42.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 45.14,
+          "time_end": 52.1,
+          "text": "about I text you a link to choose a thirty minute spot? Great.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4648,
+              "percentage": 46.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 52.42,
+          "time_end": 56.82,
+          "text": "The text message will be sent your way. Simply click the link and choose a time that works",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3843,
+              "percentage": 38.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 56.82,
+          "time_end": 64.4,
+          "text": "best for you? Before we wrap, do you have any questions that I can help answer for you? Alright.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4764,
+              "percentage": 47.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 64.64,
+          "time_end": 67.34,
+          "text": "Thanks so much for your time, Britney. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3096,
+              "percentage": 31.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1854,
+              "percentage": 18.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2611,
+              "percentage": 26.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 9,
+          "neutral": 7,
+          "negative": 1
+        },
+        "retell_call_id": "call_6588011844ae2edfc09bcb25c71",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a946f7f7b672408a40777b21169ca97a8267628be5c6d661f3de811a5a008881/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "Britney agreed to receive a text link for scheduling a follow-up, indicating a commitment to proceed despite initial disappointment.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts Britney about the pharmacy technician program, maintaining determination throughout. Britney initially expresses disappointment but shifts to calmness at 9.9s and 29.3s when confirming details. The agent's interest and determination help guide Britney to agree to receive a text link for scheduling a follow-up at 45.1s. The call concludes with Britney's commitment to choose a convenient time, despite her initial negative emotions."
+    }
+  ]
+}
