@@ -2,11 +2,13 @@ import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchRetellCalls } from '../services/api';
 import { useAnalysis } from '../context/AnalysisContext';
+import { useAuth } from '../context/AuthContext';
 import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/formatters';
 
 function Dashboard() {
   const navigate = useNavigate();
   const { setAnalysisRequest } = useAnalysis();
+  const { logout, authenticated, loading } = useAuth();
 
   const fileInputRef = useRef(null);
 
@@ -14,8 +16,12 @@ function Dashboard() {
   const [isFetchingCalls, setIsFetchingCalls] = useState(false);
   const [callsError, setCallsError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [hideBlocked, setHideBlocked] = useState(false);
 
   const loadRetellCalls = useCallback(async () => {
+    if (!authenticated || loading) {
+      return;
+    }
     setIsFetchingCalls(true);
     setCallsError(null);
     try {
@@ -26,11 +32,13 @@ function Dashboard() {
     } finally {
       setIsFetchingCalls(false);
     }
-  }, []);
+  }, [authenticated, loading]);
 
   useEffect(() => {
-    loadRetellCalls();
-  }, [loadRetellCalls]);
+    if (authenticated && !loading) {
+      loadRetellCalls();
+    }
+  }, [authenticated, loading, loadRetellCalls]);
 
   const handleAnalyzeCall = (call) => {
     if (!call?.call_id) return;
@@ -66,12 +74,25 @@ function Dashboard() {
   };
 
   const filteredCalls = useMemo(() => {
+    let filtered = retellCalls;
+
+    // Filter out blocked calls if hideBlocked is enabled
+    if (hideBlocked) {
+      filtered = filtered.filter((call) => {
+        const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
+        const statusKey = rawStatus.replace(/\s+/g, '-').toLowerCase();
+        const isBlocked = statusKey === 'blocked' || call.analysis_allowed === false;
+        return !isBlocked;
+      });
+    }
+
+    // Apply search query filter
     if (!searchQuery.trim()) {
-      return retellCalls;
+      return filtered;
     }
 
     const query = searchQuery.trim().toLowerCase();
-    return retellCalls.filter((call) => {
+    return filtered.filter((call) => {
       const idMatch = call.call_id?.toLowerCase().includes(query);
       const agentMatch = call.agent_id?.toLowerCase().includes(query) || call.agent_name?.toLowerCase().includes(query);
       const statusMatch = call.analysis_status?.toLowerCase().includes(query);
@@ -81,7 +102,7 @@ function Dashboard() {
       const overallEmotionMatch = overallEmotionLabel?.toLowerCase().includes(query);
       return idMatch || agentMatch || statusMatch || purposeMatch || summaryMatch || overallEmotionMatch;
     });
-  }, [retellCalls, searchQuery]);
+  }, [retellCalls, searchQuery, hideBlocked]);
 
   const renderSummary = useCallback((call) => {
     const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
@@ -117,7 +138,7 @@ function Dashboard() {
       <header className="calls-header">
         <div className="calls-header__title">
           <h1>Calls</h1>
-          <p>{totalCallCount} Total Call</p>
+          <p>{totalCallCount} total calls</p>
         </div>
 
         <div className="calls-header__tools">
@@ -131,8 +152,19 @@ function Dashboard() {
             />
           </div>
 
+          <div className="calls-filter">
+            <label className="calls-filter__label">
+              <input
+                type="checkbox"
+                checked={hideBlocked}
+                onChange={(e) => setHideBlocked(e.target.checked)}
+                className="calls-filter__checkbox"
+              />
+              <span>Hide blocked calls</span>
+            </label>
+          </div>
+
           <div className="calls-toolbar">
-           
             <button
               type="button"
               className="toolbar-chip"
@@ -144,6 +176,14 @@ function Dashboard() {
             <button type="button" className="upload-button" onClick={triggerUpload}>
               <span aria-hidden className="upload-button__icon">＋</span>
               Upload
+            </button>
+            <button
+              type="button"
+              className="toolbar-chip"
+              onClick={logout}
+              title="Logout"
+            >
+              Logout
             </button>
             <input
               ref={fileInputRef}

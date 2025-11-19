@@ -2446,116 +2446,6 @@
       },
       "overall_emotion_label": "positive"
     },
-    "call_4b413f44bf4f0f8ef2b241fe835": {
-      "call_id": "call_4b413f44bf4f0f8ef2b241fe835",
-      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
-      "agent_name": "EasyPA AI Demo",
-      "user_phone_number": null,
-      "start_timestamp": 1762974354822,
-      "end_timestamp": 1762974457289,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b8dc8b2253e7a1484616bc06bd364cf64d895fdb015356fa4c5ddeb70309b332/recording_multichannel.wav",
-      "analysis_status": "completed",
-      "analysis_available": true,
-      "analysis_filename": "call_4b413f44bf4f0f8ef2b241fe835.json",
-      "duration_ms": 102467,
-      "call_summary": "The agent called to check the authorization status for patient Tariq and confirmed the authorization number, copay, deductible, and benefit details with the user. The user provided all necessary information, including coverage and cost details, and the call ended successfully with the agent expressing thanks.",
-      "call_purpose": "Authorization Check",
-      "call_title": "Authorization Status Check",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "agent_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 102467
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-13T15:09:37Z",
-      "overall_emotion": {
-        "label": "positive",
-        "call_outcome": "success",
-        "confidence": 0.95,
-        "reasoning": "The customer confirmed the authorization details and engaged positively throughout the call, indicating a commitment to the agent's requests.",
-        "source": "openai"
-      },
-      "overall_emotion_label": "positive"
-    },
-    "call_278a85f4f2a630602bf4c19a83b": {
-      "call_id": "call_278a85f4f2a630602bf4c19a83b",
-      "agent_id": "agent_4621f56c606f80b13b2b563ac8",
-      "agent_name": "EasyPA AI Demo",
-      "user_phone_number": null,
-      "start_timestamp": 1762977130825,
-      "end_timestamp": 1762977236454,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/67f6c930010db5871df26aa9d2262f78e1c57323bcb92171f2638002fe9198cd/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 105629,
-      "call_summary": "The agent called to check the authorization status for patient Tariq, provided the member ID, and received confirmation of the authorization number, copay, deductible, and benefit details for CPT code 12345. The call concluded successfully with all necessary information noted.",
-      "call_purpose": "Authorization Confirmation",
-      "call_title": "Authorization Status Confirmation",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "agent_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 105629
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-12T19:54:06Z"
-    },
-    "call_9156698f39d96c7c823752429e8": {
-      "call_id": "call_9156698f39d96c7c823752429e8",
-      "agent_id": "agent_6b5c759acd35bfbb4d331015c8",
-      "agent_name": "EasyPA IVR Demo",
-      "user_phone_number": null,
-      "start_timestamp": 1762977131038,
-      "end_timestamp": 1762977237610,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/f322d54d8044a74643298b3518cb1bbb47a30843d9fbc76a7ec5fdcfead55d6f/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 106572,
-      "call_summary": "The user called to check the authorization status and benefit details for patient Tarek. The agent provided the authorization number, copay, deductible, and confirmed outpatient coverage with coinsurance details. The user acknowledged the information and ended the call positively.",
-      "call_purpose": "Authorization Inquiry",
-      "call_title": "Authorization Status Inquiry",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 106572
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-12T19:54:11Z"
-    },
     "call_121654c258783a20afaa6673d1f": {
       "call_id": "call_121654c258783a20afaa6673d1f",
       "agent_id": "agent_efd77b346717ad7983449e92c0",
@@ -2996,82 +2886,6 @@
       "transcript_available": true,
       "last_updated": "2025-11-14T22:48:14Z"
     },
-    "call_653e76578af47af367e1fd0bef7": {
-      "call_id": "call_653e76578af47af367e1fd0bef7",
-      "agent_id": "agent_54888f5c152fb7ddcc2c77a051",
-      "agent_name": "EasyPA Website Demo",
-      "user_phone_number": null,
-      "start_timestamp": 1763235910260,
-      "end_timestamp": 1763236145202,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/63e516d9c19e443f6c0dc497e6f4624aac562194e4097e008a48fc1a7b15b93e/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 234942,
-      "call_summary": "The user inquired about EasyPA's services, specifically how it supports urgent care prior authorizations, pricing, platform usage, and integration with Epic EHR. The agent provided detailed explanations about the flat-rate pricing, manual and integrated platform use, and confirmed that integration with Epic is included without extra fees. The call ended with the agent offering more information about onboarding.",
-      "call_purpose": "Service Inquiry",
-      "call_title": "Easypa Service Inquiry",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 234942
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-15T19:49:09Z"
-    },
-    "call_c96213a63399cec22d6f7d1890a": {
-      "call_id": "call_c96213a63399cec22d6f7d1890a",
-      "agent_id": "agent_54888f5c152fb7ddcc2c77a051",
-      "agent_name": "EasyPA Website Demo",
-      "user_phone_number": null,
-      "start_timestamp": 1763236205341,
-      "end_timestamp": 1763236956246,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/1eef2d02382835f2f45b6a01a7429321cedc32a79931f0574eba38dfd93a8df8/recording_multichannel.wav",
-      "analysis_status": "completed",
-      "analysis_available": true,
-      "analysis_filename": "call_c96213a63399cec22d6f7d1890a.json",
-      "duration_ms": 750905,
-      "call_summary": "The user, Kway, called EasyPA to learn about the company's platform, integration process, pricing, and investment opportunities. The agent provided detailed information about EasyPA's services, federal mandates, pricing plans, company founders, funding status, and competitive advantages. Kway expressed interest in scheduling a follow-up meeting to discuss investment further.",
-      "call_purpose": "Investment Inquiry",
-      "call_title": "Callback Requested",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 750905
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-17T15:43:32Z",
-      "overall_emotion": {
-        "label": "neutral",
-        "call_outcome": "pending",
-        "confidence": 0.8,
-        "reasoning": "The customer expressed interest in setting up a meeting but deferred the action by stating they will call back to arrange it. This indicates a pending outcome with a neutral emotion.",
-        "source": "openai"
-      },
-      "overall_emotion_label": "neutral"
-    },
     "call_f722596e7a911debd16e40e2f27": {
       "call_id": "call_f722596e7a911debd16e40e2f27",
       "agent_id": "agent_efd77b346717ad7983449e92c0",
@@ -3173,40 +2987,6 @@
       "error_message": null,
       "transcript_available": true,
       "last_updated": "2025-11-17T17:26:26Z"
-    },
-    "call_2444c83620c8e60610b23eee478": {
-      "call_id": "call_2444c83620c8e60610b23eee478",
-      "agent_id": "agent_54888f5c152fb7ddcc2c77a051",
-      "agent_name": "EasyPA Website Demo",
-      "user_phone_number": "N/A",
-      "start_timestamp": 1763409438344,
-      "end_timestamp": 1763409572790,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/19d9d47da7b4406af1fbd6a578b88689102b621789685473bdd903bd0c313b38/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 134446,
-      "call_summary": "The user, Paula, called EasyPA to inquire about the company's services. The agent provided detailed information about EasyPA's platform, how it works, and the pricing plans available. The call ended with the agent offering to provide more information if needed.",
-      "call_purpose": "Service Inquiry",
-      "call_title": "Service Inquiry Paula",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 134446
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-17T19:59:38Z"
     },
     "call_11566cf750092e7699ab1eaa273": {
       "call_id": "call_11566cf750092e7699ab1eaa273",
@@ -5146,40 +4926,6 @@
       "transcript_available": true,
       "last_updated": "2025-11-17T20:16:02Z"
     },
-    "call_11dbff74c8aaa24f0dd5c77db80": {
-      "call_id": "call_11dbff74c8aaa24f0dd5c77db80",
-      "agent_id": "agent_33cc28dfe251c099843b04e601",
-      "agent_name": "Core Education OB [PROD.BUILD] (26-SEP-25)",
-      "user_phone_number": "N/A",
-      "start_timestamp": 1763410409941,
-      "end_timestamp": 1763410432650,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6e4a09578720de51d63e45a4e7d496712e92542ea3e307ff87ad4b7dcf5bbcc7/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 22709,
-      "call_summary": "The agent called on behalf of Arcadia University asking for Trinity, but the person answering said Trinity was not available and requested a call back after 4. The agent acknowledged and ended the call, planning to reach out later.",
-      "call_purpose": "Call Back",
-      "call_title": "Callback Requested",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "agent_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 22709
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-17T20:16:03Z"
-    },
     "call_561149149a77b8a37e46e4c1f5d": {
       "call_id": "call_561149149a77b8a37e46e4c1f5d",
       "agent_id": "agent_33cc28dfe251c099843b04e601",
@@ -5757,40 +5503,6 @@
       "error_message": null,
       "transcript_available": true,
       "last_updated": "2025-11-17T20:27:16Z"
-    },
-    "call_a44564654589fac2b13d388494d": {
-      "call_id": "call_a44564654589fac2b13d388494d",
-      "agent_id": "agent_33cc28dfe251c099843b04e601",
-      "agent_name": "Core Education OB [PROD.BUILD] (26-SEP-25)",
-      "user_phone_number": "N/A",
-      "start_timestamp": 1763411343459,
-      "end_timestamp": 1763411427221,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/bf612242499a403a572ca51348c8c05d48bb1da07817e4c1bdfd388cd93a48c2/recording_multichannel.wav",
-      "analysis_status": "pending",
-      "analysis_available": false,
-      "analysis_filename": null,
-      "duration_ms": 83762,
-      "call_summary": "The agent confirmed they were speaking with Salima about the EKG Technician program, verified she has a high school diploma, and sent a text link to schedule a 30-minute appointment. Salima agreed and had no further questions.",
-      "call_purpose": "Appointment Scheduling",
-      "call_title": "Scheduled",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "agent_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 83762
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-17T20:32:32Z"
     },
     "call_325edaebcaf1abf3c6ffe16c68b": {
       "call_id": "call_325edaebcaf1abf3c6ffe16c68b",

@@ -1,4 +1,5 @@
 import { API_ENDPOINTS } from '../config';
+import { getAuthHeaders, logout } from './auth';
 
 /**
  * Analyzes an audio file by sending it to the backend API
@@ -12,10 +13,18 @@ export async function analyzeAudioFile(file) {
   try {
     const response = await fetch(API_ENDPOINTS.ANALYZE, {
       method: 'POST',
+      headers: getAuthHeaders(),
       body: formData,
     });
 
     if (!response.ok) {
+      // Handle expired token or forbidden
+      if (response.status === 401 || response.status === 403) {
+        logout();
+        window.location.href = '/login';
+        throw new Error('Your session has expired. Please log in again.');
+      }
+
       let errorMessage = `Server error (${response.status})`;
       
       try {
@@ -67,8 +76,15 @@ export async function checkApiHealth() {
  * @returns {Promise<Array>} Array of calls
  */
 export async function fetchRetellCalls() {
-  const response = await fetch(API_ENDPOINTS.RETELL_CALLS);
+  const response = await fetch(API_ENDPOINTS.RETELL_CALLS, {
+    headers: getAuthHeaders(),
+  });
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
     throw new Error('Failed to fetch Retell calls');
   }
 
@@ -90,9 +106,17 @@ export async function analyzeRetellCall(callId, options = {}) {
   const endpoint = force
     ? `${API_ENDPOINTS.RETELL_ANALYZE(callId)}?force=true`
     : API_ENDPOINTS.RETELL_ANALYZE(callId);
-  const response = await fetch(endpoint, { method: 'POST' });
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: getAuthHeaders(),
+  });
 
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
     let errorMessage = `Server error (${response.status})`;
     try {
       const errorData = await response.json();
@@ -117,9 +141,16 @@ export async function getRetellCallAnalysis(callId) {
   }
 
   const endpoint = API_ENDPOINTS.RETELL_ANALYSIS(callId);
-  const response = await fetch(endpoint);
+  const response = await fetch(endpoint, {
+    headers: getAuthHeaders(),
+  });
 
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
     let errorMessage = `Server error (${response.status})`;
     try {
       const errorData = await response.json();

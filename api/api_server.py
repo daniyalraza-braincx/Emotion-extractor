@@ -3,12 +3,17 @@ import json
 import logging
 import os
 import threading
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List, Tuple
 
-from fastapi import FastAPI, UploadFile, File, HTTPException, Query
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+import jwt
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from extractor import (
     analyze_audio_files,
@@ -24,6 +29,15 @@ from extractor import (
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
+# Authentication configuration
+AUTH_USERNAME = os.getenv("AUTH_USERNAME", "admin")
+AUTH_PASSWORD = os.getenv("AUTH_PASSWORD", "password")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
+JWT_ALGORITHM = "HS256"
+JWT_EXPIRATION_HOURS = 24
+
+security = HTTPBearer()
 
 RETELL_RESULTS_DIR = os.getenv("RETELL_RESULTS_DIR", "retell_results")
 RETELL_CALLS_FILENAME = os.getenv(
@@ -51,8 +65,82 @@ app.add_middleware(
 )
 
 
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+    """Create a JWT access token"""
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+    return encoded_jwt
+
+
+def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) -> Dict[str, Any]:
+    """Verify JWT token and return payload"""
+    try:
+        token = credentials.credentials
+        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+        return payload
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has expired",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except jwt.JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+
+@app.post("/auth/login")
+async def login(credentials: Dict[str, str] = Body(...)):
+    """Authenticate user and return JWT token"""
+    username = credentials.get("username")
+    password = credentials.get("password")
+    
+    if not username or not password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username and password are required"
+        )
+    
+    if username == AUTH_USERNAME and password == AUTH_PASSWORD:
+        access_token = create_access_token(data={"sub": username})
+        return JSONResponse(content={
+            "success": True,
+            "access_token": access_token,
+            "token_type": "bearer"
+        })
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password"
+        )
+
+
+@app.get("/auth/verify")
+async def verify_auth(token_data: Dict[str, Any] = Depends(verify_token)):
+    """Verify if the current token is valid"""
+    return JSONResponse(content={
+        "success": True,
+        "authenticated": True,
+        "username": token_data.get("sub")
+    })
+
+
+@app.post("/auth/logout")
+async def logout():
+    """Logout endpoint (client-side token removal)"""
+    return JSONResponse(content={"success": True, "message": "Logged out successfully"})
+
+
 @app.post("/analyze")
-async def analyze_audio(file: UploadFile = File(...)):
+async def analyze_audio(file: UploadFile = File(...), token_data: Dict[str, Any] = Depends(verify_token)):
     """
     Analyze audio file for emotion detection using Hume API.
 
@@ -160,12 +248,12 @@ def _normalize_retell_payload(payload: Dict[str, Any]) -> Tuple[Optional[str], O
     1. Direct Retell format with call wrapper: { "event": "call_analyzed", "call": {...} }
     2. Direct Retell format without wrapper: { "event": "call_analyzed", "call_id": "...", ... }
     3. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
-
+    
     Returns: (event, call_data) tuple
     """
     event = None
     call_data = None
-
+    
     # Check for n8n format (body wrapper)
     if "body" in payload and isinstance(payload["body"], dict):
         body = payload["body"]
@@ -176,7 +264,7 @@ def _normalize_retell_payload(payload: Dict[str, Any]) -> Tuple[Optional[str], O
         # Direct Retell format
         event = payload.get("event")
         call_data_raw = payload.get("call")
-
+        
         if isinstance(call_data_raw, dict):
             # Format 1: { "event": "call_analyzed", "call": {...} }
             call_data = dict(call_data_raw)
@@ -188,7 +276,7 @@ def _normalize_retell_payload(payload: Dict[str, Any]) -> Tuple[Optional[str], O
         else:
             # Fallback: use call_data_raw as-is (might be None)
             call_data = call_data_raw
-
+    
     # Normalize call_data structure
     if isinstance(call_data, dict):
         # If in_voicemail is at top level, ensure it's in call_analysis
@@ -197,7 +285,7 @@ def _normalize_retell_payload(payload: Dict[str, Any]) -> Tuple[Optional[str], O
                 call_data["call_analysis"] = {}
             if "in_voicemail" not in call_data["call_analysis"]:
                 call_data["call_analysis"]["in_voicemail"] = call_data["in_voicemail"]
-
+        
         # If call_summary is at top level, ensure it's in call_analysis (if call_analysis exists)
         if "call_summary" in call_data:
             if "call_analysis" not in call_data:
@@ -205,7 +293,7 @@ def _normalize_retell_payload(payload: Dict[str, Any]) -> Tuple[Optional[str], O
             # Only set if not already present in call_analysis
             if "call_summary" not in call_data["call_analysis"]:
                 call_data["call_analysis"]["call_summary"] = call_data["call_summary"]
-
+    
     return event, call_data
 
 
@@ -238,6 +326,10 @@ def _evaluate_call_constraints(call_data: Dict[str, Any]) -> Dict[str, Any]:
     transcript_mentions_leave_message = "leave a message" in transcript_lower or "leave me a message" in transcript_lower
     summary_mentions_leave_message = "leave a message" in summary_lower or "leave me a message" in summary_lower
 
+    # Check both call_analysis.in_voicemail and top-level in_voicemail
+    in_voicemail_flag = bool(
+        call_analysis.get("in_voicemail") or call_data.get("in_voicemail")
+    )
     # Check both call_analysis.in_voicemail and top-level in_voicemail
     in_voicemail_flag = bool(
         call_analysis.get("in_voicemail") or call_data.get("in_voicemail")
@@ -820,7 +912,7 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
 async def retell_webhook(payload: Dict[str, Any]):
     """
     Endpoint to receive Retell call events and register them for analysis.
-
+    
     Supports two payload formats:
     1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
     2. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
@@ -828,6 +920,9 @@ async def retell_webhook(payload: Dict[str, Any]):
     event, call_data = _normalize_retell_payload(payload)
 
     if event != "call_analyzed" or not isinstance(call_data, dict):
+        logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
+        if event == "call_analyzed" and not isinstance(call_data, dict):
+            logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
         logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
         if event == "call_analyzed" and not isinstance(call_data, dict):
             logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
@@ -855,7 +950,7 @@ async def retell_webhook(payload: Dict[str, Any]):
 
 
 @app.get("/retell/calls")
-async def list_retell_calls():
+async def list_retell_calls(token_data: Dict[str, Any] = Depends(verify_token)):
     """Return available Retell calls registered via webhook."""
     calls = _load_retell_calls()
     filtered_calls = [
@@ -899,7 +994,7 @@ async def list_retell_calls():
 
 
 @app.post("/retell/calls/refresh")
-async def refresh_retell_calls(call_id: Optional[str] = None):
+async def refresh_retell_calls(call_id: Optional[str] = None, token_data: Dict[str, Any] = Depends(verify_token)):
     """
     Re-evaluate stored call metadata (voicemail detection, duration, etc.).
     If call_id is provided, refresh only that call; otherwise refresh all.
@@ -944,7 +1039,7 @@ def _prepare_retell_call_payload(call_entry: Dict[str, Any]) -> Dict[str, Any]:
 
 
 @app.post("/retell/calls/{call_id}/analyze")
-async def analyze_retell_call(call_id: str, force: bool = Query(False)):
+async def analyze_retell_call(call_id: str, force: bool = Query(False), token_data: Dict[str, Any] = Depends(verify_token)):
     """Trigger Hume analysis for a previously-registered Retell call."""
     call_entry = _ensure_call_registered(call_id)
     if call_entry.get("analysis_allowed") is False:
@@ -993,7 +1088,7 @@ async def analyze_retell_call(call_id: str, force: bool = Query(False)):
 
 
 @app.get("/retell/calls/{call_id}/analysis")
-async def get_retell_call_analysis(call_id: str):
+async def get_retell_call_analysis(call_id: str, token_data: Dict[str, Any] = Depends(verify_token)):
     """Return stored analysis for a Retell call if it has been processed."""
     call_entry = _ensure_call_registered(call_id)
     analysis_filename = call_entry.get("analysis_filename")
