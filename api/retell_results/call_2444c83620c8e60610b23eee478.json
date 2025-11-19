@@ -1,0 +1,2084 @@
+{
+  "call_id": "call_2444c83620c8e60610b23eee478",
+  "retell_metadata": {
+    "retell_call_id": "call_2444c83620c8e60610b23eee478",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/19d9d47da7b4406af1fbd6a578b88689102b621789685473bdd903bd0c313b38/recording_multichannel.wav",
+    "start_timestamp": 1763409438344,
+    "end_timestamp": 1763409572790,
+    "duration_ms": 134446,
+    "agent": {
+      "id": "agent_54888f5c152fb7ddcc2c77a051",
+      "name": "EasyPA Website Demo",
+      "version": 0
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 134446
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_2444c83620c8e60610b23eee478_combined",
+      "prosody": [
+        {
+          "time_start": 0.52,
+          "time_end": 3.4,
+          "text": "Thank you for calling EasyPA! This is Pam, how may I help you?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2566,
+              "percentage": 25.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+        },
+        {
+          "time_start": 6.04,
+          "time_end": 8.06,
+          "text": "Hey there. I wanted to some information, um, on the company, please.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5135,
+              "percentage": 51.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hey there. I wanted to some information, um, on the company, please."
+        },
+        {
+          "time_start": 8.68,
+          "time_end": 9.8,
+          "text": "Hey there. I wanted to some information, um, on the company, please.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2259,
+              "percentage": 22.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hey there. I wanted to some information, um, on the company, please."
+        },
+        {
+          "time_start": 13.33,
+          "time_end": 16.13,
+          "text": "Of course, I\u2019d be happy to help! May I have your name, please?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2331,
+              "percentage": 23.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+        },
+        {
+          "time_start": 19.18,
+          "time_end": 19.66,
+          "text": "Paula.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2387,
+              "percentage": 23.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Paula."
+        },
+        {
+          "time_start": 21.01,
+          "time_end": 24.61,
+          "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2531,
+              "percentage": 25.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 24.61,
+          "time_end": 33.41,
+          "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2198,
+              "percentage": 22.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 31.27,
+          "time_end": 31.75,
+          "text": "Services.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2909,
+              "percentage": 29.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Services."
+        },
+        {
+          "time_start": 33.65,
+          "time_end": 36.53,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.5369,
+              "percentage": 53.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 36.53,
+          "time_end": 41.01,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.6142,
+              "percentage": 61.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 41.01,
+          "time_end": 45.32,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4966,
+              "percentage": 49.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 45.32,
+          "time_end": 49.55,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4236,
+              "percentage": 42.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 49.55,
+          "time_end": 53.94,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4519,
+              "percentage": 45.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 54.34,
+          "time_end": 62.02,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4376,
+              "percentage": 43.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 59.29,
+          "time_end": 61.05,
+          "text": "How does it work?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.3488,
+              "percentage": 34.9,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "How does it work?"
+        },
+        {
+          "time_start": 62.02,
+          "time_end": 66.67,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4595,
+              "percentage": 46.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 66.88,
+          "time_end": 71.61,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.5881,
+              "percentage": 58.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 71.61,
+          "time_end": 76.66,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4538,
+              "percentage": 45.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 76.66,
+          "time_end": 81.3,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2549,
+              "percentage": 25.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 81.45,
+          "time_end": 86.44,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4429,
+              "percentage": 44.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 86.66,
+          "time_end": 91.2,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2879,
+              "percentage": 28.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 91.2,
+          "time_end": 95.82,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.5389,
+              "percentage": 53.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 95.82,
+          "time_end": 103.72,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3001,
+              "percentage": 30.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 101.19,
+          "time_end": 102.15,
+          "text": "How much does it cost?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2509,
+              "percentage": 25.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "How much does it cost?"
+        },
+        {
+          "time_start": 103.72,
+          "time_end": 108.58,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3753,
+              "percentage": 37.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 108.58,
+          "time_end": 113.62,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4738,
+              "percentage": 47.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 113.62,
+          "time_end": 118.49,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.5446,
+              "percentage": 54.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 118.97,
+          "time_end": 123.87,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3352,
+              "percentage": 33.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 123.92,
+          "time_end": 128.17,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4426,
+              "percentage": 44.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 128.17,
+          "time_end": 132.66,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4296,
+              "percentage": 43.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 132.8,
+          "time_end": 134.45,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2124,
+              "percentage": 21.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1766,
+              "percentage": 17.7,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+        },
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1973,
+              "percentage": 19.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hey there. I wanted to some information, um, on the company, please."
+        },
+        {
+          "time_start": 16.0,
+          "time_end": 17.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1839,
+              "percentage": 18.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+        },
+        {
+          "time_start": 17.0,
+          "time_end": 18.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1787,
+              "percentage": 17.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1721,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 26.0,
+          "time_end": 27.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1759,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2179,
+              "percentage": 21.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Services."
+        },
+        {
+          "time_start": 38.0,
+          "time_end": 39.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1778,
+              "percentage": 17.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 46.0,
+          "time_end": 47.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1758,
+              "percentage": 17.6,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 53.0,
+          "time_end": 54.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.175,
+              "percentage": 17.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2595,
+              "percentage": 25.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 67.0,
+          "time_end": 68.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1852,
+              "percentage": 18.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 74.0,
+          "time_end": 75.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1723,
+              "percentage": 17.2,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 80.0,
+          "time_end": 81.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.2345,
+              "percentage": 23.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 88.0,
+          "time_end": 89.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.174,
+              "percentage": 17.4,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 94.0,
+          "time_end": 95.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1546,
+              "percentage": 15.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 95.0,
+          "time_end": 96.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.153,
+              "percentage": 15.3,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 100.0,
+          "time_end": 101.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2203,
+              "percentage": 22.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "How much does it cost?"
+        },
+        {
+          "time_start": 108.0,
+          "time_end": 109.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1601,
+              "percentage": 16.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 122.0,
+          "time_end": 123.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2087,
+              "percentage": 20.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": "agent_54888f5c152fb7ddcc2c77a051",
+          "name": "EasyPA Website Demo",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 10,
+          "neutral": 16,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 0.441375,
+            "end": 3.679958251953125,
+            "text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 5.9069996,
+            "end": 9.657,
+            "text": "Hey there. I wanted to some information, um, on the company, please."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.415333251953125,
+            "end": 16.50525,
+            "text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 19.126999,
+            "end": 19.447000000000003,
+            "text": "Paula."
+          },
+          {
+            "speaker": "Agent",
+            "start": 20.967833251953124,
+            "end": 28.316916748046875,
+            "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 30.867,
+            "end": 31.587,
+            "text": "Services."
+          },
+          {
+            "speaker": "Agent",
+            "start": 33.268833251953126,
+            "end": 56.419375,
+            "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+          },
+          {
+            "speaker": "Customer",
+            "start": 59.217,
+            "end": 60.016999999999996,
+            "text": "How does it work?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 61.669875,
+            "end": 98.80095825195312,
+            "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 100.986996,
+            "end": 101.867,
+            "text": "How much does it cost?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 103.42829174804687,
+            "end": 134.26958325195312,
+            "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+          }
+        ],
+        "retell_call_id": "call_2444c83620c8e60610b23eee478",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/19d9d47da7b4406af1fbd6a578b88689102b621789685473bdd903bd0c313b38/recording_multichannel.wav",
+        "start_timestamp": 1763409438344,
+        "end_timestamp": 1763409572790,
+        "duration_ms": 134446,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 134446
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer, Paula, expressed disappointment when inquiring about the cost but remained engaged throughout the call. There was no explicit commitment or refusal, leaving the outcome open for future follow-up.",
+          "source": "openai"
+        }
+      },
+      "summary": "Customer Paula seeks information about EasyPA, showing interest at 6.0s and determination at 31.3s when asking about services. Disappointment emerges at 59.3s when inquiring about the platform's workings and cost. The Agent maintains a positive tone, showing satisfaction and determination, which helps clarify service details and pricing. Despite Paula's disappointment, she remains engaged, indicating potential interest in further details. The call concludes without a clear commitment from Paula, but the Agent's consistent positivity suggests a foundation for future follow-up."
+    },
+    {
+      "filename": "call_2444c83620c8e60610b23eee478_agent.wav",
+      "prosody": [
+        {
+          "time_start": 0.52,
+          "time_end": 3.4,
+          "text": "Thank you for calling EasyPA! This is Pam, how may I help you?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2566,
+              "percentage": 25.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+        },
+        {
+          "time_start": 13.33,
+          "time_end": 16.13,
+          "text": "Of course, I\u2019d be happy to help! May I have your name, please?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2331,
+              "percentage": 23.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+        },
+        {
+          "time_start": 21.01,
+          "time_end": 24.61,
+          "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2531,
+              "percentage": 25.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 24.61,
+          "time_end": 33.41,
+          "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2198,
+              "percentage": 22.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 33.65,
+          "time_end": 36.53,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.5369,
+              "percentage": 53.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 36.53,
+          "time_end": 41.01,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.6142,
+              "percentage": 61.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 41.01,
+          "time_end": 45.32,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.4966,
+              "percentage": 49.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 45.32,
+          "time_end": 49.55,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4236,
+              "percentage": 42.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 49.55,
+          "time_end": 53.94,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4519,
+              "percentage": 45.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 54.34,
+          "time_end": 62.02,
+          "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4376,
+              "percentage": 43.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 62.02,
+          "time_end": 66.67,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4595,
+              "percentage": 46.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 66.88,
+          "time_end": 71.61,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.5881,
+              "percentage": 58.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 71.61,
+          "time_end": 76.66,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4538,
+              "percentage": 45.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 76.66,
+          "time_end": 81.3,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2549,
+              "percentage": 25.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 81.45,
+          "time_end": 86.44,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4429,
+              "percentage": 44.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 86.66,
+          "time_end": 91.2,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.2879,
+              "percentage": 28.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 91.2,
+          "time_end": 95.82,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.5389,
+              "percentage": 53.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 95.82,
+          "time_end": 103.72,
+          "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3001,
+              "percentage": 30.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 103.72,
+          "time_end": 108.58,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3753,
+              "percentage": 37.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 108.58,
+          "time_end": 113.62,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4738,
+              "percentage": 47.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 113.62,
+          "time_end": 118.49,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.5446,
+              "percentage": 54.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 118.97,
+          "time_end": 123.87,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3352,
+              "percentage": 33.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 123.92,
+          "time_end": 128.17,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4426,
+              "percentage": 44.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 128.17,
+          "time_end": 132.66,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4296,
+              "percentage": 43.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 132.8,
+          "time_end": 134.45,
+          "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more ",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2124,
+              "percentage": 21.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1721,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 10,
+          "neutral": 16,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 0.441375,
+            "end": 3.679958251953125,
+            "text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 5.9069996,
+            "end": 9.657,
+            "text": "Hey there. I wanted to some information, um, on the company, please."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.415333251953125,
+            "end": 16.50525,
+            "text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 19.126999,
+            "end": 19.447000000000003,
+            "text": "Paula."
+          },
+          {
+            "speaker": "Agent",
+            "start": 20.967833251953124,
+            "end": 28.316916748046875,
+            "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 30.867,
+            "end": 31.587,
+            "text": "Services."
+          },
+          {
+            "speaker": "Agent",
+            "start": 33.268833251953126,
+            "end": 56.419375,
+            "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+          },
+          {
+            "speaker": "Customer",
+            "start": 59.217,
+            "end": 60.016999999999996,
+            "text": "How does it work?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 61.669875,
+            "end": 98.80095825195312,
+            "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 100.986996,
+            "end": 101.867,
+            "text": "How much does it cost?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 103.42829174804687,
+            "end": 134.26958325195312,
+            "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+          }
+        ],
+        "retell_call_id": "call_2444c83620c8e60610b23eee478",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/19d9d47da7b4406af1fbd6a578b88689102b621789685473bdd903bd0c313b38/recording_multichannel.wav",
+        "start_timestamp": 1763409438344,
+        "end_timestamp": 1763409572790,
+        "duration_ms": 134446,
+        "agent": {
+          "id": "agent_54888f5c152fb7ddcc2c77a051",
+          "name": "EasyPA Website Demo",
+          "version": 0
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 134446
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer, Paula, expressed disappointment when inquiring about the cost but remained engaged throughout the call. There was no explicit commitment or refusal, leaving the outcome open for future follow-up.",
+          "source": "openai"
+        }
+      },
+      "summary": "Customer Paula seeks information about EasyPA, showing interest at 6.0s and determination at 31.3s when asking about services. Disappointment emerges at 59.3s when inquiring about the platform's workings and cost. The Agent maintains a positive tone, showing satisfaction and determination, which helps clarify service details and pricing. Despite Paula's disappointment, she remains engaged, indicating potential interest in further details. The call concludes without a clear commitment from Paula, but the Agent's consistent positivity suggests a foundation for future follow-up."
+    },
+    {
+      "filename": "call_2444c83620c8e60610b23eee478_user.wav",
+      "prosody": [
+        {
+          "time_start": 6.04,
+          "time_end": 8.06,
+          "text": "Hey there. I wanted to some information, um, on the company, please.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.5135,
+              "percentage": 51.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hey there. I wanted to some information, um, on the company, please."
+        },
+        {
+          "time_start": 8.68,
+          "time_end": 9.8,
+          "text": "Hey there. I wanted to some information, um, on the company, please.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2259,
+              "percentage": 22.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Hey there. I wanted to some information, um, on the company, please."
+        },
+        {
+          "time_start": 19.18,
+          "time_end": 19.66,
+          "text": "Paula.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2387,
+              "percentage": 23.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Paula."
+        },
+        {
+          "time_start": 31.27,
+          "time_end": 31.75,
+          "text": "Services.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2909,
+              "percentage": 29.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "Services."
+        },
+        {
+          "time_start": 59.29,
+          "time_end": 61.05,
+          "text": "How does it work?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.3488,
+              "percentage": 34.9,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "How does it work?"
+        },
+        {
+          "time_start": 101.19,
+          "time_end": 102.15,
+          "text": "How much does it cost?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2509,
+              "percentage": 25.1,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer",
+          "transcript_text": "How much does it cost?"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1766,
+              "percentage": 17.7,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+        },
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1973,
+              "percentage": 19.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Hey there. I wanted to some information, um, on the company, please."
+        },
+        {
+          "time_start": 16.0,
+          "time_end": 17.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1839,
+              "percentage": 18.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+        },
+        {
+          "time_start": 17.0,
+          "time_end": 18.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1787,
+              "percentage": 17.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 26.0,
+          "time_end": 27.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1759,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2179,
+              "percentage": 21.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "Services."
+        },
+        {
+          "time_start": 38.0,
+          "time_end": 39.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1778,
+              "percentage": 17.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 46.0,
+          "time_end": 47.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1758,
+              "percentage": 17.6,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 53.0,
+          "time_end": 54.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.175,
+              "percentage": 17.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2595,
+              "percentage": 25.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 67.0,
+          "time_end": 68.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1852,
+              "percentage": 18.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 74.0,
+          "time_end": 75.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1723,
+              "percentage": 17.2,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 80.0,
+          "time_end": 81.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.2345,
+              "percentage": 23.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 88.0,
+          "time_end": 89.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.174,
+              "percentage": 17.4,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 94.0,
+          "time_end": 95.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1546,
+              "percentage": 15.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 95.0,
+          "time_end": 96.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.153,
+              "percentage": 15.3,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+        },
+        {
+          "time_start": 100.0,
+          "time_end": 101.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2203,
+              "percentage": 22.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer",
+          "transcript_text": "How much does it cost?"
+        },
+        {
+          "time_start": 108.0,
+          "time_end": 109.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1601,
+              "percentage": 16.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        },
+        {
+          "time_start": 122.0,
+          "time_end": 123.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2087,
+              "percentage": 20.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent",
+          "transcript_text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 8,
+          "neutral": 1,
+          "negative": 16
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 0.441375,
+            "end": 3.679958251953125,
+            "text": "Thank you for calling EasyPA! This is Pam, how may I help you?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 5.9069996,
+            "end": 9.657,
+            "text": "Hey there. I wanted to some information, um, on the company, please."
+          },
+          {
+            "speaker": "Agent",
+            "start": 13.415333251953125,
+            "end": 16.50525,
+            "text": "Of course, I\u2019d be happy to help! May I have your name, please?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 19.126999,
+            "end": 19.447000000000003,
+            "text": "Paula."
+          },
+          {
+            "speaker": "Agent",
+            "start": 20.967833251953124,
+            "end": 28.316916748046875,
+            "text": "Thank you, Paula! What specific information would you like to know about EasyPA? Are you interested in our services, how we work, or something else?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 30.867,
+            "end": 31.587,
+            "text": "Services."
+          },
+          {
+            "speaker": "Agent",
+            "start": 33.268833251953126,
+            "end": 56.419375,
+            "text": "Thanks, Paula! EasyPA provides a platform designed to help healthcare providers and clinics manage prior authorizations more efficiently. Our service streamlines the process, making it easier for staff to submit, track, and manage prior authorization requests with payers.\n\nIf you\u2019d like, I can share more details about how the platform works or the types of organizations we serve. Let me know what you\u2019re most interested in!"
+          },
+          {
+            "speaker": "Customer",
+            "start": 59.217,
+            "end": 60.016999999999996,
+            "text": "How does it work?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 61.669875,
+            "end": 98.80095825195312,
+            "text": "Great question, Paula! EasyPA uses AI to automate and simplify prior authorization tasks for healthcare providers. You can submit prior authorizations for things like specialist referrals, imaging, and medications directly through our platform. The system connects with over 900 insurance payers and integrates with popular EHR systems like Epic, Cerner, and athenahealth.\n\nOur AI helps predict approval chances, suggests documentation, and keeps everything organized in a secure, HIPAA-compliant cloud. This means less paperwork and faster approvals, so providers can focus more on patient care.\n\nIs there a particular part of the process you\u2019d like to know more about?"
+          },
+          {
+            "speaker": "Customer",
+            "start": 100.986996,
+            "end": 101.867,
+            "text": "How much does it cost?"
+          },
+          {
+            "speaker": "Agent",
+            "start": 103.42829174804687,
+            "end": 134.26958325195312,
+            "text": "Happy to explain the pricing, Paula! EasyPA offers a simple, flat-rate plan for most clinics at $250 per month, per provider. This includes unlimited prior authorizations, real-time approval predictions, payer-specific checklists, and analytics. There are no setup fees, and you can cancel anytime.\n\nWe also have a UM Helper plan for individual utilization management staff at $50 per month, and custom pricing for larger organizations that need more advanced features or integrations.\n\nWould you like more "
+          }
+        ],
+        "retell_call_id": "call_2444c83620c8e60610b23eee478",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/19d9d47da7b4406af1fbd6a578b88689102b621789685473bdd903bd0c313b38/recording_multichannel.wav",
+        "start_timestamp": 1763409438344,
+        "end_timestamp": 1763409572790,
+        "duration_ms": 134446,
+        "agent": {
+          "id": "agent_54888f5c152fb7ddcc2c77a051",
+          "name": "EasyPA Website Demo",
+          "version": 0
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 134446
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer, Paula, expressed disappointment when inquiring about the cost but remained engaged throughout the call. There was no explicit commitment or refusal, leaving the outcome open for future follow-up.",
+          "source": "openai"
+        }
+      },
+      "summary": "Customer Paula seeks information about EasyPA, showing interest at 6.0s and determination at 31.3s when asking about services. Disappointment emerges at 59.3s when inquiring about the platform's workings and cost. The Agent maintains a positive tone, showing satisfaction and determination, which helps clarify service details and pricing. Despite Paula's disappointment, she remains engaged, indicating potential interest in further details. The call concludes without a clear commitment from Paula, but the Agent's consistent positivity suggests a foundation for future follow-up."
+    }
+  ]
+}

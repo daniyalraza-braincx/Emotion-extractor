@@ -1,0 +1,954 @@
+{
+  "call_id": "call_fda9c6c4ee36854ddd4bab40ae6",
+  "retell_metadata": {
+    "retell_call_id": "call_fda9c6c4ee36854ddd4bab40ae6",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/f7724f129bbc23dbaf968c632e54e376c29f24740e802efe3642f4163ba2c42d/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_fda9c6c4ee36854ddd4bab40ae6_combined",
+      "prosody": [
+        {
+          "time_start": 0.84,
+          "time_end": 2.44,
+          "text": "Hi. Thank you for returning my call.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3147,
+              "percentage": 31.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 1.95,
+          "time_end": 3.07,
+          "text": "Hi. Thank you for returning.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.5112,
+              "percentage": 51.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 6.17,
+          "time_end": 6.49,
+          "text": "Hi?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4043,
+              "percentage": 40.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 6.6,
+          "time_end": 9.24,
+          "text": "Hi. This is Courtney calling on behalf of Bethel College.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3714,
+              "percentage": 37.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 9.96,
+          "time_end": 11.16,
+          "text": "Am I speaking with Billy Joe.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1279,
+              "percentage": 12.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 12.86,
+          "time_end": 13.18,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2185,
+              "percentage": 21.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 15.41,
+          "time_end": 18.04,
+          "text": "Hi, Billy Joe. Before we get started, all calls",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.1735,
+              "percentage": 17.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 18.04,
+          "time_end": 21.47,
+          "text": "are recorded for quality assurance and training purposes. I",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4535,
+              "percentage": 45.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 21.47,
+          "time_end": 24.82,
+          "text": "received your interest in the Ekg technician program. Before",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4099,
+              "percentage": 41.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 24.82,
+          "time_end": 28.75,
+          "text": "we move forward, let me pull up the requirements for your program. Great.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5905,
+              "percentage": 59.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 29.14,
+          "time_end": 34.64,
+          "text": "Do you have a high school diploma or equivalent? Perfect.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.2253,
+              "percentage": 22.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 33.26,
+          "time_end": 33.58,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2376,
+              "percentage": 23.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 35.12,
+          "time_end": 39.98,
+          "text": "I'd love to help get you connected within an admissions representative who can answer your questions and guide you",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.473,
+              "percentage": 47.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 39.98,
+          "time_end": 47.33,
+          "text": "through the next steps? How about I text you a link to choose a thirty minute spot. Great.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.258,
+              "percentage": 25.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 46.05,
+          "time_end": 46.29,
+          "text": "Sure.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2438,
+              "percentage": 24.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 47.8,
+          "time_end": 52.59,
+          "text": "A text message will be sent your way. Simply click the link and choose a time that works best for",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.362,
+              "percentage": 36.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 52.59,
+          "time_end": 59.83,
+          "text": "you. Before we wrap up, do you have any questions that I can help answer for you. Alright.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5165,
+              "percentage": 51.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 58.14,
+          "time_end": 58.3,
+          "text": "No.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.1641,
+              "percentage": 16.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 60.07,
+          "time_end": 62.76,
+          "text": "Thanks so much for your time, Billie Joe. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3466,
+              "percentage": 34.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1752,
+              "percentage": 17.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.3035,
+              "percentage": 30.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 18.0,
+          "time_end": 19.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.5325,
+              "percentage": 53.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 45.0,
+          "time_end": 46.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.3819,
+              "percentage": 38.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 46.0,
+          "time_end": 47.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.1947,
+              "percentage": 19.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3126,
+              "percentage": 31.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "category_counts": {
+          "positive": 4,
+          "neutral": 5,
+          "negative": 2
+        },
+        "retell_call_id": "call_fda9c6c4ee36854ddd4bab40ae6",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/f7724f129bbc23dbaf968c632e54e376c29f24740e802efe3642f4163ba2c42d/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "Billy Joe agreed to receive a text link for scheduling a follow-up, indicating a commitment to proceed with the agent's request. The call concluded with a calm and positive exchange, reinforcing the successful outcome.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The agent contacts Billy Joe about the EKG Technician program, maintaining calmness and determination throughout. Billy Joe initially shows satisfaction at 1.95s, then shifts to calmness at 12.9s, and finally to confusion at 58.1s when responding to the agent's questions. Despite this, Billy Joe commits to receiving a text link for scheduling a follow-up. The call concludes with the agent calmly confirming the next steps and expressing interest in assisting further."
+    },
+    {
+      "filename": "call_fda9c6c4ee36854ddd4bab40ae6_user.wav",
+      "prosody": [
+        {
+          "time_start": 1.95,
+          "time_end": 3.07,
+          "text": "Hi. Thank you for returning.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.5112,
+              "percentage": 51.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 6.17,
+          "time_end": 6.49,
+          "text": "Hi?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4043,
+              "percentage": 40.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 12.86,
+          "time_end": 13.18,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2185,
+              "percentage": 21.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 33.26,
+          "time_end": 33.58,
+          "text": "Yes.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2376,
+              "percentage": 23.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 46.05,
+          "time_end": 46.29,
+          "text": "Sure.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2438,
+              "percentage": 24.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 58.14,
+          "time_end": 58.3,
+          "text": "No.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.1641,
+              "percentage": 16.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1752,
+              "percentage": 17.5,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.3035,
+              "percentage": 30.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 18.0,
+          "time_end": 19.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.5325,
+              "percentage": 53.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 45.0,
+          "time_end": 46.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.3819,
+              "percentage": 38.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3126,
+              "percentage": 31.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 5,
+          "negative": 2
+        },
+        "retell_call_id": "call_fda9c6c4ee36854ddd4bab40ae6",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/f7724f129bbc23dbaf968c632e54e376c29f24740e802efe3642f4163ba2c42d/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "Billy Joe agreed to receive a text link for scheduling a follow-up, indicating a commitment to proceed with the agent's request. The call concluded with a calm and positive exchange, reinforcing the successful outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts Billy Joe about the EKG Technician program, maintaining calmness and determination throughout. Billy Joe initially shows satisfaction at 1.95s, then shifts to calmness at 12.9s, and finally to confusion at 58.1s when responding to the agent's questions. Despite this, Billy Joe commits to receiving a text link for scheduling a follow-up. The call concludes with the agent calmly confirming the next steps and expressing interest in assisting further."
+    },
+    {
+      "filename": "call_fda9c6c4ee36854ddd4bab40ae6_agent.wav",
+      "prosody": [
+        {
+          "time_start": 0.84,
+          "time_end": 2.44,
+          "text": "Hi. Thank you for returning my call.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3147,
+              "percentage": 31.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 6.6,
+          "time_end": 9.24,
+          "text": "Hi. This is Courtney calling on behalf of Bethel College.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3714,
+              "percentage": 37.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 9.96,
+          "time_end": 11.16,
+          "text": "Am I speaking with Billy Joe.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.1279,
+              "percentage": 12.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 15.41,
+          "time_end": 18.04,
+          "text": "Hi, Billy Joe. Before we get started, all calls",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.1735,
+              "percentage": 17.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 18.04,
+          "time_end": 21.47,
+          "text": "are recorded for quality assurance and training purposes. I",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.4535,
+              "percentage": 45.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 21.47,
+          "time_end": 24.82,
+          "text": "received your interest in the Ekg technician program. Before",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4099,
+              "percentage": 41.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 24.82,
+          "time_end": 28.75,
+          "text": "we move forward, let me pull up the requirements for your program. Great.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5905,
+              "percentage": 59.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 29.14,
+          "time_end": 34.64,
+          "text": "Do you have a high school diploma or equivalent? Perfect.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.2253,
+              "percentage": 22.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 35.12,
+          "time_end": 39.98,
+          "text": "I'd love to help get you connected within an admissions representative who can answer your questions and guide you",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.473,
+              "percentage": 47.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 39.98,
+          "time_end": 47.33,
+          "text": "through the next steps? How about I text you a link to choose a thirty minute spot. Great.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.258,
+              "percentage": 25.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 47.8,
+          "time_end": 52.59,
+          "text": "A text message will be sent your way. Simply click the link and choose a time that works best for",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.362,
+              "percentage": 36.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 52.59,
+          "time_end": 59.83,
+          "text": "you. Before we wrap up, do you have any questions that I can help answer for you. Alright.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5165,
+              "percentage": 51.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 60.07,
+          "time_end": 62.76,
+          "text": "Thanks so much for your time, Billie Joe. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.3466,
+              "percentage": 34.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 46.0,
+          "time_end": 47.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.1947,
+              "percentage": 19.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 7,
+          "neutral": 7,
+          "negative": 0
+        },
+        "retell_call_id": "call_fda9c6c4ee36854ddd4bab40ae6",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/f7724f129bbc23dbaf968c632e54e376c29f24740e802efe3642f4163ba2c42d/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "positive",
+          "call_outcome": "success",
+          "confidence": 0.95,
+          "reasoning": "Billy Joe agreed to receive a text link for scheduling a follow-up, indicating a commitment to proceed with the agent's request. The call concluded with a calm and positive exchange, reinforcing the successful outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts Billy Joe about the EKG Technician program, maintaining calmness and determination throughout. Billy Joe initially shows satisfaction at 1.95s, then shifts to calmness at 12.9s, and finally to confusion at 58.1s when responding to the agent's questions. Despite this, Billy Joe commits to receiving a text link for scheduling a follow-up. The call concludes with the agent calmly confirming the next steps and expressing interest in assisting further."
+    }
+  ]
+}

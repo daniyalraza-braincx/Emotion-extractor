@@ -1,0 +1,491 @@
+{
+  "call_id": "call_334e2fae4d10b9de4440bb41d07",
+  "retell_metadata": {
+    "retell_call_id": "call_334e2fae4d10b9de4440bb41d07",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/caf8593224821884688fb44ca93b9bf6204f2e31ddf6b0028b3fb71c823f26a2/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_334e2fae4d10b9de4440bb41d07_combined",
+      "prosody": [
+        {
+          "time_start": 0.28,
+          "time_end": 4.74,
+          "text": "Hi. If you record your name and reason for calling. I'll see if this person is available.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4274,
+              "percentage": 42.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 5.87,
+          "time_end": 10.73,
+          "text": "Sure. This is Courtney, and I'm calling on behalf of Bethel College about the sterile processing",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3046,
+              "percentage": 30.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 10.73,
+          "time_end": 24.23,
+          "text": "and surgical technologies program. I just like to speak with roxanne sand for a quick moment. No",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.287,
+              "percentage": 28.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 20.94,
+          "time_end": 22.62,
+          "text": "Thanks. Please stay on the line.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2421,
+              "percentage": 24.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 24.23,
+          "time_end": 27.02,
+          "text": "worries. I'll call back another time. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.263,
+              "percentage": 26.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1896,
+              "percentage": 19.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 11.0,
+          "time_end": 12.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 18.0,
+          "time_end": 19.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.173,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Pain",
+              "score": 0.3548,
+              "percentage": 35.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 22.0,
+          "time_end": 23.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2155,
+              "percentage": 21.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "category_counts": {
+          "positive": 0,
+          "neutral": 3,
+          "negative": 1
+        },
+        "retell_call_id": "call_334e2fae4d10b9de4440bb41d07",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/caf8593224821884688fb44ca93b9bf6204f2e31ddf6b0028b3fb71c823f26a2/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer was unavailable and the agent decided to call back later, indicating a pending outcome without any negative sentiment.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The agent contacts Roxanne about Bethel College's program, maintaining concentration and calmness throughout. The customer initially shows interest at 0.3s but shifts to disappointment and pain by 20.0s, indicating unavailability. The agent remains calm and decides to call back later, ending the call with a commitment to reconnect."
+    },
+    {
+      "filename": "call_334e2fae4d10b9de4440bb41d07_agent.wav",
+      "prosody": [
+        {
+          "time_start": 5.87,
+          "time_end": 10.73,
+          "text": "Sure. This is Courtney, and I'm calling on behalf of Bethel College about the sterile processing",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3046,
+              "percentage": 30.5,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 10.73,
+          "time_end": 24.23,
+          "text": "and surgical technologies program. I just like to speak with roxanne sand for a quick moment. No",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.287,
+              "percentage": 28.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 24.23,
+          "time_end": 27.02,
+          "text": "worries. I'll call back another time. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.263,
+              "percentage": 26.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 22.0,
+          "time_end": 23.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2155,
+              "percentage": 21.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 3,
+          "negative": 1
+        },
+        "retell_call_id": "call_334e2fae4d10b9de4440bb41d07",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/caf8593224821884688fb44ca93b9bf6204f2e31ddf6b0028b3fb71c823f26a2/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer was unavailable and the agent decided to call back later, indicating a pending outcome without any negative sentiment.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts Roxanne about Bethel College's program, maintaining concentration and calmness throughout. The customer initially shows interest at 0.3s but shifts to disappointment and pain by 20.0s, indicating unavailability. The agent remains calm and decides to call back later, ending the call with a commitment to reconnect."
+    },
+    {
+      "filename": "call_334e2fae4d10b9de4440bb41d07_user.wav",
+      "prosody": [
+        {
+          "time_start": 0.28,
+          "time_end": 4.74,
+          "text": "Hi. If you record your name and reason for calling. I'll see if this person is available.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4274,
+              "percentage": 42.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 20.94,
+          "time_end": 22.62,
+          "text": "Thanks. Please stay on the line.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2421,
+              "percentage": 24.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 5.0,
+          "time_end": 6.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1896,
+              "percentage": 19.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 11.0,
+          "time_end": 12.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 18.0,
+          "time_end": 19.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.173,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Pain",
+              "score": 0.3548,
+              "percentage": 35.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 2,
+          "neutral": 0,
+          "negative": 4
+        },
+        "retell_call_id": "call_334e2fae4d10b9de4440bb41d07",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/caf8593224821884688fb44ca93b9bf6204f2e31ddf6b0028b3fb71c823f26a2/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer was unavailable and the agent decided to call back later, indicating a pending outcome without any negative sentiment.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts Roxanne about Bethel College's program, maintaining concentration and calmness throughout. The customer initially shows interest at 0.3s but shifts to disappointment and pain by 20.0s, indicating unavailability. The agent remains calm and decides to call back later, ending the call with a commitment to reconnect."
+    }
+  ]
+}

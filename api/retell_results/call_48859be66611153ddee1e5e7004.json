@@ -1,0 +1,669 @@
+{
+  "call_id": "call_48859be66611153ddee1e5e7004",
+  "retell_metadata": {
+    "retell_call_id": "call_48859be66611153ddee1e5e7004",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/276e6f6e1c97363d11b059b00a8d3416bf878cef8364e622acd345109093a42c/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_48859be66611153ddee1e5e7004_combined",
+      "prosody": [
+        {
+          "time_start": 4.44,
+          "time_end": 4.68,
+          "text": "Hello?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Surprise (negative)",
+              "score": 0.2042,
+              "percentage": 20.4,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 7.93,
+          "time_end": 8.49,
+          "text": "Hi. This is...",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.6504,
+              "percentage": 65.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 8.2,
+          "time_end": 8.68,
+          "text": "Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.2055,
+              "percentage": 20.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 10.01,
+          "time_end": 12.74,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.9194,
+              "percentage": 91.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 13.27,
+          "time_end": 14.07,
+          "text": "Is this ta kai?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.6389,
+              "percentage": 63.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 31.5,
+          "time_end": 31.82,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.1556,
+              "percentage": 15.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 33.37,
+          "time_end": 37.04,
+          "text": "Hi. This is Courtney with Arcadia University. Am I speaking with Ta kai?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.6325,
+              "percentage": 63.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 4.0,
+          "time_end": 5.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2417,
+              "percentage": 24.2,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 7.0,
+          "time_end": 8.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2148,
+              "percentage": 21.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 15.0,
+          "time_end": 16.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1725,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 21.0,
+          "time_end": 22.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1757,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 30.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1729,
+              "percentage": 17.3,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 31.0,
+          "time_end": 32.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.4075,
+              "percentage": 40.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 38.0,
+          "time_end": 39.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1708,
+              "percentage": 17.1,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 44.0,
+          "time_end": 45.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.175,
+              "percentage": 17.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "category_counts": {
+          "positive": 3,
+          "neutral": 1,
+          "negative": 1
+        },
+        "retell_call_id": "call_48859be66611153ddee1e5e7004",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/276e6f6e1c97363d11b059b00a8d3416bf878cef8364e622acd345109093a42c/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call ends without a clear commitment or next step from the customer, leaving the outcome unresolved. Despite initial interest, the lack of a definitive acceptance or refusal results in a pending status.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The agent contacts a customer on behalf of Arcadia University, initially showing excitement at 7.9s and interest at 10.0s. The customer experiences negative surprise at 4.4s, shifts to mild excitement at 8.2s, and then to awkwardness at 31.5s. Despite these fluctuations, the call does not conclude with a clear commitment or next step from the customer. The agent's consistent interest does not significantly alter the outcome, as the conversation remains unresolved."
+    },
+    {
+      "filename": "call_48859be66611153ddee1e5e7004_agent.wav",
+      "prosody": [
+        {
+          "time_start": 7.93,
+          "time_end": 8.49,
+          "text": "Hi. This is...",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.6504,
+              "percentage": 65.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 10.01,
+          "time_end": 12.74,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.9194,
+              "percentage": 91.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 13.27,
+          "time_end": 14.07,
+          "text": "Is this ta kai?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.6389,
+              "percentage": 63.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 33.37,
+          "time_end": 37.04,
+          "text": "Hi. This is Courtney with Arcadia University. Am I speaking with Ta kai?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.6325,
+              "percentage": 63.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 7.0,
+          "time_end": 8.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2148,
+              "percentage": 21.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 3,
+          "neutral": 1,
+          "negative": 1
+        },
+        "retell_call_id": "call_48859be66611153ddee1e5e7004",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/276e6f6e1c97363d11b059b00a8d3416bf878cef8364e622acd345109093a42c/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call ends without a clear commitment or next step from the customer, leaving the outcome unresolved. Despite initial interest, the lack of a definitive acceptance or refusal results in a pending status.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts a customer on behalf of Arcadia University, initially showing excitement at 7.9s and interest at 10.0s. The customer experiences negative surprise at 4.4s, shifts to mild excitement at 8.2s, and then to awkwardness at 31.5s. Despite these fluctuations, the call does not conclude with a clear commitment or next step from the customer. The agent's consistent interest does not significantly alter the outcome, as the conversation remains unresolved."
+    },
+    {
+      "filename": "call_48859be66611153ddee1e5e7004_user.wav",
+      "prosody": [
+        {
+          "time_start": 4.44,
+          "time_end": 4.68,
+          "text": "Hello?",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Surprise (negative)",
+              "score": 0.2042,
+              "percentage": 20.4,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 8.2,
+          "time_end": 8.68,
+          "text": "Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.2055,
+              "percentage": 20.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 31.5,
+          "time_end": 31.82,
+          "text": "Hello?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.1556,
+              "percentage": 15.6,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 4.0,
+          "time_end": 5.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2417,
+              "percentage": 24.2,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 15.0,
+          "time_end": 16.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1725,
+              "percentage": 17.2,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 21.0,
+          "time_end": 22.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1757,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 29.0,
+          "time_end": 30.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1729,
+              "percentage": 17.3,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 31.0,
+          "time_end": 32.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.4075,
+              "percentage": 40.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 38.0,
+          "time_end": 39.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.1708,
+              "percentage": 17.1,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 44.0,
+          "time_end": 45.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.175,
+              "percentage": 17.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 2,
+          "negative": 5
+        },
+        "retell_call_id": "call_48859be66611153ddee1e5e7004",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/276e6f6e1c97363d11b059b00a8d3416bf878cef8364e622acd345109093a42c/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call ends without a clear commitment or next step from the customer, leaving the outcome unresolved. Despite initial interest, the lack of a definitive acceptance or refusal results in a pending status.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts a customer on behalf of Arcadia University, initially showing excitement at 7.9s and interest at 10.0s. The customer experiences negative surprise at 4.4s, shifts to mild excitement at 8.2s, and then to awkwardness at 31.5s. Despite these fluctuations, the call does not conclude with a clear commitment or next step from the customer. The agent's consistent interest does not significantly alter the outcome, as the conversation remains unresolved."
+    }
+  ]
+}

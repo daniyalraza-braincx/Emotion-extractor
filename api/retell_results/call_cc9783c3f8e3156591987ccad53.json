@@ -1,0 +1,704 @@
+{
+  "call_id": "call_cc9783c3f8e3156591987ccad53",
+  "retell_metadata": {
+    "retell_call_id": "call_cc9783c3f8e3156591987ccad53",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b561249af0a440c6591b1e2adf84863afa7e7c37adab7018159b6ad61c1c7023/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_cc9783c3f8e3156591987ccad53_combined",
+      "prosody": [
+        {
+          "time_start": 0.92,
+          "time_end": 3.64,
+          "text": "Hi. Thank you for returning my call. This is Courtney,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2767,
+              "percentage": 27.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 3.88,
+          "time_end": 6.68,
+          "text": "and I was calling on behalf of Arcadia University. Am",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3298,
+              "percentage": 33.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 6.76,
+          "time_end": 12.37,
+          "text": "I speaking with Elliott? Hi,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1299,
+              "percentage": 13.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 10.04,
+          "time_end": 11.32,
+          "text": "Yeah. This is Elliot. Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2582,
+              "percentage": 25.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 12.53,
+          "time_end": 17.54,
+          "text": "Elliot. Before we get started, all calls are recorded for quality assurance and training purposes. I",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2744,
+              "percentage": 27.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 17.54,
+          "time_end": 21.52,
+          "text": "received your interest in the Ph bottom technician program. Before we move forward,",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2395,
+              "percentage": 24.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 21.76,
+          "time_end": 25.36,
+          "text": "let me pull up the requirements for your program. May",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3514,
+              "percentage": 35.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 25.52,
+          "time_end": 35.98,
+          "text": "I know what state you currently reside in? I",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2026,
+              "percentage": 20.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 31.18,
+          "time_end": 34.14,
+          "text": "Yeah. I'm good. I couldn't even tell if that was a person or not.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.472,
+              "percentage": 47.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 35.98,
+          "time_end": 36.67,
+          "text": "totally get the",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2524,
+              "percentage": 25.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1734,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2696,
+              "percentage": 27.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.171,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 3.0,
+          "time_end": 4.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2096,
+              "percentage": 21.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 9.0,
+          "time_end": 10.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1968,
+              "percentage": 19.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 17.0,
+          "time_end": 18.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1776,
+              "percentage": 17.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disgust",
+              "score": 0.7652,
+              "percentage": 76.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "category_counts": {
+          "positive": 1,
+          "neutral": 0,
+          "negative": 7
+        },
+        "retell_call_id": "call_cc9783c3f8e3156591987ccad53",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b561249af0a440c6591b1e2adf84863afa7e7c37adab7018159b6ad61c1c7023/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "Elliot's response was mixed, showing initial interest but later confusion and disappointment. There was no clear acceptance or refusal, suggesting a pending outcome.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "Agent Courtney contacts Elliot regarding the Ph bottom technician program at Arcadia University. Elliot initially shows disappointment and distress but shifts to interest at 10.0s when confirming his identity. Disappointment resurfaces at 31.2s when expressing confusion about the call's nature. Courtney maintains satisfaction and determination, explaining the program and asking for Elliot's state of residence. Despite Elliot's mixed emotions, the call progresses with Courtney's calm and determined approach, suggesting a potential follow-up."
+    },
+    {
+      "filename": "call_cc9783c3f8e3156591987ccad53_user.wav",
+      "prosody": [
+        {
+          "time_start": 10.04,
+          "time_end": 11.32,
+          "text": "Yeah. This is Elliot. Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2582,
+              "percentage": 25.8,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 31.18,
+          "time_end": 34.14,
+          "text": "Yeah. I'm good. I couldn't even tell if that was a person or not.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.472,
+              "percentage": 47.2,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1734,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.171,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 3.0,
+          "time_end": 4.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2096,
+              "percentage": 21.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 9.0,
+          "time_end": 10.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1968,
+              "percentage": 19.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 17.0,
+          "time_end": 18.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1776,
+              "percentage": 17.8,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 30.0,
+          "time_end": 31.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disgust",
+              "score": 0.7652,
+              "percentage": 76.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 0,
+          "negative": 7
+        },
+        "retell_call_id": "call_cc9783c3f8e3156591987ccad53",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b561249af0a440c6591b1e2adf84863afa7e7c37adab7018159b6ad61c1c7023/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "Elliot's response was mixed, showing initial interest but later confusion and disappointment. There was no clear acceptance or refusal, suggesting a pending outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Elliot regarding the Ph bottom technician program at Arcadia University. Elliot initially shows disappointment and distress but shifts to interest at 10.0s when confirming his identity. Disappointment resurfaces at 31.2s when expressing confusion about the call's nature. Courtney maintains satisfaction and determination, explaining the program and asking for Elliot's state of residence. Despite Elliot's mixed emotions, the call progresses with Courtney's calm and determined approach, suggesting a potential follow-up."
+    },
+    {
+      "filename": "call_cc9783c3f8e3156591987ccad53_agent.wav",
+      "prosody": [
+        {
+          "time_start": 0.92,
+          "time_end": 3.64,
+          "text": "Hi. Thank you for returning my call. This is Courtney,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2767,
+              "percentage": 27.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 3.88,
+          "time_end": 6.68,
+          "text": "and I was calling on behalf of Arcadia University. Am",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.3298,
+              "percentage": 33.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 6.76,
+          "time_end": 12.37,
+          "text": "I speaking with Elliott? Hi,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.1299,
+              "percentage": 13.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 12.53,
+          "time_end": 17.54,
+          "text": "Elliot. Before we get started, all calls are recorded for quality assurance and training purposes. I",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2744,
+              "percentage": 27.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 17.54,
+          "time_end": 21.52,
+          "text": "received your interest in the Ph bottom technician program. Before we move forward,",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.2395,
+              "percentage": 24.0,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 21.76,
+          "time_end": 25.36,
+          "text": "let me pull up the requirements for your program. May",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.3514,
+              "percentage": 35.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 25.52,
+          "time_end": 35.98,
+          "text": "I know what state you currently reside in? I",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2026,
+              "percentage": 20.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 35.98,
+          "time_end": 36.67,
+          "text": "totally get the",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Confusion",
+              "score": 0.2524,
+              "percentage": 25.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.2696,
+              "percentage": 27.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 4,
+          "neutral": 4,
+          "negative": 1
+        },
+        "retell_call_id": "call_cc9783c3f8e3156591987ccad53",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/b561249af0a440c6591b1e2adf84863afa7e7c37adab7018159b6ad61c1c7023/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "Elliot's response was mixed, showing initial interest but later confusion and disappointment. There was no clear acceptance or refusal, suggesting a pending outcome.",
+          "source": "openai"
+        }
+      },
+      "summary": "Agent Courtney contacts Elliot regarding the Ph bottom technician program at Arcadia University. Elliot initially shows disappointment and distress but shifts to interest at 10.0s when confirming his identity. Disappointment resurfaces at 31.2s when expressing confusion about the call's nature. Courtney maintains satisfaction and determination, explaining the program and asking for Elliot's state of residence. Despite Elliot's mixed emotions, the call progresses with Courtney's calm and determined approach, suggesting a potential follow-up."
+    }
+  ]
+}

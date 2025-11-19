@@ -1,0 +1,591 @@
+{
+  "call_id": "call_33a68ead565fb0d97ec59159667",
+  "retell_metadata": {
+    "retell_call_id": "call_33a68ead565fb0d97ec59159667",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/802f63c3bdfecc038e0fa9f27cdb8403481c8886aaf11756b4600d3c04d88e13/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_33a68ead565fb0d97ec59159667_combined",
+      "prosody": [
+        {
+          "time_start": 3.58,
+          "time_end": 5.76,
+          "text": "Por favor, deje su mensaje para",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3067,
+              "percentage": 30.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 7.02,
+          "time_end": 9.78,
+          "text": "Hola, soy, d\u00e9jame tu mensaje por favor.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1852,
+              "percentage": 18.5,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 16.55,
+          "time_end": 20.26,
+          "text": "No se ha grabado nada. Grabe su mensaje despu\u00e9s de la se\u00f1al.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2969,
+              "percentage": 29.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 18.45,
+          "time_end": 22.45,
+          "text": "Hi. This is Courtney calling on behalf of Bethel College. May I speak with Eve?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.6411,
+              "percentage": 64.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 20.9,
+          "time_end": 22.44,
+          "text": "Cuelgue cuando haya finalizado",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2214,
+              "percentage": 22.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 23.14,
+          "time_end": 25.7,
+          "text": "O si desea seleccionar las opciones de entrega,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5836,
+              "percentage": 58.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 26.47,
+          "time_end": 27.67,
+          "text": "op el s\u00edmbolo de n\u00famero.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3725,
+              "percentage": 37.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 32.54,
+          "time_end": 36.26,
+          "text": "No se ha grabado nada. Grabe su mensaje despu\u00e9s de la se\u00f1al.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2785,
+              "percentage": 27.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 36.9,
+          "time_end": 38.4,
+          "text": "Cuelgue cuando haya finalizado.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2209,
+              "percentage": 22.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 39.09,
+          "time_end": 41.65,
+          "text": "O si desea seleccionar las opciones de entrega,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5633,
+              "percentage": 56.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 42.42,
+          "time_end": 43.66,
+          "text": "op el s\u00edmbolo de n\u00famero.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3241,
+              "percentage": 32.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 48.74,
+          "time_end": 50.42,
+          "text": "Gracias por llamar. Adi\u00f3s.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.2047,
+              "percentage": 20.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 6.0,
+          "time_end": 7.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2494,
+              "percentage": 24.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "category_counts": {
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_call_id": "call_33a68ead565fb0d97ec59159667",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/802f63c3bdfecc038e0fa9f27cdb8403481c8886aaf11756b4600d3c04d88e13/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call was a voicemail interaction with no recorded customer commitment or response, making the outcome pending. The final customer behavior was a polite farewell, indicating no negative sentiment.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The call was a voicemail interaction where the agent, Courtney, attempted to reach Eve on behalf of Bethel College. The customer\u2019s emotional journey was marked by a shift from mild interest at 3.6s to boredom at 7.0s, indicating disengagement with the voicemail instructions. The agent maintained interest throughout, with a notable determination at 23.1s when providing options for message delivery. The call concluded with a polite farewell, but no customer commitment was recorded, as the interaction was primarily informational and automated."
+    },
+    {
+      "filename": "call_33a68ead565fb0d97ec59159667_agent.wav",
+      "prosody": [
+        {
+          "time_start": 18.45,
+          "time_end": 22.45,
+          "text": "Hi. This is Courtney calling on behalf of Bethel College. May I speak with Eve?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.6411,
+              "percentage": 64.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_call_id": "call_33a68ead565fb0d97ec59159667",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/802f63c3bdfecc038e0fa9f27cdb8403481c8886aaf11756b4600d3c04d88e13/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call was a voicemail interaction with no recorded customer commitment or response, making the outcome pending. The final customer behavior was a polite farewell, indicating no negative sentiment.",
+          "source": "openai"
+        }
+      },
+      "summary": "The call was a voicemail interaction where the agent, Courtney, attempted to reach Eve on behalf of Bethel College. The customer\u2019s emotional journey was marked by a shift from mild interest at 3.6s to boredom at 7.0s, indicating disengagement with the voicemail instructions. The agent maintained interest throughout, with a notable determination at 23.1s when providing options for message delivery. The call concluded with a polite farewell, but no customer commitment was recorded, as the interaction was primarily informational and automated."
+    },
+    {
+      "filename": "call_33a68ead565fb0d97ec59159667_user.wav",
+      "prosody": [
+        {
+          "time_start": 3.58,
+          "time_end": 5.76,
+          "text": "Por favor, deje su mensaje para",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3067,
+              "percentage": 30.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 7.02,
+          "time_end": 9.78,
+          "text": "Hola, soy, d\u00e9jame tu mensaje por favor.",
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.1852,
+              "percentage": 18.5,
+              "category": "negative"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 16.55,
+          "time_end": 20.26,
+          "text": "No se ha grabado nada. Grabe su mensaje despu\u00e9s de la se\u00f1al.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2969,
+              "percentage": 29.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 20.9,
+          "time_end": 22.44,
+          "text": "Cuelgue cuando haya finalizado",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2214,
+              "percentage": 22.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 23.14,
+          "time_end": 25.7,
+          "text": "O si desea seleccionar las opciones de entrega,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5836,
+              "percentage": 58.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 26.47,
+          "time_end": 27.67,
+          "text": "op el s\u00edmbolo de n\u00famero.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3725,
+              "percentage": 37.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 32.54,
+          "time_end": 36.26,
+          "text": "No se ha grabado nada. Grabe su mensaje despu\u00e9s de la se\u00f1al.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.2785,
+              "percentage": 27.9,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 36.9,
+          "time_end": 38.4,
+          "text": "Cuelgue cuando haya finalizado.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2209,
+              "percentage": 22.1,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 39.09,
+          "time_end": 41.65,
+          "text": "O si desea seleccionar las opciones de entrega,",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.5633,
+              "percentage": 56.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 42.42,
+          "time_end": 43.66,
+          "text": "op el s\u00edmbolo de n\u00famero.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.3241,
+              "percentage": 32.4,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 48.74,
+          "time_end": 50.42,
+          "text": "Gracias por llamar. Adi\u00f3s.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.2047,
+              "percentage": 20.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 6.0,
+          "time_end": 7.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Boredom",
+              "score": 0.2494,
+              "percentage": 24.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 10,
+          "neutral": 0,
+          "negative": 2
+        },
+        "retell_call_id": "call_33a68ead565fb0d97ec59159667",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/802f63c3bdfecc038e0fa9f27cdb8403481c8886aaf11756b4600d3c04d88e13/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call was a voicemail interaction with no recorded customer commitment or response, making the outcome pending. The final customer behavior was a polite farewell, indicating no negative sentiment.",
+          "source": "openai"
+        }
+      },
+      "summary": "The call was a voicemail interaction where the agent, Courtney, attempted to reach Eve on behalf of Bethel College. The customer\u2019s emotional journey was marked by a shift from mild interest at 3.6s to boredom at 7.0s, indicating disengagement with the voicemail instructions. The agent maintained interest throughout, with a notable determination at 23.1s when providing options for message delivery. The call concluded with a polite farewell, but no customer commitment was recorded, as the interaction was primarily informational and automated."
+    }
+  ]
+}
