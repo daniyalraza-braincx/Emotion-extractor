@@ -2988,48 +2988,6 @@
       "transcript_available": true,
       "last_updated": "2025-11-18T21:08:01Z"
     },
-    "call_2444c83620c8e60610b23eee478": {
-      "call_id": "call_2444c83620c8e60610b23eee478",
-      "agent_id": "agent_54888f5c152fb7ddcc2c77a051",
-      "agent_name": "EasyPA Website Demo",
-      "user_phone_number": "N/A",
-      "start_timestamp": 1763409438344,
-      "end_timestamp": 1763409572790,
-      "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/19d9d47da7b4406af1fbd6a578b88689102b621789685473bdd903bd0c313b38/recording_multichannel.wav",
-      "analysis_status": "completed",
-      "analysis_available": true,
-      "analysis_filename": "call_2444c83620c8e60610b23eee478.json",
-      "duration_ms": 134446,
-      "call_summary": "The user, Paula, called EasyPA to inquire about the company's services. The agent provided detailed information about EasyPA's platform, how it works, and the pricing plans available. The call ended with the agent offering to provide more information if needed.",
-      "call_purpose": "Service Inquiry",
-      "call_title": "Easypa Service Inquiry",
-      "analysis_allowed": true,
-      "analysis_block_reason": null,
-      "analysis_constraints": {
-        "voicemail_detected": false,
-        "voicemail_flags": {
-          "in_voicemail": false,
-          "summary_mentions_voicemail": false,
-          "transcript_mentions_voicemail": false,
-          "disconnection_reason": "user_hangup",
-          "summary_mentions_leave_message": false,
-          "transcript_mentions_leave_message": false
-        },
-        "too_short": false,
-        "duration_ms": 134446
-      },
-      "error_message": null,
-      "transcript_available": true,
-      "last_updated": "2025-11-19T14:13:54Z",
-      "overall_emotion": {
-        "label": "neutral",
-        "call_outcome": "pending",
-        "confidence": 0.7,
-        "reasoning": "The customer, Paula, expressed disappointment when inquiring about the cost but remained engaged throughout the call. There was no explicit commitment or refusal, leaving the outcome open for future follow-up.",
-        "source": "openai"
-      },
-      "overall_emotion_label": "neutral"
-    },
     "call_11566cf750092e7699ab1eaa273": {
       "call_id": "call_11566cf750092e7699ab1eaa273",
       "agent_id": "agent_33cc28dfe251c099843b04e601",
