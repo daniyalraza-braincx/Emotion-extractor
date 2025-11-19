@@ -1,0 +1,434 @@
+{
+  "call_id": "call_11dbff74c8aaa24f0dd5c77db80",
+  "retell_metadata": {
+    "retell_call_id": "call_11dbff74c8aaa24f0dd5c77db80",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6e4a09578720de51d63e45a4e7d496712e92542ea3e307ff87ad4b7dcf5bbcc7/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_11dbff74c8aaa24f0dd5c77db80_combined",
+      "prosody": [
+        {
+          "time_start": 2.59,
+          "time_end": 2.83,
+          "text": "Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Surprise (positive)",
+              "score": 0.2433,
+              "percentage": 24.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 4.44,
+          "time_end": 7.18,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.8234,
+              "percentage": 82.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 7.96,
+          "time_end": 9.0,
+          "text": "May I speak with Trinity?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4103,
+              "percentage": 41.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 12.8,
+          "time_end": 16.62,
+          "text": "She's not here yet. I would... I need to call me after four.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.5572,
+              "percentage": 55.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 14.36,
+          "time_end": 14.52,
+          "text": "No.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.157,
+              "percentage": 15.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 17.31,
+          "time_end": 22.26,
+          "text": "Of course, Trinity. Thank you for your time, and we'll reach out again at a better time. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.6693,
+              "percentage": 66.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 10.0,
+          "time_end": 11.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2174,
+              "percentage": 21.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 17.0,
+          "time_end": 18.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3522,
+              "percentage": 35.2,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "category_counts": {
+          "positive": 2,
+          "neutral": 2,
+          "negative": 0
+        },
+        "retell_call_id": "call_11dbff74c8aaa24f0dd5c77db80",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6e4a09578720de51d63e45a4e7d496712e92542ea3e307ff87ad4b7dcf5bbcc7/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer requested a callback after four, which the agent agreed to, indicating a pending outcome. The customer's tone was awkward but not negative, suggesting a neutral emotion.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The agent contacts a customer on behalf of Arcadia University, initially showing interest. The customer, surprised at 2.6s, expresses awkwardness at 12.8s when stating Trinity is unavailable and requests a callback after four. The agent remains calm at 17.3s, acknowledging the request and agreeing to call back later. The call concludes with a commitment to reconnect, despite the customer's awkwardness."
+    },
+    {
+      "filename": "call_11dbff74c8aaa24f0dd5c77db80_agent.wav",
+      "prosody": [
+        {
+          "time_start": 4.44,
+          "time_end": 7.18,
+          "text": "Hi. This is Courtney calling on behalf of Arcadia University.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.8234,
+              "percentage": 82.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 7.96,
+          "time_end": 9.0,
+          "text": "May I speak with Trinity?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.4103,
+              "percentage": 41.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 14.36,
+          "time_end": 14.52,
+          "text": "No.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.157,
+              "percentage": 15.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 17.31,
+          "time_end": 22.26,
+          "text": "Of course, Trinity. Thank you for your time, and we'll reach out again at a better time. Have a great day.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.6693,
+              "percentage": 66.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 2,
+          "neutral": 2,
+          "negative": 0
+        },
+        "retell_call_id": "call_11dbff74c8aaa24f0dd5c77db80",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6e4a09578720de51d63e45a4e7d496712e92542ea3e307ff87ad4b7dcf5bbcc7/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer requested a callback after four, which the agent agreed to, indicating a pending outcome. The customer's tone was awkward but not negative, suggesting a neutral emotion.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts a customer on behalf of Arcadia University, initially showing interest. The customer, surprised at 2.6s, expresses awkwardness at 12.8s when stating Trinity is unavailable and requests a callback after four. The agent remains calm at 17.3s, acknowledging the request and agreeing to call back later. The call concludes with a commitment to reconnect, despite the customer's awkwardness."
+    },
+    {
+      "filename": "call_11dbff74c8aaa24f0dd5c77db80_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.59,
+          "time_end": 2.83,
+          "text": "Hello?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Surprise (positive)",
+              "score": 0.2433,
+              "percentage": 24.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 12.8,
+          "time_end": 16.62,
+          "text": "She's not here yet. I would... I need to call me after four.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Awkwardness",
+              "score": 0.5572,
+              "percentage": 55.7,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 10.0,
+          "time_end": 11.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.2174,
+              "percentage": 21.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 17.0,
+          "time_end": 18.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Doubt",
+              "score": 0.3522,
+              "percentage": 35.2,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 1,
+          "negative": 2
+        },
+        "retell_call_id": "call_11dbff74c8aaa24f0dd5c77db80",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/6e4a09578720de51d63e45a4e7d496712e92542ea3e307ff87ad4b7dcf5bbcc7/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.8,
+          "reasoning": "The customer requested a callback after four, which the agent agreed to, indicating a pending outcome. The customer's tone was awkward but not negative, suggesting a neutral emotion.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts a customer on behalf of Arcadia University, initially showing interest. The customer, surprised at 2.6s, expresses awkwardness at 12.8s when stating Trinity is unavailable and requests a callback after four. The agent remains calm at 17.3s, acknowledging the request and agreeing to call back later. The call concludes with a commitment to reconnect, despite the customer's awkwardness."
+    }
+  ]
+}

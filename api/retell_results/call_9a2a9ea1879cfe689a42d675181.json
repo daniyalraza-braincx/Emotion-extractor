@@ -1,0 +1,675 @@
+{
+  "call_id": "call_9a2a9ea1879cfe689a42d675181",
+  "retell_metadata": {
+    "retell_call_id": "call_9a2a9ea1879cfe689a42d675181",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/8e554b08a7ca41fbf3a4b3495f3c86dad12d529d335fbd2be171e87f548928b4/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_9a2a9ea1879cfe689a42d675181_combined",
+      "prosody": [
+        {
+          "time_start": 0.92,
+          "time_end": 2.36,
+          "text": "Hi. Thank you for returning my call.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.5319,
+              "percentage": 53.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 2.36,
+          "time_end": 3.5,
+          "text": "Hi. Thank you for",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2272,
+              "percentage": 22.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 6.52,
+          "time_end": 8.94,
+          "text": "Hey. This is Courtney Calling from Arcadia University.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.6602,
+              "percentage": 66.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 9.8,
+          "time_end": 11.64,
+          "text": "Just making sure am I speaking with Satay?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contemplation",
+              "score": 0.2924,
+              "percentage": 29.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 14.61,
+          "time_end": 15.89,
+          "text": "Yes. This is me.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.2828,
+              "percentage": 28.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 16.93,
+          "time_end": 19.72,
+          "text": "Hi, Sarah. Before we get started, all calls are",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4382,
+              "percentage": 43.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 18.77,
+          "time_end": 19.32,
+          "text": "Can I",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.4019,
+              "percentage": 40.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 19.72,
+          "time_end": 23.24,
+          "text": "recorded for quality assurance and training purposes. I received your",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.6048,
+              "percentage": 60.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 23.24,
+          "time_end": 25.96,
+          "text": "interest in the sterile processing and surgical technologies program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.8132,
+              "percentage": 81.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 24.28,
+          "time_end": 25.02,
+          "text": "Can I",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.1457,
+              "percentage": 14.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Customer"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2143,
+              "percentage": 21.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 8.0,
+          "time_end": 9.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2237,
+              "percentage": 22.4,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 12.0,
+          "time_end": 13.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2496,
+              "percentage": 25.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 16.0,
+          "time_end": 17.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2393,
+              "percentage": 23.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Agent"
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1763,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 23.0,
+          "time_end": 24.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.1827,
+              "percentage": 18.3,
+              "category": "positive"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "category_counts": {
+          "positive": 6,
+          "neutral": 0,
+          "negative": 2
+        },
+        "retell_call_id": "call_9a2a9ea1879cfe689a42d675181",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/8e554b08a7ca41fbf3a4b3495f3c86dad12d529d335fbd2be171e87f548928b4/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer expressed positive emotions but did not confirm any next steps or commitments, leaving the outcome unresolved.",
+          "source": "openai"
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The agent contacts the customer about the Sterile Processing program, maintaining interest and determination throughout. The customer initially shows interest at 2.4s, experiences distress at 12.0s, but shifts to joy and excitement by 18.8s when confirming their identity and interest. The call concludes with the customer expressing amusement at 24.3s, indicating a positive engagement, though no explicit next steps are confirmed."
+    },
+    {
+      "filename": "call_9a2a9ea1879cfe689a42d675181_user.wav",
+      "prosody": [
+        {
+          "time_start": 2.36,
+          "time_end": 3.5,
+          "text": "Hi. Thank you for",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.2272,
+              "percentage": 22.7,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 14.61,
+          "time_end": 15.89,
+          "text": "Yes. This is me.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.2828,
+              "percentage": 28.3,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 18.77,
+          "time_end": 19.32,
+          "text": "Can I",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Excitement",
+              "score": 0.4019,
+              "percentage": 40.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 24.28,
+          "time_end": 25.02,
+          "text": "Can I",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Amusement",
+              "score": 0.1457,
+              "percentage": 14.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 8.0,
+          "time_end": 9.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.2237,
+              "percentage": 22.4,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 12.0,
+          "time_end": 13.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.2496,
+              "percentage": 25.0,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 20.0,
+          "time_end": 21.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Distress",
+              "score": 0.1763,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 23.0,
+          "time_end": 24.0,
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Joy",
+              "score": 0.1827,
+              "percentage": 18.3,
+              "category": "positive"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 6,
+          "neutral": 0,
+          "negative": 2
+        },
+        "retell_call_id": "call_9a2a9ea1879cfe689a42d675181",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/8e554b08a7ca41fbf3a4b3495f3c86dad12d529d335fbd2be171e87f548928b4/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer expressed positive emotions but did not confirm any next steps or commitments, leaving the outcome unresolved.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts the customer about the Sterile Processing program, maintaining interest and determination throughout. The customer initially shows interest at 2.4s, experiences distress at 12.0s, but shifts to joy and excitement by 18.8s when confirming their identity and interest. The call concludes with the customer expressing amusement at 24.3s, indicating a positive engagement, though no explicit next steps are confirmed."
+    },
+    {
+      "filename": "call_9a2a9ea1879cfe689a42d675181_agent.wav",
+      "prosody": [
+        {
+          "time_start": 0.92,
+          "time_end": 2.36,
+          "text": "Hi. Thank you for returning my call.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Satisfaction",
+              "score": 0.5319,
+              "percentage": 53.2,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 6.52,
+          "time_end": 8.94,
+          "text": "Hey. This is Courtney Calling from Arcadia University.",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.6602,
+              "percentage": 66.0,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 9.8,
+          "time_end": 11.64,
+          "text": "Just making sure am I speaking with Satay?",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contemplation",
+              "score": 0.2924,
+              "percentage": 29.2,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 16.93,
+          "time_end": 19.72,
+          "text": "Hi, Sarah. Before we get started, all calls are",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Calmness",
+              "score": 0.4382,
+              "percentage": 43.8,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 19.72,
+          "time_end": 23.24,
+          "text": "recorded for quality assurance and training purposes. I received your",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Determination",
+              "score": 0.6048,
+              "percentage": 60.5,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody"
+        },
+        {
+          "time_start": 23.24,
+          "time_end": 25.96,
+          "text": "interest in the sterile processing and surgical technologies program.",
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Concentration",
+              "score": 0.8132,
+              "percentage": 81.3,
+              "category": "neutral"
+            }
+          ],
+          "source": "prosody"
+        }
+      ],
+      "burst": [
+        {
+          "time_start": 0.0,
+          "time_end": 1.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2143,
+              "percentage": 21.4,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 16.0,
+          "time_end": 17.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Tiredness",
+              "score": 0.2393,
+              "percentage": 23.9,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 3,
+          "neutral": 5,
+          "negative": 0
+        },
+        "retell_call_id": "call_9a2a9ea1879cfe689a42d675181",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/8e554b08a7ca41fbf3a4b3495f3c86dad12d529d335fbd2be171e87f548928b4/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The customer expressed positive emotions but did not confirm any next steps or commitments, leaving the outcome unresolved.",
+          "source": "openai"
+        }
+      },
+      "summary": "The agent contacts the customer about the Sterile Processing program, maintaining interest and determination throughout. The customer initially shows interest at 2.4s, experiences distress at 12.0s, but shifts to joy and excitement by 18.8s when confirming their identity and interest. The call concludes with the customer expressing amusement at 24.3s, indicating a positive engagement, though no explicit next steps are confirmed."
+    }
+  ]
+}

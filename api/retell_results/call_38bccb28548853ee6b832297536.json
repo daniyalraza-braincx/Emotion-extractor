@@ -1,0 +1,659 @@
+{
+  "call_id": "call_38bccb28548853ee6b832297536",
+  "retell_metadata": {
+    "retell_call_id": "call_38bccb28548853ee6b832297536",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/12565766a7e9d3e24d55ddd01f44b249d3b7be435302917804a83495f2b66b3b/recording_multichannel.wav",
+    "start_timestamp": null,
+    "end_timestamp": null,
+    "duration_ms": null,
+    "agent": {
+      "id": null,
+      "name": null,
+      "version": null
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": null,
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": null
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_38bccb28548853ee6b832297536_combined",
+      "prosody": [],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.2213,
+              "percentage": 22.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 6.0,
+          "time_end": 7.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Pain",
+              "score": 0.236,
+              "percentage": 23.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 14.0,
+          "time_end": 15.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.171,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 21.0,
+          "time_end": 22.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1749,
+              "percentage": 17.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1766,
+              "percentage": 17.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 36.0,
+          "time_end": 37.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1726,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 43.0,
+          "time_end": 44.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1742,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 51.0,
+          "time_end": 52.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1713,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 65.0,
+          "time_end": 66.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1772,
+              "percentage": 17.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 73.0,
+          "time_end": 74.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1713,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 80.0,
+          "time_end": 81.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 87.0,
+          "time_end": 88.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1756,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 95.0,
+          "time_end": 96.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1731,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 102.0,
+          "time_end": 103.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1785,
+              "percentage": 17.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 110.0,
+          "time_end": 111.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1726,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        },
+        {
+          "time_start": 117.0,
+          "time_end": 118.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1761,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst",
+          "speaker": "Customer"
+        }
+      ],
+      "metadata": {
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "category_counts": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_call_id": "call_38bccb28548853ee6b832297536",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/12565766a7e9d3e24d55ddd01f44b249d3b7be435302917804a83495f2b66b3b/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        },
+        "retell_transcript_segments": [],
+        "retell_transcript_available": false
+      },
+      "summary": "The call primarily features the customer expressing negative emotions, starting with contempt at 1.0s and shifting to pain at 6.0s, followed by consistent disappointment from 14.0s onwards. The absence of agent emotion data suggests no significant influence on the outcome. The call lacks a clear resolution or customer commitment, as the emotional tone remains negative throughout, with no transcript or context details to indicate a next step."
+    },
+    {
+      "filename": "call_38bccb28548853ee6b832297536_agent.wav",
+      "prosody": [],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_call_id": "call_38bccb28548853ee6b832297536",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/12565766a7e9d3e24d55ddd01f44b249d3b7be435302917804a83495f2b66b3b/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        }
+      },
+      "summary": "The call primarily features the customer expressing negative emotions, starting with contempt at 1.0s and shifting to pain at 6.0s, followed by consistent disappointment from 14.0s onwards. The absence of agent emotion data suggests no significant influence on the outcome. The call lacks a clear resolution or customer commitment, as the emotional tone remains negative throughout, with no transcript or context details to indicate a next step."
+    },
+    {
+      "filename": "call_38bccb28548853ee6b832297536_user.wav",
+      "prosody": [],
+      "burst": [
+        {
+          "time_start": 1.0,
+          "time_end": 2.0,
+          "primary_category": "neutral",
+          "top_emotions": [
+            {
+              "name": "Contempt",
+              "score": 0.2213,
+              "percentage": 22.1,
+              "category": "neutral"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 6.0,
+          "time_end": 7.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Pain",
+              "score": 0.236,
+              "percentage": 23.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 14.0,
+          "time_end": 15.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.171,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 21.0,
+          "time_end": 22.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1749,
+              "percentage": 17.5,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 28.0,
+          "time_end": 29.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1766,
+              "percentage": 17.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 36.0,
+          "time_end": 37.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1726,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 43.0,
+          "time_end": 44.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1742,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 51.0,
+          "time_end": 52.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1713,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 58.0,
+          "time_end": 59.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 65.0,
+          "time_end": 66.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1772,
+              "percentage": 17.7,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 73.0,
+          "time_end": 74.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1713,
+              "percentage": 17.1,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 80.0,
+          "time_end": 81.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1738,
+              "percentage": 17.4,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 87.0,
+          "time_end": 88.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1756,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 95.0,
+          "time_end": 96.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1731,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 102.0,
+          "time_end": 103.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1785,
+              "percentage": 17.9,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 110.0,
+          "time_end": 111.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1726,
+              "percentage": 17.3,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        },
+        {
+          "time_start": 117.0,
+          "time_end": 118.0,
+          "primary_category": "negative",
+          "top_emotions": [
+            {
+              "name": "Disappointment",
+              "score": 0.1761,
+              "percentage": 17.6,
+              "category": "negative"
+            }
+          ],
+          "source": "burst"
+        }
+      ],
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 1,
+          "negative": 16
+        },
+        "retell_call_id": "call_38bccb28548853ee6b832297536",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/12565766a7e9d3e24d55ddd01f44b249d3b7be435302917804a83495f2b66b3b/recording_multichannel.wav",
+        "start_timestamp": null,
+        "end_timestamp": null,
+        "duration_ms": null,
+        "agent": {
+          "id": null,
+          "name": null,
+          "version": null
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": null,
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": null
+        }
+      },
+      "summary": "The call primarily features the customer expressing negative emotions, starting with contempt at 1.0s and shifting to pain at 6.0s, followed by consistent disappointment from 14.0s onwards. The absence of agent emotion data suggests no significant influence on the outcome. The call lacks a clear resolution or customer commitment, as the emotional tone remains negative throughout, with no transcript or context details to indicate a next step."
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "call_id": "call_f768cea57822fd4b9f16d717491",
+  "retell_metadata": {
+    "retell_call_id": "call_f768cea57822fd4b9f16d717491",
+    "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a84485aa5bf425a67d458f5dcde7e6461e1969b00ea21b5211df614a1998c4ef/recording_multichannel.wav",
+    "start_timestamp": 1763400364204,
+    "end_timestamp": 1763400381447,
+    "duration_ms": 17243,
+    "agent": {
+      "id": "agent_e291619339180d628fd29fca67",
+      "name": "Single-Prompt Agent",
+      "version": 0
+    },
+    "customer": {
+      "first_name": null,
+      "program": null,
+      "lead_status": null,
+      "university": null
+    },
+    "analysis_constraints": {
+      "voicemail_detected": false,
+      "voicemail_flags": {
+        "in_voicemail": false,
+        "summary_mentions_voicemail": false,
+        "transcript_mentions_voicemail": false,
+        "disconnection_reason": "user_hangup",
+        "summary_mentions_leave_message": false,
+        "transcript_mentions_leave_message": false
+      },
+      "too_short": false,
+      "duration_ms": 17243
+    }
+  },
+  "analysis": [
+    {
+      "filename": "call_f768cea57822fd4b9f16d717491_combined",
+      "prosody": [
+        {
+          "time_start": 1.56,
+          "time_end": 4.75,
+          "text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.7056,
+              "percentage": 70.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "agent": {
+          "id": "agent_e291619339180d628fd29fca67",
+          "name": "Single-Prompt Agent",
+          "version": 0
+        },
+        "category_counts": {
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 1.519,
+            "end": 5.00225,
+            "text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?"
+          }
+        ],
+        "retell_call_id": "call_f768cea57822fd4b9f16d717491",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a84485aa5bf425a67d458f5dcde7e6461e1969b00ea21b5211df614a1998c4ef/recording_multichannel.wav",
+        "start_timestamp": 1763400364204,
+        "end_timestamp": 1763400381447,
+        "duration_ms": 17243,
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 17243
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call lacks customer interaction or commitment, resulting in an ambiguous outcome. Without customer engagement, the call remains pending with a neutral emotion.",
+          "source": "openai"
+        }
+      },
+      "summary": "The call begins with the Agent expressing interest at 1.6s, asking how they can assist. There is no customer response or emotional data, indicating a lack of engagement or interaction from the customer. The call ends without any customer commitment or further dialogue, suggesting the customer did not participate in the conversation. The Agent's interest does not influence the outcome due to the absence of customer interaction."
+    },
+    {
+      "filename": "call_f768cea57822fd4b9f16d717491_agent.wav",
+      "prosody": [
+        {
+          "time_start": 1.56,
+          "time_end": 4.75,
+          "text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?",
+          "primary_category": "positive",
+          "top_emotions": [
+            {
+              "name": "Interest",
+              "score": 0.7056,
+              "percentage": 70.6,
+              "category": "positive"
+            }
+          ],
+          "source": "prosody",
+          "speaker": "Agent",
+          "transcript_text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?"
+        }
+      ],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 1.519,
+            "end": 5.00225,
+            "text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?"
+          }
+        ],
+        "retell_call_id": "call_f768cea57822fd4b9f16d717491",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a84485aa5bf425a67d458f5dcde7e6461e1969b00ea21b5211df614a1998c4ef/recording_multichannel.wav",
+        "start_timestamp": 1763400364204,
+        "end_timestamp": 1763400381447,
+        "duration_ms": 17243,
+        "agent": {
+          "id": "agent_e291619339180d628fd29fca67",
+          "name": "Single-Prompt Agent",
+          "version": 0
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 17243
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call lacks customer interaction or commitment, resulting in an ambiguous outcome. Without customer engagement, the call remains pending with a neutral emotion.",
+          "source": "openai"
+        }
+      },
+      "summary": "The call begins with the Agent expressing interest at 1.6s, asking how they can assist. There is no customer response or emotional data, indicating a lack of engagement or interaction from the customer. The call ends without any customer commitment or further dialogue, suggesting the customer did not participate in the conversation. The Agent's interest does not influence the outcome due to the absence of customer interaction."
+    },
+    {
+      "filename": "call_f768cea57822fd4b9f16d717491_user.wav",
+      "prosody": [],
+      "burst": [],
+      "metadata": {
+        "category_counts": {
+          "positive": 0,
+          "neutral": 0,
+          "negative": 0
+        },
+        "retell_transcript_available": true,
+        "retell_transcript_segments": [
+          {
+            "speaker": "Agent",
+            "start": 1.519,
+            "end": 5.00225,
+            "text": "Hello, thank you for calling Tech Bank Pro. How can I assist you today?"
+          }
+        ],
+        "retell_call_id": "call_f768cea57822fd4b9f16d717491",
+        "recording_multi_channel_url": "https://dxc03zgurdly9.cloudfront.net/a84485aa5bf425a67d458f5dcde7e6461e1969b00ea21b5211df614a1998c4ef/recording_multichannel.wav",
+        "start_timestamp": 1763400364204,
+        "end_timestamp": 1763400381447,
+        "duration_ms": 17243,
+        "agent": {
+          "id": "agent_e291619339180d628fd29fca67",
+          "name": "Single-Prompt Agent",
+          "version": 0
+        },
+        "customer": {
+          "first_name": null,
+          "program": null,
+          "lead_status": null,
+          "university": null
+        },
+        "analysis_constraints": {
+          "voicemail_detected": false,
+          "voicemail_flags": {
+            "in_voicemail": false,
+            "summary_mentions_voicemail": false,
+            "transcript_mentions_voicemail": false,
+            "disconnection_reason": "user_hangup",
+            "summary_mentions_leave_message": false,
+            "transcript_mentions_leave_message": false
+          },
+          "too_short": false,
+          "duration_ms": 17243
+        },
+        "overall_call_emotion": {
+          "label": "neutral",
+          "call_outcome": "pending",
+          "confidence": 0.7,
+          "reasoning": "The call lacks customer interaction or commitment, resulting in an ambiguous outcome. Without customer engagement, the call remains pending with a neutral emotion.",
+          "source": "openai"
+        }
+      },
+      "summary": "The call begins with the Agent expressing interest at 1.6s, asking how they can assist. There is no customer response or emotional data, indicating a lack of engagement or interaction from the customer. The call ends without any customer commitment or further dialogue, suggesting the customer did not participate in the conversation. The Agent's interest does not influence the outcome due to the absence of customer interaction."
+    }
+  ]
+}
