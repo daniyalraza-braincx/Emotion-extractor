@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchRetellCalls } from '../services/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import { useAuth } from '../context/AuthContext';
@@ -7,40 +7,64 @@ import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/for
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { setAnalysisRequest } = useAnalysis();
   const { logout, authenticated, loading } = useAuth();
 
   const fileInputRef = useRef(null);
 
+  // Get page from URL query params, default to 1
+  const currentPage = useMemo(() => {
+    const pageParam = searchParams.get('page');
+    const page = parseInt(pageParam || '1', 10);
+    return isNaN(page) || page < 1 ? 1 : page;
+  }, [searchParams]);
+
   const [retellCalls, setRetellCalls] = useState([]);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    per_page: 15,
+    total: 0,
+    total_pages: 1,
+    has_next: false,
+    has_prev: false,
+  });
   const [isFetchingCalls, setIsFetchingCalls] = useState(false);
   const [callsError, setCallsError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [hideBlocked, setHideBlocked] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const callsPerPage = 15;
 
-  const loadRetellCalls = useCallback(async () => {
+  const loadRetellCalls = useCallback(async (pageToLoad) => {
+    const page = pageToLoad || currentPage;
     if (!authenticated || loading) {
       return;
     }
     setIsFetchingCalls(true);
     setCallsError(null);
     try {
-      const calls = await fetchRetellCalls();
-      setRetellCalls(Array.isArray(calls) ? calls : []);
+      const response = await fetchRetellCalls(page, callsPerPage);
+      setRetellCalls(Array.isArray(response.calls) ? response.calls : []);
+      setPagination(response.pagination || {
+        page: page,
+        per_page: callsPerPage,
+        total: 0,
+        total_pages: 1,
+        has_next: false,
+        has_prev: false,
+      });
     } catch (err) {
       setCallsError(err.message || 'Failed to load Retell calls.');
     } finally {
       setIsFetchingCalls(false);
     }
-  }, [authenticated, loading]);
+  }, [authenticated, loading, currentPage, callsPerPage]);
 
   useEffect(() => {
     if (authenticated && !loading) {
-      loadRetellCalls();
+      loadRetellCalls(currentPage);
     }
-  }, [authenticated, loading, loadRetellCalls]);
+  }, [authenticated, loading, currentPage, loadRetellCalls]);
 
   const handleAnalyzeCall = (call) => {
     if (!call?.call_id) return;
@@ -106,26 +130,25 @@ function Dashboard() {
     });
   }, [retellCalls, searchQuery, hideBlocked]);
 
-  // Reset to page 1 when filters change
+  // Reset to page 1 when filters change and update URL
   useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, hideBlocked]);
-
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredCalls.length / callsPerPage);
-  const startIndex = (currentPage - 1) * callsPerPage;
-  const endIndex = startIndex + callsPerPage;
-  const paginatedCalls = useMemo(() => {
-    return filteredCalls.slice(startIndex, endIndex);
-  }, [filteredCalls, startIndex, endIndex]);
+    if (currentPage !== 1) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set('page', '1');
+      setSearchParams(newSearchParams, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, hideBlocked]); // Only reset when filters change, not when page changes
 
   const handlePageChange = useCallback((newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
+    if (newPage >= 1 && newPage <= pagination.total_pages) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set('page', String(newPage));
+      setSearchParams(newSearchParams);
       // Scroll to top of table
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [totalPages]);
+  }, [pagination.total_pages, searchParams, setSearchParams]);
 
   const renderSummary = useCallback((call) => {
     const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
@@ -153,10 +176,10 @@ function Dashboard() {
     return parts.join(' ');
   }, []);
 
-  const totalCallCount = retellCalls.length;
+  const totalCallCount = pagination.total || 0;
   const resultCount = filteredCalls.length;
-  const showingFrom = resultCount > 0 ? startIndex + 1 : 0;
-  const showingTo = Math.min(endIndex, resultCount);
+  const showingFrom = pagination.total > 0 ? (pagination.page - 1) * pagination.per_page + 1 : 0;
+  const showingTo = Math.min(pagination.page * pagination.per_page, pagination.total);
 
   return (
     <main className="calls-page">
@@ -193,7 +216,7 @@ function Dashboard() {
             <button
               type="button"
               className="toolbar-chip"
-              onClick={loadRetellCalls}
+              onClick={() => loadRetellCalls(currentPage)}
               disabled={isFetchingCalls}
             >
               {isFetchingCalls ? 'Refreshing…' : 'Refresh'}
@@ -254,7 +277,7 @@ function Dashboard() {
               No calls match “{searchQuery}”. Try adjusting your filters.
             </div>
           ) : (
-            paginatedCalls.map((call) => {
+            filteredCalls.map((call) => {
               const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
               const statusLabel = formatStatusLabel(call.analysis_status);
               const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
@@ -344,7 +367,7 @@ function Dashboard() {
           )}
         </div>
 
-        {resultCount > 0 && totalPages > 1 && (
+        {pagination.total > 0 && pagination.total_pages > 1 && (
           <div className="calls-pagination">
             <div className="calls-pagination__info">
               Showing {showingFrom}–{showingTo} of {resultCount} calls
@@ -353,24 +376,24 @@ function Dashboard() {
               <button
                 type="button"
                 className="pagination-button"
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
+                onClick={() => handlePageChange(pagination.page - 1)}
+                disabled={!pagination.has_prev}
                 aria-label="Previous page"
               >
                 Previous
               </button>
               
               <div className="pagination-pages">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                {Array.from({ length: pagination.total_pages }, (_, i) => i + 1).map((pageNum) => {
                   // Show first page, last page, current page, and pages around current
                   const showPage = pageNum === 1 || 
-                                   pageNum === totalPages || 
+                                   pageNum === pagination.total_pages || 
                                    (pageNum >= currentPage - 1 && pageNum <= currentPage + 1);
                   
-                  if (!showPage && pageNum === currentPage - 2 && pageNum > 2) {
+                  if (!showPage && pageNum === pagination.page - 2 && pageNum > 2) {
                     return <span key={`ellipsis-start-${pageNum}`} className="pagination-ellipsis">…</span>;
                   }
-                  if (!showPage && pageNum === currentPage + 2 && pageNum < totalPages - 1) {
+                  if (!showPage && pageNum === pagination.page + 2 && pageNum < pagination.total_pages - 1) {
                     return <span key={`ellipsis-end-${pageNum}`} className="pagination-ellipsis">…</span>;
                   }
                   
@@ -382,10 +405,10 @@ function Dashboard() {
                     <button
                       key={pageNum}
                       type="button"
-                      className={`pagination-button pagination-button--page ${currentPage === pageNum ? 'pagination-button--active' : ''}`}
+                      className={`pagination-button pagination-button--page ${pagination.page === pageNum ? 'pagination-button--active' : ''}`}
                       onClick={() => handlePageChange(pageNum)}
                       aria-label={`Page ${pageNum}`}
-                      aria-current={currentPage === pageNum ? 'page' : undefined}
+                      aria-current={pagination.page === pageNum ? 'page' : undefined}
                     >
                       {pageNum}
                     </button>
@@ -396,8 +419,8 @@ function Dashboard() {
               <button
                 type="button"
                 className="pagination-button"
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
+                onClick={() => handlePageChange(pagination.page + 1)}
+                disabled={!pagination.has_next}
                 aria-label="Next page"
               >
                 Next

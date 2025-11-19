@@ -1055,8 +1055,18 @@ async def retell_webhook(payload: Dict[str, Any]):
 
 
 @app.get("/retell/calls")
-async def list_retell_calls(token_data: Dict[str, Any] = Depends(verify_token)):
-    """Return available Retell calls registered via webhook."""
+async def list_retell_calls(
+    page: int = Query(1, ge=1, description="Page number (1-indexed)"),
+    per_page: int = Query(15, ge=1, le=100, description="Number of items per page"),
+    token_data: Dict[str, Any] = Depends(verify_token)
+):
+    """
+    Return available Retell calls registered via webhook.
+    
+    Supports pagination via query parameters:
+    - page: Page number (default: 1, minimum: 1)
+    - per_page: Items per page (default: 15, minimum: 1, maximum: 100)
+    """
     calls = _load_retell_calls()
     filtered_calls = [
         entry for entry in calls.values()
@@ -1067,8 +1077,17 @@ async def list_retell_calls(token_data: Dict[str, Any] = Depends(verify_token)):
         key=lambda entry: entry.get("start_timestamp") or 0,
         reverse=True,
     )
+    
+    total_count = len(sorted_calls)
+    total_pages = max(1, (total_count + per_page - 1) // per_page)
+    
+    # Apply pagination
+    start_index = (page - 1) * per_page
+    end_index = start_index + per_page
+    paginated_calls = sorted_calls[start_index:end_index]
+    
     enriched_calls = []
-    for entry in sorted_calls:
+    for entry in paginated_calls:
         call_entry = dict(entry)
         if call_entry.get("analysis_status") == "completed":
             overall_emotion = call_entry.get("overall_emotion")
@@ -1095,7 +1114,18 @@ async def list_retell_calls(token_data: Dict[str, Any] = Depends(verify_token)):
                     call_entry["overall_emotion_label"] = overall_emotion.get("label")
         enriched_calls.append(call_entry)
 
-    return JSONResponse(content={"success": True, "calls": enriched_calls})
+    return JSONResponse(content={
+        "success": True,
+        "calls": enriched_calls,
+        "pagination": {
+            "page": page,
+            "per_page": per_page,
+            "total": total_count,
+            "total_pages": total_pages,
+            "has_next": page < total_pages,
+            "has_prev": page > 1,
+        }
+    })
 
 
 @app.post("/retell/calls/refresh")

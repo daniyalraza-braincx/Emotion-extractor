@@ -75,8 +75,18 @@ export async function checkApiHealth() {
  * Fetches the list of Retell calls that are available for analysis
  * @returns {Promise<Array>} Array of calls
  */
-export async function fetchRetellCalls() {
-  const response = await fetch(API_ENDPOINTS.RETELL_CALLS, {
+/**
+ * Fetches Retell calls with pagination support
+ * @param {number} page - Page number (1-indexed)
+ * @param {number} perPage - Number of items per page
+ * @returns {Promise<Object>} Response with calls array and pagination metadata
+ */
+export async function fetchRetellCalls(page = 1, perPage = 15) {
+  const url = new URL(API_ENDPOINTS.RETELL_CALLS);
+  url.searchParams.set('page', String(page));
+  url.searchParams.set('per_page', String(perPage));
+
+  const response = await fetch(url.toString(), {
     headers: getAuthHeaders(),
   });
   if (!response.ok) {
@@ -89,7 +99,17 @@ export async function fetchRetellCalls() {
   }
 
   const data = await response.json();
-  return Array.isArray(data.calls) ? data.calls : [];
+  return {
+    calls: Array.isArray(data.calls) ? data.calls : [],
+    pagination: data.pagination || {
+      page: page || 1,
+      per_page: perPage,
+      total: 0,
+      total_pages: 1,
+      has_next: false,
+      has_prev: false,
+    }
+  };
 }
 
 /**
