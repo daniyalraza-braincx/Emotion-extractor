@@ -151,6 +151,15 @@ export async function getRetellCallAnalysis(callId) {
       window.location.href = '/login';
       throw new Error('Your session has expired. Please log in again.');
     }
+    
+    // 404 means analysis doesn't exist yet - this is expected and should be handled silently
+    if (response.status === 404) {
+      const notFoundError = new Error('Analysis not found');
+      notFoundError.status = 404;
+      notFoundError.isNotFound = true; // Flag to identify this as a "not found" case
+      throw notFoundError;
+    }
+    
     let errorMessage = `Server error (${response.status})`;
     try {
       const errorData = await response.json();

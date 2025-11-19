@@ -688,7 +688,17 @@ const applyAnalysisResponse = useCallback((
     emotionTimeline: timelineSummary,
   } = transformedPayload;
 
+  // Check if there's no prosody data (no speech detected) but burst data exists
+  const hasBurstData = response?.results?.burst && Array.isArray(response.results.burst) && response.results.burst.length > 0;
+  const hasProsodyData = response?.results?.prosody && Array.isArray(response.results.prosody) && response.results.prosody.length > 0;
+
   if (transformed.length === 0) {
+    // If we have burst but no prosody, it means no speech was detected
+    if (hasBurstData && !hasProsodyData) {
+      const noSpeechError = new Error('No speech detected in the call for emotion detection');
+      noSpeechError.noSpeechDetected = true; // Flag to identify this specific case
+      throw noSpeechError;
+    }
     throw new Error('No emotion data found in the analysis results');
   }
 
@@ -720,6 +730,52 @@ const applyAnalysisResponse = useCallback((
     updateAudioSource(null, false);
   }
 }, [updateAudioSource]);
+
+  /**
+   * Polls for analysis results until complete or timeout
+   * @param {string} callId - The Retell call ID
+   * @param {number} maxAttempts - Maximum number of polling attempts (default: 60)
+   * @param {number} intervalMs - Polling interval in milliseconds (default: 2000)
+   * @returns {Promise<Object>} The analysis results
+   */
+  const pollForAnalysisResults = useCallback(async (callId, maxAttempts = 60, intervalMs = 2000) => {
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      try {
+        const response = await getRetellCallAnalysis(callId);
+        
+        // If still processing, wait and retry
+        if (response.status === 'processing') {
+          await new Promise(resolve => setTimeout(resolve, intervalMs));
+          continue;
+        }
+        
+        // If error, throw
+        if (response.status === 'error') {
+          throw new Error(response.error_message || 'Analysis failed');
+        }
+        
+        // If we have results, return them
+        if (response.success && response.results) {
+          return response;
+        }
+      } catch (error) {
+        // If it's a 404 or "not found", it might still be processing
+        const isNotFoundError = error.isNotFound || 
+            error.status === 404 || 
+            error.message.includes('404') || 
+            error.message.toLowerCase().includes('not found') || 
+            error.message.toLowerCase().includes('not available');
+        
+        if (isNotFoundError) {
+          await new Promise(resolve => setTimeout(resolve, intervalMs));
+          continue;
+        }
+        throw error;
+      }
+    }
+    
+    throw new Error('Analysis timed out. Please try again later.');
+  }, []);
 
   const runAnalysis = useCallback(async (request, options = {}) => {
     if (!request) return;
@@ -759,16 +815,56 @@ const applyAnalysisResponse = useCallback((
         if (!forceAnalyze) {
           try {
             response = await getRetellCallAnalysis(callId);
+            // Check if still processing
+            if (response.status === 'processing') {
+              // Poll until complete
+              response = await pollForAnalysisResults(callId);
+            }
           } catch (storedError) {
-            response = null;
+            // If 404 or "not found", analysis doesn't exist yet - this is expected, not an error
+            // This includes: "Call not found", "Analysis not available", etc.
+            // Silently proceed to trigger new analysis
+            const isNotFoundError = storedError.isNotFound || 
+                storedError.status === 404 || 
+                storedError.message.includes('404') || 
+                storedError.message.toLowerCase().includes('not found') || 
+                storedError.message.toLowerCase().includes('not available');
+            
+            if (isNotFoundError) {
+              response = null; // Will trigger new analysis below
+            } else {
+              // Only throw if it's a real error (not a 404)
+              throw storedError;
+            }
           }
         }
 
+        // If no existing analysis, start a new one
         if (!response) {
           response = await analyzeRetellCall(callId, { force: forceAnalyze });
+          
+          // If analysis started in background, poll for results
+          if (response && response.status === 'processing') {
+            response = await pollForAnalysisResults(callId);
+          }
         }
 
+        // If we still don't have a response, something went wrong
+        if (!response) {
+          throw new Error('Failed to start analysis. Please try again.');
+        }
+
+        // Handle error status
+        if (response.status === 'error') {
+          throw new Error(response.error_message || 'Analysis failed');
+        }
+
+        // Check if we have valid results
         if (!response.success || !response.results) {
+          // If status is processing, we should have polled - this shouldn't happen
+          if (response.status === 'processing') {
+            throw new Error('Analysis is still processing. Please wait and try again.');
+          }
           throw new Error('Invalid response from server');
         }
 
@@ -778,13 +874,20 @@ const applyAnalysisResponse = useCallback((
         throw new Error('Unsupported analysis request type.');
       }
     } catch (err) {
-      const message = err?.message || 'Failed to analyze audio. Please try again.';
-      const retryAllowed = !/cannot be analyzed|cannot analyze emotions/i.test(message);
+      let message = err?.message || 'Failed to analyze audio. Please try again.';
+      let retryAllowed = !/cannot be analyzed|cannot analyze emotions/i.test(message);
+      
+      // If no speech was detected, don't allow retry and use user-friendly message
+      if (err?.noSpeechDetected || message.includes('No speech detected')) {
+        message = 'No speech detected in the call for emotion detection.';
+        retryAllowed = false;
+      }
+      
       setErrorInfo({ message, retryAllowed });
     } finally {
       setIsLoading(false);
     }
-  }, [resetVisualizationState, applyAnalysisResponse]);
+  }, [resetVisualizationState, applyAnalysisResponse, pollForAnalysisResults]);
 
   useEffect(() => {
     if (!analysisRequest) {
@@ -1204,14 +1307,16 @@ const applyAnalysisResponse = useCallback((
         {!isLoading && hasError && (
           <div className="analysis-state-card analysis-state-card--error">
             <p className="error-message">{errorMessage}</p>
-            <button
-              className="retry-button"
-              onClick={handleRetry}
-              type="button"
-              disabled={!canRetry || isLoading}
-            >
-              Try Again
-            </button>
+            {canRetry && (
+              <button
+                className="retry-button"
+                onClick={handleRetry}
+                type="button"
+                disabled={isLoading}
+              >
+                Try Again
+              </button>
+            )}
           </div>
         )}
 
