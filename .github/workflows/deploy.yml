@@ -14,15 +14,34 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
+    # --- STEP 1: Build the ReactJS Frontend ---
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22' # Use the Node version your project requires (adjust if necessary)
+
+    - name: Install Frontend dependencies
+      run: npm install
+      working-directory: ./web # Assuming your React app is in the 'web' folder
+
+    - name: Build Frontend for Production
+      run: npm run build
+      working-directory: ./web # This creates the 'web/build' directory
+
+    # --- STEP 2: Deploy Code to Server ---
+    # Copy all files, including the newly created 'web/build' folder
     - name: Copy files to server
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "./"
+        # The source should now include the new 'web/build' folder
+        source: "./" 
         target: "/home/deploy/Emotion-extractor"
 
+    # --- STEP 3: Restart Backend Service ---
+    # This step is correct for restarting the FastAPI service
     - name: Restart the service
       uses: appleboy/ssh-action@v0.1.6
       with:
@@ -30,5 +49,10 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
+          # Pulling code is not strictly necessary here because SCP already copied it, 
+          # but we add a safety check just in case or for future maintenance commands.
           cd /home/deploy/Emotion-extractor
+          # Ensure backend dependencies are up to date (optional but recommended)
+          # pip install -r api/requirements.txt 
           sudo systemctl restart emotions.service
+          echo "Backend service restarted successfully."
