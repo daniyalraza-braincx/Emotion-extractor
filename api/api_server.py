@@ -23,7 +23,6 @@ from extractor import (
     generate_call_purpose_from_summary,
     get_openai_client,
     get_retell_call_details,
-    split_stereo_wav_channels,
 )
 
 
@@ -44,14 +43,11 @@ RETELL_CALLS_FILENAME = os.getenv(
     "RETELL_CALLS_FILENAME",
     os.path.join(RETELL_RESULTS_DIR, "retell_calls.json"),
 )
-RETELL_AUDIO_DIR = os.path.join(RETELL_RESULTS_DIR, "audio")
 
 if not os.path.exists(RETELL_RESULTS_DIR):
     os.makedirs(RETELL_RESULTS_DIR, exist_ok=True)
 
 _RETELL_CALLS_LOCK = threading.Lock()
-if not os.path.exists(RETELL_AUDIO_DIR):
-    os.makedirs(RETELL_AUDIO_DIR, exist_ok=True)
 
 app = FastAPI(title="Hume Emotion Analysis API")
 
@@ -382,6 +378,27 @@ def _evaluate_call_constraints(call_data: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def _strip_words_from_transcript(transcript_object: Any) -> Any:
+    """Remove words array from transcript segments to reduce storage size.
+    
+    Keeps only essential fields: speaker, start, end, content/text, confidence.
+    """
+    if not isinstance(transcript_object, list):
+        return transcript_object
+    
+    cleaned_transcript = []
+    for segment in transcript_object:
+        if not isinstance(segment, dict):
+            cleaned_transcript.append(segment)
+            continue
+        
+        # Create a copy without words array
+        cleaned_segment = {k: v for k, v in segment.items() if k != "words"}
+        cleaned_transcript.append(cleaned_segment)
+    
+    return cleaned_transcript
+
+
 def _upsert_retell_call_metadata(call_data: Dict[str, Any], status: Optional[str] = None) -> Dict[str, Any]:
     call_id = call_data.get("call_id")
     if not call_id:
@@ -469,13 +486,16 @@ def _upsert_retell_call_metadata(call_data: Dict[str, Any], status: Optional[str
             merged["error_message"] = existing.get("error_message")
 
         # Store transcript_object if available (for n8n payloads and direct Retell payloads)
+        # Strip words array to reduce storage size
         transcript_object = call_data.get("transcript_object")
         if transcript_object is not None:
             merged["transcript_available"] = True
-            merged["transcript_object"] = transcript_object
+            merged["transcript_object"] = _strip_words_from_transcript(transcript_object)
         elif existing.get("transcript_object") is not None:
             # Preserve existing transcript_object if new one is not provided
-            merged["transcript_object"] = existing.get("transcript_object")
+            # Also strip words if they exist (for backward compatibility with old data)
+            existing_transcript = existing.get("transcript_object")
+            merged["transcript_object"] = _strip_words_from_transcript(existing_transcript)
             merged["transcript_available"] = True
 
         merged["last_updated"] = _current_timestamp_iso()
@@ -633,89 +653,6 @@ def _load_overall_emotion_for_call(entry: Dict[str, Any]) -> Optional[Dict[str, 
     return _extract_overall_emotion_from_results(analysis_results)
 
 
-def _merge_channel_results(
-    call_identifier: str,
-    channel_results: list,
-    transcript_data: Optional[list],
-) -> Dict[str, Any]:
-    """Combine per-channel analysis outputs into a single multi-speaker result."""
-    combined_prosody = []
-    combined_burst = []
-    combined_metadata: Dict[str, Any] = {}
-    summary_value = None
-    base_metadata_copied = False
-
-    for result in channel_results:
-        filename = (result.get("filename") or "").lower()
-        speaker = "Agent"
-        if "_user" in filename or "customer" in filename:
-            speaker = "Customer"
-        elif "_agent" in filename:
-            speaker = "Agent"
-        else:
-            speaker = result.get("prosody", [{}])[0].get("speaker") or speaker
-
-        if summary_value is None and result.get("summary"):
-            summary_value = result.get("summary")
-
-        metadata = result.get("metadata") or {}
-        combined_metadata.setdefault(speaker.lower(), metadata)
-
-        for segment in result.get("prosody", []):
-            segment_copy = {
-                **segment,
-                "speaker": speaker,
-                "top_emotions": [
-                    dict(emotion) for emotion in segment.get("top_emotions", [])
-                ],
-            }
-            combined_prosody.append(segment_copy)
-
-        for segment in result.get("burst", []):
-            segment_copy = {
-                **segment,
-                "speaker": speaker,
-                "top_emotions": [
-                    dict(emotion) for emotion in segment.get("top_emotions", [])
-                ],
-            }
-            combined_burst.append(segment_copy)
-
-        if not base_metadata_copied and metadata:
-            combined_metadata.update(metadata)
-            base_metadata_copied = True
-
-    combined_prosody.sort(key=lambda seg: seg.get("time_start") or 0)
-    combined_burst.sort(key=lambda seg: seg.get("time_start") or 0)
-
-    combined_metadata["retell_transcript_segments"] = transcript_data or []
-    combined_metadata["retell_call_id"] = call_identifier
-    combined_metadata["retell_transcript_available"] = bool(transcript_data)
-
-    combined_result = {
-        "filename": f"{call_identifier}_combined",
-        "prosody": combined_prosody,
-        "burst": combined_burst,
-        "metadata": combined_metadata,
-    }
-
-    if summary_value:
-        combined_result["summary"] = summary_value
-
-    overall_status = None
-    for channel_result in channel_results:
-        metadata = channel_result.get("metadata") or {}
-        candidate = metadata.get("overall_call_status")
-        if candidate:
-            overall_status = dict(candidate)
-            break
-
-    if overall_status:
-        combined_result.setdefault("metadata", {})["overall_call_status"] = overall_status
-
-    return combined_result
-
-
 def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
     call_id = call_payload.get("call_id")
     if not call_id:
@@ -831,24 +768,21 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
         filename_hint = f"{call_id}.wav"
         audio_filename, audio_bytes = download_retell_recording(recording_url, filename_hint)
 
-        try:
-            user_audio, agent_audio = split_stereo_wav_channels(audio_bytes)
-            agent_path = os.path.join(RETELL_AUDIO_DIR, f"{call_id}_agent.wav")
-            user_path = os.path.join(RETELL_AUDIO_DIR, f"{call_id}_user.wav")
-            with open(agent_path, "wb") as agent_f:
-                agent_f.write(agent_audio)
-            with open(user_path, "wb") as user_f:
-                user_f.write(user_audio)
-            logger.info("Saved channel audio for call %s to %s and %s", call_id, agent_path, user_path)
-            file_contents = [
-                (f"{call_id}_user.wav", user_audio),
-                (f"{call_id}_agent.wav", agent_audio),
-            ]
-        except Exception as channel_err:  # pylint: disable=broad-except
-            logger.warning("Could not split channels for call %s: %s", call_id, channel_err)
-            file_contents = [(audio_filename, audio_bytes)]
+        # Submit combined audio to Hume - speaker labels will come from transcript matching
+        file_contents = [(audio_filename, audio_bytes)]
+        logger.info("Using combined audio for call %s (speaker labels from transcript)", call_id)
 
+        # Extract transcript segments - but fetch fresh from API if stored one is incomplete
+        # (stored transcript_object may have words stripped, which breaks extraction if segments lack start/end)
         transcript_segments = extract_retell_transcript_segments(call_data)
+        if not transcript_segments:
+            # Fallback: fetch fresh from Retell API to ensure we have complete transcript with words
+            try:
+                fresh_call_data = get_retell_call_details(call_id)
+                transcript_segments = extract_retell_transcript_segments(fresh_call_data)
+                logger.info("Fetched fresh transcript from Retell API for call %s", call_id)
+            except Exception as exc:
+                logger.warning("Could not fetch fresh transcript from Retell API for call %s: %s", call_id, exc)
 
         dynamic_variables = call_data.get("retell_llm_dynamic_variables") or {}
         retell_metadata = {
@@ -878,10 +812,6 @@ def _process_retell_call(call_payload: Dict[str, Any]) -> Dict[str, Any]:
             retell_transcript=transcript_segments,
             retell_metadata=retell_metadata,
         )
-
-        if len(analysis_results) >= 2:
-            combined_result = _merge_channel_results(call_id, analysis_results, transcript_segments)
-            analysis_results.insert(0, combined_result)
 
         overall_emotion = _extract_overall_emotion_from_results(analysis_results)
 
@@ -1179,6 +1109,8 @@ def _prepare_retell_call_payload(call_entry: Dict[str, Any]) -> Dict[str, Any]:
         "user_phone_number": call_entry.get("user_phone_number"),
     }
     # Include transcript_object if available (from n8n or stored metadata)
+    # NOTE: Do NOT strip words here - extract_retell_transcript_segments needs words
+    # as fallback if segments don't have start/end timestamps
     transcript_object = call_entry.get("transcript_object")
     if transcript_object is not None:
         payload["transcript_object"] = transcript_object
@@ -1331,21 +1263,6 @@ async def get_retell_call_analysis(call_id: str, token_data: Dict[str, Any] = De
         payload = json.load(file)
 
     analysis_results = payload.get("analysis") or []
-    if analysis_results and len(analysis_results) >= 2:
-        first_filename = (analysis_results[0].get("filename") or "").lower()
-        if "_combined" not in first_filename:
-            transcript_segments = None
-            for result in analysis_results:
-                metadata = result.get("metadata") or {}
-                segments = metadata.get("retell_transcript_segments")
-                if segments:
-                    transcript_segments = segments
-                    break
-            combined_result = _merge_channel_results(call_id, analysis_results, transcript_segments)
-            analysis_results.insert(0, combined_result)
-            payload["analysis"] = analysis_results
-            _persist_retell_results(call_id, payload)
-
     first_result: Optional[Dict[str, Any]] = analysis_results[0] if analysis_results else None
 
     return JSONResponse(

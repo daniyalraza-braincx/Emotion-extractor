@@ -467,35 +467,6 @@ def download_retell_recording(
 
     return resolved_filename, response.content
 
-
-def split_stereo_wav_channels(audio_bytes: bytes) -> Tuple[bytes, bytes]:
-    """Split stereo WAV bytes into left (channel 0) and right (channel 1)."""
-    audio_buffer = io.BytesIO(audio_bytes)
-
-    with wave.open(audio_buffer, "rb") as wav_in:
-        params = wav_in.getparams()
-        nchannels, sampwidth, framerate, nframes = params[:4]
-
-        if nchannels != 2:
-            raise ValueError("Expected stereo recording (2 channels) from Retell")
-
-        frames = wav_in.readframes(nframes)
-
-    left_frames = audioop.tomono(frames, sampwidth, 1, 0)
-    right_frames = audioop.tomono(frames, sampwidth, 0, 1)
-
-    def _build_wav(channel_frames: bytes) -> bytes:
-        output_buffer = io.BytesIO()
-        with wave.open(output_buffer, "wb") as wav_out:
-            wav_out.setnchannels(1)
-            wav_out.setsampwidth(sampwidth)
-            wav_out.setframerate(framerate)
-            wav_out.writeframes(channel_frames)
-        return output_buffer.getvalue()
-
-    return _build_wav(left_frames), _build_wav(right_frames)
-
-
 def _find_best_transcript_match(
     start: float,
     end: float,
