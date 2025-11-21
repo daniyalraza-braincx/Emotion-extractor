@@ -9,16 +9,41 @@ FastAPI server for analyzing audio files using Hume's Expression Measurement API
    pip install -r api/requirements.txt
    ```
 
-2. **Create a `.env` file** (in either the root directory or the `api` directory):
+2. **Set up PostgreSQL database:**
+   - Ensure PostgreSQL is installed and running
+   - Create a database for the application:
+     ```sql
+     CREATE DATABASE emotion_analysis;
+     ```
+
+3. **Create a `.env` file** (in the `api` directory):
    ```env
    HUME_API_KEY=your_hume_api_key_here
    OPENAI_API_KEY=your_openai_api_key_here
+   RETELL_API_KEY=your_retell_api_key_here
+   DATABASE_URL=postgresql://user:password@localhost:5432/emotion_analysis
    ```
    
    Note: 
    - `HUME_API_KEY` is required for emotion analysis
    - `OPENAI_API_KEY` is optional but recommended for AI-powered summaries of the emotion predictions
+   - `RETELL_API_KEY` is required for Retell call integration
+   - `DATABASE_URL` is required for database connection (format: `postgresql://user:password@host:port/dbname`)
    - The script will automatically look for `.env` in the current directory and parent directories
+
+4. **Initialize the database schema:**
+   ```bash
+   cd api
+   python db_init.py
+   ```
+
+5. **Migrate existing JSON data (if any):**
+   ```bash
+   cd api
+   python migrate_json_to_db.py
+   ```
+   
+   This will import all existing call data from JSON files into the database.
 
 ## Running the Server
 
