@@ -18,7 +18,7 @@ from hume.expression_measurement.batch.types import InferenceBaseRequest, Models
 from hume import expression_measurement as _hume_expression_measurement
 
 try:
-    from hume.expression_measurement.batch.batch_client import BatchClientWithUtils
+    from hume.expression_measurement.batch.batch_client import BatchClientWithUtils  # pyright: ignore[reportMissingImports]
 except ImportError:
     BatchClientWithUtils = None
 
@@ -64,18 +64,94 @@ def get_openai_client() -> Optional[OpenAI]:
     return OpenAI(api_key=OPENAI_API_KEY)
 
 
-def prepare_audio_files(file_contents: List[Tuple[str, bytes]]) -> List[Tuple[str, bytes, str]]:
+def optimize_audio_for_hume(audio_bytes: bytes, target_sample_rate: int = 16000) -> bytes:
+    """
+    Optimize audio for Hume API processing by downmixing to mono and resampling to target rate.
+    
+    This function:
+    - Converts stereo to mono (combines channels)
+    - Resamples to 16kHz if higher (standard for speech emotion recognition)
+    - Preserves audio quality for emotion detection
+    
+    Args:
+        audio_bytes: Raw audio bytes (WAV format)
+        target_sample_rate: Target sample rate in Hz (default: 16000)
+    
+    Returns:
+        Optimized audio bytes as WAV
+    """
+    try:
+        with wave.open(io.BytesIO(audio_bytes), 'rb') as w:
+            params = w.getparams()
+            audio_data = w.readframes(params.nframes)
+        
+        # Downmix stereo to mono if needed
+        if params.nchannels == 2:
+            audio_data = audioop.tomono(audio_data, params.sampwidth, 1.0, 1.0)
+            nchannels = 1
+        else:
+            nchannels = params.nchannels
+        
+        # Resample to target rate if higher
+        if params.framerate > target_sample_rate:
+            audio_data, _ = audioop.ratecv(
+                audio_data,
+                params.sampwidth,
+                nchannels,
+                params.framerate,
+                target_sample_rate,
+                None
+            )
+            framerate = target_sample_rate
+        else:
+            framerate = params.framerate
+        
+        # Write optimized WAV
+        out = io.BytesIO()
+        with wave.open(out, 'wb') as w_out:
+            w_out.setnchannels(nchannels)
+            w_out.setsampwidth(params.sampwidth)
+            w_out.setframerate(framerate)
+            w_out.writeframes(audio_data)
+        
+        optimized = out.getvalue()
+        size_reduction = (1 - len(optimized) / len(audio_bytes)) * 100
+        logging.info(
+            f"Audio optimized: {len(audio_bytes)/1024:.1f}KB → {len(optimized)/1024:.1f}KB "
+            f"({size_reduction:.1f}% reduction), {params.framerate}Hz→{framerate}Hz, "
+            f"{params.nchannels}ch→{nchannels}ch"
+        )
+        return optimized
+        
+    except Exception as e:
+        logging.warning(f"Failed to optimize audio, using original: {e}")
+        return audio_bytes
+
+
+def prepare_audio_files(file_contents: List[Tuple[str, bytes]], optimize: bool = True) -> List[Tuple[str, bytes, str]]:
     """
     Prepare audio files for submission to Hume API.
     
     Args:
         file_contents: List of tuples (filename, file_bytes)
+        optimize: Whether to optimize audio (downmix to mono, resample to 16kHz)
     
     Returns:
         List of tuples (filename, file_bytes, content_type)
     """
     file_objects = []
     for filename, file_content in file_contents:
+        # Optimize audio if requested and it's a WAV file
+        if optimize and filename.lower().endswith('.wav'):
+            try:
+                file_content = optimize_audio_for_hume(file_content)
+                # Update filename to indicate optimization
+                if not filename.endswith('_opt.wav'):
+                    base_name = os.path.splitext(filename)[0]
+                    filename = f"{base_name}_opt.wav"
+            except Exception as e:
+                logging.warning(f"Failed to optimize {filename}, using original: {e}")
+        
         # Determine content type from extension
         ext = os.path.splitext(filename)[1].lower()
         content_type_map = {
@@ -96,13 +172,17 @@ def categorize_emotion(emotion_name: Optional[str]) -> str:
     return EMOTION_CATEGORIES.get(emotion_name.lower(), DEFAULT_EMOTION_CATEGORY)
 
 
-def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional[HumeClient] = None) -> str:
+def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional[HumeClient] = None, use_priority: bool = True) -> str:
     """
-    Submit audio files to Hume API for emotion analysis.
+    Submit audio files to Hume API for emotion analysis with priority support.
+    
+    Uses raw HTTP request to bypass SDK limitation and enable priority="high" parameter,
+    which provides 20-50% speed boost during peak hours.
     
     Args:
         file_objects: List of tuples (filename, file_bytes, content_type)
         client: Optional HumeClient instance (creates new one if not provided)
+        use_priority: Whether to use priority="high" (default: True)
     
     Returns:
         Job ID string
@@ -110,11 +190,78 @@ def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional
     if client is None:
         client = get_hume_client()
     
+    if not HUME_API_KEY:
+        raise ValueError("HUME_API_KEY environment variable is not set")
+    
     models_config = Models(prosody={}, burst={})
     inference_request = InferenceBaseRequest(models=models_config)
     
+    # Try raw HTTP with priority first (if enabled), fallback to SDK
+    if use_priority:
+        try:
+            import httpx
+            
+            url = "https://api.hume.ai/v0/batch/jobs"
+            headers = {
+                "X-Hume-Api-Key": HUME_API_KEY,
+                "Accept": "application/json",
+            }
+            
+            # Serialize inference request to JSON
+            request_dict = inference_request.model_dump() if hasattr(inference_request, 'model_dump') else inference_request
+            json_payload = json.dumps(request_dict)
+            
+            # Build multipart form data exactly as Hume expects
+            # Critical: field name must be exactly "file" (singular, repeated for multiple files)
+            # Hume SDK uses "file" (singular) - use list of tuples to allow multiple files with same key
+            files_list = []
+            for filename, file_bytes, content_type in file_objects:
+                # Use "file" (singular) as field name - same as Hume SDK
+                files_list.append(("file", (filename, file_bytes, content_type)))
+            
+            # JSON payload goes in data dict with exact field name "json"
+            data = {"json": json_payload}
+            
+            # Priority goes in query params
+            params = {"priority": "high"}
+            
+            # Use httpx.post directly (no need for Client context for single request)
+            # files_list allows multiple files with same "file" field name
+            response = httpx.post(
+                url,
+                headers=headers,
+                data=data,         # JSON payload with field name "json"
+                files=files_list,  # Audio files with field name "file" (singular, repeated)
+                params=params,     # Priority parameter
+                timeout=60.0,
+            )
+            response.raise_for_status()
+            job_data = response.json()
+            
+            # Extract job_id from response
+            job_id = job_data.get("job_id") or job_data.get("id")
+            if job_id:
+                logging.info(f"Submitted Hume job {job_id} with priority=high")
+                return str(job_id).strip()
+            else:
+                logging.warning(f"Priority submission succeeded but job_id not found in response: {job_data}, falling back to SDK")
+                # Fall through to SDK fallback
+                    
+        except ImportError:
+            logging.warning("httpx not available, using SDK without priority")
+            # Fall through to SDK fallback
+        except Exception as e:
+            error_msg = str(e)
+            if hasattr(e, 'response'):
+                try:
+                    error_msg += f" | Response: {getattr(e.response, 'text', str(e.response))}"
+                except:
+                    pass
+            logging.warning(f"Priority submission failed ({error_msg}), falling back to SDK")
+            # Fall through to SDK fallback
+    
+    # Fallback to SDK method (original implementation)
     try:
-        # Submit job - pass file_objects directly as in the working code
         job_id = client.expression_measurement.batch.start_inference_job_from_local_file(
             file=file_objects if file_objects else [],
             json=inference_request
@@ -126,8 +273,7 @@ def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional
             error_msg += f" | Response: {e.response}"
         raise RuntimeError(f"Failed to submit job to Hume API: {error_msg}")
     
-    # In the working code, job_id is returned directly as a string
-    # But let's handle both cases just in case
+    # Extract job_id from SDK response
     if isinstance(job_id, str):
         return job_id.strip()
     elif hasattr(job_id, 'id'):
@@ -149,7 +295,7 @@ def submit_hume_job(file_objects: List[Tuple[str, bytes, str]], client: Optional
     raise ValueError(f"Could not extract valid job_id from response: {type(job_id)} - {job_id}")
 
 
-def wait_for_job_completion(job_id: str, client: Optional[HumeClient] = None, max_wait_time: int = 300, poll_interval: int = 2) -> Dict[str, Any]:
+def wait_for_job_completion(job_id: str, client: Optional[HumeClient] = None, max_wait_time: int = 600, poll_interval: int = 5) -> Dict[str, Any]:
     """
     Wait for Hume job to complete.
     
@@ -271,12 +417,30 @@ def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 1)
             if "prosody" in models and models["prosody"] is not None:
                 prosody_data = models["prosody"]
                 grouped_preds = prosody_data.get("grouped_predictions", [])
+                # Track seen segments to avoid duplicates (same time range)
+                # Note: Hume uses overlapping windows, so same time ranges appear multiple times
+                seen_time_ranges = set()
+                
                 for group in grouped_preds:
                     for pred_item in group.get("predictions", []):
                         time_info = pred_item.get("time", {})
                         time_start = time_info.get("begin", 0) if isinstance(time_info, dict) else 0
                         time_end = time_info.get("end", 0) if isinstance(time_info, dict) else 0
-                        text = pred_item.get("text", "")
+                        text = pred_item.get("text", "") or None  # Keep null if empty, will be filled by transcript matching
+                        
+                        # Round times to avoid floating point precision issues
+                        rounded_start = round(time_start, 2)
+                        rounded_end = round(time_end, 2)
+                        
+                        # Deduplicate based on time range only (text will be added later by transcript matching)
+                        # Hume uses sliding windows (0-4s, 1-5s, etc.), so we deduplicate exact time matches
+                        time_range_key = (rounded_start, rounded_end)
+                        
+                        # Skip exact duplicate time ranges (but allow overlapping windows to merge later)
+                        if time_range_key in seen_time_ranges:
+                            continue
+                        seen_time_ranges.add(time_range_key)
+                        
                         emotions = pred_item.get("emotions", [])
                         
                         if emotions:
@@ -300,10 +464,11 @@ def extract_top_emotions(predictions_data: List[Dict[str, Any]], top_n: int = 1)
                             primary_category = enriched_top_emotions[0]["category"] if enriched_top_emotions else DEFAULT_EMOTION_CATEGORY
                             category_counts[primary_category] += 1
                             
+                            # Store text if available, otherwise null (will be filled by transcript enrichment)
                             file_result["prosody"].append({
-                                "time_start": round(time_start, 2),
-                                "time_end": round(time_end, 2),
-                                "text": text,
+                                "time_start": rounded_start,
+                                "time_end": rounded_end,
+                                "text": text.strip() if text else None,
                                 "primary_category": primary_category,
                                 "top_emotions": enriched_top_emotions,
                                 "source": "prosody",
@@ -497,7 +662,11 @@ def enrich_results_with_transcript(
         return results
 
     for result in results:
-        for prosody_segment in result.get("prosody", []):
+        # Process prosody segments: match to transcripts, then deduplicate by transcript segment
+        prosody_segments = result.get("prosody", [])
+        
+        # First pass: match each Hume segment to a transcript segment
+        for prosody_segment in prosody_segments:
             start = prosody_segment.get("time_start", 0.0)
             end = prosody_segment.get("time_end", 0.0)
             matched_segment = _find_best_transcript_match(start, end, transcript_segments)
@@ -507,6 +676,71 @@ def enrich_results_with_transcript(
                 if transcript_text:
                     prosody_segment["transcript_text"] = transcript_text
                     prosody_segment["text"] = transcript_text
+                    # Update time range to match transcript segment (aligns timeline)
+                    transcript_start = matched_segment.get("start", start)
+                    transcript_end = matched_segment.get("end", end)
+                    prosody_segment["time_start"] = round(transcript_start, 2)
+                    prosody_segment["time_end"] = round(transcript_end, 2)
+                    # Store transcript segment index for grouping
+                    prosody_segment["_transcript_index"] = transcript_segments.index(matched_segment)
+        
+        # Second pass: only keep segments that matched to a transcript segment
+        # and group them by transcript segment index to deduplicate overlapping windows
+        transcript_groups = {}  # transcript_index -> list of segments
+        
+        for prosody_segment in prosody_segments:
+            # Only include segments that matched to a transcript segment (have text and transcript_index)
+            transcript_index = prosody_segment.get("_transcript_index")
+            segment_text = prosody_segment.get("text") or prosody_segment.get("transcript_text")
+            
+            if transcript_index is None or not segment_text or not segment_text.strip():
+                continue  # Skip segments without transcript match or text
+            
+            # Group by transcript index (handles repeated phrases correctly)
+            if transcript_index not in transcript_groups:
+                transcript_groups[transcript_index] = []
+            transcript_groups[transcript_index].append(prosody_segment)
+        
+        # Third pass: for each transcript segment, pick the best Hume segment
+        # and ensure it uses the transcript's exact time range
+        enriched_prosody = []
+        for transcript_index, segments in sorted(transcript_groups.items()):
+            if not segments or transcript_index >= len(transcript_segments):
+                continue
+            
+            # Get the transcript segment for this index
+            matched_transcript = transcript_segments[transcript_index]
+            transcript_start = matched_transcript.get("start")
+            transcript_end = matched_transcript.get("end")
+            
+            if transcript_start is None or transcript_end is None:
+                continue  # Skip if transcript segment has no valid times
+            
+            # Pick the segment with the highest emotion score
+            best_segment = max(segments, key=lambda s: (
+                s.get("top_emotions", [{}])[0].get("score", 0) if s.get("top_emotions") else 0
+            ))
+            
+            # Force time range to match transcript segment exactly (ensures graph alignment)
+            best_segment["time_start"] = round(transcript_start, 2)
+            best_segment["time_end"] = round(transcript_end, 2)
+            
+            # Ensure all required fields are present
+            best_segment["speaker"] = matched_transcript.get("speaker") or best_segment.get("speaker")
+            best_segment["transcript_text"] = matched_transcript.get("text") or best_segment.get("transcript_text")
+            best_segment["text"] = best_segment["transcript_text"]
+            
+            # Clean up internal tracking field
+            best_segment.pop("_transcript_index", None)
+            enriched_prosody.append(best_segment)
+        
+        # Sort by time_start to maintain chronological order
+        enriched_prosody.sort(key=lambda s: s.get("time_start", 0))
+        
+        # Replace prosody list with deduplicated version
+        result["prosody"] = enriched_prosody
+        
+        # Process burst segments
         for burst_segment in result.get("burst", []):
             start = burst_segment.get("time_start", 0.0)
             end = burst_segment.get("time_end", 0.0)

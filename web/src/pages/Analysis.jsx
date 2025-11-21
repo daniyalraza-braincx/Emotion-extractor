@@ -119,40 +119,127 @@ function SegmentBarShape(props) {
     height,
     width,
     averageDuration,
+    domainMin = 0,
+    domainMax = 0,
+    chartWidth = 0,
+    chartMargins = { left: 80, right: 80 },
   } = props;
 
   if (!payload) {
     return null;
   }
 
-  const { intervalStart, intervalEnd, score } = payload;
-  const baseX = Number.isFinite(x) ? x : 0;
+  const { intervalStart, intervalEnd, time } = payload;
+  
+  // Recharts positions bars at 'x', but that's based on 'time' value
+  // We need to calculate the actual pixel position for intervalStart
+  // The key: x represents where Recharts would position a bar for 'time'
+  // But we want the bar to start at intervalStart, not at time
+  
+  // Calculate pixel scale: pixels per second
+  // Formula: pixelsPerSecond = availableWidth / domainRange
+  const pixelsPerSecond = (() => {
+    const leftMargin = chartMargins.left || 0;
+    const rightMargin = chartMargins.right || 0;
+    
+    // Calculate scale from domain and chart width (most accurate)
+    if (chartWidth > 0 && domainMax > domainMin) {
+      const availableWidth = chartWidth - leftMargin - rightMargin;
+      const domainRange = domainMax - domainMin;
+      if (domainRange > 0 && availableWidth > 0) {
+        return availableWidth / domainRange;
+      }
+    }
+    
+    // Fallback: infer scale from x position and time value
+    // If x is the pixel position Recharts calculated for 'time' (which is intervalStart)
+    // then we can use that as a reference
+    // But x might include the margin offset, so we need to account for that
+    if (Number.isFinite(x) && Number.isFinite(time)) {
+      // x is Recharts' calculated position, which should be at leftMargin + (time - domainMin) * scale
+      // Solving: x ≈ leftMargin + (time - domainMin) * scale
+      // scale ≈ (x - leftMargin) / (time - domainMin)
+      const leftMargin = chartMargins.left || 0;
+      if (time > domainMin && x > leftMargin) {
+        const inferredScale = (x - leftMargin) / (time - domainMin);
+        if (inferredScale > 0 && Number.isFinite(inferredScale)) {
+          return inferredScale;
+        }
+      }
+    }
+    
+    // Final fallback: estimate from averageDuration and width
   const baseWidth = Number.isFinite(width) ? width : 0;
+    if (baseWidth > 0 && Number.isFinite(averageDuration) && averageDuration > 0) {
+      return baseWidth / averageDuration;
+    }
 
+    return 10; // pixels per second estimate
+  })();
+  
+  // Calculate actual speech duration in seconds
   const duration = Number.isFinite(intervalEnd) && Number.isFinite(intervalStart)
     ? Math.max(0, intervalEnd - intervalStart)
     : 0;
 
-  const durationToPixelScale = (() => {
-    const reference = Number.isFinite(averageDuration) && averageDuration > 0 ? averageDuration : 1;
-    const base = baseWidth > 0 ? baseWidth : 12;
-    return base / reference;
-  })();
+  // Calculate where intervalStart should be positioned in pixels
+  // Formula: x = leftMargin + (intervalStart - domainMin) * pixelsPerSecond
+  // This matches how Recharts positions ReferenceLine at currentTime
+  const leftMargin = chartMargins.left || 0;
+  const computedX = chartWidth > 0 && domainMax > domainMin && pixelsPerSecond > 0
+    ? leftMargin + (intervalStart - domainMin) * pixelsPerSecond
+    : (Number.isFinite(x) ? x : leftMargin);
 
-  const computedWidth = Math.max(8, duration * durationToPixelScale);
-  const centerX = baseX + (baseWidth / 2);
-  const computedX = centerX - (computedWidth / 2);
+  // Calculate bar width in pixels based on actual speech duration
+  const rawWidth = duration > 0 && pixelsPerSecond > 0
+    ? duration * pixelsPerSecond 
+    : (width || 12);
+  
+  // Add small gap at the end of each bar for separation
+  // This creates visual space between consecutive bars
+  const barGap = 1; // 1 pixel gap
+  const computedWidth = Math.max(8, rawWidth - barGap);
+
+  // Calculate center position for emoji (center of the visible bar)
+  const barCenterX = computedX + (computedWidth / 2);
+  const emojiY = (Number.isFinite(y) && y > 0 ? y : 0) - 8;
+  
+  // Get speaker icon
+  const speaker = payload?.speaker;
+  const icon = speaker ? (SPEAKER_ICONS[speaker] || SPEAKER_ICONS.Unknown) : null;
+  
+  // Use dark border for better contrast and separation
+  // Lighten the fill slightly for better border visibility
+  const borderColor = '#2d3748'; // Dark gray border
+  const strokeWidth = 0.5;
 
   return (
+    <g>
     <rect
-      x={Number.isFinite(computedX) ? computedX : baseX}
+        x={Number.isFinite(computedX) ? computedX : 0}
       y={Number.isFinite(y) ? y : 0}
-      width={Number.isFinite(computedWidth) ? computedWidth : baseWidth || 8}
+        width={Number.isFinite(computedWidth) ? computedWidth : Math.max(8, width || 12)}
       height={Number.isFinite(height) ? height : 8}
       fill={fill || '#888888'}
+        stroke={borderColor}
+        strokeWidth={strokeWidth}
       rx={4}
       ry={4}
-    />
+        style={{ pointerEvents: 'auto' }}
+      />
+      {icon && (
+        <text
+          x={barCenterX}
+          y={emojiY}
+          fill="#1f2937"
+          fontSize={16}
+          textAnchor="middle"
+          style={{ pointerEvents: 'none' }}
+        >
+          {icon}
+        </text>
+      )}
+    </g>
   );
 }
 
@@ -162,9 +249,10 @@ function SpeakerLabel(props) {
     y,
     width,
     value,
+    payload,
   } = props;
 
-  if (!value) {
+  if (!value || !payload) {
     return null;
   }
 
@@ -634,6 +722,32 @@ function AnalysisPage() {
     });
     return map;
   }, [chartData]);
+
+  // Calculate X-axis tick values for standard time marks
+  const xAxisTicks = useMemo(() => {
+    const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
+      ? timeline.duration
+      : (Number.isFinite(duration) && duration > 0 ? duration : null);
+    
+    if (!fullDuration || fullDuration <= 0) {
+      return [];
+    }
+
+    // Generate ticks at regular intervals (every 5 seconds for short calls, every 10s for longer)
+    const tickInterval = fullDuration <= 30 ? 5 : fullDuration <= 60 ? 10 : 20;
+    const ticks = [];
+    
+    for (let time = 0; time <= fullDuration; time += tickInterval) {
+      ticks.push(Math.round(time));
+    }
+    
+    // Always include the end time
+    if (ticks[ticks.length - 1] !== Math.round(fullDuration)) {
+      ticks.push(Math.round(fullDuration));
+    }
+    
+    return ticks;
+  }, [timeline.duration, duration]);
 
   const sortedTranscriptSegments = useMemo(() => {
     if (!Array.isArray(transcriptSegments) || transcriptSegments.length === 0) {
@@ -1367,7 +1481,7 @@ const applyAnalysisResponse = useCallback((
                       </ul>
                     </div>
           <div className="chart-wrapper">
-                      <ResponsiveContainer width="100%" height="100%">
+                      <ResponsiveContainer width="100%" height={400} minHeight={300} minWidth={0}>
             <BarChart
               data={chartData}
               margin={chartMargins}
@@ -1378,6 +1492,17 @@ const applyAnalysisResponse = useCallback((
                 dataKey="time"
                 domain={[
                   (dataMin) => {
+                    // Use full call duration from timeline if available
+                    const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
+                      ? timeline.duration
+                      : (Number.isFinite(duration) && duration > 0 ? duration : null);
+                    
+                    if (fullDuration) {
+                      // Always start at 0 to show full call duration
+                      return 0;
+                    }
+                    
+                    // Fallback: use dataMin with padding if no duration available
                     if (typeof intervalDuration === 'number' && intervalDuration > 0) {
                       const minWithPadding = dataMin - intervalDuration / 2;
                       return minWithPadding < 0 ? 0 : minWithPadding;
@@ -1385,24 +1510,31 @@ const applyAnalysisResponse = useCallback((
                     return Math.max(0, dataMin - 5);
                   },
                   (dataMax) => {
+                    // Use full call duration from timeline if available
+                    const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
+                      ? timeline.duration
+                      : (Number.isFinite(duration) && duration > 0 ? duration : null);
+                    
+                    if (fullDuration) {
+                      // Add a small extension to ensure the axis line extends fully to the edge
+                      // This makes the line visually extend to the last second without affecting data display
+                      return fullDuration + 0.5;
+                    }
+                    
+                    // Fallback: use dataMax with padding if no duration available
                     if (typeof intervalDuration === 'number' && intervalDuration > 0) {
                       return dataMax + intervalDuration / 2;
                     }
                     return dataMax + 5;
                   },
                 ]}
-                ticks={chartData.map((entry) => entry.time)}
-                tickFormatter={(value) => {
-                  const interval = intervalLookup.get(value);
-                  if (!interval) {
-                    return `${Math.round(value)}s`;
-                  }
-                  return `${interval.intervalStart}s-${interval.intervalEnd}s`;
-                }}
-                label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -10, style: { fontSize: '14px' } }}
+                ticks={xAxisTicks}
                 tick={{ fontSize: 12 }}
+                tickFormatter={(value) => `${Math.round(value)}s`}
+                label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -10, style: { fontSize: '14px' } }}
                 scale="linear"
                 allowDataOverflow
+                padding={{ right: 0 }}
               />
               <YAxis
                 label={{ value: 'Intensity', angle: -90, position: 'insideLeft', style: { fontSize: '14px' } }}
@@ -1455,12 +1587,38 @@ const applyAnalysisResponse = useCallback((
                 isAnimationActive={false}
                 minPointSize={6}
                 barSize={Math.max(12, intervalDuration * 8)}
-                shape={(shapeProps) => (
+                shape={(shapeProps) => {
+                  // Calculate domain min and max for scale calculation
+                  const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
+                    ? timeline.duration
+                    : (Number.isFinite(duration) && duration > 0 ? duration : null);
+                  const domainMin = 0;
+                  const domainMax = fullDuration || 0;
+                  
+                  // Get chart dimensions from viewBox or estimate
+                  const viewBox = shapeProps.viewBox || {};
+                  const chartWidth = typeof viewBox.width === 'number' ? viewBox.width : 0;
+                  
+                  // Pass domainMax to payload so SpeakerLabel can access it
+                  const shapePropsWithDomain = {
+                    ...shapeProps,
+                    payload: {
+                      ...shapeProps.payload,
+                      _domainMax: domainMax,
+                    }
+                  };
+                  
+                  return (
                   <SegmentBarShape
-                    {...shapeProps}
+                      {...shapePropsWithDomain}
                     averageDuration={intervalDuration}
+                      domainMin={domainMin}
+                      domainMax={domainMax}
+                      chartWidth={chartWidth}
+                      chartMargins={chartMargins}
                   />
-                )}
+                  );
+                }}
               >
                 {chartData.map((entry, index) => {
                   const categoryKey = typeof entry.category === 'string'
@@ -1489,7 +1647,7 @@ const applyAnalysisResponse = useCallback((
             </BarChart>
                       </ResponsiveContainer>
                     </div>
-                    <div className="analysis-chart-card__sentiment-legend">
+                    <div className="analysis-chart-card__sentiment-legend" style={{ marginTop: '2rem' }}>
                       {SENTIMENT_LEGEND_ITEMS.map((item) => (
                         <div key={item.key} className="sentiment-legend-entry">
                           <span
