@@ -467,35 +467,6 @@ def download_retell_recording(
 
     return resolved_filename, response.content
 
-
-def split_stereo_wav_channels(audio_bytes: bytes) -> Tuple[bytes, bytes]:
-    """Split stereo WAV bytes into left (channel 0) and right (channel 1)."""
-    audio_buffer = io.BytesIO(audio_bytes)
-
-    with wave.open(audio_buffer, "rb") as wav_in:
-        params = wav_in.getparams()
-        nchannels, sampwidth, framerate, nframes = params[:4]
-
-        if nchannels != 2:
-            raise ValueError("Expected stereo recording (2 channels) from Retell")
-
-        frames = wav_in.readframes(nframes)
-
-    left_frames = audioop.tomono(frames, sampwidth, 1, 0)
-    right_frames = audioop.tomono(frames, sampwidth, 0, 1)
-
-    def _build_wav(channel_frames: bytes) -> bytes:
-        output_buffer = io.BytesIO()
-        with wave.open(output_buffer, "wb") as wav_out:
-            wav_out.setnchannels(1)
-            wav_out.setsampwidth(sampwidth)
-            wav_out.setframerate(framerate)
-            wav_out.writeframes(channel_frames)
-        return output_buffer.getvalue()
-
-    return _build_wav(left_frames), _build_wav(right_frames)
-
-
 def _find_best_transcript_match(
     start: float,
     end: float,
@@ -639,49 +610,7 @@ def summarize_predictions(results: List[Dict[str, Any]], openai_client: Optional
                         ]
                     })
             
-            for segment in burst_segments:
-                time_start = segment.get("time_start", 0)
-                time_end = segment.get("time_end", 0)
-                top_emotions = segment.get("top_emotions", [])
-                speaker = segment.get("speaker") or "Unknown"
-                if top_emotions:
-                    primary_emotion = top_emotions[0].get("name")
-                    primary_category = top_emotions[0].get("category", DEFAULT_EMOTION_CATEGORY)
-                    text = (segment.get("transcript_text") or "").strip()
-                    if primary_emotion and text:
-                        last_emotion = speaker_last_emotion.get(speaker)
-                        if primary_emotion != last_emotion:
-                            emotion_highlights.append({
-                                "speaker": speaker,
-                                "time_start": time_start,
-                                "time_end": time_end,
-                                "text": text,
-                                "primary_emotion": primary_emotion,
-                                "score": top_emotions[0].get("score"),
-                                "type": "vocal_burst",
-                                "category": primary_category,
-                            })
-                            speaker_last_emotion[speaker] = primary_emotion
-                        speaker_emotion_counts.setdefault(speaker, {})
-                        speaker_emotion_counts[speaker][primary_emotion] = \
-                            speaker_emotion_counts[speaker].get(primary_emotion, 0) + 1
 
-                    all_segments.append({
-                        "time_start": time_start,
-                        "time_end": time_end,
-                        "time_range": f"{time_start:.1f}s-{time_end:.1f}s",
-                        "type": "vocal_burst",
-                        "speaker": speaker,
-                        "top_emotions": [
-                            {
-                                "name": e.get("name"),
-                                "score": e.get("score"),
-                                "percentage": e.get("percentage"),
-                                "category": e.get("category", DEFAULT_EMOTION_CATEGORY),
-                            }
-                            for e in top_emotions
-                        ]
-                    })
             
             # Sort by time
             all_segments.sort(key=lambda x: x["time_start"])
