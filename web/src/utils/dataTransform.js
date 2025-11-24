@@ -780,8 +780,12 @@ export function transformApiDataToChart(apiResponse) {
 
   const chartData = prosodySegments
     .map((segment) => {
-      const duration = Math.max(0, (segment.end ?? segment.start) - segment.start);
-      const midpoint = segment.start + (duration / 2);
+      const intervalStart = segment.start;
+      const intervalEnd = segment.end ?? segment.start;
+      const duration = Math.max(0, intervalEnd - intervalStart);
+      // Use intervalStart as time so Recharts positions bars at speech start
+      // This matches how the audio timeline works (positioned at start, width = duration)
+      const time = intervalStart;
 
       const emotionScores = {};
       segment.emotions.forEach((emotion) => {
@@ -791,9 +795,9 @@ export function transformApiDataToChart(apiResponse) {
       });
 
       return {
-        time: midpoint,
-        intervalStart: segment.start,
-        intervalEnd: segment.end,
+        time: time,
+        intervalStart: intervalStart,
+        intervalEnd: intervalEnd,
         duration,
         topEmotion: segment.dominantEmotion?.name || null,
         score: typeof segment.dominantEmotion?.score === 'number' ? segment.dominantEmotion.score : 0,
@@ -932,10 +936,20 @@ export function transformApiDataToChart(apiResponse) {
     transcriptSegments = buildTranscriptSegments(results?.metadata, results.prosody);
   }
 
+  // Use metadata duration if available, otherwise fall back to latestTime from prosody segments
+  // This ensures the graph covers the full call duration, not just where prosody segments exist
+  let totalDurationSeconds = latestTime;
+  if (results?.metadata && typeof results.metadata === 'object') {
+    const durationMs = results.metadata.duration_ms;
+    if (typeof durationMs === 'number' && durationMs > 0) {
+      totalDurationSeconds = Math.max(latestTime, durationMs / 1000);
+    }
+  }
+
   const emotionTimeline = buildEmotionTimeline(
     prosodySegments,
     speakerTimelineSegments,
-    latestTime,
+    totalDurationSeconds,
   );
 
   const combinedMetrics = materializeAccumulator(metricsAccumulators.combined);
@@ -974,7 +988,7 @@ export function transformApiDataToChart(apiResponse) {
     chartData,
     emotions: emotionsList,
     speakerTimeline: {
-      duration: latestTime,
+      duration: totalDurationSeconds,
       speakers: speakerTimelineSpeakers,
       segments: speakerTimelineSegments
     },
