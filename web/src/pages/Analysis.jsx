@@ -207,24 +207,19 @@ function SegmentBarShape(props) {
   // Get speaker icon
   const speaker = payload?.speaker;
   const icon = speaker ? (SPEAKER_ICONS[speaker] || SPEAKER_ICONS.Unknown) : null;
-  
-  // Use dark border for better contrast and separation
-  // Lighten the fill slightly for better border visibility
-  const borderColor = '#2d3748'; // Dark gray border
-  const strokeWidth = 0.5;
 
   return (
     <g>
-    <rect
+      {/* Main bar with soft, faded edges using the filter */}
+      <rect
         x={Number.isFinite(computedX) ? computedX : 0}
-      y={Number.isFinite(y) ? y : 0}
+        y={Number.isFinite(y) ? y : 0}
         width={Number.isFinite(computedWidth) ? computedWidth : Math.max(8, width || 12)}
-      height={Number.isFinite(height) ? height : 8}
-      fill={fill || '#888888'}
-        stroke={borderColor}
-        strokeWidth={strokeWidth}
-      rx={4}
-      ry={4}
+        height={Number.isFinite(height) ? height : 8}
+        fill={fill || '#888888'}
+        rx={4}
+        ry={4}
+        filter="url(#softBarEdges)"
         style={{ pointerEvents: 'auto' }}
       />
       {icon && (
@@ -737,13 +732,11 @@ function AnalysisPage() {
     const tickInterval = fullDuration <= 30 ? 5 : fullDuration <= 60 ? 10 : 20;
     const ticks = [];
     
-    for (let time = 0; time <= fullDuration; time += tickInterval) {
-      ticks.push(Math.round(time));
-    }
+    // Generate ticks up to the next interval mark (e.g., if duration is 54s, generate up to 60s)
+    const maxTick = Math.ceil(fullDuration / tickInterval) * tickInterval;
     
-    // Always include the end time
-    if (ticks[ticks.length - 1] !== Math.round(fullDuration)) {
-      ticks.push(Math.round(fullDuration));
+    for (let time = 0; time <= maxTick; time += tickInterval) {
+      ticks.push(Math.round(time));
     }
     
     return ticks;
@@ -1486,6 +1479,17 @@ const applyAnalysisResponse = useCallback((
               data={chartData}
               margin={chartMargins}
             >
+              <defs>
+                {/* Reusable filter for soft, faded bar edges with color spreading/blending */}
+                <filter id="softBarEdges" x="-150%" y="-150%" width="400%" height="400%">
+                  {/* Blur the actual color fill heavily so it spreads outward and blends with other bars */}
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blurredColor" />
+                  {/* Use only the blurred color - no sharp original on top */}
+                  <feMerge>
+                    <feMergeNode in="blurredColor" />
+                  </feMerge>
+                </filter>
+              </defs>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 type="number"
