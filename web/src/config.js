@@ -14,8 +14,10 @@ export const API_ENDPOINTS = {
   RETELL_ANALYSIS: (callId) => `${API_BASE_URL}/retell/calls/${callId}/analysis`,
   // Admin endpoints
   ADMIN_USERS: `${API_BASE_URL}/admin/users`,
+  ADMIN_USER_ORGS: (userId) => `${API_BASE_URL}/admin/users/${userId}/organizations`,
   ADMIN_ORGS: `${API_BASE_URL}/admin/organizations`,
   // Organization endpoints
   ORGS: `${API_BASE_URL}/organizations`,
+  ORGS_AGENTS: (orgId) => `${API_BASE_URL}/organizations/${orgId}/agents`,
 };
 

@@ -1,15 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { listUsers, createUser, updateUser, deleteUser, listAllOrganizations } from '../services/api';
-import '../App.css';
+import { listUsers, createUser, updateUser, deleteUser, getUserOrganizationsAdmin } from '../services/api';
+import Card from '../components/Card';
+import Button from '../components/Button';
+import StatusBadge from '../components/StatusBadge';
 
 function AdminPortal() {
   const { user, isAdmin } = useAuth();
-  const [activeTab, setActiveTab] = useState('users');
   const [users, setUsers] = useState([]);
-  const [organizations, setOrganizations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [userOrganizations, setUserOrganizations] = useState({}); // { userId: [organizations] }
+  const [loadingUserOrgs, setLoadingUserOrgs] = useState({}); // { userId: true/false }
   const [pagination, setPagination] = useState({
     page: 1,
     per_page: 15,
@@ -33,7 +35,6 @@ function AdminPortal() {
   useEffect(() => {
     if (isAdmin) {
       loadUsers();
-      loadOrganizations();
     }
   }, [isAdmin, pagination.page]);
 
@@ -53,16 +54,21 @@ function AdminPortal() {
     }
   }, [pagination.page, pagination.per_page]);
 
-  const loadOrganizations = useCallback(async () => {
+  const loadUserOrganizations = useCallback(async (userId) => {
+    if (loadingUserOrgs[userId]) return; // Already loading
+    setLoadingUserOrgs(prev => ({ ...prev, [userId]: true }));
     try {
-      const response = await listAllOrganizations(1, 100);
+      const response = await getUserOrganizationsAdmin(userId);
       if (response.success) {
-        setOrganizations(response.organizations || []);
+        setUserOrganizations(prev => ({ ...prev, [userId]: response.organizations || [] }));
       }
     } catch (err) {
-      console.error('Failed to load organizations:', err);
+      console.error('Failed to load user organizations:', err);
+      setUserOrganizations(prev => ({ ...prev, [userId]: [] }));
+    } finally {
+      setLoadingUserOrgs(prev => ({ ...prev, [userId]: false }));
     }
-  }, []);
+  }, [loadingUserOrgs]);
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -120,6 +126,8 @@ function AdminPortal() {
       email: user.email || '',
       role: user.role,
     });
+    // Load organizations for this user
+    loadUserOrganizations(user.id);
   };
 
   const filteredUsers = users.filter((u) => {
@@ -134,375 +142,395 @@ function AdminPortal() {
 
   if (!isAdmin) {
     return (
-      <div className="app-root">
-        <div className="page-container">
-          <div className="analysis-state-card analysis-state-card--error">
-            <h2 style={{ margin: 0, color: '#c1324b' }}>Access Denied</h2>
-            <p style={{ margin: '0.5rem 0 0', color: '#c1324b' }}>
-              You must be an administrator to access this page.
-            </p>
-          </div>
-        </div>
+      <div>
+        <Card style={{ background: '#fff6f6', borderColor: '#ffced3', color: '#ca3949' }}>
+          <h2 style={{ margin: 0, color: '#ca3949' }}>Access Denied</h2>
+          <p style={{ margin: '0.5rem 0 0', color: '#ca3949' }}>
+            You must be an administrator to access this page.
+          </p>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="app-root">
-      <div className="page-container">
-        <header className="calls-header">
-          <div className="calls-header__title">
-            <h1>Admin Portal</h1>
-            <p>Manage users and organizations</p>
-          </div>
-        </header>
-
-        {error && (
-          <div className="alert alert-error">
-            {error}
-          </div>
-        )}
-
-        {/* Tabs */}
-        <div className="analysis-tabs">
-          <button
-            type="button"
-            className={`analysis-tab ${activeTab === 'users' ? 'is-active' : ''}`}
-            onClick={() => setActiveTab('users')}
-          >
-            Users
-          </button>
-          <button
-            type="button"
-            className={`analysis-tab ${activeTab === 'organizations' ? 'is-active' : ''}`}
-            onClick={() => setActiveTab('organizations')}
-          >
-            Organizations
-          </button>
+    <div>
+      <div className="page-header">
+        <div>
+          <h1 className="page-header-title">Manage Users</h1>
         </div>
+      </div>
 
-        {/* Users Tab */}
-        {activeTab === 'users' && (
-          <section className="calls-table-card">
-            <div className="calls-table-header">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-                <h2 style={{ margin: 0, fontSize: '1.25rem', color: '#1a1f36' }}>User Management</h2>
-                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <div className="calls-search">
-                    <span aria-hidden className="calls-search__icon">🔍</span>
-                    <input
-                      type="search"
-                      placeholder="Search users..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    className="upload-button"
-                    onClick={() => {
-                      setEditingUser(null);
-                      setUserForm({ username: '', password: '', email: '', role: 'user' });
-                      setShowCreateUserModal(true);
-                    }}
-                  >
-                    <span aria-hidden>＋</span>
-                    Create User
-                  </button>
-                </div>
-              </div>
+      {error && (
+        <Card className="mb-3" style={{ background: '#fff6f6', borderColor: '#ffced3', color: '#ca3949' }}>
+          {error}
+        </Card>
+      )}
+
+      {/* Users List */}
+      <Card>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-lg)' }}>
+            <h2 style={{ margin: 0, fontSize: 'var(--font-size-xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--text-primary)' }}>
+              User Management
+            </h2>
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', flexWrap: 'wrap' }}>
+              <input
+                type="search"
+                placeholder="Search users..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  padding: 'var(--spacing-sm) var(--spacing-md)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--border-radius)',
+                  fontSize: 'var(--font-size-sm)',
+                }}
+              />
+              <Button
+                variant="primary"
+                icon="+"
+                onClick={() => {
+                  setEditingUser(null);
+                  setUserForm({ username: '', password: '', email: '', role: 'user' });
+                  setShowCreateUserModal(true);
+                }}
+              >
+                Create User
+              </Button>
             </div>
+          </div>
 
-            <div className="calls-table-body">
-              {loading ? (
-                <div className="call-empty">
-                  <div className="spinner" style={{ margin: '0 auto 1rem' }}></div>
-                  Loading users...
+          {loading ? (
+            <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+              <p style={{ color: 'var(--text-secondary)' }}>Loading users...</p>
+            </Card>
+          ) : filteredUsers.length === 0 ? (
+            <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+              <p style={{ color: 'var(--text-secondary)' }}>
+                {searchQuery ? `No users match "${searchQuery}"` : 'No users found. Create your first user to get started.'}
+              </p>
+            </Card>
+          ) : (
+            <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)' }}>
+              {filteredUsers.map((u) => (
+                <Card key={u.id} className="user-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--spacing-md)' }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-xs)' }}>
+                        <h3 style={{ margin: 0, fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                          {u.username}
+                        </h3>
+                        <StatusBadge status={u.role === 'admin' ? 'active' : 'pending'} label={u.role} />
+                        <StatusBadge status={u.is_active ? 'active' : 'offline'} label={u.is_active ? 'Active' : 'Inactive'} />
+                      </div>
+                      {u.email && (
+                        <p style={{ margin: 0, fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                          {u.email}
+                        </p>
+                      )}
+                    </div>
+                    <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                      <Button variant="secondary" size="small" onClick={() => startEditUser(u)}>
+                        Edit
+                      </Button>
+                      {u.is_active && (
+                        <Button variant="danger" size="small" onClick={() => handleDeleteUser(u.id)}>
+                          Deactivate
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {pagination.total_pages > 1 && (
+            <Card className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--spacing-md)' }}>
+              <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                Showing {((pagination.page - 1) * pagination.per_page) + 1}–{Math.min(pagination.page * pagination.per_page, pagination.total)} of {pagination.total} users
+              </div>
+              <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center' }}>
+                <Button
+                  variant="secondary"
+                  size="small"
+                  onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
+                  disabled={!pagination.has_prev}
+                >
+                  Previous
+                </Button>
+                <div style={{ display: 'flex', gap: 'var(--spacing-xs)' }}>
+                  {Array.from({ length: pagination.total_pages }, (_, i) => i + 1).map((pageNum) => {
+                    const showPage = pageNum === 1 || 
+                                     pageNum === pagination.total_pages || 
+                                     (pageNum >= pagination.page - 1 && pageNum <= pagination.page + 1);
+                    
+                    if (!showPage && pageNum === pagination.page - 2 && pageNum > 2) {
+                      return <span key={`ellipsis-start-${pageNum}`} style={{ padding: 'var(--spacing-sm)' }}>…</span>;
+                    }
+                    if (!showPage && pageNum === pagination.page + 2 && pageNum < pagination.total_pages - 1) {
+                      return <span key={`ellipsis-end-${pageNum}`} style={{ padding: 'var(--spacing-sm)' }}>…</span>;
+                    }
+                    
+                    if (!showPage) return null;
+                    
+                    return (
+                      <Button
+                        key={pageNum}
+                        variant={pagination.page === pageNum ? 'primary' : 'secondary'}
+                        size="small"
+                        onClick={() => setPagination({ ...pagination, page: pageNum })}
+                      >
+                        {pageNum}
+                      </Button>
+                    );
+                  })}
                 </div>
-              ) : filteredUsers.length === 0 ? (
-                <div className="call-empty">
-                  {searchQuery ? `No users match "${searchQuery}"` : 'No users found. Create your first user to get started.'}
-                </div>
-              ) : (
-                filteredUsers.map((u) => (
-                  <article key={u.id} className="calls-table-row" style={{ gridTemplateColumns: '1fr 1fr 120px 120px 140px' }}>
-                    <div className="calls-table-cell">
-                      <span className="cell-primary">{u.username}</span>
-                      {u.email && <span className="cell-secondary">{u.email}</span>}
+                <Button
+                  variant="secondary"
+                  size="small"
+                  onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
+                  disabled={!pagination.has_next}
+                >
+                  Next
+                </Button>
+              </div>
+            </Card>
+          )}
+        </Card>
+
+      {/* Create/Edit User Modal */}
+      {(showCreateUserModal || editingUser) && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: 'var(--spacing-lg)',
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowCreateUserModal(false);
+              setEditingUser(null);
+              setUserForm({ username: '', password: '', email: '', role: 'user' });
+            }
+          }}
+        >
+          <Card
+            style={{
+              maxWidth: editingUser ? '800px' : '500px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ margin: '0 0 var(--spacing-lg)', fontSize: 'var(--font-size-xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--text-primary)' }}>
+              {editingUser ? 'Edit User' : 'Create User'}
+            </h2>
+            {editingUser && (
+              <div style={{ marginBottom: 'var(--spacing-lg)', padding: 'var(--spacing-md)', background: 'var(--bg-tertiary)', borderRadius: 'var(--border-radius)' }}>
+                <h3 style={{ margin: '0 0 var(--spacing-md)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                  User Details
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--spacing-md)' }}>
+                  <div>
+                    <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--spacing-xs)' }}>User ID</div>
+                    <div style={{ fontSize: 'var(--font-size-base)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                      {editingUser.id}
                     </div>
-                    <div className="calls-table-cell">
-                      <span className="cell-primary">{u.email || '—'}</span>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--spacing-xs)' }}>Status</div>
+                    <div style={{ fontSize: 'var(--font-size-base)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                      {editingUser.is_active ? 'Active' : 'Inactive'}
                     </div>
-                    <div className="calls-table-cell">
-                      <span className={`status-pill status-${u.role === 'admin' ? 'completed' : 'pending'}`}>
-                        {u.role}
-                      </span>
-                    </div>
-                    <div className="calls-table-cell">
-                      <span className={`status-pill ${u.is_active ? 'status-completed' : 'status-blocked'}`}>
-                        {u.is_active ? 'Active' : 'Inactive'}
-                      </span>
-                    </div>
-                    <div className="calls-table-cell calls-table-cell--actions">
-                      <div style={{ display: 'flex', gap: '0.5rem' }}>
-                        <button
-                          type="button"
-                          className="row-action"
-                          onClick={() => startEditUser(u)}
-                        >
-                          Edit
-                        </button>
-                        {u.is_active && (
-                          <button
-                            type="button"
-                            className="row-action"
-                            onClick={() => handleDeleteUser(u.id)}
-                            style={{ color: '#d64545', borderColor: '#ffced3' }}
-                          >
-                            Deactivate
-                          </button>
-                        )}
+                  </div>
+                  {editingUser.created_at && (
+                    <div>
+                      <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--spacing-xs)' }}>Created</div>
+                      <div style={{ fontSize: 'var(--font-size-base)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                        {new Date(editingUser.created_at).toLocaleDateString()}
                       </div>
                     </div>
-                  </article>
-                ))
-              )}
-            </div>
-
-            {pagination.total_pages > 1 && (
-              <div className="calls-pagination">
-                <div className="calls-pagination__info">
-                  Showing {((pagination.page - 1) * pagination.per_page) + 1}–{Math.min(pagination.page * pagination.per_page, pagination.total)} of {pagination.total} users
-                </div>
-                <div className="calls-pagination__controls">
-                  <button
-                    type="button"
-                    className="pagination-button"
-                    onClick={() => setPagination({ ...pagination, page: pagination.page - 1 })}
-                    disabled={!pagination.has_prev}
-                  >
-                    Previous
-                  </button>
-                  <div className="pagination-pages">
-                    {Array.from({ length: pagination.total_pages }, (_, i) => i + 1).map((pageNum) => {
-                      const showPage = pageNum === 1 || 
-                                       pageNum === pagination.total_pages || 
-                                       (pageNum >= pagination.page - 1 && pageNum <= pagination.page + 1);
-                      
-                      if (!showPage && pageNum === pagination.page - 2 && pageNum > 2) {
-                        return <span key={`ellipsis-start-${pageNum}`} className="pagination-ellipsis">…</span>;
-                      }
-                      if (!showPage && pageNum === pagination.page + 2 && pageNum < pagination.total_pages - 1) {
-                        return <span key={`ellipsis-end-${pageNum}`} className="pagination-ellipsis">…</span>;
-                      }
-                      
-                      if (!showPage) return null;
-                      
-                      return (
-                        <button
-                          key={pageNum}
-                          type="button"
-                          className={`pagination-button pagination-button--page ${pagination.page === pageNum ? 'pagination-button--active' : ''}`}
-                          onClick={() => setPagination({ ...pagination, page: pageNum })}
-                        >
-                          {pageNum}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <button
-                    type="button"
-                    className="pagination-button"
-                    onClick={() => setPagination({ ...pagination, page: pagination.page + 1 })}
-                    disabled={!pagination.has_next}
-                  >
-                    Next
-                  </button>
+                  )}
                 </div>
               </div>
             )}
-          </section>
-        )}
-
-        {/* Organizations Tab */}
-        {activeTab === 'organizations' && (
-          <section className="calls-table-card">
-            <div className="calls-table-header">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-                <h2 style={{ margin: 0, fontSize: '1.25rem', color: '#1a1f36' }}>All Organizations</h2>
-                <p style={{ margin: 0, fontSize: '0.85rem', color: '#5c6478' }}>
-                  Webhook URL format: <code style={{ background: '#f0f3ff', padding: '0.2rem 0.4rem', borderRadius: '4px', fontSize: '0.8rem' }}>/{'{'}org_id{'}'}/retell/webhook</code>
-                </p>
-              </div>
-            </div>
-
-            <div className="calls-table-body">
-              {loading ? (
-                <div className="call-empty">
-                  <div className="spinner" style={{ margin: '0 auto 1rem' }}></div>
-                  Loading organizations...
-                </div>
-              ) : organizations.length === 0 ? (
-                <div className="call-empty">No organizations found.</div>
-              ) : (
-                organizations.map((org) => (
-                  <article key={org.id} className="calls-table-row" style={{ gridTemplateColumns: '2fr 1.5fr 120px 120px 140px' }}>
-                    <div className="calls-table-cell">
-                      <span className="cell-primary">{org.name}</span>
-                      <span className="cell-secondary">
-                        ID: {org.id}
-                        {org.created_at && ` • Created ${new Date(org.created_at).toLocaleDateString()}`}
-                      </span>
-                    </div>
-                    <div className="calls-table-cell">
-                      <span className="cell-primary">{org.owner?.username || 'Unknown'}</span>
-                      <span className="cell-secondary">Owner</span>
-                    </div>
-                    <div className="calls-table-cell">
-                      <span className="cell-primary">{org.member_count || 0}</span>
-                      <span className="cell-secondary">Members</span>
-                    </div>
-                    <div className="calls-table-cell">
-                      <span className="cell-primary">{org.call_count || 0}</span>
-                      <span className="cell-secondary">Calls</span>
-                    </div>
-                    <div className="calls-table-cell">
-                      <span className="cell-secondary">
-                        {org.created_at ? new Date(org.created_at).toLocaleDateString() : '—'}
-                      </span>
-                    </div>
-                  </article>
-                ))
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* Create/Edit User Modal */}
-        {(showCreateUserModal || editingUser) && (
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'rgba(15, 31, 60, 0.6)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1000,
-              padding: '1rem',
-            }}
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                setShowCreateUserModal(false);
-                setEditingUser(null);
-                setUserForm({ username: '', password: '', email: '', role: 'user' });
-              }
-            }}
-          >
-            <div
-              className="analysis-summary-panel"
-              style={{
-                maxWidth: '500px',
-                width: '100%',
-                maxHeight: '90vh',
-                overflowY: 'auto',
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (editingUser) {
+                  handleUpdateUser(editingUser.id);
+                } else {
+                  handleCreateUser(e);
+                }
               }}
-              onClick={(e) => e.stopPropagation()}
             >
-              <h2 style={{ margin: '0 0 1.5rem', color: '#111a3a' }}>
-                {editingUser ? 'Edit User' : 'Create User'}
-              </h2>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (editingUser) {
-                    handleUpdateUser(editingUser.id);
-                  } else {
-                    handleCreateUser(e);
-                  }
-                }}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                  <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#1a1f36' }}>
-                      Username
-                    </label>
-                    <input
-                      type="text"
-                      value={userForm.username}
-                      onChange={(e) => setUserForm({ ...userForm, username: e.target.value })}
-                      required
-                      className="calls-search"
-                      style={{ width: '100%', maxWidth: 'none', padding: '0.75rem 1rem' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#1a1f36' }}>
-                      Password {editingUser && <span style={{ fontWeight: 400, color: '#5c6478', fontSize: '0.9rem' }}>(leave blank to keep current)</span>}
-                    </label>
-                    <input
-                      type="password"
-                      value={userForm.password}
-                      onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
-                      required={!editingUser}
-                      className="calls-search"
-                      style={{ width: '100%', maxWidth: 'none', padding: '0.75rem 1rem' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#1a1f36' }}>
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={userForm.email}
-                      onChange={(e) => setUserForm({ ...userForm, email: e.target.value })}
-                      className="calls-search"
-                      style={{ width: '100%', maxWidth: 'none', padding: '0.75rem 1rem' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#1a1f36' }}>
-                      Role
-                    </label>
-                    <select
-                      value={userForm.role}
-                      onChange={(e) => setUserForm({ ...userForm, role: e.target.value })}
-                      className="calls-search"
-                      style={{ width: '100%', maxWidth: 'none', padding: '0.75rem 1rem', cursor: 'pointer' }}
-                    >
-                      <option value="user">User</option>
-                      <option value="admin">Admin</option>
-                    </select>
-                  </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: 'var(--spacing-xs)',
+                    fontSize: 'var(--font-size-sm)',
+                    fontWeight: 'var(--font-weight-semibold)',
+                    color: 'var(--text-primary)'
+                  }}>
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    value={userForm.username}
+                    onChange={(e) => setUserForm({ ...userForm, username: e.target.value })}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: 'var(--spacing-sm) var(--spacing-md)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--border-radius)',
+                      fontSize: 'var(--font-size-base)',
+                    }}
+                  />
                 </div>
-                <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '2rem' }}>
-                  <button
-                    type="button"
-                    className="toolbar-chip"
-                    onClick={() => {
-                      setShowCreateUserModal(false);
-                      setEditingUser(null);
-                      setUserForm({ username: '', password: '', email: '', role: 'user' });
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: 'var(--spacing-xs)',
+                    fontSize: 'var(--font-size-sm)',
+                    fontWeight: 'var(--font-weight-semibold)',
+                    color: 'var(--text-primary)'
+                  }}>
+                    Password {editingUser && <span style={{ fontWeight: 400, color: 'var(--text-secondary)', fontSize: 'var(--font-size-xs)' }}>(leave blank to keep current)</span>}
+                  </label>
+                  <input
+                    type="password"
+                    value={userForm.password}
+                    onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
+                    required={!editingUser}
+                    style={{
+                      width: '100%',
+                      padding: 'var(--spacing-sm) var(--spacing-md)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--border-radius)',
+                      fontSize: 'var(--font-size-base)',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: 'var(--spacing-xs)',
+                    fontSize: 'var(--font-size-sm)',
+                    fontWeight: 'var(--font-weight-semibold)',
+                    color: 'var(--text-primary)'
+                  }}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={userForm.email}
+                    onChange={(e) => setUserForm({ ...userForm, email: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: 'var(--spacing-sm) var(--spacing-md)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--border-radius)',
+                      fontSize: 'var(--font-size-base)',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: 'var(--spacing-xs)',
+                    fontSize: 'var(--font-size-sm)',
+                    fontWeight: 'var(--font-weight-semibold)',
+                    color: 'var(--text-primary)'
+                  }}>
+                    Role
+                  </label>
+                  <select
+                    value={userForm.role}
+                    onChange={(e) => setUserForm({ ...userForm, role: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: 'var(--spacing-sm) var(--spacing-md)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--border-radius)',
+                      fontSize: 'var(--font-size-base)',
+                      cursor: 'pointer',
+                      background: 'var(--bg-primary)',
                     }}
                   >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="upload-button"
-                  >
-                    {editingUser ? 'Update User' : 'Create User'}
-                  </button>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
                 </div>
-              </form>
-            </div>
-          </div>
-        )}
-      </div>
+              </div>
+              {editingUser && (
+                <div style={{ marginTop: 'var(--spacing-xl)', paddingTop: 'var(--spacing-xl)', borderTop: '1px solid var(--border-color)' }}>
+                  <h3 style={{ margin: '0 0 var(--spacing-md)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                    Organizations
+                  </h3>
+                  {loadingUserOrgs[editingUser.id] ? (
+                    <div style={{ padding: 'var(--spacing-lg)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+                      Loading organizations...
+                    </div>
+                  ) : userOrganizations[editingUser.id] && userOrganizations[editingUser.id].length > 0 ? (
+                    <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)', maxHeight: '300px', overflowY: 'auto' }}>
+                      {userOrganizations[editingUser.id].map((org) => (
+                        <Card key={org.id} style={{ padding: 'var(--spacing-md)', background: 'var(--bg-tertiary)' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--spacing-sm)' }}>
+                            <div style={{ flex: 1 }}>
+                              <div style={{ fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)', fontSize: 'var(--font-size-base)', marginBottom: 'var(--spacing-xs)' }}>
+                                {org.name}
+                              </div>
+                              <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                                ID: {org.id} • Role: {org.user_role || 'Member'}
+                              </div>
+                            </div>
+                          </div>
+                        </Card>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ padding: 'var(--spacing-lg)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+                      No organizations found for this user.
+                    </div>
+                  )}
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: 'var(--spacing-sm)', justifyContent: 'flex-end', marginTop: 'var(--spacing-xl)' }}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    setShowCreateUserModal(false);
+                    setEditingUser(null);
+                    setUserForm({ username: '', password: '', email: '', role: 'user' });
+                    setUserOrganizations({});
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                >
+                  {editingUser ? 'Update User' : 'Create User'}
+                </Button>
+              </div>
+            </form>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

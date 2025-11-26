@@ -84,6 +84,7 @@ class Organization(Base):
     owner = relationship("User", back_populates="organizations_owned", foreign_keys=[owner_id])
     user_organizations = relationship("UserOrganization", back_populates="organization", cascade="all, delete-orphan")
     calls = relationship("Call", back_populates="organization", cascade="all, delete-orphan")
+    agents = relationship("Agent", back_populates="organization", cascade="all, delete-orphan")
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert Organization model to dictionary format."""
@@ -123,6 +124,35 @@ class UserOrganization(Base):
             "role": self.role,
             "is_active": self.is_active,
             "joined_at": self.joined_at.replace(microsecond=0).isoformat() + "Z" if self.joined_at else None,
+        }
+
+
+class Agent(Base):
+    """Agents table - stores agent IDs associated with organizations."""
+    __tablename__ = "agents"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    organization_id = Column(Integer, ForeignKey("organizations.id", ondelete="CASCADE"), nullable=False, index=True)
+    agent_id = Column(String(255), nullable=False, index=True)
+    agent_name = Column(String(255), nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    created_by_user_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+
+    # Relationships
+    organization = relationship("Organization", back_populates="agents")
+    created_by_user = relationship("User", foreign_keys=[created_by_user_id])
+
+    # Unique constraint: one agent_id per organization
+    __table_args__ = (UniqueConstraint('organization_id', 'agent_id', name='uq_organization_agent'),)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert Agent model to dictionary format."""
+        return {
+            "id": self.id,
+            "organization_id": self.organization_id,
+            "agent_id": self.agent_id,
+            "agent_name": self.agent_name,
+            "created_at": self.created_at.replace(microsecond=0).isoformat() + "Z" if self.created_at else None,
         }
 
 

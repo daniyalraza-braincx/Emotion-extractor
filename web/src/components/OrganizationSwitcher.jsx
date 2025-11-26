@@ -148,55 +148,21 @@ function OrganizationSwitcher() {
   }
 
   return (
-    <div style={{ marginBottom: '1rem' }}>
-      <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
-        Current Organization:
-      </label>
-      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-        <select
-          value={currentOrganization?.id || ''}
-          onChange={(e) => handleSwitch(Number(e.target.value))}
-          disabled={loading}
-          style={{
-            padding: '0.5rem',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-            minWidth: '200px',
-          }}
-        >
-          {organizations.map((org) => (
-            <option key={org.id} value={org.id}>
-              {org.name} (ID: {org.id})
-            </option>
-          ))}
-        </select>
-        {currentOrganization && (
-          <div style={{ fontSize: '0.85rem', color: '#5c6478', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span>Webhook:</span>
-            <code style={{ background: '#f0f3ff', padding: '0.2rem 0.4rem', borderRadius: '4px', fontSize: '0.8rem' }}>
-              /{currentOrganization.id}/retell/webhook
-            </code>
-          </div>
-        )}
-        <button
-          onClick={() => setShowCreateModal(true)}
-          style={{
-            padding: '0.5rem 1rem',
-            background: '#10b981',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '0.875rem',
-          }}
-        >
-          + New
-        </button>
-      </div>
+    <div className="org-switcher">
+      <select
+        value={currentOrganization?.id || ''}
+        onChange={(e) => handleSwitch(Number(e.target.value))}
+        disabled={loading}
+        className="org-switcher-select"
+      >
+        {organizations.map((org) => (
+          <option key={org.id} value={org.id}>
+            {org.name}
+          </option>
+        ))}
+      </select>
       {error && (
-        <div style={{ marginTop: '0.5rem', padding: '0.5rem', background: '#fee', color: '#c33', borderRadius: '4px', fontSize: '0.875rem' }}>
-          {error}
-        </div>
+        <div className="org-switcher-error">{error}</div>
       )}
 
       {showCreateModal && (

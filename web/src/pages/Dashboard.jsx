@@ -1,10 +1,12 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
-import { fetchRetellCalls } from '../services/api';
+import { fetchRetellCalls, getOrganizationAgents } from '../services/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import { useAuth } from '../context/AuthContext';
 import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/formatters';
-import OrganizationSwitcher from '../components/OrganizationSwitcher';
+import Card from '../components/Card';
+import Button from '../components/Button';
+import StatusBadge from '../components/StatusBadge';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -21,6 +23,11 @@ function Dashboard() {
     return isNaN(page) || page < 1 ? 1 : page;
   }, [searchParams]);
 
+  // Get agent_id from URL query params
+  const currentAgentId = useMemo(() => {
+    return searchParams.get('agent_id') || null;
+  }, [searchParams]);
+
   const [retellCalls, setRetellCalls] = useState([]);
   const [pagination, setPagination] = useState({
     page: 1,
@@ -34,17 +41,20 @@ function Dashboard() {
   const [callsError, setCallsError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [hideBlocked, setHideBlocked] = useState(false);
+  const [savedAgents, setSavedAgents] = useState([]);
+  const [isLoadingAgents, setIsLoadingAgents] = useState(false);
   const callsPerPage = 15;
 
-  const loadRetellCalls = useCallback(async (pageToLoad) => {
-    const page = pageToLoad || currentPage;
+  const loadRetellCalls = useCallback(async (pageToLoad = null, agentId = null) => {
+    const page = pageToLoad !== null ? pageToLoad : currentPage;
+    const agentIdToUse = agentId !== null ? agentId : currentAgentId;
     if (!authenticated || loading) {
       return;
     }
     setIsFetchingCalls(true);
     setCallsError(null);
     try {
-      const response = await fetchRetellCalls(page, callsPerPage);
+      const response = await fetchRetellCalls(page, callsPerPage, agentIdToUse);
       setRetellCalls(Array.isArray(response.calls) ? response.calls : []);
       setPagination(response.pagination || {
         page: page,
@@ -59,42 +69,87 @@ function Dashboard() {
     } finally {
       setIsFetchingCalls(false);
     }
-  }, [authenticated, loading, currentPage, callsPerPage, currentOrganization?.id]);
+  }, [authenticated, loading, currentPage, callsPerPage, currentAgentId]);
+
+  // Load saved agents for the organization
+  const loadSavedAgents = useCallback(async (orgId) => {
+    if (!orgId || isAdmin) {
+      setSavedAgents([]);
+      return;
+    }
+    setIsLoadingAgents(true);
+    try {
+      const response = await getOrganizationAgents(orgId);
+      if (response.success && Array.isArray(response.agents)) {
+        setSavedAgents(response.agents);
+      } else {
+        setSavedAgents([]);
+      }
+    } catch (err) {
+      // Silently fail - agents list is optional
+      console.warn('Failed to load agents:', err);
+      setSavedAgents([]);
+    } finally {
+      setIsLoadingAgents(false);
+    }
+  }, [isAdmin]);
 
   // Track previous organization ID to detect changes
   const prevOrgIdRef = useRef(currentOrganization?.id);
+  const agentsLoadedRef = useRef({}); // Track which orgs have had agents loaded
+  const loadingAgentsRef = useRef({}); // Track which orgs are currently loading agents
   
+  // Load agents when organization changes (separate effect to avoid loops)
   useEffect(() => {
-    if (authenticated && !loading) {
-      const currentOrgId = currentOrganization?.id;
-      const prevOrgId = prevOrgIdRef.current;
-      
-      // If organization changed, reset to page 1
-      if (currentOrgId !== undefined && currentOrgId !== prevOrgId && prevOrgId !== undefined) {
-        prevOrgIdRef.current = currentOrgId;
-        if (currentPage !== 1) {
-          const newSearchParams = new URLSearchParams(searchParams);
-          newSearchParams.set('page', '1');
-          setSearchParams(newSearchParams, { replace: true });
-          return; // Will reload when page changes
-        }
-      } else {
-        prevOrgIdRef.current = currentOrgId;
-      }
-      
-      // Load calls for current page
+    if (!authenticated || loading || isAdmin) return;
+    
+    const currentOrgId = currentOrganization?.id;
+    if (!currentOrgId) return;
+    
+    const prevOrgId = prevOrgIdRef.current;
+    
+    // If organization changed, reset tracking
+    if (currentOrgId !== prevOrgId) {
+      prevOrgIdRef.current = currentOrgId;
+      agentsLoadedRef.current = {};
+      loadingAgentsRef.current = {};
+      // Clear agent_id from URL when organization changes
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.delete('agent_id');
+      newSearchParams.set('page', '1');
+      setSearchParams(newSearchParams, { replace: true });
+    }
+    
+    // Load agents if not already loaded or loading
+    if (!agentsLoadedRef.current[currentOrgId] && !loadingAgentsRef.current[currentOrgId]) {
+      loadingAgentsRef.current[currentOrgId] = true;
+      loadSavedAgents(currentOrgId).then(() => {
+        agentsLoadedRef.current[currentOrgId] = true;
+        loadingAgentsRef.current[currentOrgId] = false;
+      }).catch(() => {
+        loadingAgentsRef.current[currentOrgId] = false;
+      });
+    }
+  }, [authenticated, loading, currentOrganization?.id, isAdmin, searchParams, setSearchParams, loadSavedAgents]);
+  
+  // Load calls when page/agent/organization changes
+  useEffect(() => {
+    if (!authenticated || loading) return;
+    
+    const currentOrgId = currentOrganization?.id;
+    
+    // For admins, always load calls
+    if (isAdmin) {
+      loadRetellCalls(currentPage);
+      return;
+    }
+    
+    // For users, load calls when organization is available
+    // We can load calls even if agents haven't loaded yet (will show all calls)
+    if (currentOrgId) {
       loadRetellCalls(currentPage);
     }
-  }, [authenticated, loading, currentPage, loadRetellCalls, currentOrganization?.id, searchParams, setSearchParams]);
-
-  const handleAnalyzeCall = (call) => {
-    if (!call?.call_id) return;
-    setAnalysisRequest({
-      type: 'retell',
-      call,
-    });
-    navigate('/analysis');
-  };
+  }, [authenticated, loading, currentPage, currentAgentId, currentOrganization?.id, isAdmin, loadRetellCalls]);
 
   const handleFileChange = (event) => {
     const [file] = event.target.files || [];
@@ -151,6 +206,8 @@ function Dashboard() {
     });
   }, [retellCalls, searchQuery, hideBlocked]);
 
+
+
   // Reset to page 1 when filters change and update URL
   useEffect(() => {
     if (currentPage !== 1) {
@@ -170,6 +227,17 @@ function Dashboard() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [pagination.total_pages, searchParams, setSearchParams]);
+
+  const handleAgentSelect = useCallback((agentId) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (agentId) {
+      newSearchParams.set('agent_id', agentId);
+    } else {
+      newSearchParams.delete('agent_id');
+    }
+    newSearchParams.set('page', '1');
+    setSearchParams(newSearchParams);
+  }, [searchParams, setSearchParams]);
 
   const renderSummary = useCallback((call) => {
     const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
@@ -206,106 +274,107 @@ function Dashboard() {
   const hasNoOrganizations = !isAdmin && (!organizations || organizations.length === 0);
 
   return (
-    <main className="calls-page">
+    <div className="dashboard-page">
       {hasNoOrganizations && (
-        <div className="alert" style={{ 
+        <Card className="mb-3" style={{ 
           background: '#fff8e1', 
           borderColor: '#ffc107', 
-          color: '#856404',
-          marginBottom: '1.5rem'
+          color: '#856404'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <strong>No organization found</strong>
               <p style={{ margin: '0.5rem 0 0', fontSize: '0.9rem' }}>
-                You need to create an organization to start using the application. Click the button below to create one.
+                You need to create an organization to start using the application.
               </p>
             </div>
-            <Link
-              to="/organizations"
-              className="upload-button"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              Create Organization
+            <Link to="/organizations" style={{ textDecoration: 'none' }}>
+              <Button variant="primary">Create Organization</Button>
             </Link>
           </div>
-        </div>
+        </Card>
       )}
       
-      <header className="calls-header">
-        <div className="calls-header__title">
-          <h1>Calls</h1>
-          <p>{totalCallCount} total calls</p>
-          {currentOrganization && (
-            <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.25rem' }}>
-              Organization: {currentOrganization.name} (ID: {currentOrganization.id})
-            </p>
-          )}
+      <div className="page-header">
+        <div>
+          <h1 className="page-header-title">Voice Agents</h1>
+          <p className="page-header-subtitle">
+            {totalCallCount} total calls
+            {currentOrganization && ` • ${currentOrganization.name}`}
+          </p>
         </div>
+      </div>
 
-        <div className="calls-header__tools">
-          {!isAdmin && <OrganizationSwitcher />}
-          <div className="calls-search">
-            <span aria-hidden className="calls-search__icon">🔍</span>
+      {/* Filters Bar */}
+      <Card className="mb-3">
+        <div style={{ display: 'flex', gap: 'var(--spacing-md)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+          {!isAdmin && currentOrganization && (
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', minWidth: '200px' }}>
+              <label style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+                Agent:
+              </label>
+              <select
+                value={currentAgentId || ''}
+                onChange={(e) => handleAgentSelect(e.target.value || null)}
+                className="org-switcher-select"
+                disabled={isLoadingAgents}
+                style={{ flex: 1 }}
+              >
+                <option value="">All Agents</option>
+                {savedAgents.map((agent) => (
+                  <option key={agent.id} value={agent.agent_id}>
+                    {agent.agent_name || agent.agent_id} ({agent.call_count} {agent.call_count === 1 ? 'call' : 'calls'})
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          
+          <div style={{ flex: 1, maxWidth: '400px' }}>
             <input
               type="search"
-              placeholder="Search by agent, call ID, or emotion..."
+              placeholder="Search calls..."
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
+              style={{
+                width: '100%',
+                padding: 'var(--spacing-sm) var(--spacing-md)',
+                border: '1px solid var(--border-color)',
+                borderRadius: 'var(--border-radius)',
+                fontSize: 'var(--font-size-sm)',
+              }}
             />
           </div>
 
-          <div className="calls-filter">
-            <label className="calls-filter__label">
-              <input
-                type="checkbox"
-                checked={hideBlocked}
-                onChange={(e) => setHideBlocked(e.target.checked)}
-                className="calls-filter__checkbox"
-              />
-              <span>Hide blocked calls</span>
-            </label>
-          </div>
+          <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={hideBlocked}
+              onChange={(e) => setHideBlocked(e.target.checked)}
+              style={{ cursor: 'pointer' }}
+            />
+            <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+              Hide blocked
+            </span>
+          </label>
 
-          <div className="calls-toolbar">
-            {isAdmin && (
-              <Link
-                to="/admin"
-                className="toolbar-chip"
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                Admin Portal
-              </Link>
-            )}
-            {!isAdmin && (
-              <Link
-                to="/organizations"
-                className="toolbar-chip"
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                Organizations
-              </Link>
-            )}
-            <button
-              type="button"
-              className="toolbar-chip"
+          <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', marginLeft: 'auto' }}>
+            <Button
+              variant="secondary"
               onClick={() => loadRetellCalls(currentPage)}
               disabled={isFetchingCalls}
+              size="small"
             >
               {isFetchingCalls ? 'Refreshing…' : 'Refresh'}
-            </button>
-            <button type="button" className="upload-button" onClick={triggerUpload}>
-              <span aria-hidden className="upload-button__icon">＋</span>
-              Upload
-            </button>
-            <button
-              type="button"
-              className="toolbar-chip"
-              onClick={logout}
-              title="Logout"
+            </Button>
+            <Button 
+              variant="primary" 
+              icon="🤖"
+              onClick={triggerUpload}
+              size="small"
             >
-              Logout
-            </button>
+              Upload Audio
+            </Button>
             <input
               ref={fileInputRef}
               id="custom-audio-upload"
@@ -316,41 +385,38 @@ function Dashboard() {
             />
           </div>
         </div>
-      </header>
+      </Card>
 
       {callsError && (
-        <div className="alert alert-error calls-alert">
+        <Card className="mb-3" style={{ background: '#fff6f6', borderColor: '#ffced3', color: '#ca3949' }}>
           {callsError}
-        </div>
+        </Card>
       )}
 
-      <section className="calls-table-card">
-        <div className="calls-table-header">
-          <div className="calls-table-meta">
-            <span className="calls-table-meta__label">Call Logs</span>
-            <span className="calls-table-meta__label">Call ID</span>
-            <span className="calls-table-meta__label">Purpose</span>
-            <span className="calls-table-meta__label calls-table-meta__label--wide">Summary</span>
-            <span className="calls-table-meta__label">Duration</span>
-            <span className="calls-table-meta__label">Overall Emotion</span>
-            <span className="calls-table-meta__label">Entry</span>
-            <span className="calls-table-meta__label" aria-hidden />
-          </div>
-        </div>
-
-        <div className="calls-table-body">
-          {isFetchingCalls ? (
-            <div className="call-empty">Loading calls…</div>
-          ) : totalCallCount === 0 ? (
-            <div className="call-empty">
-              Waiting for Retell to send <code>call_analyzed</code> webhooks.
-            </div>
-          ) : resultCount === 0 ? (
-            <div className="call-empty">
-              No calls match “{searchQuery}”. Try adjusting your filters.
-            </div>
-          ) : (
-            filteredCalls.map((call) => {
+      <div>
+        {isFetchingCalls ? (
+          <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+            <p style={{ color: 'var(--text-secondary)' }}>Loading calls…</p>
+          </Card>
+        ) : totalCallCount === 0 ? (
+          <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+            <p style={{ color: 'var(--text-secondary)' }}>
+              {!isAdmin && currentAgentId ? (
+                <>No calls found for agent <strong>{currentAgentId}</strong>.</>
+              ) : (
+                <>Waiting for Retell to send <code>call_analyzed</code> webhooks.</>
+              )}
+            </p>
+          </Card>
+        ) : resultCount === 0 ? (
+          <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+            <p style={{ color: 'var(--text-secondary)' }}>
+              No calls match "{searchQuery}". Try adjusting your filters.
+            </p>
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)' }}>
+            {filteredCalls.map((call) => {
               const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
               const statusLabel = formatStatusLabel(call.analysis_status);
               const rawStatus = (call.analysis_status || call.status || (call.analysis_allowed === false ? 'blocked' : 'pending')).toString();
@@ -365,109 +431,91 @@ function Dashboard() {
               const formattedEmotionLabel = rawEmotionLabel ? formatStatusLabel(rawEmotionLabel) : '—';
               const emotionKey = rawEmotionLabel ? rawEmotionLabel.toLowerCase() : null;
               const shouldShowEmotion = statusKey === 'completed' && formattedEmotionLabel !== '—';
-              const emotionClassName = shouldShowEmotion && emotionKey
-                ? `emotion-pill emotion-${emotionKey}`
-                : 'emotion-pill emotion-pill--empty';
 
               return (
-                <article key={call.call_id} className="calls-table-row" data-status={statusKey}>
-                  <div className="calls-table-cell calls-table-cell--start">
-                    <span className="cell-primary">{formatTimestamp(call.start_timestamp)}</span>
-                    {call.last_updated && (
-                      <span className="cell-secondary">
-                        Updated {formatTimestamp(call.last_updated)}
-                      </span>
-                    )}
+                <Card key={call.call_id} className="call-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--spacing-md)' }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-xs)' }}>
+                        <h3 style={{ margin: 0, fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                          {callPurpose}
+                        </h3>
+                        <StatusBadge status={statusKey} label={statusLabel} />
+                      </div>
+                      <p style={{ margin: 0, fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                        {call.agent_name || call.agent_id || 'Unknown agent'} • {formatTimestamp(call.start_timestamp)}
+                      </p>
+                      <p style={{ margin: 'var(--spacing-xs) 0 0', fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                        Call ID: <code style={{ background: 'var(--bg-tertiary)', padding: '0.125rem 0.25rem', borderRadius: '4px', fontSize: '0.875em' }}>{call.call_id || '—'}</code>
+                      </p>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--spacing-xs)' }}>
+                      {durationLabel && (
+                        <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                          {durationLabel}
+                        </span>
+                      )}
+                      {shouldShowEmotion && (
+                        <StatusBadge status={emotionKey} label={formattedEmotionLabel} />
+                      )}
+                    </div>
                   </div>
-
-                  <div className="calls-table-cell calls-table-cell--id">
-                    <span className="cell-primary">{call.call_id || '—'}</span>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--purpose">
-                    <span className="cell-primary">{callPurpose}</span>
-                    <span className="cell-secondary">{call.agent_name || call.agent_id || 'Unknown agent'}</span>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--summary">
-                    <p>{summaryText}</p>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--duration">
-                    {durationLabel ? (
-                      <span className="cell-primary">{durationLabel}</span>
-                    ) : (
-                      <span className="cell-secondary">Pending</span>
-                    )}
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--emotion">
-                    <span className={emotionClassName}>
-                      {shouldShowEmotion ? formattedEmotionLabel : '—'}
-                    </span>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--entry">
-                    <span className={`status-pill status-${statusKey}`}>
-                      {statusLabel}
-                    </span>
-                  </div>
-
-                  <div className="calls-table-cell calls-table-cell--actions">
+                  
+                  <p style={{ margin: '0 0 var(--spacing-md)', fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                    {summaryText}
+                  </p>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--spacing-sm)' }}>
                     {isBlocked ? (
-                      <button
-                        type="button"
-                        className="row-action row-action--disabled"
+                      <Button variant="secondary" disabled title={blockReason || 'Analysis unavailable'}>
+                        Analysis Blocked
+                      </Button>
+                    ) : statusKey === 'completed' ? (
+                      <Button 
+                        variant="secondary" 
                         disabled
-                        aria-disabled="true"
-                        title={blockReason || 'Analysis unavailable'}
+                        title="Go to 'Session Analysis' tab to view detailed analysis of this call"
                       >
-                        View analysis
-                      </button>
+                        Analyzed - View in Session Analysis Tab
+                      </Button>
                     ) : (
-                      <button
-                        type="button"
-                        className="row-action"
-                        onClick={() => handleAnalyzeCall(call)}
-                      >
-                        View analysis
-                      </button>
+                      <Button variant="secondary" disabled title="Analysis not completed yet">
+                        Analysis Pending
+                      </Button>
                     )}
                   </div>
-                </article>
+                </Card>
               );
-            })
-          )}
-        </div>
+            })}
+          </div>
+        )}
 
         {pagination.total > 0 && pagination.total_pages > 1 && (
-          <div className="calls-pagination">
-            <div className="calls-pagination__info">
+          <Card className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--spacing-md)' }}>
+            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
               Showing {showingFrom}–{showingTo} of {resultCount} calls
             </div>
-            <div className="calls-pagination__controls">
-              <button
-                type="button"
-                className="pagination-button"
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center' }}>
+              <Button
+                variant="secondary"
+                size="small"
                 onClick={() => handlePageChange(pagination.page - 1)}
                 disabled={!pagination.has_prev}
-                aria-label="Previous page"
               >
                 Previous
-              </button>
+              </Button>
               
-              <div className="pagination-pages">
+              <div style={{ display: 'flex', gap: 'var(--spacing-xs)' }}>
                 {Array.from({ length: pagination.total_pages }, (_, i) => i + 1).map((pageNum) => {
-                  // Show first page, last page, current page, and pages around current
                   const showPage = pageNum === 1 || 
                                    pageNum === pagination.total_pages || 
                                    (pageNum >= currentPage - 1 && pageNum <= currentPage + 1);
                   
                   if (!showPage && pageNum === pagination.page - 2 && pageNum > 2) {
-                    return <span key={`ellipsis-start-${pageNum}`} className="pagination-ellipsis">…</span>;
+                    return <span key={`ellipsis-start-${pageNum}`} style={{ padding: 'var(--spacing-sm)' }}>…</span>;
                   }
                   if (!showPage && pageNum === pagination.page + 2 && pageNum < pagination.total_pages - 1) {
-                    return <span key={`ellipsis-end-${pageNum}`} className="pagination-ellipsis">…</span>;
+                    return <span key={`ellipsis-end-${pageNum}`} style={{ padding: 'var(--spacing-sm)' }}>…</span>;
                   }
                   
                   if (!showPage) {
@@ -475,34 +523,31 @@ function Dashboard() {
                   }
                   
                   return (
-                    <button
+                    <Button
                       key={pageNum}
-                      type="button"
-                      className={`pagination-button pagination-button--page ${pagination.page === pageNum ? 'pagination-button--active' : ''}`}
+                      variant={pagination.page === pageNum ? 'primary' : 'secondary'}
+                      size="small"
                       onClick={() => handlePageChange(pageNum)}
-                      aria-label={`Page ${pageNum}`}
-                      aria-current={pagination.page === pageNum ? 'page' : undefined}
                     >
                       {pageNum}
-                    </button>
+                    </Button>
                   );
                 })}
               </div>
               
-              <button
-                type="button"
-                className="pagination-button"
+              <Button
+                variant="secondary"
+                size="small"
                 onClick={() => handlePageChange(pagination.page + 1)}
                 disabled={!pagination.has_next}
-                aria-label="Next page"
               >
                 Next
-              </button>
+              </Button>
             </div>
-          </div>
+          </Card>
         )}
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
 

@@ -2,8 +2,8 @@
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1a1f36;
-  background-color: #f5f7fb;
+  color: var(--text-primary, #111827);
+  background-color: var(--bg-secondary, #f9fafb);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,7 +14,7 @@ body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f5f7fb;
+  background-color: var(--bg-secondary, #f9fafb);
   overflow-x: hidden;
   width: 100%;
 }
@@ -26,4 +26,8 @@ a {
 
 button {
   font-family: inherit;
+}
+
+* {
+  box-sizing: border-box;
 }

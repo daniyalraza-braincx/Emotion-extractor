@@ -75,12 +75,20 @@ export async function checkApiHealth() {
  * Fetches Retell calls with pagination support
  * @param {number} page - Page number (1-indexed)
  * @param {number} perPage - Number of items per page
+ * @param {string} agentId - Optional agent ID to filter calls
+ * @param {string} analysisStatus - Optional analysis status to filter calls (e.g., 'completed')
  * @returns {Promise<Object>} Response with calls array and pagination metadata
  */
-export async function fetchRetellCalls(page = 1, perPage = 15) {
+export async function fetchRetellCalls(page = 1, perPage = 15, agentId = null, analysisStatus = null) {
   const url = new URL(API_ENDPOINTS.RETELL_CALLS);
   url.searchParams.set('page', String(page));
   url.searchParams.set('per_page', String(perPage));
+  if (agentId) {
+    url.searchParams.set('agent_id', agentId);
+  }
+  if (analysisStatus) {
+    url.searchParams.set('analysis_status', analysisStatus);
+  }
 
   const response = await fetch(url.toString(), {
     headers: getAuthHeaders(),
@@ -381,6 +389,35 @@ export async function deleteUser(userId) {
 }
 
 /**
+ * Get organizations for a specific user (admin only)
+ * @param {number} userId - User ID
+ * @returns {Promise<Object>} Organizations list for the user
+ */
+export async function getUserOrganizationsAdmin(userId) {
+  const response = await fetch(API_ENDPOINTS.ADMIN_USER_ORGS(userId), {
+    headers: getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
+/**
  * List all organizations (admin only)
  * @param {number} page - Page number
  * @param {number} perPage - Items per page
@@ -512,6 +549,105 @@ export async function updateOrganization(orgId, orgData) {
  */
 export async function deleteOrganization(orgId) {
   const response = await fetch(`${API_ENDPOINTS.ORGS}/${orgId}`, {
+    method: 'DELETE',
+    headers: getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
+/**
+ * Get list of saved agents for an organization
+ * @param {number} orgId - Organization ID
+ * @returns {Promise<Object>} List of agents with their IDs and names
+ */
+export async function getOrganizationAgents(orgId) {
+  const response = await fetch(API_ENDPOINTS.ORGS_AGENTS(orgId), {
+    headers: getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
+/**
+ * Add a new agent to an organization
+ * @param {number} orgId - Organization ID
+ * @param {string} agentId - Agent ID
+ * @param {string} agentName - Optional agent name
+ * @returns {Promise<Object>} Created agent info
+ */
+export async function addOrganizationAgent(orgId, agentId, agentName = null) {
+  const response = await fetch(API_ENDPOINTS.ORGS_AGENTS(orgId), {
+    method: 'POST',
+    headers: {
+      ...getAuthHeaders(),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      agent_id: agentId,
+      agent_name: agentName,
+    }),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
+/**
+ * Delete an agent from an organization
+ * @param {number} orgId - Organization ID
+ * @param {number} agentId - Agent record ID (not agent_id string)
+ * @returns {Promise<Object>} Success message
+ */
+export async function deleteOrganizationAgent(orgId, agentId) {
+  const response = await fetch(`${API_ENDPOINTS.ORGS_AGENTS(orgId)}/${agentId}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });

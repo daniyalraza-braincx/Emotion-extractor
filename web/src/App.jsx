@@ -1,10 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
+import './styles/theme.css'
 import Dashboard from './pages/Dashboard'
 import AnalysisPage from './pages/Analysis'
 import Login from './pages/Login'
 import AdminPortal from './pages/AdminPortal'
 import OrganizationSettings from './pages/OrganizationSettings'
+import Layout from './components/Layout'
 import { AnalysisProvider } from './context/AnalysisContext'
 import { AuthProvider, useAuth } from './context/AuthContext'
 
@@ -68,41 +70,51 @@ function AppRoutes() {
       <Route
         path="/"
         element={
-          <div className="app-root">
-            <ProtectedRoute>
+          <ProtectedRoute>
+            <Layout>
               <Dashboard />
-            </ProtectedRoute>
-          </div>
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Dashboard />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/analysis"
         element={
-          <div className="app-root">
-            <ProtectedRoute>
+          <ProtectedRoute>
+            <Layout>
               <AnalysisPage />
-            </ProtectedRoute>
-          </div>
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/admin"
         element={
-          <div className="app-root">
-            <AdminRoute>
+          <AdminRoute>
+            <Layout>
               <AdminPortal />
-            </AdminRoute>
-          </div>
+            </Layout>
+          </AdminRoute>
         }
       />
       <Route
         path="/organizations"
         element={
-          <div className="app-root">
-            <ProtectedRoute>
+          <ProtectedRoute>
+            <Layout>
               <OrganizationSettings />
-            </ProtectedRoute>
-          </div>
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route path="*" element={<Navigate to="/login" replace />} />

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import '../Login.css';
+import Card from '../components/Card';
+import Button from '../components/Button';
+import '../styles/theme.css';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -34,20 +36,72 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h1 className="login-title">BrainCX Emotion App</h1>
-        <p className="login-subtitle">Sign in to access the dashboard</p>
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'var(--bg-secondary)',
+      padding: 'var(--spacing-xl)',
+    }}>
+      <Card style={{
+        width: '100%',
+        maxWidth: '400px',
+        padding: 'var(--spacing-2xl)',
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-xl)' }}>
+          <div style={{
+            width: '64px',
+            height: '64px',
+            margin: '0 auto var(--spacing-md)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '2rem',
+            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+            borderRadius: 'var(--border-radius-lg)',
+          }}>
+            🧠
+          </div>
+          <h1 style={{
+            margin: '0 0 var(--spacing-sm)',
+            fontSize: 'var(--font-size-2xl)',
+            fontWeight: 'var(--font-weight-bold)',
+            color: 'var(--text-primary)',
+          }}>
+            BrainCX AI
+          </h1>
+          <p style={{
+            margin: 0,
+            fontSize: 'var(--font-size-base)',
+            color: 'var(--text-secondary)',
+          }}>
+            Sign in to access the dashboard
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
           {error && (
-            <div className="login-error">
+            <Card style={{
+              background: '#fff6f6',
+              borderColor: '#ffced3',
+              color: '#ca3949',
+              padding: 'var(--spacing-md)',
+            }}>
               {error}
-            </div>
+            </Card>
           )}
 
-          <div className="login-field">
-            <label htmlFor="username">Username</label>
+          <div>
+            <label htmlFor="username" style={{
+              display: 'block',
+              marginBottom: 'var(--spacing-xs)',
+              fontSize: 'var(--font-size-sm)',
+              fontWeight: 'var(--font-weight-medium)',
+              color: 'var(--text-primary)',
+            }}>
+              Username
+            </label>
             <input
               id="username"
               type="text"
@@ -56,12 +110,30 @@ function Login() {
               required
               autoComplete="username"
               disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: 'var(--spacing-sm) var(--spacing-md)',
+                border: '1px solid var(--border-color)',
+                borderRadius: 'var(--border-radius)',
+                fontSize: 'var(--font-size-base)',
+                transition: 'var(--transition)',
+              }}
+              onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
+              onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
             />
           </div>
 
-          <div className="login-field">
-            <label htmlFor="password">Password</label>
-            <div className="login-password-wrapper">
+          <div>
+            <label htmlFor="password" style={{
+              display: 'block',
+              marginBottom: 'var(--spacing-xs)',
+              fontSize: 'var(--font-size-sm)',
+              fontWeight: 'var(--font-weight-medium)',
+              color: 'var(--text-primary)',
+            }}>
+              Password
+            </label>
+            <div style={{ position: 'relative' }}>
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -70,28 +142,50 @@ function Login() {
                 required
                 autoComplete="current-password"
                 disabled={isLoading}
+                style={{
+                  width: '100%',
+                  padding: 'var(--spacing-sm) var(--spacing-md)',
+                  paddingRight: '3rem',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--border-radius)',
+                  fontSize: 'var(--font-size-base)',
+                  transition: 'var(--transition)',
+                }}
+                onFocus={(e) => e.target.style.borderColor = 'var(--color-primary)'}
+                onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
               />
               <button
                 type="button"
-                className="login-password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
                 disabled={isLoading}
                 aria-label={showPassword ? "Hide password" : "Show password"}
+                style={{
+                  position: 'absolute',
+                  right: 'var(--spacing-sm)',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 'var(--spacing-xs)',
+                  fontSize: '1.25rem',
+                }}
               >
                 {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="login-button"
+            variant="primary"
             disabled={isLoading}
+            style={{ width: '100%', marginTop: 'var(--spacing-sm)' }}
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
-          </button>
+          </Button>
         </form>
-      </div>
+      </Card>
     </div>
   );
 }

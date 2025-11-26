@@ -12,10 +12,15 @@ import {
   LabelList,
   ResponsiveContainer,
 } from 'recharts';
-import { analyzeAudioFile, analyzeRetellCall, getRetellCallAnalysis } from '../services/api';
+import { analyzeAudioFile, analyzeRetellCall, getRetellCallAnalysis, fetchRetellCalls, getOrganizationAgents } from '../services/api';
+import { useAuth } from '../context/AuthContext';
+import { useSearchParams } from 'react-router-dom';
 import { transformApiDataToChart } from '../utils/dataTransform';
 import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/formatters';
 import { useAnalysis } from '../context/AnalysisContext';
+import Card from '../components/Card';
+import Button from '../components/Button';
+import StatusBadge from '../components/StatusBadge';
 
 const CATEGORY_COLORS = Object.freeze({
   positive: '#63d3ad',
@@ -621,10 +626,19 @@ function formatSecondsCompact(value) {
 
 function AnalysisPage() {
   const navigate = useNavigate();
-  const { analysisRequest } = useAnalysis();
+  const { analysisRequest, setAnalysisRequest } = useAnalysis();
+  const { currentOrganization, isAdmin } = useAuth();
+  const [searchParams] = useSearchParams();
 
   const audioRef = useRef(null);
   const [activeRequest, setActiveRequest] = useState(null);
+  
+  // State for list view (when no analysisRequest)
+  const [callsList, setCallsList] = useState([]);
+  const [loadingCalls, setLoadingCalls] = useState(false);
+  const [callsPagination, setCallsPagination] = useState({ page: 1, per_page: 15, total: 0, total_pages: 1 });
+  const [currentAgentId, setCurrentAgentId] = useState(searchParams.get('agent_id') || null);
+  const [savedAgents, setSavedAgents] = useState([]);
 
   const [chartData, setChartData] = useState([]);
   const [emotions, setEmotions] = useState([]);
@@ -996,9 +1010,39 @@ const applyAnalysisResponse = useCallback((
     }
   }, [resetVisualizationState, applyAnalysisResponse, pollForAnalysisResults]);
 
+  const loadAgents = useCallback(async () => {
+    if (isAdmin || !currentOrganization) return;
+    try {
+      const response = await getOrganizationAgents(currentOrganization.id);
+      if (response.success) {
+        setSavedAgents(response.agents || []);
+      }
+    } catch (err) {
+      console.error('Failed to load agents:', err);
+    }
+  }, [isAdmin, currentOrganization]);
+
+  const loadAnalyzedCalls = useCallback(async (page = 1) => {
+    setLoadingCalls(true);
+    try {
+      const response = await fetchRetellCalls(page, 15, currentAgentId || null, 'completed');
+      if (response.calls) {
+        setCallsList(response.calls);
+        setCallsPagination(response.pagination || { page: 1, per_page: 15, total: 0, total_pages: 1 });
+      }
+    } catch (err) {
+      console.error('Failed to load analyzed calls:', err);
+      setCallsList([]);
+    } finally {
+      setLoadingCalls(false);
+    }
+  }, [currentAgentId]);
+
   useEffect(() => {
     if (!analysisRequest) {
-      navigate('/', { replace: true });
+      // Show list view - load analyzed calls
+      loadAnalyzedCalls(1);
+      loadAgents();
       return;
     }
 
@@ -1007,7 +1051,17 @@ const applyAnalysisResponse = useCallback((
       const reason = analysisRequest.call.analysis_block_reason || 'Call cannot be analyzed.';
       setErrorInfo({ message: reason, retryAllowed: false });
     }
-  }, [analysisRequest, navigate]);
+  }, [analysisRequest, navigate, loadAnalyzedCalls, loadAgents]);
+
+  const handleAgentSelect = useCallback((agentId) => {
+    setCurrentAgentId(agentId || null);
+  }, []);
+
+  useEffect(() => {
+    if (!analysisRequest && currentAgentId !== null) {
+      loadAnalyzedCalls(1);
+    }
+  }, [currentAgentId, analysisRequest, loadAnalyzedCalls]);
 
   useEffect(() => {
     if (!activeRequest) {
@@ -1305,45 +1359,180 @@ const applyAnalysisResponse = useCallback((
     }
   };
 
-  return (
-    <main className="analysis-page">
-      <header className="analysis-hero">
-        <div className="analysis-hero__heading">
-          <div className="analysis-hero__title-group">
-            <button type="button" className="analysis-back-button" onClick={handleBack}>
-              ← Back
-          </button>
-            <span className="analysis-badge">{analysisBadge}</span>
-          <h1>{analysisTitle}</h1>
-            </div>
-          <div className="analysis-hero__actions">
-            {recordingUrl && (
-              <button
-                type="button"
-                className="analysis-action"
-                onClick={handleDownloadAudio}
-              >
-                Download Audio
-              </button>
-            )}
-          <button
-            type="button"
-              className="analysis-action analysis-action--primary"
-            onClick={handleRetry}
-            disabled={isLoading}
-          >
-            Re-run Analysis
-          </button>
-            <button
-              type="button"
-              className="analysis-action"
-              onClick={handleBack}
-            >
-              Close
-            </button>
-        </div>
+  // Show list view if no analysisRequest
+  if (!analysisRequest) {
+    return (
+      <div>
+        <div className="page-header">
+          <div>
+            <h1 className="page-header-title">Session Analysis</h1>
+            <p className="page-header-subtitle">Analyzed calls only</p>
+          </div>
         </div>
 
+        {!isAdmin && currentOrganization && (
+          <Card className="mb-3">
+            <div style={{ display: 'flex', gap: 'var(--spacing-md)', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', minWidth: '200px' }}>
+                <label style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+                  Agent:
+                </label>
+                <select
+                  value={currentAgentId || ''}
+                  onChange={(e) => handleAgentSelect(e.target.value || null)}
+                  className="org-switcher-select"
+                  style={{ flex: 1 }}
+                >
+                  <option value="">All Agents</option>
+                  {savedAgents.map((agent) => (
+                    <option key={agent.id} value={agent.agent_id}>
+                      {agent.agent_name || agent.agent_id}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </Card>
+        )}
+
+        {loadingCalls ? (
+          <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+            <p style={{ color: 'var(--text-secondary)' }}>Loading analyzed calls...</p>
+          </Card>
+        ) : (() => {
+          // Filter to only show fully analyzed calls (double-check on frontend)
+          const analyzedCalls = callsList.filter((call) => {
+            const status = (call.analysis_status || call.status || '').toString().toLowerCase();
+            const isCompleted = status === 'completed' && call.analysis_available === true;
+            return isCompleted;
+          });
+
+          if (analyzedCalls.length === 0) {
+            return (
+              <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+                <p style={{ color: 'var(--text-secondary)' }}>
+                  {currentAgentId ? `No analyzed calls found for the selected agent.` : 'No analyzed calls found.'}
+                </p>
+              </Card>
+            );
+          }
+
+          return (
+            <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)' }}>
+              {analyzedCalls.map((call) => {
+              const durationLabel = formatDuration(call.start_timestamp, call.end_timestamp);
+              const purposeCandidate = [call.call_purpose, call.callPurpose]
+                .find((value) => typeof value === 'string' && value.trim());
+              const callPurpose = (purposeCandidate ? purposeCandidate.trim() : '') || 'Purpose unavailable';
+              const rawEmotionLabel = call.overall_emotion_label || call.overall_emotion?.label;
+              const formattedEmotionLabel = rawEmotionLabel ? formatStatusLabel(rawEmotionLabel) : '—';
+              const emotionKey = rawEmotionLabel ? rawEmotionLabel.toLowerCase() : null;
+
+              return (
+                <Card key={call.call_id} className="call-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--spacing-md)' }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-xs)' }}>
+                        <h3 style={{ margin: 0, fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)' }}>
+                          {callPurpose}
+                        </h3>
+                        {formattedEmotionLabel !== '—' && (
+                          <StatusBadge status={emotionKey} label={formattedEmotionLabel} />
+                        )}
+                      </div>
+                      <p style={{ margin: 0, fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                        {call.agent_name || call.agent_id || 'Unknown agent'} • {formatTimestamp(call.start_timestamp)}
+                      </p>
+                      <p style={{ margin: 'var(--spacing-xs) 0 0', fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                        Call ID: <code style={{ background: 'var(--bg-tertiary)', padding: '0.125rem 0.25rem', borderRadius: '4px', fontSize: '0.875em' }}>{call.call_id || '—'}</code>
+                      </p>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--spacing-xs)' }}>
+                      {durationLabel && (
+                        <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                          {durationLabel}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--spacing-sm)' }}>
+                    <Button variant="primary" onClick={() => {
+                      // Show detailed analysis view for this call
+                      setAnalysisRequest({
+                        type: 'retell',
+                        call,
+                      });
+                    }}>
+                      View Analysis
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+          );
+        })()}
+
+        {callsPagination.total_pages > 1 && (
+          <Card className="mt-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--spacing-md)' }}>
+            <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+              Showing {((callsPagination.page - 1) * callsPagination.per_page) + 1}–{Math.min(callsPagination.page * callsPagination.per_page, callsPagination.total)} of {callsPagination.total} calls
+            </div>
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center' }}>
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={() => loadAnalyzedCalls(callsPagination.page - 1)}
+                disabled={callsPagination.page <= 1}
+              >
+                Previous
+              </Button>
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={() => loadAnalyzedCalls(callsPagination.page + 1)}
+                disabled={callsPagination.page >= callsPagination.total_pages}
+              >
+                Next
+              </Button>
+            </div>
+          </Card>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div className="page-header">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
+          <Button variant="secondary" size="small" onClick={handleBack} icon="←">
+            Back
+          </Button>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-xs)' }}>
+              <StatusBadge status={analysisBadge.toLowerCase()} label={analysisBadge} />
+            </div>
+            <h1 className="page-header-title" style={{ margin: 0 }}>{analysisTitle}</h1>
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+          {recordingUrl && (
+            <Button variant="secondary" size="small" onClick={handleDownloadAudio}>
+              Download Audio
+            </Button>
+          )}
+          <Button variant="primary" size="small" onClick={handleRetry} disabled={isLoading}>
+            Re-run Analysis
+          </Button>
+          <Button variant="secondary" size="small" onClick={handleBack}>
+            Close
+          </Button>
+        </div>
+      </div>
+
+      <Card className="mb-3">
         <div className="analysis-hero__media">
           <div className="analysis-playback">
             <div className="analysis-playback__header">
@@ -1356,11 +1545,11 @@ const applyAnalysisResponse = useCallback((
                   aria-pressed={isPlaying}
                 >
                   {isPlaying ? 'Pause' : 'Play'}
-          </button>
+                </button>
                 <span className="analysis-playback__timer">
                   {formattedCurrentTime} / {formattedDuration}
                 </span>
-        </div>
+              </div>
               <label className="analysis-playback__speed">
                 Speed:
                 <select
@@ -1377,14 +1566,14 @@ const applyAnalysisResponse = useCallback((
                 </select>
               </label>
             </div>
-              <audio
-                ref={audioRef}
+            <audio
+              ref={audioRef}
               src={audioSource.url || undefined}
-                preload="metadata"
+              preload="metadata"
               className="analysis-audio-element"
               aria-hidden="true"
-              />
-            </div>
+            />
+          </div>
 
           <div className="analysis-hero__timeline">
             <SpeakerTimeline
@@ -1399,7 +1588,7 @@ const applyAnalysisResponse = useCallback((
             />
           </div>
         </div>
-      </header>
+      </Card>
 
       <nav className="analysis-tabs" role="tablist" aria-label="Analysis sections">
         {tabs.map((tab) => (
@@ -1928,7 +2117,7 @@ const applyAnalysisResponse = useCallback((
         )} */}
 
       </div>
-    </main>
+    </div>
   );
 }
 

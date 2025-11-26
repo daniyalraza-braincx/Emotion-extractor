@@ -5,7 +5,7 @@ import os
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List, Tuple
 
-from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body, BackgroundTasks
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body, BackgroundTasks, Path
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -28,7 +28,7 @@ from extractor import (
 )
 from database import (
     get_db, Call, EmotionSegment, EmotionPrediction, 
-    TranscriptSegment, AnalysisSummary, User, Organization, UserOrganization,
+    TranscriptSegment, AnalysisSummary, User, Organization, UserOrganization, Agent,
     SessionLocal
 )
 
@@ -623,6 +623,39 @@ async def delete_user(
     })
 
 
+@app.get("/admin/users/{user_id}/organizations")
+async def get_user_organizations_admin(
+    user_id: int,
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Get organizations for a specific user (admin only)."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    organizations = get_user_organizations(db, user_id)
+    
+    # Also get organizations owned by this user
+    owned_orgs = db.query(Organization).filter(Organization.owner_id == user_id).all()
+    owned_org_ids = {org.id for org in owned_orgs}
+    
+    # Add owned organizations that might not be in the user_organizations table
+    for org in owned_orgs:
+        if not any(o["id"] == org.id for o in organizations):
+            org_dict = org.to_dict()
+            org_dict["user_role"] = "owner"
+            organizations.append(org_dict)
+    
+    return JSONResponse(content={
+        "success": True,
+        "organizations": organizations
+    })
+
+
 @app.get("/admin/organizations")
 async def list_all_organizations(
     page: int = Query(1, ge=1),
@@ -851,6 +884,174 @@ async def delete_organization(
     return JSONResponse(content={
         "success": True,
         "message": "Organization deleted"
+    })
+
+
+@app.get("/organizations/{org_id}/agents")
+async def get_organization_agents(
+    org_id: int,
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Get list of saved agents for the organization."""
+    # Verify organization exists
+    org = db.query(Organization).filter(Organization.id == org_id).first()
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Organization not found"
+        )
+    
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Verify user has access to organization (unless admin)
+    if role != "admin":
+        if not verify_user_has_org_access(db, user_id, org_id):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="User does not have access to this organization"
+            )
+    
+    # Get saved agents for this organization
+    agents = db.query(Agent).filter(Agent.organization_id == org_id).order_by(Agent.created_at.desc()).all()
+    
+    # Get call counts for each agent
+    agents_with_counts = []
+    for agent in agents:
+        call_count = db.query(Call).filter(
+            Call.organization_id == org_id,
+            Call.agent_id == agent.agent_id
+        ).count()
+        
+        agents_with_counts.append({
+            "id": agent.id,
+            "agent_id": agent.agent_id,
+            "agent_name": agent.agent_name,
+            "call_count": call_count,
+            "created_at": agent.created_at.replace(microsecond=0).isoformat() + "Z" if agent.created_at else None,
+        })
+    
+    return JSONResponse(content={
+        "success": True,
+        "organization_id": org_id,
+        "agents": agents_with_counts
+    })
+
+
+@app.post("/organizations/{org_id}/agents")
+async def add_organization_agent(
+    org_id: int,
+    agent_data: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Add a new agent to the organization."""
+    # Verify organization exists
+    org = db.query(Organization).filter(Organization.id == org_id).first()
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Organization not found"
+        )
+    
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Verify user has access to organization (unless admin)
+    if role != "admin":
+        if not verify_user_has_org_access(db, user_id, org_id):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="User does not have access to this organization"
+            )
+    
+    agent_id = agent_data.get("agent_id")
+    agent_name = agent_data.get("agent_name")
+    
+    if not agent_id or not agent_id.strip():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="agent_id is required"
+        )
+    
+    agent_id = agent_id.strip()
+    
+    # Check if agent already exists for this organization
+    existing_agent = db.query(Agent).filter(
+        Agent.organization_id == org_id,
+        Agent.agent_id == agent_id
+    ).first()
+    
+    if existing_agent:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Agent ID already exists for this organization"
+        )
+    
+    # Create new agent
+    new_agent = Agent(
+        organization_id=org_id,
+        agent_id=agent_id,
+        agent_name=agent_name.strip() if agent_name else None,
+        created_by_user_id=user_id
+    )
+    
+    db.add(new_agent)
+    db.commit()
+    db.refresh(new_agent)
+    
+    return JSONResponse(content={
+        "success": True,
+        "agent": new_agent.to_dict()
+    })
+
+
+@app.delete("/organizations/{org_id}/agents/{agent_id}")
+async def delete_organization_agent(
+    org_id: int,
+    agent_id: int,
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Delete an agent from the organization."""
+    # Verify organization exists
+    org = db.query(Organization).filter(Organization.id == org_id).first()
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Organization not found"
+        )
+    
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Verify user has access to organization (unless admin)
+    if role != "admin":
+        if not verify_user_has_org_access(db, user_id, org_id):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="User does not have access to this organization"
+            )
+    
+    # Find the agent
+    agent = db.query(Agent).filter(
+        Agent.id == agent_id,
+        Agent.organization_id == org_id
+    ).first()
+    
+    if not agent:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Agent not found"
+        )
+    
+    db.delete(agent)
+    db.commit()
+    
+    return JSONResponse(content={
+        "success": True,
+        "message": "Agent deleted"
     })
 
 
@@ -1700,34 +1901,36 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any], organization
         raise
 
 
-@app.post("/{organization_id}/retell/webhook")
-async def retell_webhook_with_org(
-    organization_id: int,
+@app.post("/{agent_id}/retell/webhook")
+async def retell_webhook_with_agent(
+    agent_id: str = Path(..., min_length=1, description="Agent ID from the organization's agent list"),
     payload: Dict[str, Any] = Body(...), 
     db: Session = Depends(get_db)
 ):
     """
     Endpoint to receive Retell call events and register them for analysis.
     
-    Organization ID is extracted from the URL path: /{organization_id}/retell/webhook
-    This allows n8n to route webhooks to the correct organization.
+    Agent ID is extracted from the URL path: /{agent_id}/retell/webhook
+    This allows routing webhooks to the correct agent and organization.
     
     Supports two payload formats:
     1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
     2. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
     """
-    # Verify organization exists
-    org = db.query(Organization).filter(Organization.id == organization_id).first()
-    if not org:
+    # Find the agent to get the organization_id
+    agent = db.query(Agent).filter(Agent.agent_id == agent_id).first()
+    if not agent:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Organization {organization_id} not found"
+            detail=f"Agent ID '{agent_id}' not found. Please add this agent to an organization first."
         )
+    
+    organization_id = agent.organization_id
     
     event, call_data = _normalize_retell_payload(payload)
 
     if event != "call_analyzed" or not isinstance(call_data, dict):
-        logger.info("Ignoring Retell event %s (call_data type: %s) for org %s", event, type(call_data).__name__, organization_id)
+        logger.info("Ignoring Retell event %s (call_data type: %s) for agent %s (org: %s)", event, type(call_data).__name__, agent_id, organization_id)
         if event == "call_analyzed" and not isinstance(call_data, dict):
             logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
         return JSONResponse(content={"success": True, "ignored": True})
@@ -1736,7 +1939,11 @@ async def retell_webhook_with_org(
     if not call_id:
         raise HTTPException(status_code=400, detail="Missing call_id in Retell payload")
 
-    logger.info("Received call_analyzed webhook for call %s (org: %s)", call_id, organization_id)
+    # Ensure the agent_id in the call_data matches the URL agent_id
+    # This ensures consistency even if the payload has a different agent_id
+    call_data["agent_id"] = agent_id
+
+    logger.info("Received call_analyzed webhook for call %s (agent: %s, org: %s)", call_id, agent_id, organization_id)
     try:
         metadata = _upsert_retell_call_metadata(db, call_data, status="pending", organization_id=organization_id)
     except Exception as exc:  # pylint: disable=broad-except
@@ -1749,6 +1956,7 @@ async def retell_webhook_with_org(
             "message": "Call registered",
             "call_id": call_id,
             "call_metadata": metadata,
+            "agent_id": agent_id,
             "organization_id": organization_id,
         }
     )
@@ -1762,8 +1970,9 @@ async def retell_webhook(
     """
     Legacy endpoint to receive Retell call events (backward compatibility).
     
-    This endpoint tries to determine organization_id from payload or uses the first organization.
-    For production use, prefer /{organization_id}/retell/webhook instead.
+    This endpoint tries to determine organization_id from agent_id in payload, 
+    or from organization_id in payload, or uses the first organization.
+    For production use, prefer /{agent_id}/retell/webhook instead.
     
     Supports two payload formats:
     1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
@@ -1782,18 +1991,29 @@ async def retell_webhook(
         raise HTTPException(status_code=400, detail="Missing call_id in Retell payload")
 
     # Determine organization_id
-    # Try to get from payload metadata first
-    organization_id = call_data.get("organization_id")
+    # Priority 1: Try to get from agent_id in payload
+    organization_id = None
+    agent_id_from_payload = call_data.get("agent_id")
+    if agent_id_from_payload:
+        agent = db.query(Agent).filter(Agent.agent_id == agent_id_from_payload).first()
+        if agent:
+            organization_id = agent.organization_id
+            logger.info("Found organization %s from agent_id %s in payload", organization_id, agent_id_from_payload)
+    
+    # Priority 2: Try to get from payload metadata
     if organization_id is None:
-        # Try to get from top-level payload
+        organization_id = call_data.get("organization_id")
+    
+    # Priority 3: Try to get from top-level payload
+    if organization_id is None:
         organization_id = payload.get("organization_id")
     
+    # Priority 4: Fallback to first organization (for migration/compatibility)
     if organization_id is None:
-        # Fallback: get first organization (for migration/compatibility)
-        # In production, this should be configured per webhook endpoint
         first_org = db.query(Organization).first()
         if first_org:
             organization_id = first_org.id
+            logger.warning("Using first organization %s as fallback for call %s", organization_id, call_id)
         else:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
@@ -1822,6 +2042,8 @@ async def list_retell_calls(
     page: int = Query(1, ge=1, description="Page number (1-indexed)"),
     per_page: int = Query(15, ge=1, le=100, description="Number of items per page"),
     organization_id: Optional[int] = Query(None, description="Filter by organization (admin only)"),
+    agent_id: Optional[str] = Query(None, description="Filter by agent ID"),
+    analysis_status: Optional[str] = Query(None, description="Filter by analysis status (e.g., 'completed')"),
     token_data: Dict[str, Any] = Depends(verify_token),
     db: Session = Depends(get_db)
 ):
@@ -1832,9 +2054,12 @@ async def list_retell_calls(
     - page: Page number (default: 1, minimum: 1)
     - per_page: Items per page (default: 15, minimum: 1, maximum: 100)
     - organization_id: Filter by organization (admin only, optional)
+    - agent_id: Filter by agent ID (optional for admins, required for users)
     
-    For users: returns calls from their current organization
-    For admins: returns all calls, optionally filtered by organization_id
+    For users: returns calls from their current organization.
+               If agent_id is provided, filters by that specific agent (must be in saved agents list).
+               If agent_id is not provided, returns all calls for all agents in the organization.
+    For admins: returns all calls, optionally filtered by organization_id and/or agent_id
     """
     role = token_data.get("role")
     user_id = token_data.get("user_id")
@@ -1858,6 +2083,48 @@ async def list_retell_calls(
                 detail="Organization context required"
             )
         query = query.filter(Call.organization_id == user_org_id)
+        
+        # If specific agent_id is provided, filter by it
+        # (only show calls for agents that are saved in the organization)
+        if agent_id is not None:
+            # Verify agent is in saved list
+            saved_agent = db.query(Agent).filter(
+                Agent.organization_id == user_org_id,
+                Agent.agent_id == agent_id
+            ).first()
+            
+            if not saved_agent:
+                # Agent not in saved list, return empty
+                return JSONResponse(content={
+                    "success": True,
+                    "calls": [],
+                    "pagination": {
+                        "page": page,
+                        "per_page": per_page,
+                        "total": 0,
+                        "total_pages": 1,
+                        "has_next": False,
+                        "has_prev": False,
+                    }
+                })
+            # Filter by the specific agent_id
+            query = query.filter(Call.agent_id == agent_id)
+        # If agent_id is not provided, show all calls for the organization (all agents)
+    
+    # For admins: apply agent_id filtering if provided
+    if role == "admin" and agent_id is not None:
+        query = query.filter(Call.agent_id == agent_id)
+    
+    # Apply analysis_status filtering if provided
+    if analysis_status is not None:
+        if analysis_status == "completed":
+            # Only show calls that are fully analyzed - both status must be completed AND analysis_available must be True
+            query = query.filter(
+                Call.analysis_status == "completed",
+                Call.analysis_available == True
+            )
+        else:
+            query = query.filter(Call.analysis_status == analysis_status)
     
     total_count = query.count()
     total_pages = max(1, (total_count + per_page - 1) // per_page)
