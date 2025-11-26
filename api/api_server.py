@@ -10,6 +10,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import jwt
+from passlib.context import CryptContext
 from dotenv import load_dotenv
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
@@ -27,7 +28,8 @@ from extractor import (
 )
 from database import (
     get_db, Call, EmotionSegment, EmotionPrediction, 
-    TranscriptSegment, AnalysisSummary, SessionLocal
+    TranscriptSegment, AnalysisSummary, User, Organization, UserOrganization,
+    SessionLocal
 )
 
 
@@ -35,11 +37,87 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 # Authentication configuration
-AUTH_USERNAME = os.getenv("AUTH_USERNAME", "admin")
-AUTH_PASSWORD = os.getenv("AUTH_PASSWORD", "password")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = 24
+
+# Password hashing
+# Use bcrypt directly to avoid passlib compatibility issues with bcrypt 5.0.0+
+try:
+    import bcrypt
+    
+    def hash_password(password: str) -> str:
+        """Hash a password using bcrypt directly."""
+        if not password:
+            raise ValueError("Password cannot be empty")
+        
+        # Ensure password is bytes and not too long (bcrypt limit is 72 bytes)
+        if isinstance(password, str):
+            password_bytes = password.encode('utf-8')
+        else:
+            password_bytes = password
+        
+        if len(password_bytes) > 72:
+            logger.warning(f"Password length ({len(password_bytes)} bytes) exceeds bcrypt limit (72 bytes), truncating")
+            password_bytes = password_bytes[:72]
+        
+        # Generate salt and hash
+        salt = bcrypt.gensalt(rounds=12)
+        hashed = bcrypt.hashpw(password_bytes, salt)
+        return hashed.decode('utf-8')
+    
+    def verify_password(plain_password: str, hashed_password: str) -> bool:
+        """Verify a password against its hash using bcrypt."""
+        if not plain_password or not hashed_password:
+            return False
+        
+        # Ensure password is bytes and not too long
+        if isinstance(plain_password, str):
+            password_bytes = plain_password.encode('utf-8')
+        else:
+            password_bytes = plain_password
+        
+        if len(password_bytes) > 72:
+            password_bytes = password_bytes[:72]
+        
+        # Ensure hash is bytes
+        if isinstance(hashed_password, str):
+            hash_bytes = hashed_password.encode('utf-8')
+        else:
+            hash_bytes = hashed_password
+        
+        try:
+            return bcrypt.checkpw(password_bytes, hash_bytes)
+        except Exception as e:
+            logger.error(f"Password verification error: {e}")
+            return False
+    
+    # Test that bcrypt works
+    test_hash = hash_password("test")
+    verify_password("test", test_hash)
+    logger.info("Using bcrypt for password hashing (direct)")
+    
+except ImportError:
+    # Fallback to passlib if bcrypt not available
+    try:
+        from passlib.context import CryptContext
+        pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto", pbkdf2_sha256__rounds=29000)
+        
+        def hash_password(password: str) -> str:
+            """Hash a password using pbkdf2_sha256."""
+            if not password:
+                raise ValueError("Password cannot be empty")
+            return pwd_context.hash(password)
+        
+        def verify_password(plain_password: str, hashed_password: str) -> bool:
+            """Verify a password against its hash."""
+            if not plain_password or not hashed_password:
+                return False
+            return pwd_context.verify(plain_password, hashed_password)
+        
+        logger.warning("Using pbkdf2_sha256 for password hashing (bcrypt not available)")
+    except ImportError:
+        raise ImportError("bcrypt is required. Install with: pip install bcrypt")
 
 security = HTTPBearer()
 
@@ -57,9 +135,16 @@ app.add_middleware(
 )
 
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
-    """Create a JWT access token"""
-    to_encode = data.copy()
+def create_access_token(user_id: int, username: str, role: str, organization_id: Optional[int] = None, expires_delta: Optional[timedelta] = None) -> str:
+    """Create a JWT access token with user information."""
+    to_encode = {
+        "sub": username,
+        "user_id": user_id,
+        "role": role,
+    }
+    if organization_id is not None:
+        to_encode["organization_id"] = organization_id
+    
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
@@ -90,10 +175,11 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) 
 
 
 @app.post("/auth/login")
-async def login(credentials: Dict[str, str] = Body(...)):
+async def login(credentials: Dict[str, Any] = Body(...), db: Session = Depends(get_db)):
     """Authenticate user and return JWT token"""
     username = credentials.get("username")
     password = credentials.get("password")
+    organization_id = credentials.get("organization_id")  # Optional for users
     
     if not username or not password:
         raise HTTPException(
@@ -101,18 +187,79 @@ async def login(credentials: Dict[str, str] = Body(...)):
             detail="Username and password are required"
         )
     
-    if username == AUTH_USERNAME and password == AUTH_PASSWORD:
-        access_token = create_access_token(data={"sub": username})
-        return JSONResponse(content={
-            "success": True,
-            "access_token": access_token,
-            "token_type": "bearer"
-        })
-    else:
+    # Query user from database
+    user = db.query(User).filter(User.username == username).first()
+    
+    if not user or not user.is_active:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password"
         )
+    
+    # Verify password
+    if not verify_password(password, user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password"
+        )
+    
+    # Update last login
+    user.last_login = datetime.utcnow()
+    db.commit()
+    
+    # Handle organization selection
+    selected_org_id = None
+    if user.role == "admin":
+        # Admins don't need organization
+        selected_org_id = None
+    else:
+        # For users, get their organizations
+        user_orgs = db.query(UserOrganization).filter(
+            UserOrganization.user_id == user.id,
+            UserOrganization.is_active == True
+        ).all()
+        
+        # Allow users to log in even if they have no organizations
+        # They will be prompted to create one after login
+        if not user_orgs:
+            selected_org_id = None
+        elif organization_id:
+            # If organization_id provided, verify user has access
+            org_access = db.query(UserOrganization).filter(
+                UserOrganization.user_id == user.id,
+                UserOrganization.organization_id == organization_id,
+                UserOrganization.is_active == True
+            ).first()
+            if not org_access:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="User does not have access to this organization"
+                )
+            selected_org_id = organization_id
+        else:
+            # Use first organization as default
+            selected_org_id = user_orgs[0].organization_id
+    
+    # Create token
+    access_token = create_access_token(
+        user_id=user.id,
+        username=user.username,
+        role=user.role,
+        organization_id=selected_org_id
+    )
+    
+    return JSONResponse(content={
+        "success": True,
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "role": user.role,
+            "email": user.email,
+        },
+        "organization_id": selected_org_id
+    })
 
 
 @app.get("/auth/verify")
@@ -121,7 +268,10 @@ async def verify_auth(token_data: Dict[str, Any] = Depends(verify_token)):
     return JSONResponse(content={
         "success": True,
         "authenticated": True,
-        "username": token_data.get("sub")
+        "username": token_data.get("sub"),
+        "user_id": token_data.get("user_id"),
+        "role": token_data.get("role"),
+        "organization_id": token_data.get("organization_id")
     })
 
 
@@ -131,14 +281,602 @@ async def logout():
     return JSONResponse(content={"success": True, "message": "Logged out successfully"})
 
 
+# Helper functions for organization and authorization
+def get_current_organization_id(token_data: Dict[str, Any]) -> Optional[int]:
+    """Extract organization_id from JWT token data."""
+    return token_data.get("organization_id")
+
+
+def verify_user_has_org_access(db: Session, user_id: int, org_id: int) -> bool:
+    """Check if user has access to organization."""
+    user_org = db.query(UserOrganization).filter(
+        UserOrganization.user_id == user_id,
+        UserOrganization.organization_id == org_id,
+        UserOrganization.is_active == True
+    ).first()
+    return user_org is not None
+
+
+def get_user_organizations(db: Session, user_id: int) -> List[Dict[str, Any]]:
+    """Get all organizations user belongs to."""
+    user_orgs = db.query(UserOrganization).filter(
+        UserOrganization.user_id == user_id,
+        UserOrganization.is_active == True
+    ).all()
+    
+    result = []
+    for uo in user_orgs:
+        org = db.query(Organization).filter(Organization.id == uo.organization_id).first()
+        if org:
+            org_dict = org.to_dict()
+            org_dict["user_role"] = uo.role
+            result.append(org_dict)
+    return result
+
+
+def require_admin(token_data: Dict[str, Any] = Depends(verify_token)) -> Dict[str, Any]:
+    """Dependency to require admin role."""
+    role = token_data.get("role")
+    if role != "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required"
+        )
+    return token_data
+
+
+@app.get("/auth/me")
+async def get_current_user(
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Get current user info and organizations."""
+    user_id = token_data.get("user_id")
+    if not user_id:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token"
+        )
+    
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    organizations = []
+    current_org = None
+    org_id = token_data.get("organization_id")
+    
+    if user.role == "user":
+        organizations = get_user_organizations(db, user_id)
+        if org_id:
+            current_org = next((org for org in organizations if org["id"] == org_id), None)
+    
+    return JSONResponse(content={
+        "success": True,
+        "user": user.to_dict(),
+        "organizations": organizations,
+        "current_organization": current_org,
+        "organization_id": org_id
+    })
+
+
+@app.post("/auth/switch-organization")
+async def switch_organization(
+    request: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Switch current organization (users only)."""
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    if role == "admin":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Admins do not use organizations"
+        )
+    
+    organization_id = request.get("organization_id")
+    if not organization_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="organization_id is required"
+        )
+    
+    # Verify user has access to organization
+    if not verify_user_has_org_access(db, user_id, organization_id):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="User does not have access to this organization"
+        )
+    
+    # Get user to create new token
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Create new token with updated organization
+    access_token = create_access_token(
+        user_id=user.id,
+        username=user.username,
+        role=user.role,
+        organization_id=organization_id
+    )
+    
+    org = db.query(Organization).filter(Organization.id == organization_id).first()
+    
+    return JSONResponse(content={
+        "success": True,
+        "access_token": access_token,
+        "token_type": "bearer",
+        "organization": org.to_dict() if org else None
+    })
+
+
+# Admin endpoints
+@app.post("/admin/users")
+async def create_user(
+    user_data: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Create a new user (admin only)."""
+    username = user_data.get("username")
+    password = user_data.get("password")
+    role = user_data.get("role", "user")
+    email = user_data.get("email")
+    
+    # Normalize empty email to None (NULL) to avoid unique constraint violations
+    if email and isinstance(email, str):
+        email = email.strip()
+        if not email:
+            email = None
+    
+    if not username or not password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username and password are required"
+        )
+    
+    if role not in ["admin", "user"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Role must be 'admin' or 'user'"
+        )
+    
+    # Check if username already exists
+    existing_user = db.query(User).filter(User.username == username).first()
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username already exists"
+        )
+    
+    # Check if email already exists (if provided and not None)
+    if email:
+        existing_email = db.query(User).filter(User.email == email).first()
+        if existing_email:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Email already exists"
+            )
+    
+    # Create user
+    password_hash = hash_password(password)
+    creator_id = token_data.get("user_id")
+    
+    new_user = User(
+        username=username,
+        password_hash=password_hash,
+        role=role,
+        email=email,  # Will be None if empty string was provided
+        is_active=True,
+        created_by=creator_id
+    )
+    
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    
+    return JSONResponse(content={
+        "success": True,
+        "user": new_user.to_dict()
+    })
+
+
+@app.get("/admin/users")
+async def list_users(
+    page: int = Query(1, ge=1),
+    per_page: int = Query(15, ge=1, le=100),
+    role: Optional[str] = Query(None),
+    is_active: Optional[bool] = Query(None),
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """List all users (admin only)."""
+    query = db.query(User)
+    
+    if role:
+        query = query.filter(User.role == role)
+    if is_active is not None:
+        query = query.filter(User.is_active == is_active)
+    
+    total_count = query.count()
+    total_pages = max(1, (total_count + per_page - 1) // per_page)
+    
+    users = query.order_by(User.created_at.desc()).offset((page - 1) * per_page).limit(per_page).all()
+    
+    return JSONResponse(content={
+        "success": True,
+        "users": [user.to_dict() for user in users],
+        "pagination": {
+            "page": page,
+            "per_page": per_page,
+            "total": total_count,
+            "total_pages": total_pages,
+            "has_next": page < total_pages,
+            "has_prev": page > 1,
+        }
+    })
+
+
+@app.put("/admin/users/{user_id}")
+async def update_user(
+    user_id: int,
+    user_data: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Update user (admin only)."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Update fields
+    if "username" in user_data:
+        # Check if username already exists (excluding current user)
+        existing = db.query(User).filter(
+            User.username == user_data["username"],
+            User.id != user_id
+        ).first()
+        if existing:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Username already exists"
+            )
+        user.username = user_data["username"]
+    
+    if "email" in user_data:
+        # Normalize empty email to None (NULL) to avoid unique constraint violations
+        email_value = user_data["email"]
+        if email_value and isinstance(email_value, str):
+            email_value = email_value.strip()
+            if not email_value:
+                email_value = None
+        
+        # Check if email already exists (excluding current user, only if email is not None)
+        if email_value:
+            existing = db.query(User).filter(
+                User.email == email_value,
+                User.id != user_id
+            ).first()
+            if existing:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Email already exists"
+                )
+        user.email = email_value
+    
+    if "role" in user_data:
+        if user_data["role"] not in ["admin", "user"]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Role must be 'admin' or 'user'"
+            )
+        user.role = user_data["role"]
+    
+    if "is_active" in user_data:
+        user.is_active = user_data["is_active"]
+    
+    if "password" in user_data and user_data["password"]:
+        user.password_hash = hash_password(user_data["password"])
+    
+    db.commit()
+    db.refresh(user)
+    
+    return JSONResponse(content={
+        "success": True,
+        "user": user.to_dict()
+    })
+
+
+@app.delete("/admin/users/{user_id}")
+async def delete_user(
+    user_id: int,
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Deactivate user (admin only)."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Soft delete
+    user.is_active = False
+    db.commit()
+    
+    return JSONResponse(content={
+        "success": True,
+        "message": "User deactivated"
+    })
+
+
+@app.get("/admin/organizations")
+async def list_all_organizations(
+    page: int = Query(1, ge=1),
+    per_page: int = Query(15, ge=1, le=100),
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """List all organizations (admin only)."""
+    query = db.query(Organization)
+    
+    total_count = query.count()
+    total_pages = max(1, (total_count + per_page - 1) // per_page)
+    
+    orgs = query.order_by(Organization.created_at.desc()).offset((page - 1) * per_page).limit(per_page).all()
+    
+    # Enrich with member and call counts
+    enriched_orgs = []
+    for org in orgs:
+        org_dict = org.to_dict()
+        
+        # Get member count
+        member_count = db.query(UserOrganization).filter(
+            UserOrganization.organization_id == org.id,
+            UserOrganization.is_active == True
+        ).count()
+        org_dict["member_count"] = member_count
+        
+        # Get call count
+        call_count = db.query(Call).filter(Call.organization_id == org.id).count()
+        org_dict["call_count"] = call_count
+        
+        # Get owner info
+        owner = db.query(User).filter(User.id == org.owner_id).first()
+        if owner:
+            org_dict["owner"] = owner.to_dict()
+        
+        enriched_orgs.append(org_dict)
+    
+    return JSONResponse(content={
+        "success": True,
+        "organizations": enriched_orgs,
+        "pagination": {
+            "page": page,
+            "per_page": per_page,
+            "total": total_count,
+            "total_pages": total_pages,
+            "has_next": page < total_pages,
+            "has_prev": page > 1,
+        }
+    })
+
+
+# Organization endpoints
+@app.post("/organizations")
+async def create_organization(
+    org_data: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Create a new organization (users only)."""
+    role = token_data.get("role")
+    if role == "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admins cannot create organizations"
+        )
+    
+    name = org_data.get("name")
+    if not name:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Organization name is required"
+        )
+    
+    user_id = token_data.get("user_id")
+    
+    # Create organization
+    new_org = Organization(
+        name=name,
+        owner_id=user_id
+    )
+    
+    db.add(new_org)
+    db.flush()  # Get the ID
+    
+    # Add user as owner
+    user_org = UserOrganization(
+        user_id=user_id,
+        organization_id=new_org.id,
+        role="owner",
+        is_active=True
+    )
+    
+    db.add(user_org)
+    db.commit()
+    db.refresh(new_org)
+    
+    # Get user to create new token with organization
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Create new token with the new organization
+    access_token = create_access_token(
+        user_id=user.id,
+        username=user.username,
+        role=user.role,
+        organization_id=new_org.id
+    )
+    
+    return JSONResponse(content={
+        "success": True,
+        "organization": new_org.to_dict(),
+        "access_token": access_token  # Return new token with organization
+    })
+
+
+@app.get("/organizations")
+async def get_user_organizations_list(
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """List user's organizations."""
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    if role == "admin":
+        # Admins see all organizations
+        orgs = db.query(Organization).all()
+        return JSONResponse(content={
+            "success": True,
+            "organizations": [org.to_dict() for org in orgs]
+        })
+    else:
+        organizations = get_user_organizations(db, user_id)
+        return JSONResponse(content={
+            "success": True,
+            "organizations": organizations
+        })
+
+
+@app.put("/organizations/{org_id}")
+async def update_organization(
+    org_id: int,
+    org_data: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Update organization (owner only)."""
+    org = db.query(Organization).filter(Organization.id == org_id).first()
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Organization not found"
+        )
+    
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Check if user is owner or admin
+    if role != "admin":
+        user_org = db.query(UserOrganization).filter(
+            UserOrganization.user_id == user_id,
+            UserOrganization.organization_id == org_id,
+            UserOrganization.role == "owner",
+            UserOrganization.is_active == True
+        ).first()
+        if not user_org:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only organization owners can update organizations"
+            )
+    
+    # Update name
+    if "name" in org_data:
+        org.name = org_data["name"]
+        org.updated_at = datetime.utcnow()
+    
+    db.commit()
+    db.refresh(org)
+    
+    return JSONResponse(content={
+        "success": True,
+        "organization": org.to_dict()
+    })
+
+
+@app.delete("/organizations/{org_id}")
+async def delete_organization(
+    org_id: int,
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Delete organization (owner only)."""
+    org = db.query(Organization).filter(Organization.id == org_id).first()
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Organization not found"
+        )
+    
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Check if user is owner or admin
+    if role != "admin":
+        user_org = db.query(UserOrganization).filter(
+            UserOrganization.user_id == user_id,
+            UserOrganization.organization_id == org_id,
+            UserOrganization.role == "owner",
+            UserOrganization.is_active == True
+        ).first()
+        if not user_org:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only organization owners can delete organizations"
+            )
+    
+    # Delete organization (cascade will handle related data)
+    db.delete(org)
+    db.commit()
+    
+    return JSONResponse(content={
+        "success": True,
+        "message": "Organization deleted"
+    })
+
+
 @app.post("/analyze")
-async def analyze_audio(file: UploadFile = File(...), token_data: Dict[str, Any] = Depends(verify_token)):
+async def analyze_audio(
+    file: UploadFile = File(...), 
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
     """
     Analyze audio file for emotion detection using Hume API.
 
     Returns:
         JSON with a top emotion per time segment for prosody and burst models.
     """
+    # For users, verify they have an organization
+    role = token_data.get("role")
+    org_id = get_current_organization_id(token_data)
+    user_id = token_data.get("user_id")
+    
+    if role == "user" and org_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Organization context required for audio analysis"
+        )
+    
     try:
         # Read uploaded file
         file_content = await file.read()
@@ -156,6 +894,8 @@ async def analyze_audio(file: UploadFile = File(...), token_data: Dict[str, Any]
 
         analysis_payload = results[0]
         analysis_payload.setdefault("metadata", {})["analysis_type"] = "custom_upload"
+        if org_id:
+            analysis_payload.setdefault("metadata", {})["organization_id"] = org_id
 
         return JSONResponse(
             content={
@@ -369,7 +1109,7 @@ def _strip_words_from_transcript(transcript_object: Any) -> Any:
     return cleaned_transcript
 
 
-def _upsert_retell_call_metadata(db: Session, call_data: Dict[str, Any], status: Optional[str] = None) -> Dict[str, Any]:
+def _upsert_retell_call_metadata(db: Session, call_data: Dict[str, Any], status: Optional[str] = None, organization_id: Optional[int] = None, user_id: Optional[int] = None) -> Dict[str, Any]:
     call_id = call_data.get("call_id")
     if not call_id:
         raise ValueError("call_data must include call_id")
@@ -420,8 +1160,15 @@ def _upsert_retell_call_metadata(db: Session, call_data: Dict[str, Any], status:
         call.recording_multi_channel_url = call_data.get("recording_multi_channel_url") or call.recording_multi_channel_url
         call.analysis_status = status or call.analysis_status
         call.duration_ms = duration_ms or call.duration_ms
+        # Only update organization_id if provided and not already set
+        if organization_id is not None and call.organization_id is None:
+            call.organization_id = organization_id
+        if user_id is not None and call.created_by_user_id is None:
+            call.created_by_user_id = user_id
     else:
-        # Create new call
+        # Create new call - organization_id is required
+        if organization_id is None:
+            raise ValueError("organization_id is required for new calls")
         call = Call(
             call_id=call_id,
             agent_id=call_data.get("agent_id"),
@@ -432,6 +1179,8 @@ def _upsert_retell_call_metadata(db: Session, call_data: Dict[str, Any], status:
             recording_multi_channel_url=call_data.get("recording_multi_channel_url"),
             analysis_status=status or "pending",
             duration_ms=duration_ms,
+            organization_id=organization_id,
+            created_by_user_id=user_id,
         )
         db.add(call)
 
@@ -680,7 +1429,7 @@ def _load_overall_emotion_for_call(db: Session, call_id: str) -> Optional[Dict[s
     return call.overall_emotion_json
 
 
-def _process_retell_call(db: Session, call_payload: Dict[str, Any]) -> Dict[str, Any]:
+def _process_retell_call(db: Session, call_payload: Dict[str, Any], organization_id: Optional[int] = None, user_id: Optional[int] = None) -> Dict[str, Any]:
     call_id = call_payload.get("call_id")
     if not call_id:
         logger.warning("Received Retell payload without call_id; skipping")
@@ -781,7 +1530,7 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any]) -> Dict[str,
                 "agent_name": call_data.get("agent_name") or call_payload.get("agent_name"),
                 "user_phone_number": call_data.get("user_phone_number") or call_payload.get("user_phone_number"),
             }
-            _upsert_retell_call_metadata(db, minimal_call_data, status="processing")
+            _upsert_retell_call_metadata(db, minimal_call_data, status="processing", organization_id=organization_id, user_id=user_id)
             _update_retell_call_entry(db, call_id, metadata_updates)
 
         if not constraint_info["analysis_allowed"]:
@@ -937,7 +1686,10 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any]) -> Dict[str,
                     "call_id": call_id,
                     "recording_multi_channel_url": call_payload.get("recording_multi_channel_url"),
                 }
-                _upsert_retell_call_metadata(error_db, minimal_call_data, status="error")
+                # Get organization_id from existing call if available
+                existing_call = error_db.query(Call).filter(Call.call_id == call_id).first()
+                org_id = existing_call.organization_id if existing_call else None
+                _upsert_retell_call_metadata(error_db, minimal_call_data, status="error", organization_id=org_id)
                 _update_retell_call_entry(error_db, call_id, {
                     "error_message": str(exc),
                 })
@@ -948,10 +1700,70 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any]) -> Dict[str,
         raise
 
 
-@app.post("/retell/webhook")
-async def retell_webhook(payload: Dict[str, Any], db: Session = Depends(get_db)):
+@app.post("/{organization_id}/retell/webhook")
+async def retell_webhook_with_org(
+    organization_id: int,
+    payload: Dict[str, Any] = Body(...), 
+    db: Session = Depends(get_db)
+):
     """
     Endpoint to receive Retell call events and register them for analysis.
+    
+    Organization ID is extracted from the URL path: /{organization_id}/retell/webhook
+    This allows n8n to route webhooks to the correct organization.
+    
+    Supports two payload formats:
+    1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
+    2. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
+    """
+    # Verify organization exists
+    org = db.query(Organization).filter(Organization.id == organization_id).first()
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Organization {organization_id} not found"
+        )
+    
+    event, call_data = _normalize_retell_payload(payload)
+
+    if event != "call_analyzed" or not isinstance(call_data, dict):
+        logger.info("Ignoring Retell event %s (call_data type: %s) for org %s", event, type(call_data).__name__, organization_id)
+        if event == "call_analyzed" and not isinstance(call_data, dict):
+            logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
+        return JSONResponse(content={"success": True, "ignored": True})
+
+    call_id = call_data.get("call_id")
+    if not call_id:
+        raise HTTPException(status_code=400, detail="Missing call_id in Retell payload")
+
+    logger.info("Received call_analyzed webhook for call %s (org: %s)", call_id, organization_id)
+    try:
+        metadata = _upsert_retell_call_metadata(db, call_data, status="pending", organization_id=organization_id)
+    except Exception as exc:  # pylint: disable=broad-except
+        logger.exception("Failed to record Retell call metadata for %s: %s", call_id, exc)
+        raise HTTPException(status_code=500, detail="Failed to record call metadata") from exc
+
+    return JSONResponse(
+        content={
+            "success": True,
+            "message": "Call registered",
+            "call_id": call_id,
+            "call_metadata": metadata,
+            "organization_id": organization_id,
+        }
+    )
+
+
+@app.post("/retell/webhook")
+async def retell_webhook(
+    payload: Dict[str, Any] = Body(...), 
+    db: Session = Depends(get_db)
+):
+    """
+    Legacy endpoint to receive Retell call events (backward compatibility).
+    
+    This endpoint tries to determine organization_id from payload or uses the first organization.
+    For production use, prefer /{organization_id}/retell/webhook instead.
     
     Supports two payload formats:
     1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
@@ -963,18 +1775,34 @@ async def retell_webhook(payload: Dict[str, Any], db: Session = Depends(get_db))
         logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
         if event == "call_analyzed" and not isinstance(call_data, dict):
             logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
-        logger.info("Ignoring Retell event %s (call_data type: %s)", event, type(call_data).__name__)
-        if event == "call_analyzed" and not isinstance(call_data, dict):
-            logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
         return JSONResponse(content={"success": True, "ignored": True})
 
     call_id = call_data.get("call_id")
     if not call_id:
         raise HTTPException(status_code=400, detail="Missing call_id in Retell payload")
 
-    logger.info("Received call_analyzed webhook for call %s", call_id)
+    # Determine organization_id
+    # Try to get from payload metadata first
+    organization_id = call_data.get("organization_id")
+    if organization_id is None:
+        # Try to get from top-level payload
+        organization_id = payload.get("organization_id")
+    
+    if organization_id is None:
+        # Fallback: get first organization (for migration/compatibility)
+        # In production, this should be configured per webhook endpoint
+        first_org = db.query(Organization).first()
+        if first_org:
+            organization_id = first_org.id
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="No organization available. Please create an organization first."
+            )
+
+    logger.info("Received call_analyzed webhook for call %s (org: %s) via legacy endpoint", call_id, organization_id)
     try:
-        metadata = _upsert_retell_call_metadata(db, call_data, status="pending")
+        metadata = _upsert_retell_call_metadata(db, call_data, status="pending", organization_id=organization_id)
     except Exception as exc:  # pylint: disable=broad-except
         logger.exception("Failed to record Retell call metadata for %s: %s", call_id, exc)
         raise HTTPException(status_code=500, detail="Failed to record call metadata") from exc
@@ -993,6 +1821,7 @@ async def retell_webhook(payload: Dict[str, Any], db: Session = Depends(get_db))
 async def list_retell_calls(
     page: int = Query(1, ge=1, description="Page number (1-indexed)"),
     per_page: int = Query(15, ge=1, le=100, description="Number of items per page"),
+    organization_id: Optional[int] = Query(None, description="Filter by organization (admin only)"),
     token_data: Dict[str, Any] = Depends(verify_token),
     db: Session = Depends(get_db)
 ):
@@ -1002,11 +1831,33 @@ async def list_retell_calls(
     Supports pagination via query parameters:
     - page: Page number (default: 1, minimum: 1)
     - per_page: Items per page (default: 15, minimum: 1, maximum: 100)
+    - organization_id: Filter by organization (admin only, optional)
+    
+    For users: returns calls from their current organization
+    For admins: returns all calls, optionally filtered by organization_id
     """
+    role = token_data.get("role")
+    user_id = token_data.get("user_id")
+    user_org_id = get_current_organization_id(token_data)
+    
     # Query calls, excluding zero-duration calls
     query = db.query(Call).filter(
         (Call.duration_ms.is_(None)) | (Call.duration_ms > 0)
     )
+    
+    # Apply organization filtering
+    if role == "admin":
+        # Admins can see all calls, or filter by organization_id if provided
+        if organization_id is not None:
+            query = query.filter(Call.organization_id == organization_id)
+    else:
+        # Users only see calls from their current organization
+        if user_org_id is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Organization context required"
+            )
+        query = query.filter(Call.organization_id == user_org_id)
     
     total_count = query.count()
     total_pages = max(1, (total_count + per_page - 1) // per_page)
@@ -1123,12 +1974,12 @@ def _prepare_retell_call_payload(call_entry: Dict[str, Any]) -> Dict[str, Any]:
     return payload
 
 
-def _process_retell_call_background(call_id: str, call_payload: Dict[str, Any]) -> None:
+def _process_retell_call_background(call_id: str, call_payload: Dict[str, Any], organization_id: Optional[int] = None, user_id: Optional[int] = None) -> None:
     """Background task to process Retell call analysis without blocking the HTTP request."""
     db = SessionLocal()
     try:
         logger.info("Starting background analysis for call %s", call_id)
-        analysis_payload = _process_retell_call(db, call_payload)
+        analysis_payload = _process_retell_call(db, call_payload, organization_id=organization_id, user_id=user_id)
         logger.info("Completed background analysis for call %s", call_id)
     except HTTPException as exc:
         logger.error("HTTP error in background analysis for call %s: %s", call_id, exc.detail)
@@ -1144,7 +1995,7 @@ def _process_retell_call_background(call_id: str, call_payload: Dict[str, Any]) 
                 "call_id": call_id,
                 "recording_multi_channel_url": call_payload.get("recording_multi_channel_url"),
             }
-            _upsert_retell_call_metadata(db, minimal_call_data, status="error")
+            _upsert_retell_call_metadata(db, minimal_call_data, status="error", organization_id=organization_id, user_id=user_id)
             _update_retell_call_entry(db, call_id, {
                 "error_message": exc.detail
             })
@@ -1162,7 +2013,7 @@ def _process_retell_call_background(call_id: str, call_payload: Dict[str, Any]) 
                 "call_id": call_id,
                 "recording_multi_channel_url": call_payload.get("recording_multi_channel_url"),
             }
-            _upsert_retell_call_metadata(db, minimal_call_data, status="error")
+            _upsert_retell_call_metadata(db, minimal_call_data, status="error", organization_id=organization_id, user_id=user_id)
             _update_retell_call_entry(db, call_id, {
                 "error_message": str(exc)
             })
@@ -1184,7 +2035,24 @@ async def analyze_retell_call(
     Returns immediately and processes in the background to avoid gateway timeouts.
     Use GET /retell/calls/{call_id}/analysis to check status and retrieve results.
     """
-    call_entry = _ensure_call_registered(db, call_id)
+    # Verify organization access
+    call = db.query(Call).filter(Call.call_id == call_id).first()
+    if not call:
+        raise HTTPException(status_code=404, detail=f"Call {call_id} not found")
+    
+    role = token_data.get("role")
+    user_org_id = get_current_organization_id(token_data)
+    
+    # Verify user has access to this call's organization
+    if role == "user":
+        if call.organization_id != user_org_id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Call does not belong to your current organization"
+            )
+    # Admins can access any call
+    
+    call_entry = call.to_dict()
     if call_entry.get("analysis_allowed") is False:
         reason = call_entry.get("analysis_block_reason") or "Call cannot be analyzed."
         raise HTTPException(
@@ -1195,7 +2063,7 @@ async def analyze_retell_call(
     # If analysis already exists and not forcing, return it immediately
     if not force:
         try:
-            return await get_retell_call_analysis(call_id, db=db)
+            return await get_retell_call_analysis(call_id, token_data=token_data, db=db)
         except HTTPException as exc:
             if exc.status_code != 404:
                 raise
@@ -1217,7 +2085,9 @@ async def analyze_retell_call(
     _update_retell_call_entry(db, call_id, {"analysis_status": "processing", "error_message": None})
     
     call_payload = _prepare_retell_call_payload(call_entry)
-    background_tasks.add_task(_process_retell_call_background, call_id, call_payload)
+    org_id = call.organization_id
+    user_id = token_data.get("user_id")
+    background_tasks.add_task(_process_retell_call_background, call_id, call_payload, org_id, user_id)
 
     # Return immediately - processing happens in background
     return JSONResponse(content={
@@ -1357,7 +2227,24 @@ async def get_retell_call_analysis(
     
     Returns status information if analysis is still processing or has errors.
     """
-    call_entry = _ensure_call_registered(db, call_id)
+    # Verify organization access
+    call = db.query(Call).filter(Call.call_id == call_id).first()
+    if not call:
+        raise HTTPException(status_code=404, detail=f"Call {call_id} not found")
+    
+    role = token_data.get("role")
+    user_org_id = get_current_organization_id(token_data)
+    
+    # Verify user has access to this call's organization
+    if role == "user":
+        if call.organization_id != user_org_id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Call does not belong to your current organization"
+            )
+    # Admins can access any call
+    
+    call_entry = call.to_dict()
     
     # Check if still processing
     analysis_status = call_entry.get("analysis_status")

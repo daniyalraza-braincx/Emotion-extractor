@@ -1,15 +1,16 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { fetchRetellCalls } from '../services/api';
 import { useAnalysis } from '../context/AnalysisContext';
 import { useAuth } from '../context/AuthContext';
 import { formatTimestamp, formatDuration, formatStatusLabel } from '../utils/formatters';
+import OrganizationSwitcher from '../components/OrganizationSwitcher';
 
 function Dashboard() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { setAnalysisRequest } = useAnalysis();
-  const { logout, authenticated, loading } = useAuth();
+  const { logout, authenticated, loading, user, isAdmin, currentOrganization, organizations } = useAuth();
 
   const fileInputRef = useRef(null);
 
@@ -58,13 +59,33 @@ function Dashboard() {
     } finally {
       setIsFetchingCalls(false);
     }
-  }, [authenticated, loading, currentPage, callsPerPage]);
+  }, [authenticated, loading, currentPage, callsPerPage, currentOrganization?.id]);
 
+  // Track previous organization ID to detect changes
+  const prevOrgIdRef = useRef(currentOrganization?.id);
+  
   useEffect(() => {
     if (authenticated && !loading) {
+      const currentOrgId = currentOrganization?.id;
+      const prevOrgId = prevOrgIdRef.current;
+      
+      // If organization changed, reset to page 1
+      if (currentOrgId !== undefined && currentOrgId !== prevOrgId && prevOrgId !== undefined) {
+        prevOrgIdRef.current = currentOrgId;
+        if (currentPage !== 1) {
+          const newSearchParams = new URLSearchParams(searchParams);
+          newSearchParams.set('page', '1');
+          setSearchParams(newSearchParams, { replace: true });
+          return; // Will reload when page changes
+        }
+      } else {
+        prevOrgIdRef.current = currentOrgId;
+      }
+      
+      // Load calls for current page
       loadRetellCalls(currentPage);
     }
-  }, [authenticated, loading, currentPage, loadRetellCalls]);
+  }, [authenticated, loading, currentPage, loadRetellCalls, currentOrganization?.id, searchParams, setSearchParams]);
 
   const handleAnalyzeCall = (call) => {
     if (!call?.call_id) return;
@@ -181,15 +202,49 @@ function Dashboard() {
   const showingFrom = pagination.total > 0 ? (pagination.page - 1) * pagination.per_page + 1 : 0;
   const showingTo = Math.min(pagination.page * pagination.per_page, pagination.total);
 
+  // Check if user has no organizations
+  const hasNoOrganizations = !isAdmin && (!organizations || organizations.length === 0);
+
   return (
     <main className="calls-page">
+      {hasNoOrganizations && (
+        <div className="alert" style={{ 
+          background: '#fff8e1', 
+          borderColor: '#ffc107', 
+          color: '#856404',
+          marginBottom: '1.5rem'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <strong>No organization found</strong>
+              <p style={{ margin: '0.5rem 0 0', fontSize: '0.9rem' }}>
+                You need to create an organization to start using the application. Click the button below to create one.
+              </p>
+            </div>
+            <Link
+              to="/organizations"
+              className="upload-button"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              Create Organization
+            </Link>
+          </div>
+        </div>
+      )}
+      
       <header className="calls-header">
         <div className="calls-header__title">
           <h1>Calls</h1>
           <p>{totalCallCount} total calls</p>
+          {currentOrganization && (
+            <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.25rem' }}>
+              Organization: {currentOrganization.name} (ID: {currentOrganization.id})
+            </p>
+          )}
         </div>
 
         <div className="calls-header__tools">
+          {!isAdmin && <OrganizationSwitcher />}
           <div className="calls-search">
             <span aria-hidden className="calls-search__icon">🔍</span>
             <input
@@ -213,6 +268,24 @@ function Dashboard() {
           </div>
 
           <div className="calls-toolbar">
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="toolbar-chip"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                Admin Portal
+              </Link>
+            )}
+            {!isAdmin && (
+              <Link
+                to="/organizations"
+                className="toolbar-chip"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                Organizations
+              </Link>
+            )}
             <button
               type="button"
               className="toolbar-chip"

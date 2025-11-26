@@ -7,8 +7,15 @@ export const API_ENDPOINTS = {
   LOGIN: `${API_BASE_URL}/auth/login`,
   LOGOUT: `${API_BASE_URL}/auth/logout`,
   VERIFY: `${API_BASE_URL}/auth/verify`,
+  ME: `${API_BASE_URL}/auth/me`,
+  SWITCH_ORG: `${API_BASE_URL}/auth/switch-organization`,
   RETELL_CALLS: `${API_BASE_URL}/retell/calls`,
   RETELL_ANALYZE: (callId) => `${API_BASE_URL}/retell/calls/${callId}/analyze`,
   RETELL_ANALYSIS: (callId) => `${API_BASE_URL}/retell/calls/${callId}/analysis`,
+  // Admin endpoints
+  ADMIN_USERS: `${API_BASE_URL}/admin/users`,
+  ADMIN_ORGS: `${API_BASE_URL}/admin/organizations`,
+  // Organization endpoints
+  ORGS: `${API_BASE_URL}/organizations`,
 };
 

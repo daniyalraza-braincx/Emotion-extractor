@@ -8,6 +8,7 @@ openai
 audioop-lts; python_version >= "3.13"
 pyjwt
 passlib[bcrypt]
+bcrypt>=4.0.0
 sqlalchemy>=2.0.0
 psycopg2-binary
 alembic

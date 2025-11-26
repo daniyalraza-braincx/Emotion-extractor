@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Optional, Dict, Any, List
 from sqlalchemy import (
     create_engine, Column, String, Integer, BigInteger, Boolean, Text, 
-    DateTime, ForeignKey, Numeric, Index, JSON as SQLJSON
+    DateTime, ForeignKey, Numeric, Index, JSON as SQLJSON, UniqueConstraint
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship, Session
@@ -35,6 +35,95 @@ def get_db() -> Session:
         yield db
     finally:
         db.close()
+
+
+class User(Base):
+    """User accounts table."""
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    username = Column(String(255), unique=True, nullable=False, index=True)
+    password_hash = Column(String(255), nullable=False)
+    role = Column(String(50), nullable=False, default="user", index=True)  # 'admin' or 'user'
+    email = Column(String(255), nullable=True, unique=True)
+    is_active = Column(Boolean, default=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    last_login = Column(DateTime, nullable=True)
+    created_by = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+
+    # Relationships
+    created_users = relationship("User", remote_side=[id], backref="creator")
+    organizations_owned = relationship("Organization", back_populates="owner", foreign_keys="Organization.owner_id")
+    user_organizations = relationship("UserOrganization", back_populates="user", cascade="all, delete-orphan")
+    calls_created = relationship("Call", back_populates="created_by_user", foreign_keys="Call.created_by_user_id")
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert User model to dictionary format."""
+        return {
+            "id": self.id,
+            "username": self.username,
+            "role": self.role,
+            "email": self.email,
+            "is_active": self.is_active,
+            "created_at": self.created_at.replace(microsecond=0).isoformat() + "Z" if self.created_at else None,
+            "last_login": self.last_login.replace(microsecond=0).isoformat() + "Z" if self.last_login else None,
+        }
+
+
+class Organization(Base):
+    """Organizations table."""
+    __tablename__ = "organizations"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(255), nullable=False)
+    owner_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+
+    # Relationships
+    owner = relationship("User", back_populates="organizations_owned", foreign_keys=[owner_id])
+    user_organizations = relationship("UserOrganization", back_populates="organization", cascade="all, delete-orphan")
+    calls = relationship("Call", back_populates="organization", cascade="all, delete-orphan")
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert Organization model to dictionary format."""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "owner_id": self.owner_id,
+            "created_at": self.created_at.replace(microsecond=0).isoformat() + "Z" if self.created_at else None,
+            "updated_at": self.updated_at.replace(microsecond=0).isoformat() + "Z" if self.updated_at else None,
+        }
+
+
+class UserOrganization(Base):
+    """Junction table for users and organizations."""
+    __tablename__ = "user_organizations"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    organization_id = Column(Integer, ForeignKey("organizations.id", ondelete="CASCADE"), nullable=False, index=True)
+    role = Column(String(50), nullable=False, default="member")  # 'owner' or 'member'
+    is_active = Column(Boolean, default=True, nullable=False)
+    joined_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    # Relationships
+    user = relationship("User", back_populates="user_organizations")
+    organization = relationship("Organization", back_populates="user_organizations")
+
+    # Unique constraint
+    __table_args__ = (UniqueConstraint('user_id', 'organization_id', name='uq_user_organization'),)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert UserOrganization model to dictionary format."""
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "organization_id": self.organization_id,
+            "role": self.role,
+            "is_active": self.is_active,
+            "joined_at": self.joined_at.replace(microsecond=0).isoformat() + "Z" if self.joined_at else None,
+        }
 
 
 class Call(Base):
@@ -70,10 +159,16 @@ class Call(Base):
     
     analysis_constraints = Column(JSONB, nullable=True)
     
+    # Multi-tenancy fields
+    organization_id = Column(Integer, ForeignKey("organizations.id", ondelete="CASCADE"), nullable=False, index=True)
+    created_by_user_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    
     last_updated = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     # Relationships
+    organization = relationship("Organization", back_populates="calls")
+    created_by_user = relationship("User", back_populates="calls_created", foreign_keys=[created_by_user_id])
     emotion_segments = relationship("EmotionSegment", back_populates="call", cascade="all, delete-orphan", lazy="dynamic")
     transcript_segments = relationship("TranscriptSegment", back_populates="call", cascade="all, delete-orphan", lazy="dynamic")
     analysis_summaries = relationship("AnalysisSummary", back_populates="call", cascade="all, delete-orphan", lazy="dynamic")
@@ -235,6 +330,7 @@ class AnalysisSummary(Base):
 # Create indexes for performance
 Index("idx_calls_start_timestamp", Call.start_timestamp.desc())
 Index("idx_calls_analysis_status", Call.analysis_status)
+Index("idx_calls_organization_id", Call.organization_id)
 Index("idx_emotion_segments_call_time", EmotionSegment.call_id, EmotionSegment.time_start)
 Index("idx_transcript_segments_call_time", TranscriptSegment.call_id, TranscriptSegment.start_time)
 

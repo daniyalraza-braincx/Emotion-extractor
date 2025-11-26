@@ -6,15 +6,21 @@ const TOKEN_KEY = 'auth_token';
  * Login with username and password
  * @param {string} username 
  * @param {string} password 
+ * @param {number|null} organizationId - Optional organization ID for users
  * @returns {Promise<Object>} Response with access_token
  */
-export async function login(username, password) {
+export async function login(username, password, organizationId = null) {
+  const loginData = { username, password };
+  if (organizationId) {
+    loginData.organization_id = organizationId;
+  }
+
   const response = await fetch(API_ENDPOINTS.LOGIN, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify(loginData),
   });
 
   if (!response.ok) {
@@ -26,7 +32,7 @@ export async function login(username, password) {
   if (data.access_token) {
     localStorage.setItem(TOKEN_KEY, data.access_token);
   }
-  return data;
+  return { ...data, success: true };
 }
 
 /**
