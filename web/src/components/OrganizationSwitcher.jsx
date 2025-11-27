@@ -59,94 +59,94 @@ function OrganizationSwitcher() {
     }
   };
 
-  if (!organizations || organizations.length === 0) {
-    return (
-      <div style={{ marginBottom: '1rem' }}>
-        <div className="alert" style={{ 
-          background: '#fff8e1', 
-          borderColor: '#ffc107', 
-          color: '#856404',
-          padding: '1rem',
-          borderRadius: '10px',
-        }}>
-          <p style={{ margin: '0 0 0.75rem', fontWeight: 600 }}>No organizations available</p>
-          <p style={{ margin: '0 0 0.75rem', fontSize: '0.9rem' }}>
-            Create your first organization to get started.
-          </p>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            className="upload-button"
-            style={{ marginTop: '0.5rem' }}
-          >
-            <span aria-hidden>＋</span>
-            Create Organization
-          </button>
-        </div>
+  // if (!organizations || organizations.length === 0) {
+  //   return (
+  //     <div style={{ marginBottom: '1rem' }}>
+  //       <div className="alert" style={{ 
+  //         background: '#fff8e1', 
+  //         borderColor: '#ffc107', 
+  //         color: '#856404',
+  //         padding: '1rem',
+  //         borderRadius: '10px',
+  //       }}>
+  //         <p style={{ margin: '0 0 0.75rem', fontWeight: 600 }}>No organizations available</p>
+  //         <p style={{ margin: '0 0 0.75rem', fontSize: '0.9rem' }}>
+  //           Create your first organization to get started.
+  //         </p>
+  //         <button
+  //           onClick={() => setShowCreateModal(true)}
+  //           className="upload-button"
+  //           style={{ marginTop: '0.5rem' }}
+  //         >
+  //           <span aria-hidden>＋</span>
+  //           Create Organization
+  //         </button>
+  //       </div>
 
-        {showCreateModal && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-          }}>
-            <div style={{
-              background: 'white',
-              padding: '2rem',
-              borderRadius: '8px',
-              maxWidth: '400px',
-              width: '90%',
-            }}>
-              <h3>Create Organization</h3>
-              {error && (
-                <div style={{ padding: '0.5rem', background: '#fee', color: '#c33', marginBottom: '1rem', borderRadius: '4px' }}>
-                  {error}
-                </div>
-              )}
-              <form onSubmit={handleCreateOrg}>
-                <div style={{ marginBottom: '1rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem' }}>Organization Name</label>
-                  <input
-                    type="text"
-                    value={newOrgName}
-                    onChange={(e) => setNewOrgName(e.target.value)}
-                    required
-                    style={{ width: '100%', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
-                  />
-                </div>
-                <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowCreateModal(false);
-                      setNewOrgName('');
-                      setError(null);
-                    }}
-                    style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    style={{ padding: '0.5rem 1rem', background: '#2563eb', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
-                  >
-                    {loading ? 'Creating...' : 'Create'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
+  //       {showCreateModal && (
+  //         <div style={{
+  //           position: 'fixed',
+  //           top: 0,
+  //           left: 0,
+  //           right: 0,
+  //           bottom: 0,
+  //           background: 'rgba(0,0,0,0.5)',
+  //           display: 'flex',
+  //           alignItems: 'center',
+  //           justifyContent: 'center',
+  //           zIndex: 1000,
+  //         }}>
+  //           <div style={{
+  //             background: 'white',
+  //             padding: '2rem',
+  //             borderRadius: '8px',
+  //             maxWidth: '400px',
+  //             width: '90%',
+  //           }}>
+  //             <h3>Create Organization</h3>
+  //             {error && (
+  //               <div style={{ padding: '0.5rem', background: '#fee', color: '#c33', marginBottom: '1rem', borderRadius: '4px' }}>
+  //                 {error}
+  //               </div>
+  //             )}
+  //             <form onSubmit={handleCreateOrg}>
+  //               <div style={{ marginBottom: '1rem' }}>
+  //                 <label style={{ display: 'block', marginBottom: '0.5rem' }}>Organization Name</label>
+  //                 <input
+  //                   type="text"
+  //                   value={newOrgName}
+  //                   onChange={(e) => setNewOrgName(e.target.value)}
+  //                   required
+  //                   style={{ width: '100%', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '4px' }}
+  //                 />
+  //               </div>
+  //               <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+  //                 <button
+  //                   type="button"
+  //                   onClick={() => {
+  //                     setShowCreateModal(false);
+  //                     setNewOrgName('');
+  //                     setError(null);
+  //                   }}
+  //                   style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}
+  //                 >
+  //                   Cancel
+  //                 </button>
+  //                 <button
+  //                   type="submit"
+  //                   disabled={loading}
+  //                   style={{ padding: '0.5rem 1rem', background: '#2563eb', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+  //                 >
+  //                   {loading ? 'Creating...' : 'Create'}
+  //                 </button>
+  //               </div>
+  //             </form>
+  //           </div>
+  //         </div>
+  //       )}
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="org-switcher">

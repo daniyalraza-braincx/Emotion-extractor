@@ -479,8 +479,18 @@ function Dashboard() {
                         Analyzed - View in Session Analysis Tab
                       </Button>
                     ) : (
-                      <Button variant="secondary" disabled title="Analysis not completed yet">
-                        Analysis Pending
+                      <Button 
+                        variant="primary" 
+                        onClick={() => {
+                          setAnalysisRequest({
+                            type: 'retell',
+                            call,
+                          });
+                          navigate('/analysis');
+                        }}
+                        title="View analysis for this call"
+                      >
+                        View Analysis
                       </Button>
                     )}
                   </div>

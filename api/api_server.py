@@ -2,7 +2,7 @@
 import json
 import logging
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, Optional, List, Tuple
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body, BackgroundTasks, Path
@@ -146,9 +146,9 @@ def create_access_token(user_id: int, username: str, role: str, organization_id:
         to_encode["organization_id"] = organization_id
     
     if expires_delta:
-        expire = datetime.utcnow() + expires_delta
+        expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS)
+        expire = datetime.now(timezone.utc) + timedelta(hours=JWT_EXPIRATION_HOURS)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
     return encoded_jwt
@@ -204,7 +204,7 @@ async def login(credentials: Dict[str, Any] = Body(...), db: Session = Depends(g
         )
     
     # Update last login
-    user.last_login = datetime.utcnow()
+    user.last_login = datetime.now(timezone.utc)
     db.commit()
     
     # Handle organization selection
@@ -441,9 +441,12 @@ async def create_user(
     email = user_data.get("email")
     
     # Normalize empty email to None (NULL) to avoid unique constraint violations
-    if email and isinstance(email, str):
-        email = email.strip()
-        if not email:
+    if email is not None:
+        if isinstance(email, str):
+            email = email.strip()
+            if not email:
+                email = None
+        elif email == '':
             email = None
     
     if not username or not password:
@@ -623,9 +626,12 @@ async def update_user(
     if "email" in user_data:
         # Normalize empty email to None (NULL) to avoid unique constraint violations
         email_value = user_data["email"]
-        if email_value and isinstance(email_value, str):
-            email_value = email_value.strip()
-            if not email_value:
+        if email_value is not None:
+            if isinstance(email_value, str):
+                email_value = email_value.strip()
+                if not email_value:
+                    email_value = None
+            elif email_value == '':
                 email_value = None
         
         # Check if email already exists (excluding current user, only if email is not None)
