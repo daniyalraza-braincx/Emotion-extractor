@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { login as authLogin, logout as authLogout, verifyToken, isAuthenticated as checkAuth } from '../services/auth';
-import { getCurrentUser, switchOrganization as apiSwitchOrganization } from '../services/api';
+import { getCurrentUser, switchOrganization as apiSwitchOrganization, getAllOrganizationsForAdmin } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -42,7 +42,25 @@ export function AuthProvider({ children }) {
       const response = await getCurrentUser();
       if (response.success) {
         setUser(response.user);
-        setOrganizations(response.organizations || []);
+        const isAdmin = response.user?.role === 'admin';
+        
+        // For admins, fetch all organizations
+        if (isAdmin) {
+          try {
+            const allOrgsResponse = await getAllOrganizationsForAdmin();
+            if (allOrgsResponse.success) {
+              setOrganizations(allOrgsResponse.organizations || []);
+            } else {
+              setOrganizations(response.organizations || []);
+            }
+          } catch (error) {
+            console.error('Error fetching all organizations for admin:', error);
+            setOrganizations(response.organizations || []);
+          }
+        } else {
+          setOrganizations(response.organizations || []);
+        }
+        
         setCurrentOrganization(response.current_organization || null);
       }
     } catch (error) {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Card from '../components/Card';
 import Button from '../components/Button';
+import braincxLogo from '../assets/braincx_logo.png';
 import '../styles/theme.css';
 
 function Login() {
@@ -51,26 +52,21 @@ function Login() {
       }}>
         <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-xl)' }}>
           <div style={{
-            width: '64px',
-            height: '64px',
             margin: '0 auto var(--spacing-md)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '2rem',
-            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-            borderRadius: 'var(--border-radius-lg)',
           }}>
-            🧠
+            <img 
+              src={braincxLogo} 
+              alt="BrainCX Logo" 
+              style={{
+                height: '64px',
+                width: 'auto',
+                objectFit: 'contain',
+              }}
+            />
           </div>
-          <h1 style={{
-            margin: '0 0 var(--spacing-sm)',
-            fontSize: 'var(--font-size-2xl)',
-            fontWeight: 'var(--font-weight-bold)',
-            color: 'var(--text-primary)',
-          }}>
-            BrainCX AI
-          </h1>
           <p style={{
             margin: 0,
             fontSize: 'var(--font-size-base)',

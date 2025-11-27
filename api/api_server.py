@@ -345,14 +345,21 @@ async def get_current_user(
             detail="User not found"
         )
     
-    organizations = []
+    role = token_data.get("role")
+    organizations = get_user_organizations(db, user_id)
     current_org = None
     org_id = token_data.get("organization_id")
     
-    if user.role == "user":
-        organizations = get_user_organizations(db, user_id)
-        if org_id:
-            current_org = next((org for org in organizations if org["id"] == org_id), None)
+    if org_id:
+        # First try to find it in the user's organizations
+        current_org = next((org for org in organizations if org["id"] == org_id), None)
+        
+        # For admins, if not found in user's organizations, fetch directly from database
+        # This allows admins to switch to any organization, even ones they don't own
+        if not current_org and role == "admin":
+            org = db.query(Organization).filter(Organization.id == org_id).first()
+            if org:
+                current_org = org.to_dict()
     
     return JSONResponse(content={
         "success": True,
@@ -369,16 +376,9 @@ async def switch_organization(
     token_data: Dict[str, Any] = Depends(verify_token),
     db: Session = Depends(get_db)
 ):
-    """Switch current organization (users only)."""
+    """Switch current organization."""
     user_id = token_data.get("user_id")
     role = token_data.get("role")
-    
-    if role == "admin":
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Admins do not use organizations"
-        )
-    
     organization_id = request.get("organization_id")
     if not organization_id:
         raise HTTPException(
@@ -386,12 +386,22 @@ async def switch_organization(
             detail="organization_id is required"
         )
     
-    # Verify user has access to organization
-    if not verify_user_has_org_access(db, user_id, organization_id):
+    # Verify organization exists
+    org = db.query(Organization).filter(Organization.id == organization_id).first()
+    if not org:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="User does not have access to this organization"
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Organization not found"
         )
+    
+    # For admins, allow switching to any organization
+    # For regular users, verify they have access to the organization
+    if role != "admin":
+        if not verify_user_has_org_access(db, user_id, organization_id):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="User does not have access to this organization"
+            )
     
     # Get user to create new token
     user = db.query(User).filter(User.id == user_id).first()
@@ -409,13 +419,11 @@ async def switch_organization(
         organization_id=organization_id
     )
     
-    org = db.query(Organization).filter(Organization.id == organization_id).first()
-    
     return JSONResponse(content={
         "success": True,
         "access_token": access_token,
         "token_type": "bearer",
-        "organization": org.to_dict() if org else None
+        "organization": org.to_dict()
     })
 
 
@@ -526,6 +534,63 @@ async def list_users(
     })
 
 
+@app.get("/admin/users/{user_id}/organizations")
+async def get_user_organizations_admin(
+    user_id: int,
+    token_data: Dict[str, Any] = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Get organizations for a specific user (admin only)."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+    
+    # Get all organizations owned by this user
+    owned_orgs = db.query(Organization).filter(Organization.owner_id == user_id).all()
+    
+    # Get all UserOrganization entries for this user
+    # For admin view, show ALL organizations including inactive UserOrganization entries
+    user_orgs = db.query(UserOrganization).filter(
+        UserOrganization.user_id == user_id
+    ).all()
+    
+    # Build a dictionary to track organizations and their roles
+    org_dict_map = {}
+    
+    # Add owned organizations first (always with "owner" role)
+    for org in owned_orgs:
+        org_dict = org.to_dict()
+        org_dict["user_role"] = "owner"
+        org_dict_map[org.id] = org_dict
+    
+    # Add organizations from UserOrganization table
+    # Include all UserOrganization entries (both active and inactive) for admin view
+    for uo in user_orgs:
+        org = db.query(Organization).filter(Organization.id == uo.organization_id).first()
+        if org:
+            # If already in map as owner, keep owner role (don't override)
+            if org.id not in org_dict_map:
+                org_dict = org.to_dict()
+                org_dict["user_role"] = uo.role
+                org_dict_map[org.id] = org_dict
+            # If already owner, keep it as owner (don't override)
+            elif org_dict_map[org.id]["user_role"] != "owner":
+                # Update role from UserOrganization if not already owner
+                org_dict_map[org.id]["user_role"] = uo.role
+    
+    # Convert to list - sort by name for consistent ordering
+    organizations = list(org_dict_map.values())
+    organizations.sort(key=lambda x: (x.get('name') or '').lower())
+    
+    return JSONResponse(content={
+        "success": True,
+        "organizations": organizations
+    })
+
+
 @app.put("/admin/users/{user_id}")
 async def update_user(
     user_id: int,
@@ -623,32 +688,16 @@ async def delete_user(
     })
 
 
-@app.get("/admin/users/{user_id}/organizations")
-async def get_user_organizations_admin(
-    user_id: int,
+@app.get("/admin/organizations/all")
+async def list_all_organizations_all(
     token_data: Dict[str, Any] = Depends(require_admin),
     db: Session = Depends(get_db)
 ):
-    """Get organizations for a specific user (admin only)."""
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
-        )
+    """Get all organizations without pagination (admin only, for organization switcher)."""
+    orgs = db.query(Organization).order_by(Organization.name.asc()).all()
     
-    organizations = get_user_organizations(db, user_id)
-    
-    # Also get organizations owned by this user
-    owned_orgs = db.query(Organization).filter(Organization.owner_id == user_id).all()
-    owned_org_ids = {org.id for org in owned_orgs}
-    
-    # Add owned organizations that might not be in the user_organizations table
-    for org in owned_orgs:
-        if not any(o["id"] == org.id for o in organizations):
-            org_dict = org.to_dict()
-            org_dict["user_role"] = "owner"
-            organizations.append(org_dict)
+    # Return simple list for switcher
+    organizations = [org.to_dict() for org in orgs]
     
     return JSONResponse(content={
         "success": True,
@@ -715,14 +764,7 @@ async def create_organization(
     token_data: Dict[str, Any] = Depends(verify_token),
     db: Session = Depends(get_db)
 ):
-    """Create a new organization (users only)."""
-    role = token_data.get("role")
-    if role == "admin":
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admins cannot create organizations"
-        )
-    
+    """Create a new organization."""
     name = org_data.get("name")
     if not name:
         raise HTTPException(
@@ -783,21 +825,11 @@ async def get_user_organizations_list(
 ):
     """List user's organizations."""
     user_id = token_data.get("user_id")
-    role = token_data.get("role")
-    
-    if role == "admin":
-        # Admins see all organizations
-        orgs = db.query(Organization).all()
-        return JSONResponse(content={
-            "success": True,
-            "organizations": [org.to_dict() for org in orgs]
-        })
-    else:
-        organizations = get_user_organizations(db, user_id)
-        return JSONResponse(content={
-            "success": True,
-            "organizations": organizations
-        })
+    organizations = get_user_organizations(db, user_id)
+    return JSONResponse(content={
+        "success": True,
+        "organizations": organizations
+    })
 
 
 @app.put("/organizations/{org_id}")
@@ -2072,9 +2104,40 @@ async def list_retell_calls(
     
     # Apply organization filtering
     if role == "admin":
-        # Admins can see all calls, or filter by organization_id if provided
-        if organization_id is not None:
-            query = query.filter(Call.organization_id == organization_id)
+        # Determine which organization_id to use (query param takes precedence, then token)
+        effective_org_id = organization_id if organization_id is not None else user_org_id
+        
+        # If admin has organization context (from token or query param), filter by it
+        if effective_org_id is not None:
+            query = query.filter(Call.organization_id == effective_org_id)
+            
+            # If admin has organization context and agent_id is provided,
+            # verify agent belongs to that organization
+            if agent_id is not None:
+                saved_agent = db.query(Agent).filter(
+                    Agent.organization_id == effective_org_id,
+                    Agent.agent_id == agent_id
+                ).first()
+                
+                if not saved_agent:
+                    # Agent not in saved list, return empty
+                    return JSONResponse(content={
+                        "success": True,
+                        "calls": [],
+                        "pagination": {
+                            "page": page,
+                            "per_page": per_page,
+                            "total": 0,
+                            "total_pages": 1,
+                            "has_next": False,
+                            "has_prev": False,
+                        }
+                    })
+                # Filter by the specific agent_id
+                query = query.filter(Call.agent_id == agent_id)
+        elif agent_id is not None:
+            # Admin filtering by agent globally (no organization context)
+            query = query.filter(Call.agent_id == agent_id)
     else:
         # Users only see calls from their current organization
         if user_org_id is None:
@@ -2110,10 +2173,6 @@ async def list_retell_calls(
             # Filter by the specific agent_id
             query = query.filter(Call.agent_id == agent_id)
         # If agent_id is not provided, show all calls for the organization (all agents)
-    
-    # For admins: apply agent_id filtering if provided
-    if role == "admin" and agent_id is not None:
-        query = query.filter(Call.agent_id == agent_id)
     
     # Apply analysis_status filtering if provided
     if analysis_status is not None:

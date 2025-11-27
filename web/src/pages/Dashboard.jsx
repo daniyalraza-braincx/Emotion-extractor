@@ -73,7 +73,7 @@ function Dashboard() {
 
   // Load saved agents for the organization
   const loadSavedAgents = useCallback(async (orgId) => {
-    if (!orgId || isAdmin) {
+    if (!orgId) {
       setSavedAgents([]);
       return;
     }
@@ -92,7 +92,7 @@ function Dashboard() {
     } finally {
       setIsLoadingAgents(false);
     }
-  }, [isAdmin]);
+  }, []);
 
   // Track previous organization ID to detect changes
   const prevOrgIdRef = useRef(currentOrganization?.id);
@@ -101,7 +101,7 @@ function Dashboard() {
   
   // Load agents when organization changes (separate effect to avoid loops)
   useEffect(() => {
-    if (!authenticated || loading || isAdmin) return;
+    if (!authenticated || loading) return;
     
     const currentOrgId = currentOrganization?.id;
     if (!currentOrgId) return;
@@ -308,7 +308,7 @@ function Dashboard() {
       {/* Filters Bar */}
       <Card className="mb-3">
         <div style={{ display: 'flex', gap: 'var(--spacing-md)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-          {!isAdmin && currentOrganization && (
+          {currentOrganization && (
             <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', minWidth: '200px' }}>
               <label style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
                 Agent:

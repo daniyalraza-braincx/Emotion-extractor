@@ -627,7 +627,7 @@ function formatSecondsCompact(value) {
 function AnalysisPage() {
   const navigate = useNavigate();
   const { analysisRequest, setAnalysisRequest } = useAnalysis();
-  const { currentOrganization, isAdmin } = useAuth();
+  const { currentOrganization, isAdmin, organizations, switchOrganization } = useAuth();
   const [searchParams] = useSearchParams();
 
   const audioRef = useRef(null);
@@ -639,6 +639,9 @@ function AnalysisPage() {
   const [callsPagination, setCallsPagination] = useState({ page: 1, per_page: 15, total: 0, total_pages: 1 });
   const [currentAgentId, setCurrentAgentId] = useState(searchParams.get('agent_id') || null);
   const [savedAgents, setSavedAgents] = useState([]);
+  const [isLoadingAgents, setIsLoadingAgents] = useState(false);
+  const [isSwitchingOrganization, setIsSwitchingOrganization] = useState(false);
+  const [organizationSwitchError, setOrganizationSwitchError] = useState(null);
 
   const [chartData, setChartData] = useState([]);
   const [emotions, setEmotions] = useState([]);
@@ -1011,18 +1014,28 @@ const applyAnalysisResponse = useCallback((
   }, [resetVisualizationState, applyAnalysisResponse, pollForAnalysisResults]);
 
   const loadAgents = useCallback(async () => {
-    if (isAdmin || !currentOrganization) return;
+    if (!currentOrganization) {
+      setSavedAgents([]);
+      return;
+    }
+    setIsLoadingAgents(true);
     try {
       const response = await getOrganizationAgents(currentOrganization.id);
-      if (response.success) {
-        setSavedAgents(response.agents || []);
+      if (response.success && Array.isArray(response.agents)) {
+        setSavedAgents(response.agents);
+      } else {
+        setSavedAgents([]);
       }
     } catch (err) {
       console.error('Failed to load agents:', err);
+      setSavedAgents([]);
+    } finally {
+      setIsLoadingAgents(false);
     }
-  }, [isAdmin, currentOrganization]);
+  }, [currentOrganization]);
 
   const loadAnalyzedCalls = useCallback(async (page = 1) => {
+    if (!currentOrganization) return;
     setLoadingCalls(true);
     try {
       const response = await fetchRetellCalls(page, 15, currentAgentId || null, 'completed');
@@ -1036,7 +1049,7 @@ const applyAnalysisResponse = useCallback((
     } finally {
       setLoadingCalls(false);
     }
-  }, [currentAgentId]);
+  }, [currentAgentId, currentOrganization]);
 
   useEffect(() => {
     if (!analysisRequest) {
@@ -1062,6 +1075,28 @@ const applyAnalysisResponse = useCallback((
       loadAnalyzedCalls(1);
     }
   }, [currentAgentId, analysisRequest, loadAnalyzedCalls]);
+
+  // Track previous organization ID to detect changes
+  const prevOrgIdRef = useRef(currentOrganization?.id);
+  
+  // Reload data when organization changes (for admins)
+  useEffect(() => {
+    if (!analysisRequest && currentOrganization) {
+      const currentOrgId = currentOrganization.id;
+      const prevOrgId = prevOrgIdRef.current;
+      
+      // Only reload if organization actually changed
+      if (currentOrgId !== prevOrgId) {
+        prevOrgIdRef.current = currentOrgId;
+        // Reset agent filter first
+        setCurrentAgentId(null);
+        // Then reload agents and calls for the new organization
+        loadAgents();
+        // Load calls after agents are loaded
+        loadAnalyzedCalls(1);
+      }
+    }
+  }, [currentOrganization?.id, analysisRequest, loadAgents, loadAnalyzedCalls]); // Only trigger when organization ID changes
 
   useEffect(() => {
     if (!activeRequest) {
@@ -1370,27 +1405,89 @@ const applyAnalysisResponse = useCallback((
           </div>
         </div>
 
-        {!isAdmin && currentOrganization && (
+        {(isAdmin || currentOrganization) && (
           <Card className="mb-3">
             <div style={{ display: 'flex', gap: 'var(--spacing-md)', alignItems: 'center', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', minWidth: '200px' }}>
-                <label style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
-                  Agent:
-                </label>
-                <select
-                  value={currentAgentId || ''}
-                  onChange={(e) => handleAgentSelect(e.target.value || null)}
-                  className="org-switcher-select"
-                  style={{ flex: 1 }}
-                >
-                  <option value="">All Agents</option>
-                  {savedAgents.map((agent) => (
-                    <option key={agent.id} value={agent.agent_id}>
-                      {agent.agent_name || agent.agent_id}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {isAdmin && organizations && organizations.length > 0 && (
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', minWidth: '200px' }}>
+                  <label style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+                    Organization:
+                  </label>
+                  <select
+                    value={currentOrganization?.id || ''}
+                    onChange={async (e) => {
+                      const orgId = e.target.value ? Number(e.target.value) : null;
+                      if (!orgId || orgId === currentOrganization?.id) {
+                        return;
+                      }
+                      
+                      setIsSwitchingOrganization(true);
+                      setOrganizationSwitchError(null);
+                      
+                      try {
+                        const result = await switchOrganization(orgId);
+                        if (!result.success) {
+                          setOrganizationSwitchError(result.error || 'Failed to switch organization');
+                          // The dropdown will revert automatically since currentOrganization hasn't changed
+                        }
+                        // If successful, currentOrganization will be updated by the AuthContext
+                        // and the useEffect hook will handle reloading agents and calls
+                      } catch (err) {
+                        setOrganizationSwitchError(err.message || 'Failed to switch organization');
+                        // The dropdown will revert automatically since currentOrganization hasn't changed
+                      } finally {
+                        setIsSwitchingOrganization(false);
+                      }
+                    }}
+                    className="org-switcher-select"
+                    disabled={isSwitchingOrganization}
+                    style={{ flex: 1 }}
+                  >
+                    <option value="">Select Organization</option>
+                    {organizations.map((org) => (
+                      <option key={org.id} value={org.id}>
+                        {org.name}
+                      </option>
+                    ))}
+                  </select>
+                  {organizationSwitchError && (
+                    <div style={{ 
+                      fontSize: 'var(--font-size-sm)', 
+                      color: '#ca3949',
+                      marginTop: 'var(--spacing-xs)'
+                    }}>
+                      {organizationSwitchError}
+                    </div>
+                  )}
+                </div>
+              )}
+              {currentOrganization && (
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)', alignItems: 'center', minWidth: '200px' }}>
+                  <label style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+                    Agent:
+                  </label>
+                  <select
+                    value={currentAgentId || ''}
+                    onChange={(e) => handleAgentSelect(e.target.value || null)}
+                    className="org-switcher-select"
+                    disabled={isLoadingAgents}
+                    style={{ flex: 1 }}
+                  >
+                    <option value="">All Agents</option>
+                    {isLoadingAgents ? (
+                      <option value="" disabled>Loading agents...</option>
+                    ) : savedAgents.length > 0 ? (
+                      savedAgents.map((agent) => (
+                        <option key={agent.id} value={agent.agent_id}>
+                          {agent.agent_name || agent.agent_id} {agent.call_count !== undefined ? `(${agent.call_count} ${agent.call_count === 1 ? 'call' : 'calls'})` : ''}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="" disabled>No agents found</option>
+                    )}
+                  </select>
+                </div>
+              )}
             </div>
           </Card>
         )}

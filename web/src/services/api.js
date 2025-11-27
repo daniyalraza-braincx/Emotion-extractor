@@ -444,6 +444,27 @@ export async function listAllOrganizations(page = 1, perPage = 15) {
   return await response.json();
 }
 
+/**
+ * Get all organizations without pagination (admin only, for organization switcher)
+ * @returns {Promise<Object>} All organizations list
+ */
+export async function getAllOrganizationsForAdmin() {
+  const response = await fetch(API_ENDPOINTS.ADMIN_ORGS_ALL, {
+    headers: getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    throw new Error('Failed to fetch organizations');
+  }
+
+  return await response.json();
+}
+
 // Organization endpoints
 /**
  * Create a new organization

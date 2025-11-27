@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { createOrganization } from '../services/api';
+import { createOrganization, getAllOrganizationsForAdmin } from '../services/api';
 import { getToken } from '../services/auth';
 
 function OrganizationSwitcher() {
@@ -13,13 +13,18 @@ function OrganizationSwitcher() {
   const [error, setError] = useState(null);
 
   const handleSwitch = async (orgId) => {
-    if (orgId === currentOrganization?.id) return;
+    if (!orgId || orgId === currentOrganization?.id) return;
     setLoading(true);
     setError(null);
     try {
-      const result = await switchOrganization(orgId);
+      const result = await switchOrganization(Number(orgId));
       if (!result.success) {
         setError(result.error || 'Failed to switch organization');
+      } else {
+        // Refresh organizations for admins to get updated list
+        if (isAdmin && fetchUserInfo) {
+          await fetchUserInfo();
+        }
       }
     } catch (err) {
       setError(err.message || 'Failed to switch organization');
@@ -53,10 +58,6 @@ function OrganizationSwitcher() {
       setLoading(false);
     }
   };
-
-  if (isAdmin) {
-    return null; // Admins don't use organizations
-  }
 
   if (!organizations || organizations.length === 0) {
     return (
@@ -151,10 +152,11 @@ function OrganizationSwitcher() {
     <div className="org-switcher">
       <select
         value={currentOrganization?.id || ''}
-        onChange={(e) => handleSwitch(Number(e.target.value))}
+        onChange={(e) => handleSwitch(e.target.value)}
         disabled={loading}
         className="org-switcher-select"
       >
+        <option value="">Select Organization</option>
         {organizations.map((org) => (
           <option key={org.id} value={org.id}>
             {org.name}

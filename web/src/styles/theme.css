@@ -121,7 +121,12 @@
 .sidebar-logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  justify-content: center;
+}
+
+.sidebar-logo img {
+  max-width: 100%;
+  height: auto;
 }
 
 .sidebar-logo-icon {

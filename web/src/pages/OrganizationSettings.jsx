@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { getUserOrganizations, updateOrganization, deleteOrganization, getOrganizationAgents, addOrganizationAgent, deleteOrganizationAgent } from '../services/api';
+import { getUserOrganizations, updateOrganization, deleteOrganization, getOrganizationAgents, addOrganizationAgent, deleteOrganizationAgent, createOrganization } from '../services/api';
 import { API_BASE_URL } from '../config';
 import Card from '../components/Card';
 import Button from '../components/Button';
 
 function OrganizationSettings() {
-  const { user, isAdmin } = useAuth();
+  const { user, isAdmin, fetchUserInfo } = useAuth();
   const [organizations, setOrganizations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,6 +20,9 @@ function OrganizationSettings() {
   const [addingAgent, setAddingAgent] = useState(false);
   const agentsLoadedRef = useRef(new Set()); // Track which organizations have had agents loaded
   const [configuredOrg, setConfiguredOrg] = useState(null); // Track which organization is currently being configured
+  const [showCreateOrgModal, setShowCreateOrgModal] = useState(false);
+  const [newOrgName, setNewOrgName] = useState('');
+  const [creatingOrg, setCreatingOrg] = useState(false);
 
   useEffect(() => {
     loadOrganizations();
@@ -141,18 +144,32 @@ function OrganizationSettings() {
     setOrgName(org.name);
   };
 
-  if (isAdmin) {
-    return (
-      <div>
-        <div className="page-header">
-          <div>
-            <h1 className="page-header-title">Organization Settings</h1>
-            <p className="page-header-subtitle">Admins do not manage organizations. Use the Admin Portal to view all organizations.</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const handleCreateOrg = async (e) => {
+    e.preventDefault();
+    if (!newOrgName.trim()) {
+      setError('Organization name is required');
+      return;
+    }
+    setCreatingOrg(true);
+    setError(null);
+    try {
+      const response = await createOrganization(newOrgName.trim());
+      if (response.success) {
+        setShowCreateOrgModal(false);
+        setNewOrgName('');
+        // Reload organizations list
+        await loadOrganizations();
+        // If a new token was returned, refresh user info to update context
+        if (response.access_token && fetchUserInfo) {
+          await fetchUserInfo();
+        }
+      }
+    } catch (err) {
+      setError(err.message || 'Failed to create organization');
+    } finally {
+      setCreatingOrg(false);
+    }
+  };
 
   return (
     <div>
@@ -173,13 +190,26 @@ function OrganizationSettings() {
         <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
           <p style={{ color: 'var(--text-secondary)' }}>Loading...</p>
         </Card>
-      ) : organizations.length === 0 ? (
-        <Card className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
-          <p style={{ color: 'var(--text-secondary)' }}>You don't have any organizations yet.</p>
-        </Card>
       ) : (
-        <div>
-          <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)' }}>
+        <Card>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-lg)' }}>
+            <h2 style={{ margin: 0, fontSize: 'var(--font-size-xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--text-primary)' }}>
+              Organizations
+            </h2>
+            <Button
+              variant="primary"
+              icon="+"
+              onClick={() => setShowCreateOrgModal(true)}
+            >
+              Create Organization
+            </Button>
+          </div>
+          {organizations.length === 0 ? (
+            <div className="text-center" style={{ padding: 'var(--spacing-2xl)' }}>
+              <p style={{ color: 'var(--text-secondary)' }}>You don't have any organizations yet.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)' }}>
             {organizations.map((org) => (
               <Card key={org.id} className="org-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--spacing-md)' }}>
@@ -430,7 +460,95 @@ function OrganizationSettings() {
                 )}
               </Card>
             ))}
-          </div>
+            </div>
+          )}
+        </Card>
+      )}
+
+      {/* Create Organization Modal */}
+      {showCreateOrgModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            padding: 'var(--spacing-lg)',
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowCreateOrgModal(false);
+              setNewOrgName('');
+              setError(null);
+            }
+          }}
+        >
+          <Card
+            style={{
+              maxWidth: '500px',
+              width: '100%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ margin: '0 0 var(--spacing-lg)', fontSize: 'var(--font-size-xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--text-primary)' }}>
+              Create Organization
+            </h2>
+            <form onSubmit={handleCreateOrg}>
+              <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+                <label style={{
+                  display: 'block',
+                  marginBottom: 'var(--spacing-xs)',
+                  fontSize: 'var(--font-size-sm)',
+                  fontWeight: 'var(--font-weight-semibold)',
+                  color: 'var(--text-primary)',
+                  textAlign: 'left'
+                }}>
+                  Organization Name *
+                </label>
+                <input
+                  type="text"
+                  value={newOrgName}
+                  onChange={(e) => setNewOrgName(e.target.value)}
+                  placeholder="Enter organization name"
+                  required
+                  autoFocus
+                  style={{
+                    width: '100%',
+                    padding: 'var(--spacing-sm) var(--spacing-md)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--border-radius)',
+                    fontSize: 'var(--font-size-base)',
+                  }}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: 'var(--spacing-sm)', justifyContent: 'flex-end' }}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    setShowCreateOrgModal(false);
+                    setNewOrgName('');
+                    setError(null);
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={creatingOrg || !newOrgName.trim()}
+                >
+                  {creatingOrg ? 'Creating...' : 'Create Organization'}
+                </Button>
+              </div>
+            </form>
+          </Card>
         </div>
       )}
     </div>

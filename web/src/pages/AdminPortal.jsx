@@ -59,11 +59,20 @@ function AdminPortal() {
     setLoadingUserOrgs(prev => ({ ...prev, [userId]: true }));
     try {
       const response = await getUserOrganizationsAdmin(userId);
-      if (response.success) {
-        setUserOrganizations(prev => ({ ...prev, [userId]: response.organizations || [] }));
+      console.log('User organizations response for user', userId, ':', response); // Debug log
+      if (response && response.success) {
+        const orgs = Array.isArray(response.organizations) ? response.organizations : [];
+        console.log('Setting organizations for user', userId, ':', orgs.length, 'organizations'); // Debug log
+        if (orgs.length > 0) {
+          console.log('Organization names:', orgs.map(o => o.name || o.id)); // Debug log
+        }
+        setUserOrganizations(prev => ({ ...prev, [userId]: orgs }));
+      } else {
+        console.error('Failed to load user organizations: response.success is false', response);
+        setUserOrganizations(prev => ({ ...prev, [userId]: [] }));
       }
     } catch (err) {
-      console.error('Failed to load user organizations:', err);
+      console.error('Failed to load user organizations for user', userId, ':', err);
       setUserOrganizations(prev => ({ ...prev, [userId]: [] }));
     } finally {
       setLoadingUserOrgs(prev => ({ ...prev, [userId]: false }));
@@ -125,6 +134,12 @@ function AdminPortal() {
       password: '',
       email: user.email || '',
       role: user.role,
+    });
+    // Clear previous organizations for this user to force reload
+    setUserOrganizations(prev => {
+      const updated = { ...prev };
+      delete updated[user.id];
+      return updated;
     });
     // Load organizations for this user
     loadUserOrganizations(user.id);
@@ -381,7 +396,8 @@ function AdminPortal() {
                     marginBottom: 'var(--spacing-xs)',
                     fontSize: 'var(--font-size-sm)',
                     fontWeight: 'var(--font-weight-semibold)',
-                    color: 'var(--text-primary)'
+                    color: 'var(--text-primary)',
+                    textAlign: 'left'
                   }}>
                     Username
                   </label>
@@ -405,7 +421,8 @@ function AdminPortal() {
                     marginBottom: 'var(--spacing-xs)',
                     fontSize: 'var(--font-size-sm)',
                     fontWeight: 'var(--font-weight-semibold)',
-                    color: 'var(--text-primary)'
+                    color: 'var(--text-primary)',
+                    textAlign: 'left'
                   }}>
                     Password {editingUser && <span style={{ fontWeight: 400, color: 'var(--text-secondary)', fontSize: 'var(--font-size-xs)' }}>(leave blank to keep current)</span>}
                   </label>
@@ -429,7 +446,8 @@ function AdminPortal() {
                     marginBottom: 'var(--spacing-xs)',
                     fontSize: 'var(--font-size-sm)',
                     fontWeight: 'var(--font-weight-semibold)',
-                    color: 'var(--text-primary)'
+                    color: 'var(--text-primary)',
+                    textAlign: 'left'
                   }}>
                     Email
                   </label>
@@ -452,7 +470,8 @@ function AdminPortal() {
                     marginBottom: 'var(--spacing-xs)',
                     fontSize: 'var(--font-size-sm)',
                     fontWeight: 'var(--font-weight-semibold)',
-                    color: 'var(--text-primary)'
+                    color: 'var(--text-primary)',
+                    textAlign: 'left'
                   }}>
                     Role
                   </label>
@@ -483,28 +502,33 @@ function AdminPortal() {
                     <div style={{ padding: 'var(--spacing-lg)', textAlign: 'center', color: 'var(--text-secondary)' }}>
                       Loading organizations...
                     </div>
-                  ) : userOrganizations[editingUser.id] && userOrganizations[editingUser.id].length > 0 ? (
-                    <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)', maxHeight: '300px', overflowY: 'auto' }}>
-                      {userOrganizations[editingUser.id].map((org) => (
-                        <Card key={org.id} style={{ padding: 'var(--spacing-md)', background: 'var(--bg-tertiary)' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--spacing-sm)' }}>
-                            <div style={{ flex: 1 }}>
-                              <div style={{ fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)', fontSize: 'var(--font-size-base)', marginBottom: 'var(--spacing-xs)' }}>
-                                {org.name}
-                              </div>
-                              <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
-                                ID: {org.id} • Role: {org.user_role || 'Member'}
+                  ) : (() => {
+                    const orgs = userOrganizations[editingUser.id];
+                    const hasOrgs = Array.isArray(orgs) && orgs.length > 0;
+                    console.log('Rendering organizations section:', { userId: editingUser.id, orgs, hasOrgs }); // Debug log
+                    return hasOrgs ? (
+                      <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)', maxHeight: '300px', overflowY: 'auto' }}>
+                        {orgs.map((org) => (
+                          <Card key={org.id} style={{ padding: 'var(--spacing-md)', background: 'var(--bg-tertiary)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 'var(--spacing-sm)' }}>
+                              <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 'var(--font-weight-semibold)', color: 'var(--text-primary)', fontSize: 'var(--font-size-base)', marginBottom: 'var(--spacing-xs)' }}>
+                                  {org.name}
+                                </div>
+                                <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
+                                  ID: {org.id} • Role: {org.user_role || 'Member'}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  ) : (
-                    <div style={{ padding: 'var(--spacing-lg)', textAlign: 'center', color: 'var(--text-secondary)' }}>
-                      No organizations found for this user.
-                    </div>
-                  )}
+                          </Card>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ padding: 'var(--spacing-lg)', textAlign: 'center', color: 'var(--text-secondary)' }}>
+                        No organizations found for this user.
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
               <div style={{ display: 'flex', gap: 'var(--spacing-sm)', justifyContent: 'flex-end', marginTop: 'var(--spacing-xl)' }}>

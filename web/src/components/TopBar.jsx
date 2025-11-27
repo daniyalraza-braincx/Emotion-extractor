@@ -33,7 +33,7 @@ function TopBar() {
   return (
     <header className="topbar">
       <div className="topbar-left">
-        {!isAdmin && <OrganizationSwitcher />}
+        <OrganizationSwitcher />
       </div>
       
       <div className="topbar-right">

@@ -16,6 +16,7 @@ export const API_ENDPOINTS = {
   ADMIN_USERS: `${API_BASE_URL}/admin/users`,
   ADMIN_USER_ORGS: (userId) => `${API_BASE_URL}/admin/users/${userId}/organizations`,
   ADMIN_ORGS: `${API_BASE_URL}/admin/organizations`,
+  ADMIN_ORGS_ALL: `${API_BASE_URL}/admin/organizations/all`,
   // Organization endpoints
   ORGS: `${API_BASE_URL}/organizations`,
   ORGS_AGENTS: (orgId) => `${API_BASE_URL}/organizations/${orgId}/agents`,

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import braincxLogo from '../assets/braincx_logo.png';
 
 function Sidebar() {
   const location = useLocation();
@@ -16,11 +17,15 @@ function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-header">
         <div className="sidebar-logo">
-          <div className="sidebar-logo-icon">🧠</div>
-          <div className="sidebar-logo-text">
-            <div className="sidebar-logo-title">BrainCX AI</div>
-            <div className="sidebar-logo-subtitle">AI Dashboard</div>
-          </div>
+          <img 
+            src={braincxLogo} 
+            alt="BrainCX Logo" 
+            style={{
+              height: '40px',
+              width: 'auto',
+              objectFit: 'contain',
+            }}
+          />
         </div>
       </div>
       
