@@ -3,6 +3,7 @@ Database models and session management for PostgreSQL using SQLAlchemy ORM.
 """
 
 import json
+import secrets
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 from sqlalchemy import (
@@ -75,6 +76,7 @@ class Organization(Base):
     __tablename__ = "organizations"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
+    org_id = Column(String(255), unique=True, nullable=True, index=True)  # Unique identifier for webhooks
     name = Column(String(255), nullable=False)
     owner_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
@@ -90,6 +92,7 @@ class Organization(Base):
         """Convert Organization model to dictionary format."""
         return {
             "id": self.id,
+            "org_id": self.org_id,
             "name": self.name,
             "owner_id": self.owner_id,
             "created_at": self.created_at.replace(microsecond=0).isoformat() + "Z" if self.created_at else None,

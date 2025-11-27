@@ -2,6 +2,7 @@
 import json
 import logging
 import os
+import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, Optional, List, Tuple
 
@@ -133,6 +134,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+def generate_organization_id() -> str:
+    """Generate a unique organization ID in the format: org_<random_hex_string>"""
+    # Generate 24 random hex characters (similar to Retell agent IDs)
+    random_hex = secrets.token_hex(12)  # 12 bytes = 24 hex characters
+    return f"org_{random_hex}"
 
 
 def create_access_token(user_id: int, username: str, role: str, organization_id: Optional[int] = None, expires_delta: Optional[timedelta] = None) -> str:
@@ -780,10 +788,18 @@ async def create_organization(
     
     user_id = token_data.get("user_id")
     
+    # Generate unique organization ID
+    org_id = generate_organization_id()
+    
+    # Ensure uniqueness (very unlikely but check anyway)
+    while db.query(Organization).filter(Organization.org_id == org_id).first():
+        org_id = generate_organization_id()
+    
     # Create organization
     new_org = Organization(
         name=name,
-        owner_id=user_id
+        owner_id=user_id,
+        org_id=org_id
     )
     
     db.add(new_org)
@@ -1939,8 +1955,9 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any], organization
         raise
 
 
-@app.post("/{agent_id}/retell/webhook")
-async def retell_webhook_with_agent(
+@app.post("/{org_id}/{agent_id}/retell/webhook")
+async def retell_webhook_with_org_and_agent(
+    org_id: str = Path(..., min_length=1, description="Organization ID (unique identifier)"),
     agent_id: str = Path(..., min_length=1, description="Agent ID from the organization's agent list"),
     payload: Dict[str, Any] = Body(...), 
     db: Session = Depends(get_db)
@@ -1948,22 +1965,33 @@ async def retell_webhook_with_agent(
     """
     Endpoint to receive Retell call events and register them for analysis.
     
-    Agent ID is extracted from the URL path: /{agent_id}/retell/webhook
-    This allows routing webhooks to the correct agent and organization.
+    Organization ID and Agent ID are extracted from the URL path: /{org_id}/{agent_id}/retell/webhook
+    This allows routing webhooks to the correct organization and agent.
     
     Supports two payload formats:
     1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
     2. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
     """
-    # Find the agent to get the organization_id
-    agent = db.query(Agent).filter(Agent.agent_id == agent_id).first()
+    # Find the organization by org_id
+    organization = db.query(Organization).filter(Organization.org_id == org_id).first()
+    if not organization:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Organization ID '{org_id}' not found."
+        )
+    
+    organization_id = organization.id
+    
+    # Find the agent within this organization
+    agent = db.query(Agent).filter(
+        Agent.agent_id == agent_id,
+        Agent.organization_id == organization_id
+    ).first()
     if not agent:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Agent ID '{agent_id}' not found. Please add this agent to an organization first."
+            detail=f"Agent ID '{agent_id}' not found in organization '{org_id}'. Please add this agent to the organization first."
         )
-    
-    organization_id = agent.organization_id
     
     event, call_data = _normalize_retell_payload(payload)
 
@@ -1981,7 +2009,67 @@ async def retell_webhook_with_agent(
     # This ensures consistency even if the payload has a different agent_id
     call_data["agent_id"] = agent_id
 
-    logger.info("Received call_analyzed webhook for call %s (agent: %s, org: %s)", call_id, agent_id, organization_id)
+    logger.info("Received call_analyzed webhook for call %s (agent: %s, org_id: %s, org: %s)", call_id, agent_id, org_id, organization_id)
+    try:
+        metadata = _upsert_retell_call_metadata(db, call_data, status="pending", organization_id=organization_id)
+    except Exception as exc:  # pylint: disable=broad-except
+        logger.exception("Failed to record Retell call metadata for %s: %s", call_id, exc)
+        raise HTTPException(status_code=500, detail="Failed to record call metadata") from exc
+
+    return JSONResponse(
+        content={
+            "success": True,
+            "message": "Call registered",
+            "call_id": call_id,
+            "call_metadata": metadata,
+            "agent_id": agent_id,
+            "org_id": org_id,
+            "organization_id": organization_id,
+        }
+    )
+
+
+@app.post("/{agent_id}/retell/webhook")
+async def retell_webhook_with_agent_legacy(
+    agent_id: str = Path(..., min_length=1, description="Agent ID from the organization's agent list"),
+    payload: Dict[str, Any] = Body(...), 
+    db: Session = Depends(get_db)
+):
+    """
+    Legacy endpoint to receive Retell call events (backward compatibility).
+    
+    This endpoint tries to determine organization_id from agent_id in payload.
+    For production use, prefer /{org_id}/{agent_id}/retell/webhook instead.
+    
+    Supports two payload formats:
+    1. Direct Retell format: { "event": "call_analyzed", "call": {...} }
+    2. n8n format: { "body": { "event": "call_analyzed", ...call data... } }
+    """
+    # Find the agent to get the organization_id
+    agent = db.query(Agent).filter(Agent.agent_id == agent_id).first()
+    if not agent:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Agent ID '{agent_id}' not found. Please add this agent to an organization first."
+        )
+    
+    organization_id = agent.organization_id
+    event, call_data = _normalize_retell_payload(payload)
+
+    if event != "call_analyzed" or not isinstance(call_data, dict):
+        logger.info("Ignoring Retell event %s (call_data type: %s) for agent %s (org: %s)", event, type(call_data).__name__, agent_id, organization_id)
+        if event == "call_analyzed" and not isinstance(call_data, dict):
+            logger.warning("call_analyzed event received but call_data is not a dict. Payload keys: %s", list(payload.keys())[:10])
+        return JSONResponse(content={"success": True, "ignored": True})
+
+    call_id = call_data.get("call_id")
+    if not call_id:
+        raise HTTPException(status_code=400, detail="Missing call_id in Retell payload")
+
+    # Ensure the agent_id in the call_data matches the URL agent_id
+    call_data["agent_id"] = agent_id
+
+    logger.info("Received call_analyzed webhook for call %s (agent: %s, org: %s) via legacy endpoint", call_id, agent_id, organization_id)
     try:
         metadata = _upsert_retell_call_metadata(db, call_data, status="pending", organization_id=organization_id)
     except Exception as exc:  # pylint: disable=broad-except
@@ -2010,7 +2098,7 @@ async def retell_webhook(
     
     This endpoint tries to determine organization_id from agent_id in payload, 
     or from organization_id in payload, or uses the first organization.
-    For production use, prefer /{agent_id}/retell/webhook instead.
+    For production use, prefer /{org_id}/{agent_id}/retell/webhook instead.
     
     Supports two payload formats:
     1. Direct Retell format: { "event": "call_analyzed", "call": {...} }

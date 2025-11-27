@@ -218,7 +218,7 @@ function OrganizationSettings() {
                       {org.name}
                     </h3>
                     <p style={{ margin: 0, fontSize: 'var(--font-size-sm)', color: 'var(--text-secondary)' }}>
-                      Organization ID: {org.id}
+                      Organization ID: <code style={{ fontFamily: 'monospace', background: 'var(--bg-tertiary)', padding: '2px 6px', borderRadius: '4px' }}>{org.org_id || org.id}</code>
                     </p>
                   </div>
                   <Button
@@ -395,7 +395,10 @@ function OrganizationSettings() {
                       {agents[org.id] && agents[org.id].length > 0 ? (
                         <div className="grid grid-cols-1" style={{ gap: 'var(--spacing-md)' }}>
                           {agents[org.id].map((agent) => {
-                            const webhookUrl = `${API_BASE_URL}/${encodeURIComponent(agent.agent_id)}/retell/webhook`;
+                            // Use new webhook format with org_id if available, fallback to legacy format
+                            const webhookUrl = org.org_id 
+                              ? `${API_BASE_URL}/${encodeURIComponent(org.org_id)}/${encodeURIComponent(agent.agent_id)}/retell/webhook`
+                              : `${API_BASE_URL}/${encodeURIComponent(agent.agent_id)}/retell/webhook`;
                             return (
                               <Card key={agent.id} className="agent-card">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--spacing-md)' }}>

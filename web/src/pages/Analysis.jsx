@@ -134,20 +134,13 @@ function SegmentBarShape(props) {
     return null;
   }
 
-  const { intervalStart, intervalEnd, time } = payload;
-  
-  // Recharts positions bars at 'x', but that's based on 'time' value
-  // We need to calculate the actual pixel position for intervalStart
-  // The key: x represents where Recharts would position a bar for 'time'
-  // But we want the bar to start at intervalStart, not at time
+  const { intervalStart, intervalEnd, time, _speakerIndex = 0, _totalSpeakers = 1 } = payload;
   
   // Calculate pixel scale: pixels per second
-  // Formula: pixelsPerSecond = availableWidth / domainRange
   const pixelsPerSecond = (() => {
     const leftMargin = chartMargins.left || 0;
     const rightMargin = chartMargins.right || 0;
     
-    // Calculate scale from domain and chart width (most accurate)
     if (chartWidth > 0 && domainMax > domainMin) {
       const availableWidth = chartWidth - leftMargin - rightMargin;
       const domainRange = domainMax - domainMin;
@@ -156,14 +149,7 @@ function SegmentBarShape(props) {
       }
     }
     
-    // Fallback: infer scale from x position and time value
-    // If x is the pixel position Recharts calculated for 'time' (which is intervalStart)
-    // then we can use that as a reference
-    // But x might include the margin offset, so we need to account for that
     if (Number.isFinite(x) && Number.isFinite(time)) {
-      // x is Recharts' calculated position, which should be at leftMargin + (time - domainMin) * scale
-      // Solving: x ≈ leftMargin + (time - domainMin) * scale
-      // scale ≈ (x - leftMargin) / (time - domainMin)
       const leftMargin = chartMargins.left || 0;
       if (time > domainMin && x > leftMargin) {
         const inferredScale = (x - leftMargin) / (time - domainMin);
@@ -173,13 +159,12 @@ function SegmentBarShape(props) {
       }
     }
     
-    // Final fallback: estimate from averageDuration and width
-  const baseWidth = Number.isFinite(width) ? width : 0;
+    const baseWidth = Number.isFinite(width) ? width : 0;
     if (baseWidth > 0 && Number.isFinite(averageDuration) && averageDuration > 0) {
       return baseWidth / averageDuration;
     }
 
-    return 10; // pixels per second estimate
+    return 10;
   })();
   
   // Calculate actual speech duration in seconds
@@ -188,10 +173,8 @@ function SegmentBarShape(props) {
     : 0;
 
   // Calculate where intervalStart should be positioned in pixels
-  // Formula: x = leftMargin + (intervalStart - domainMin) * pixelsPerSecond
-  // This matches how Recharts positions ReferenceLine at currentTime
   const leftMargin = chartMargins.left || 0;
-  const computedX = chartWidth > 0 && domainMax > domainMin && pixelsPerSecond > 0
+  const intervalStartX = chartWidth > 0 && domainMax > domainMin && pixelsPerSecond > 0
     ? leftMargin + (intervalStart - domainMin) * pixelsPerSecond
     : (Number.isFinite(x) ? x : leftMargin);
 
@@ -200,13 +183,28 @@ function SegmentBarShape(props) {
     ? duration * pixelsPerSecond 
     : (width || 12);
   
-  // Add small gap at the end of each bar for separation
-  // This creates visual space between consecutive bars
-  const barGap = 1; // 1 pixel gap
-  const computedWidth = Math.max(8, rawWidth - barGap);
+  // For side-by-side bars: make each bar moderately thick (like the image) and position them side-by-side
+  const barThickness = 8; // Moderately thick bars - 8 pixels wide (like the image)
+  const barSpacing = 2; // Small gap between side-by-side bars
+  
+  let barX, barWidth;
+  
+  // If multiple speakers in same interval, position bars side-by-side within the interval
+  if (_totalSpeakers > 1 && rawWidth > barThickness) {
+    // Calculate total width needed for all bars
+    const totalBarsWidth = (_totalSpeakers * barThickness) + ((_totalSpeakers - 1) * barSpacing);
+    // Center the group of bars within the interval
+    const startOffset = Math.max(0, (rawWidth - totalBarsWidth) / 2);
+    barX = intervalStartX + startOffset + (_speakerIndex * (barThickness + barSpacing));
+    barWidth = barThickness;
+  } else {
+    // Single speaker - center a thin bar in the interval
+    barX = intervalStartX + Math.max(0, (rawWidth - barThickness) / 2);
+    barWidth = barThickness;
+  }
 
-  // Calculate center position for emoji (center of the visible bar)
-  const barCenterX = computedX + (computedWidth / 2);
+  // Calculate center position for emoji (center of the thin bar)
+  const barCenterX = barX + (barWidth / 2);
   const emojiY = (Number.isFinite(y) && y > 0 ? y : 0) - 8;
   
   // Get speaker icon
@@ -215,24 +213,25 @@ function SegmentBarShape(props) {
 
   return (
     <g>
-      {/* Main bar with soft, faded edges using the filter */}
+      {/* Bar with rounded corners */}
       <rect
-        x={Number.isFinite(computedX) ? computedX : 0}
+        x={Number.isFinite(barX) ? barX : 0}
         y={Number.isFinite(y) ? y : 0}
-        width={Number.isFinite(computedWidth) ? computedWidth : Math.max(8, width || 12)}
-        height={Number.isFinite(height) ? height : 8}
+        width={barWidth}
+        height={Number.isFinite(height) ? height : 0}
         fill={fill || '#888888'}
         rx={4}
         ry={4}
-        filter="url(#softBarEdges)"
-        style={{ pointerEvents: 'auto' }}
+        style={{ 
+          pointerEvents: 'auto',
+        }}
       />
       {icon && (
         <text
           x={barCenterX}
           y={emojiY}
           fill="#1f2937"
-          fontSize={16}
+          fontSize={14}
           textAnchor="middle"
           style={{ pointerEvents: 'none' }}
         >
@@ -717,6 +716,69 @@ function AnalysisPage() {
     return mapping;
   }, [emotions, emotionCategoryMap]);
 
+  // Group chart data by time interval and include all speakers for each interval
+  const groupedChartData = useMemo(() => {
+    if (!chartData || chartData.length === 0) return [];
+    
+    const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
+      ? timeline.duration
+      : (Number.isFinite(duration) && duration > 0 ? duration : 0);
+    
+    // Group by interval (intervalStart-intervalEnd) - same intervals get grouped together
+    const intervalMap = new Map();
+    
+    chartData.forEach((entry) => {
+      const key = `${entry.intervalStart}-${entry.intervalEnd}`;
+      if (!intervalMap.has(key)) {
+        intervalMap.set(key, {
+          intervalStart: entry.intervalStart,
+          intervalEnd: entry.intervalEnd,
+          time: entry.intervalStart,
+          speakers: [],
+          _domainMax: fullDuration,
+        });
+      }
+      
+      const interval = intervalMap.get(key);
+      // Add this speaker's data to the interval
+      interval.speakers.push({
+        speaker: entry.speaker,
+        score: entry.score || 0,
+        category: entry.category,
+        topEmotion: entry.topEmotion,
+      });
+    });
+    
+    // Flatten: create one entry per speaker per interval for rendering
+    const flattened = [];
+    intervalMap.forEach((interval) => {
+      interval.speakers.forEach((speakerData) => {
+        flattened.push({
+          intervalStart: interval.intervalStart,
+          intervalEnd: interval.intervalEnd,
+          time: interval.time,
+          speaker: speakerData.speaker,
+          score: speakerData.score,
+          category: speakerData.category,
+          topEmotion: speakerData.topEmotion,
+          _domainMax: interval._domainMax,
+          _intervalKey: `${interval.intervalStart}-${interval.intervalEnd}`,
+          _speakerIndex: interval.speakers.indexOf(speakerData), // Index within this interval
+          _totalSpeakers: interval.speakers.length, // Total speakers in this interval
+        });
+      });
+    });
+    
+    return flattened.sort((a, b) => {
+      // Sort by interval start, then by speaker (Customer first, then Agent)
+      if (a.intervalStart !== b.intervalStart) {
+        return a.intervalStart - b.intervalStart;
+      }
+      const speakerOrder = { 'Customer': 0, 'Agent': 1, 'Unknown': 2 };
+      return (speakerOrder[a.speaker] || 99) - (speakerOrder[b.speaker] || 99);
+    });
+  }, [chartData, duration, timeline.duration]);
+
   const intervalDuration = useMemo(() => {
     if (chartData.length === 0) return 10;
     const total = chartData.reduce((sum, entry) => {
@@ -735,8 +797,14 @@ function AnalysisPage() {
     return map;
   }, [chartData]);
 
-  // Calculate X-axis tick values for standard time marks
+  // Calculate X-axis tick values from actual intervals
   const xAxisTicks = useMemo(() => {
+    // Use actual interval start times from groupedChartData
+    if (groupedChartData && groupedChartData.length > 0) {
+      return groupedChartData.map(entry => entry.intervalStart);
+    }
+    
+    // Fallback to regular time marks if no stacked data
     const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
       ? timeline.duration
       : (Number.isFinite(duration) && duration > 0 ? duration : null);
@@ -1051,20 +1119,45 @@ const applyAnalysisResponse = useCallback((
     }
   }, [currentAgentId, currentOrganization]);
 
+  // Track previous analysisRequest to detect new requests
+  const prevAnalysisRequestRef = useRef(null);
+  
   useEffect(() => {
     if (!analysisRequest) {
       // Show list view - load analyzed calls
+      setActiveRequest(null);
+      resetVisualizationState();
+      setIsLoading(false);
+      prevAnalysisRequestRef.current = null;
       loadAnalyzedCalls(1);
       loadAgents();
       return;
     }
 
-    setActiveRequest(analysisRequest);
+    // Check if this is a new request (different from previous)
+    const prevRequest = prevAnalysisRequestRef.current;
+    const isNewRequest = !prevRequest || 
+      (analysisRequest.type === 'retell' && prevRequest?.call?.call_id !== analysisRequest?.call?.call_id) ||
+      (analysisRequest.type === 'upload' && prevRequest?.file?.name !== analysisRequest?.file?.name);
+    
+    // For new requests, immediately set loading state and update activeRequest
+    // This ensures the detail view shows with loading spinner right away
+    if (isNewRequest) {
+      setIsLoading(true);
+      resetVisualizationState();
+      setActiveRequest(analysisRequest);
+      prevAnalysisRequestRef.current = analysisRequest;
+    } else {
+      // For existing requests, just update activeRequest
+      setActiveRequest(analysisRequest);
+    }
+    
     if (analysisRequest?.type === 'retell' && analysisRequest.call?.analysis_allowed === false) {
       const reason = analysisRequest.call.analysis_block_reason || 'Call cannot be analyzed.';
       setErrorInfo({ message: reason, retryAllowed: false });
+      setIsLoading(false);
     }
-  }, [analysisRequest, navigate, loadAnalyzedCalls, loadAgents]);
+  }, [analysisRequest, navigate, loadAnalyzedCalls, loadAgents, resetVisualizationState]);
 
   const handleAgentSelect = useCallback((agentId) => {
     setCurrentAgentId(agentId || null);
@@ -1185,6 +1278,10 @@ const applyAnalysisResponse = useCallback((
   };
 
   const handleBack = () => {
+    // Clear analysis request before navigating away
+    setAnalysisRequest(null);
+    setActiveRequest(null);
+    resetVisualizationState();
     navigate('/');
   };
 
@@ -1600,32 +1697,39 @@ const applyAnalysisResponse = useCallback((
     );
   }
 
+  const callId = isRetell ? (activeRequest?.call?.call_id || '') : '';
+
   return (
     <div>
-      <div className="page-header">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
-          <Button variant="secondary" size="small" onClick={handleBack} icon="←">
-            Back
-          </Button>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', marginBottom: 'var(--spacing-xs)' }}>
-              <StatusBadge status={analysisBadge.toLowerCase()} label={analysisBadge} />
-            </div>
-            <h1 className="page-header-title" style={{ margin: 0 }}>{analysisTitle}</h1>
-          </div>
-        </div>
-        <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
-          {recordingUrl && (
-            <Button variant="secondary" size="small" onClick={handleDownloadAudio}>
-              Download Audio
-            </Button>
+      <div className="analysis-page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.5rem', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', alignItems: 'flex-start' }}>
+          <button className="analysis-header-btn" onClick={handleBack} style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
+            <span>←</span>
+            <span>Back</span>
+          </button>
+          {isRetell && (
+            <button className="analysis-header-btn">
+              RETELL CALL
+            </button>
           )}
-          <Button variant="primary" size="small" onClick={handleRetry} disabled={isLoading}>
+          {callId && (
+            <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 600, color: '#1f2d55', lineHeight: 1.2 }}>
+              {callId}
+            </h1>
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          {recordingUrl && (
+            <button className="analysis-header-btn" onClick={handleDownloadAudio}>
+              Download Audio
+            </button>
+          )}
+          <button className="analysis-header-btn analysis-header-btn--primary" onClick={handleRetry} disabled={isLoading}>
             Re-run Analysis
-          </Button>
-          <Button variant="secondary" size="small" onClick={handleBack}>
+          </button>
+          <button className="analysis-header-btn" onClick={handleBack}>
             Close
-          </Button>
+          </button>
         </div>
       </div>
 
@@ -1640,8 +1744,18 @@ const applyAnalysisResponse = useCallback((
                   onClick={togglePlay}
                   disabled={playDisabled}
                   aria-pressed={isPlaying}
+                  aria-label={isPlaying ? 'Pause' : 'Play'}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  {isPlaying ? 'Pause' : 'Play'}
+                  <span style={{ 
+                    lineHeight: 1, 
+                    display: 'inline-block',
+                    margin: '0 auto',
+                    textAlign: 'center',
+                    transform: isPlaying ? 'translateX(1px)' : 'translateX(2px)' 
+                  }}>
+                    {isPlaying ? '⏸' : '▶'}
+                  </span>
                 </button>
                 <span className="analysis-playback__timer">
                   {formattedCurrentTime} / {formattedDuration}
@@ -1688,11 +1802,11 @@ const applyAnalysisResponse = useCallback((
       </Card>
 
       <nav className="analysis-tabs" role="tablist" aria-label="Analysis sections">
-        {tabs.map((tab) => (
+        {tabs.map((tab, index) => (
           <button
             key={tab.id}
             type="button"
-            className={`analysis-tab ${activeTab === tab.id ? 'is-active' : ''}`}
+            className={`analysis-tab ${activeTab === tab.id ? 'is-active' : ''} ${index === 0 ? 'first-tab' : ''}`}
             onClick={() => handleTabClick(tab.id)}
             role="tab"
             aria-selected={activeTab === tab.id}
@@ -1705,13 +1819,20 @@ const applyAnalysisResponse = useCallback((
       {!isLoading && !hasError && (
         <section className="analysis-summary-panel">
           <div className="analysis-summary-panel__body">
-            <h2>{summaryHeading}</h2>
-            {summaryBody && <p>{summaryBody}</p>}
+            <h2 style={{ marginBottom: '0.5rem' }}>{summaryHeading}</h2>
+            {summaryBody && <p style={{ marginTop: '0.5rem', lineHeight: 1.6, color: 'var(--text-primary)' }}>{summaryBody}</p>}
           </div>
           {metadataPills.length > 0 && (
-            <div className="analysis-summary-meta">
+            <div className="analysis-summary-meta" style={{ marginTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
               {metadataPills.map((pill) => (
-                <span key={pill.id} className="analysis-chip">
+                <span key={pill.id} className="analysis-chip" style={{ 
+                  padding: '0.25rem 0.75rem', 
+                  borderRadius: '6px', 
+                  fontSize: '0.875rem',
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-color)',
+                  color: 'var(--text-secondary)'
+                }}>
                   {pill.label}
                 </span>
               ))}
@@ -1762,20 +1883,9 @@ const applyAnalysisResponse = useCallback((
           <div className="chart-wrapper">
                       <ResponsiveContainer width="100%" height={400} minHeight={300} minWidth={0}>
             <BarChart
-              data={chartData}
+              data={groupedChartData}
               margin={chartMargins}
             >
-              <defs>
-                {/* Reusable filter for soft, faded bar edges with color spreading/blending */}
-                <filter id="softBarEdges" x="-150%" y="-150%" width="400%" height="400%">
-                  {/* Blur the actual color fill heavily so it spreads outward and blends with other bars */}
-                  <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blurredColor" />
-                  {/* Use only the blurred color - no sharp original on top */}
-                  <feMerge>
-                    <feMergeNode in="blurredColor" />
-                  </feMerge>
-                </filter>
-              </defs>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 type="number"
@@ -1818,9 +1928,18 @@ const applyAnalysisResponse = useCallback((
                     return dataMax + 5;
                   },
                 ]}
-                ticks={xAxisTicks}
+                ticks={groupedChartData.length > 0 ? groupedChartData.map(e => e.intervalStart) : xAxisTicks}
                 tick={{ fontSize: 12 }}
-                tickFormatter={(value) => `${Math.round(value)}s`}
+                tickFormatter={(value) => {
+                  // Find the interval that contains this value
+                  const interval = groupedChartData.find(
+                    (item) => item.intervalStart <= value && value <= item.intervalEnd
+                  );
+                  if (interval) {
+                    return `${interval.intervalStart.toFixed(1)}s-${interval.intervalEnd.toFixed(1)}s`;
+                  }
+                  return `${Math.round(value)}s`;
+                }}
                 label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -10, style: { fontSize: '14px' } }}
                 scale="linear"
                 allowDataOverflow
@@ -1872,45 +1991,29 @@ const applyAnalysisResponse = useCallback((
                   }}
                 />
               )}
+              {/* Single bar per interval - not stacked */}
               <Bar
                 dataKey="score"
                 isAnimationActive={false}
-                minPointSize={6}
-                barSize={Math.max(12, intervalDuration * 8)}
+                minPointSize={8}
+                barSize={8}
                 shape={(shapeProps) => {
-                  // Calculate domain min and max for scale calculation
-                  const fullDuration = (typeof timeline.duration === 'number' && Number.isFinite(timeline.duration) && timeline.duration > 0)
-                    ? timeline.duration
-                    : (Number.isFinite(duration) && duration > 0 ? duration : null);
-                  const domainMin = 0;
-                  const domainMax = fullDuration || 0;
-                  
-                  // Get chart dimensions from viewBox or estimate
-                  const viewBox = shapeProps.viewBox || {};
-                  const chartWidth = typeof viewBox.width === 'number' ? viewBox.width : 0;
-                  
-                  // Pass domainMax to payload so SpeakerLabel can access it
-                  const shapePropsWithDomain = {
-                    ...shapeProps,
-                    payload: {
-                      ...shapeProps.payload,
-                      _domainMax: domainMax,
-                    }
-                  };
-                  
+                  const entry = shapeProps.payload;
+                  if (!entry) return null;
                   return (
-                  <SegmentBarShape
-                      {...shapePropsWithDomain}
-                    averageDuration={intervalDuration}
-                      domainMin={domainMin}
-                      domainMax={domainMax}
-                      chartWidth={chartWidth}
+                    <SegmentBarShape
+                      {...shapeProps}
+                      payload={entry}
+                      averageDuration={intervalDuration}
+                      domainMin={0}
+                      domainMax={entry._domainMax || duration}
+                      chartWidth={shapeProps.viewBox?.width || 0}
                       chartMargins={chartMargins}
-                  />
+                    />
                   );
                 }}
               >
-                {chartData.map((entry, index) => {
+                {groupedChartData.map((entry, index) => {
                   const categoryKey = typeof entry.category === 'string'
                     ? entry.category.toLowerCase()
                     : null;
@@ -1924,8 +2027,6 @@ const applyAnalysisResponse = useCallback((
                     <Cell
                       key={`${entry.intervalStart}-${index}`}
                       fill={fillColor}
-                      stroke={entry.speaker ? (SPEAKER_COLORS[entry.speaker] || '#222222') : 'transparent'}
-                      strokeWidth={entry.speaker ? 2 : 0}
                     />
                   );
                 })}

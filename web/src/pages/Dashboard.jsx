@@ -470,14 +470,6 @@ function Dashboard() {
                       <Button variant="secondary" disabled title={blockReason || 'Analysis unavailable'}>
                         Analysis Blocked
                       </Button>
-                    ) : statusKey === 'completed' ? (
-                      <Button 
-                        variant="secondary" 
-                        disabled
-                        title="Go to 'Session Analysis' tab to view detailed analysis of this call"
-                      >
-                        Analyzed - View in Session Analysis Tab
-                      </Button>
                     ) : (
                       <Button 
                         variant="primary" 
@@ -488,7 +480,7 @@ function Dashboard() {
                           });
                           navigate('/analysis');
                         }}
-                        title="View analysis for this call"
+                        title={statusKey === 'completed' ? 'View stored analysis results for this call' : 'View analysis for this call'}
                       >
                         View Analysis
                       </Button>
