@@ -5,6 +5,7 @@ import os
 import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, Optional, List, Tuple
+import requests
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query, Depends, status, Body, BackgroundTasks, Path
 from fastapi.responses import JSONResponse
@@ -889,7 +890,7 @@ async def update_organization(
     # Update name
     if "name" in org_data:
         org.name = org_data["name"]
-        org.updated_at = datetime.utcnow()
+        org.updated_at = datetime.now(timezone.utc)
     
     db.commit()
     db.refresh(org)
@@ -982,6 +983,7 @@ async def get_organization_agents(
             "id": agent.id,
             "agent_id": agent.agent_id,
             "agent_name": agent.agent_name,
+            "webhook_url": agent.webhook_url,
             "call_count": call_count,
             "created_at": agent.created_at.replace(microsecond=0).isoformat() + "Z" if agent.created_at else None,
         })
@@ -1106,6 +1108,123 @@ async def delete_organization_agent(
     return JSONResponse(content={
         "success": True,
         "message": "Agent deleted"
+    })
+
+
+@app.put("/organizations/{org_id}/agents/{agent_id}")
+async def update_agent(
+    org_id: int,
+    agent_id: int,
+    agent_data: Dict[str, Any] = Body(...),
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Update an agent (name and webhook_url)."""
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Verify user has access to organization (unless admin)
+    if role != "admin":
+        if not verify_user_has_org_access(db, user_id, org_id):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="User does not have access to this organization"
+            )
+    
+    # Find the agent
+    agent = db.query(Agent).filter(
+        Agent.id == agent_id,
+        Agent.organization_id == org_id
+    ).first()
+    
+    if not agent:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Agent not found"
+        )
+    
+    # Update agent_name if provided
+    if "agent_name" in agent_data:
+        agent.agent_name = agent_data["agent_name"].strip() if agent_data["agent_name"] else None
+    
+    # Update webhook_url if provided
+    if "webhook_url" in agent_data:
+        webhook_url = agent_data["webhook_url"]
+        # Allow empty string to clear webhook
+        if webhook_url == "" or webhook_url is None:
+            agent.webhook_url = None
+        elif isinstance(webhook_url, str):
+            # Basic URL validation
+            if len(webhook_url) > 500:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="webhook_url must be a valid URL string (max 500 characters)"
+                )
+            agent.webhook_url = webhook_url.strip() if webhook_url.strip() else None
+    
+    db.commit()
+    db.refresh(agent)
+    
+    return JSONResponse(content={
+        "success": True,
+        "agent": agent.to_dict()
+    })
+
+
+@app.get("/agents/all")
+async def get_all_user_agents(
+    token_data: Dict[str, Any] = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """Get all agents from all organizations the user owns."""
+    user_id = token_data.get("user_id")
+    role = token_data.get("role")
+    
+    # Get all organizations the user owns
+    if role == "admin":
+        # Admins can see all organizations
+        orgs = db.query(Organization).all()
+    else:
+        # Get organizations where user is owner
+        user_orgs = db.query(UserOrganization).filter(
+            UserOrganization.user_id == user_id,
+            UserOrganization.role == "owner",
+            UserOrganization.is_active == True
+        ).all()
+        org_ids = [uo.organization_id for uo in user_orgs]
+        orgs = db.query(Organization).filter(Organization.id.in_(org_ids)).all() if org_ids else []
+    
+    # Get all agents from these organizations
+    org_ids = [org.id for org in orgs]
+    if not org_ids:
+        return JSONResponse(content={
+            "success": True,
+            "agents": []
+        })
+    
+    agents = db.query(Agent).filter(Agent.organization_id.in_(org_ids)).order_by(Agent.organization_id, Agent.created_at.desc()).all()
+    
+    # Build response with organization info
+    agents_with_org = []
+    org_dict = {org.id: org for org in orgs}
+    
+    for agent in agents:
+        org = org_dict.get(agent.organization_id)
+        if org:
+            agents_with_org.append({
+                "id": agent.id,
+                "organization_id": agent.organization_id,
+                "organization_name": org.name,
+                "organization_org_id": org.org_id,
+                "agent_id": agent.agent_id,
+                "agent_name": agent.agent_name,
+                "webhook_url": agent.webhook_url,
+                "created_at": agent.created_at.replace(microsecond=0).isoformat() + "Z" if agent.created_at else None,
+            })
+    
+    return JSONResponse(content={
+        "success": True,
+        "agents": agents_with_org
     })
 
 
@@ -1913,6 +2032,21 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any], organization
         except Exception as update_exc:  # pylint: disable=broad-except
             logger.error("Failed to update metadata store for call %s after analysis: %s", call_id, update_exc)
 
+        # Send webhook notification to n8n if agent has webhook_url configured
+        try:
+            call = db.query(Call).filter(Call.call_id == call_id).first()
+            if call and call.agent_id and call.organization_id:
+                # Find the agent and check if it has a webhook URL configured
+                agent = db.query(Agent).filter(
+                    Agent.agent_id == call.agent_id,
+                    Agent.organization_id == call.organization_id
+                ).first()
+                if agent and agent.webhook_url:
+                    _send_analysis_webhook(agent.webhook_url, call_id, analysis_results, retell_metadata, call, db)
+        except Exception as webhook_exc:  # pylint: disable=broad-except
+            # Don't fail the analysis if webhook fails - just log it
+            logger.error("Failed to send webhook notification for call %s: %s", call_id, webhook_exc)
+
         # Return payload in same format as before for compatibility
         return {
             "call_id": call_id,
@@ -1953,6 +2087,79 @@ def _process_retell_call(db: Session, call_payload: Dict[str, Any], organization
         finally:
             error_db.close()
         raise
+
+
+def _timestamp_ms_to_iso(timestamp_ms: Optional[int]) -> Optional[str]:
+    """Convert Unix timestamp in milliseconds to ISO format string."""
+    if timestamp_ms is None:
+        return None
+    try:
+        # Convert milliseconds to seconds and create datetime
+        dt = datetime.fromtimestamp(timestamp_ms / 1000.0, tz=timezone.utc)
+        return dt.replace(microsecond=0).isoformat()
+    except (ValueError, OSError, TypeError) as e:
+        logger.warning("Failed to convert timestamp %s to ISO format: %s", timestamp_ms, e)
+        return None
+
+
+def _send_analysis_webhook(webhook_url: str, call_id: str, analysis_results: List[Dict[str, Any]], 
+                           retell_metadata: Dict[str, Any], call: Call, db: Session) -> None:
+    """
+    Send analyzed call results to n8n webhook URL.
+    
+    This function sends a POST request to the organization's webhook URL with the complete
+    analysis results in a format suitable for n8n to process and send to Airtable.
+    """
+    try:
+        # Reconstruct the full analysis result in the same format as the API endpoint
+        analysis_data = _reconstruct_analysis_from_db(db, call_id)
+        if not analysis_data:
+            logger.warning("Could not reconstruct analysis data for webhook for call %s", call_id)
+            return
+        
+        # Get call metadata
+        call_entry = _get_retell_call_entry(db, call_id)
+        
+        # Build webhook payload
+        webhook_payload = {
+            "event": "call_analysis_completed",
+            "call_id": call_id,
+            "organization_id": call.organization_id,
+            "analysis_status": "completed",
+            "call_metadata": {
+                "call_id": call_id,
+                "agent_id": call.agent_id,
+                "agent_name": call.agent_name,
+                "start_timestamp": _timestamp_ms_to_iso(call.start_timestamp),
+                "end_timestamp": _timestamp_ms_to_iso(call.end_timestamp),
+                "duration_ms": call.duration_ms,
+                "user_phone_number": call_entry.get("user_phone_number") if call_entry else None,
+                "call_title": call_entry.get("call_title") if call_entry else None,
+                "call_summary": call_entry.get("call_summary") if call_entry else None,
+                "call_purpose": call_entry.get("call_purpose") if call_entry else None,
+                "overall_emotion": call.overall_emotion_json if call.overall_emotion_json else None,
+                "overall_emotion_label": call.overall_emotion_label,
+                "recording_url": call.recording_multi_channel_url,
+            },
+            "analysis_results": analysis_data,
+        }
+        
+        # Send POST request to webhook URL
+        response = requests.post(
+            webhook_url,
+            json=webhook_payload,
+            headers={"Content-Type": "application/json"},
+            timeout=10  # 10 second timeout
+        )
+        response.raise_for_status()
+        logger.info("Successfully sent webhook notification for call %s to %s", call_id, webhook_url)
+        
+    except requests.exceptions.RequestException as e:
+        logger.error("Failed to send webhook for call %s to %s: %s", call_id, webhook_url, e)
+        # Don't raise - webhook failures shouldn't break the analysis flow
+    except Exception as e:  # pylint: disable=broad-except
+        logger.error("Unexpected error sending webhook for call %s: %s", call_id, e)
+        # Don't raise - webhook failures shouldn't break the analysis flow
 
 
 @app.post("/{org_id}/{agent_id}/retell/webhook")

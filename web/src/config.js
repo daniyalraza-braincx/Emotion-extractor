@@ -20,5 +20,6 @@ export const API_ENDPOINTS = {
   // Organization endpoints
   ORGS: `${API_BASE_URL}/organizations`,
   ORGS_AGENTS: (orgId) => `${API_BASE_URL}/organizations/${orgId}/agents`,
+  AGENTS_ALL: `${API_BASE_URL}/agents/all`,
 };
 

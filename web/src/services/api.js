@@ -691,3 +691,67 @@ export async function deleteOrganizationAgent(orgId, agentId) {
 
   return await response.json();
 }
+
+/**
+ * Get all agents from all organizations the user owns
+ * @returns {Promise<Object>} List of all agents with organization info
+ */
+export async function getAllUserAgents() {
+  const response = await fetch(API_ENDPOINTS.AGENTS_ALL, {
+    headers: getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}
+
+/**
+ * Update an agent (name and webhook_url)
+ * @param {number} orgId - Organization ID
+ * @param {number} agentId - Agent record ID (not agent_id string)
+ * @param {Object} agentData - Updated agent data (agent_name, webhook_url)
+ * @returns {Promise<Object>} Updated agent info
+ */
+export async function updateAgent(orgId, agentId, agentData) {
+  const response = await fetch(`${API_ENDPOINTS.ORGS_AGENTS(orgId)}/${agentId}`, {
+    method: 'PUT',
+    headers: {
+      ...getAuthHeaders(),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(agentData),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      logout();
+      window.location.href = '/login';
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    let errorMessage = `Server error (${response.status})`;
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.detail || errorMessage;
+    } catch {
+      errorMessage = response.statusText || errorMessage;
+    }
+    throw new Error(errorMessage);
+  }
+
+  return await response.json();
+}

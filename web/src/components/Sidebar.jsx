@@ -10,6 +10,7 @@ function Sidebar() {
     { path: '/', label: 'Overview', icon: '📊' },
     { path: '/analysis', label: 'Session Analysis', icon: '📈' },
     ...(isAdmin ? [{ path: '/admin', label: 'Admin Portal', icon: '⚙️' }] : []),
+    { path: '/webhooks', label: 'Webhooks', icon: '🔗' },
     { path: '/organizations', label: 'Settings', icon: '⚙️' },
   ];
 

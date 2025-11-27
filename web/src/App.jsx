@@ -6,6 +6,7 @@ import AnalysisPage from './pages/Analysis'
 import Login from './pages/Login'
 import AdminPortal from './pages/AdminPortal'
 import OrganizationSettings from './pages/OrganizationSettings'
+import Webhooks from './pages/Webhooks'
 import Layout from './components/Layout'
 import { AnalysisProvider } from './context/AnalysisContext'
 import { AuthProvider, useAuth } from './context/AuthContext'
@@ -105,6 +106,16 @@ function AppRoutes() {
               <AdminPortal />
             </Layout>
           </AdminRoute>
+        }
+      />
+      <Route
+        path="/webhooks"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Webhooks />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route

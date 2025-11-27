@@ -138,6 +138,7 @@ class Agent(Base):
     organization_id = Column(Integer, ForeignKey("organizations.id", ondelete="CASCADE"), nullable=False, index=True)
     agent_id = Column(String(255), nullable=False, index=True)
     agent_name = Column(String(255), nullable=True)
+    webhook_url = Column(String(500), nullable=True)  # n8n webhook URL for sending analyzed results for this agent
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     created_by_user_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
 
@@ -155,6 +156,7 @@ class Agent(Base):
             "organization_id": self.organization_id,
             "agent_id": self.agent_id,
             "agent_name": self.agent_name,
+            "webhook_url": self.webhook_url,
             "created_at": self.created_at.replace(microsecond=0).isoformat() + "Z" if self.created_at else None,
         }
 
