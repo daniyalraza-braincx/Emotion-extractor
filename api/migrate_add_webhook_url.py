@@ -62,3 +62,4 @@ def migrate_organizations():
 if __name__ == "__main__":
     migrate_organizations()
 
+
