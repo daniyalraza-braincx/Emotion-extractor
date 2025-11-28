@@ -2102,6 +2102,285 @@ def _timestamp_ms_to_iso(timestamp_ms: Optional[int]) -> Optional[str]:
         return None
 
 
+def _normalize_sentiment_category(value: Optional[str]) -> str:
+    """Normalize sentiment category to positive, neutral, or negative."""
+    if not value:
+        return "neutral"
+    normalized = str(value).strip().lower()
+    if normalized in {"positive", "neutral", "negative"}:
+        return normalized
+    return "neutral"
+
+
+def _compute_dominant_emotion_for_window(
+    range_start: float, 
+    range_end: float, 
+    segments: List[Dict[str, Any]]
+) -> Optional[Dict[str, Any]]:
+    """Compute dominant emotion for a time window."""
+    if not segments:
+        return None
+    
+    # Filter segments that overlap with the window
+    overlapping_segments = []
+    for seg in segments:
+        seg_start = float(seg.get("time_start", 0))
+        seg_end = float(seg.get("time_end", seg_start))
+        
+        # Check if segment overlaps with window
+        overlap_start = max(range_start, seg_start)
+        overlap_end = min(range_end, seg_end)
+        if overlap_end > overlap_start:
+            overlap_duration = overlap_end - overlap_start
+            overlapping_segments.append({
+                "segment": seg,
+                "duration": overlap_duration,
+                "start": seg_start,
+                "end": seg_end
+            })
+    
+    if not overlapping_segments:
+        return None
+    
+    # Collect all emotions with their scores weighted by overlap duration
+    emotion_scores = {}
+    total_weight = 0.0
+    
+    for item in overlapping_segments:
+        seg = item["segment"]
+        weight = item["duration"]
+        total_weight += weight
+        
+        # Get top emotions from segment
+        top_emotions = seg.get("top_emotions", [])
+        primary_category = seg.get("primary_category")
+        
+        # If no top_emotions, try to infer from primary_category
+        if not top_emotions and primary_category:
+            category = _normalize_sentiment_category(primary_category)
+            emotion_scores.setdefault(category, {"count": 0, "total_score": 0.0, "weight": 0.0})
+            emotion_scores[category]["count"] += 1
+            emotion_scores[category]["weight"] += weight
+        
+        # Process top_emotions
+        for emotion in top_emotions:
+            if not isinstance(emotion, dict):
+                continue
+            name = emotion.get("name")
+            score = float(emotion.get("score", 0.0))
+            category = _normalize_sentiment_category(emotion.get("category") or primary_category)
+            
+            key = f"{category}:{name}" if name else category
+            if key not in emotion_scores:
+                emotion_scores[key] = {
+                    "name": name,
+                    "category": category,
+                    "count": 0,
+                    "total_score": 0.0,
+                    "weight": 0.0,
+                    "total_percentage": 0.0
+                }
+            
+            emotion_scores[key]["count"] += 1
+            emotion_scores[key]["total_score"] += score * weight
+            emotion_scores[key]["weight"] += weight
+            if "percentage" in emotion:
+                emotion_scores[key]["total_percentage"] += float(emotion.get("percentage", 0.0)) * weight
+    
+    if not emotion_scores:
+        return None
+    
+    # Find best emotion (highest weighted score)
+    best = None
+    best_score = -1.0
+    
+    for key, data in emotion_scores.items():
+        if data["weight"] > 0:
+            avg_score = data["total_score"] / data["weight"]
+            if avg_score > best_score:
+                best_score = avg_score
+                avg_percentage = data["total_percentage"] / data["weight"] if data["total_percentage"] > 0 else avg_score * 100
+                best = {
+                    "name": data.get("name") or data["category"],
+                    "category": data["category"],
+                    "score": avg_score,
+                    "percentage": avg_percentage,
+                    "count": data["count"]
+                }
+    
+    return best
+
+
+def _create_timeline_ranges(total_duration: float) -> List[Dict[str, Any]]:
+    """Create start, mid, end time ranges for timeline."""
+    if total_duration <= 0:
+        return [
+            {"id": "start", "label": "Start", "start": 0.0, "end": 0.0},
+            {"id": "mid", "label": "Mid", "start": 0.0, "end": 0.0},
+            {"id": "end", "label": "End", "start": 0.0, "end": 0.0},
+        ]
+    
+    third = total_duration / 3.0
+    
+    return [
+        {"id": "start", "label": "Start", "start": 0.0, "end": third},
+        {"id": "mid", "label": "Mid", "start": third, "end": 2.0 * third},
+        {"id": "end", "label": "End", "start": 2.0 * third, "end": total_duration},
+    ]
+
+
+def _compute_emotion_timeline(
+    prosody_segments: List[Dict[str, Any]], 
+    total_duration_seconds: float
+) -> Dict[str, List[Dict[str, Any]]]:
+    """Compute emotion timeline for combined, agent, and customer."""
+    ranges = _create_timeline_ranges(total_duration_seconds)
+    
+    # Group segments by speaker
+    all_segments = []
+    agent_segments = []
+    customer_segments = []
+    
+    for seg in prosody_segments:
+        all_segments.append(seg)
+        speaker = seg.get("speaker", "").strip()
+        if speaker == "Agent":
+            agent_segments.append(seg)
+        elif speaker == "Customer":
+            customer_segments.append(seg)
+    
+    timeline = {
+        "combined": [],
+        "agent": [],
+        "customer": []
+    }
+    
+    for speaker_key, segment_group in [
+        ("combined", all_segments),
+        ("agent", agent_segments),
+        ("customer", customer_segments)
+    ]:
+        for time_range in ranges:
+            dominant = _compute_dominant_emotion_for_window(
+                time_range["start"],
+                time_range["end"],
+                segment_group
+            )
+            
+            timeline[speaker_key].append({
+                "id": time_range["id"],
+                "label": time_range["label"],
+                "start": time_range["start"],
+                "end": time_range["end"],
+                "duration": max(0, time_range["end"] - time_range["start"]),
+                "category": dominant["category"] if dominant else None,
+                "emotion": {
+                    "name": dominant.get("name"),
+                    "score": dominant.get("score"),
+                    "percentage": dominant.get("percentage"),
+                    "category": dominant.get("category")
+                } if dominant else None,
+                "hasData": dominant is not None
+            })
+    
+    return timeline
+
+
+def _compute_speaker_metrics(
+    prosody_segments: List[Dict[str, Any]]
+) -> Dict[str, Dict[str, Any]]:
+    """Compute speaker metrics for combined, agent, and customer."""
+    # Initialize accumulators
+    metrics = {
+        "combined": {
+            "segmentCount": 0,
+            "categoryCounts": {"positive": 0, "neutral": 0, "negative": 0},
+            "categorizedEmotions": {
+                "positive": {},
+                "neutral": {},
+                "negative": {}
+            }
+        },
+        "agent": {
+            "segmentCount": 0,
+            "categoryCounts": {"positive": 0, "neutral": 0, "negative": 0},
+            "categorizedEmotions": {
+                "positive": {},
+                "neutral": {},
+                "negative": {}
+            }
+        },
+        "customer": {
+            "segmentCount": 0,
+            "categoryCounts": {"positive": 0, "neutral": 0, "negative": 0},
+            "categorizedEmotions": {
+                "positive": {},
+                "neutral": {},
+                "negative": {}
+            }
+        }
+    }
+    
+    # Process segments
+    for seg in prosody_segments:
+        primary_category = _normalize_sentiment_category(seg.get("primary_category"))
+        top_emotions = seg.get("top_emotions", [])
+        speaker = seg.get("speaker", "").strip()
+        
+        # Determine which metrics to update
+        targets = ["combined"]
+        if speaker == "Agent":
+            targets.append("agent")
+        elif speaker == "Customer":
+            targets.append("customer")
+        
+        # Update metrics for each target
+        for target in targets:
+            metrics[target]["segmentCount"] += 1
+            metrics[target]["categoryCounts"][primary_category] += 1
+            
+            # Process emotions
+            for emotion in top_emotions:
+                if not isinstance(emotion, dict):
+                    continue
+                name = emotion.get("name", "Unknown")
+                category = _normalize_sentiment_category(emotion.get("category") or primary_category)
+                score = float(emotion.get("score", 0.0))
+                percentage = float(emotion.get("percentage", 0.0))
+                
+                if name not in metrics[target]["categorizedEmotions"][category]:
+                    metrics[target]["categorizedEmotions"][category][name] = {
+                        "count": 0,
+                        "maxScore": 0.0,
+                        "maxPercentage": 0.0
+                    }
+                
+                emotion_data = metrics[target]["categorizedEmotions"][category][name]
+                emotion_data["count"] += 1
+                emotion_data["maxScore"] = max(emotion_data["maxScore"], score)
+                emotion_data["maxPercentage"] = max(emotion_data["maxPercentage"], percentage)
+    
+    # Convert categorized emotions to sorted lists
+    for target in metrics:
+        for category in metrics[target]["categorizedEmotions"]:
+            emotion_map = metrics[target]["categorizedEmotions"][category]
+            emotion_list = [
+                {
+                    "name": name,
+                    "count": data["count"],
+                    "maxScore": data["maxScore"],
+                    "percentage": data["maxPercentage"],
+                    "source": "prosody"
+                }
+                for name, data in emotion_map.items()
+            ]
+            # Sort by count, then by maxScore
+            emotion_list.sort(key=lambda x: (-x["count"], -x["maxScore"]))
+            metrics[target]["categorizedEmotions"][category] = emotion_list
+    
+    return metrics
+
+
 def _send_analysis_webhook(webhook_url: str, call_id: str, analysis_results: List[Dict[str, Any]], 
                            retell_metadata: Dict[str, Any], call: Call, db: Session) -> None:
     """
@@ -2119,6 +2398,23 @@ def _send_analysis_webhook(webhook_url: str, call_id: str, analysis_results: Lis
         
         # Get call metadata
         call_entry = _get_retell_call_entry(db, call_id)
+        
+        # Compute emotion timeline and speaker metrics
+        prosody_segments = analysis_data.get("prosody", [])
+        total_duration_seconds = 0.0
+        if call.duration_ms:
+            total_duration_seconds = call.duration_ms / 1000.0
+        elif prosody_segments:
+            # Fallback: calculate from segments
+            for seg in prosody_segments:
+                time_end = float(seg.get("time_end", seg.get("time_start", 0)))
+                total_duration_seconds = max(total_duration_seconds, time_end)
+        
+        # Compute emotion timeline (start, mid, end for combined, agent, customer)
+        emotion_timeline = _compute_emotion_timeline(prosody_segments, total_duration_seconds)
+        
+        # Compute speaker metrics (combined, agent, customer)
+        speaker_metrics = _compute_speaker_metrics(prosody_segments)
         
         # Build webhook payload
         webhook_payload = {
@@ -2142,6 +2438,10 @@ def _send_analysis_webhook(webhook_url: str, call_id: str, analysis_results: Lis
                 "recording_url": call.recording_multi_channel_url,
             },
             "analysis_results": analysis_data,
+            "metrics": {
+                "emotion_timeline": emotion_timeline,
+                "speaker_metrics": speaker_metrics,
+            },
         }
         
         # Send POST request to webhook URL
